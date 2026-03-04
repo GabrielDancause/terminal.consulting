@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/course-gate.js"></script>
+  <title>Module 9: Custom Domain &amp; SEO — Course</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+
+  <div class="module-page">
+
+    <!-- Module Navigation -->
+    <nav class="module-nav">
+      <a href="../course.html" class="module-nav-back">← Back to Course</a>
+      <div class="module-nav-controls">
+        <a href="module-08.html" class="module-nav-prev">← Prev</a>
+        <span class="module-nav-label">Module 9 of 10</span>
+        <a href="module-10.html" class="module-nav-next">Next →</a>
+      </div>
+    </nav>
+
+    <!-- Module Header -->
+    <header class="module-header">
+      <span class="module-badge">Module 9</span>
+      <h1>Custom Domain &amp; SEO</h1>
+      <p class="module-meta">~9 min listen · Written guide below</p>
+    </header>
+
+    <!-- Audio Player -->
+    <div class="module-audio">
+      <audio controls preload="metadata" style="width:100%">
+        <source src="audio/module-09.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- Module Content -->
+    <article class="module-content">
+
+      <p>Your site is live. It works. But the URL is <code>your-username.github.io/my-bakery-website</code>. That's fine for showing friends, but if this is a real business, you want <code>goldencrust.com</code> or <code>yourbusiness.com</code>. A custom domain makes you look legit.</p>
+
+      <p>The domain costs about $12/year. That's the only cost in this entire setup. Everything else — hosting, SSL certificate, deployment — stays free.</p>
+
+      <p>We're also going to set up basic SEO so Google can find you. No black magic, just the fundamentals that actually matter.</p>
+
+      <h2>Why Get a Custom Domain</h2>
+
+      <p>Three reasons:</p>
+
+      <ol>
+        <li><strong>Professionalism.</strong> <code>goldencrust.com</code> vs <code>jsmith42.github.io/my-bakery-website</code> — which one do you trust more?</li>
+        <li><strong>Branding.</strong> People remember short, clean URLs. You can put it on business cards, signs, menus.</li>
+        <li><strong>It's yours.</strong> If you ever move away from GitHub Pages (unlikely, but still), your domain goes with you. The URL never changes for your customers.</li>
+      </ol>
+
+      <h2>Where to Buy a Domain</h2>
+
+      <p>I've used a few registrars. Here's my honest take:</p>
+
+      <ul>
+        <li><strong>Cloudflare Registrar</strong> (cloudflare.com) — my top pick. They charge wholesale prices (no markup) and their DNS is fast. A <code>.com</code> is usually around $10–11/year.</li>
+        <li><strong>Namecheap</strong> (namecheap.com) — solid option, been around forever. Good prices, easy to use.</li>
+        <li><strong>Porkbun</strong> (porkbun.com) — cheap, clean interface, no upselling BS.</li>
+      </ul>
+
+      <p>Avoid GoDaddy. Their prices look good the first year then spike, and they upsell you on everything.</p>
+
+      <p><strong>Step 1:</strong> Go to your chosen registrar, search for your domain, and buy it. Pick a <code>.com</code> if it's available. If not, <code>.ca</code>, <code>.co</code>, or <code>.shop</code> work fine depending on your business. The registration process is straightforward — pick your domain, pay, done.</p>
+
+      <h2>Connecting Your Domain to GitHub Pages</h2>
+
+      <p>Now we link your new domain to your GitHub Pages site. There are two sides to this: telling GitHub about your domain, and telling your domain where to point.</p>
+
+      <h3>Step 2: Tell GitHub About Your Domain</h3>
+
+      <ol>
+        <li>Go to your GitHub repository</li>
+        <li>Click <strong>Settings</strong> → <strong>Pages</strong></li>
+        <li>Under <strong>"Custom domain"</strong>, type your domain (e.g., <code>goldencrust.com</code>)</li>
+        <li>Click <strong>Save</strong></li>
+      </ol>
+
+      <p>GitHub will automatically create a file called <code>CNAME</code> in your repository with your domain name in it. You might see a warning that says "DNS check in progress" — that's normal. We haven't set up the DNS yet.</p>
+
+      <h3>Step 3: Set Up DNS at Your Registrar</h3>
+
+      <p>Now go to your domain registrar's website and find the <strong>DNS settings</strong> for your domain. This is usually under "DNS Management," "DNS Records," or "Advanced DNS."</p>
+
+      <p>You need to add these records:</p>
+
+      <p><strong>A Records</strong> — these point your domain to GitHub's servers. Add four of them:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td>@</td>
+            <td>185.199.108.153</td>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>@</td>
+            <td>185.199.109.153</td>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>@</td>
+            <td>185.199.110.153</td>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>@</td>
+            <td>185.199.111.153</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The <code>@</code> means "the root domain" (e.g., <code>goldencrust.com</code> without any prefix).</p>
+
+      <p><strong>CNAME Record</strong> — this makes the <code>www</code> version work too:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CNAME</td>
+            <td>www</td>
+            <td>YOUR-USERNAME.github.io</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Replace <code>YOUR-USERNAME</code> with your actual GitHub username. Don't include the repository name here — just <code>username.github.io</code>.</p>
+
+      <div class="tip">
+        <strong>Tip:</strong> If there are existing A records or CNAME records for <code>@</code> or <code>www</code>, delete them first. You don't want conflicting records.
+      </div>
+
+      <h3>Step 4: Wait for DNS Propagation</h3>
+
+      <p>DNS changes don't happen instantly. The internet needs time to spread the word about where your domain now points. This can take anywhere from 5 minutes to 24 hours. Usually it's under an hour.</p>
+
+      <p>You can check if it's working by just visiting your domain in the browser. If you see your site — you're done. If you see a "can't reach this site" error, give it more time.</p>
+
+      <p>To check propagation status, you can use <strong>dnschecker.org</strong> — type in your domain and see if the records have updated globally.</p>
+
+      <h3>Step 5: Enable HTTPS</h3>
+
+      <p>Once DNS has propagated (you'll see a green checkmark next to your custom domain in GitHub Pages settings), do this:</p>
+
+      <ol>
+        <li>Go back to <strong>Settings → Pages</strong> in your GitHub repository</li>
+        <li>Check the box that says <strong>"Enforce HTTPS"</strong></li>
+      </ol>
+
+      <p>If the checkbox is greyed out, DNS hasn't fully propagated yet. Wait a bit and try again.</p>
+
+      <p>HTTPS gives you the lock icon in the browser. It means your site is secure. GitHub provides the SSL certificate for free — you don't have to do anything except check that box.</p>
+
+      <p>Your site is now live at <code>https://goldencrust.com</code>. Professional URL, secure connection, free hosting. Not bad for $12/year.</p>
+
+      <h2>SEO Basics: Getting Found on Google</h2>
+
+      <p>SEO (Search Engine Optimization) sounds complex. Agencies charge thousands for it. But for a small business website, the basics take 10 minutes and Claude does the work.</p>
+
+      <h3>Meta Tags</h3>
+
+      <p>Tell Claude:</p>
+
+      <pre><code>Add proper meta title and description tags to all pages. The bakery is called Golden Crust Bakery, located in Montreal. Use relevant keywords naturally.</code></pre>
+
+      <p>Claude will add <code>&lt;title&gt;</code> tags and <code>&lt;meta name="description"&gt;</code> tags to each page. These are what show up in Google search results — the blue link text and the description underneath.</p>
+
+      <h3>Open Graph Tags</h3>
+
+      <p>You already set up the OG image in Module 6. Make sure all pages have the full set:</p>
+
+      <pre><code>Add Open Graph tags for social media sharing to all pages, including og:title, og:description, og:image, and og:url</code></pre>
+
+      <h3>Robots.txt</h3>
+
+      <pre><code>Add a robots.txt file that allows all search engines to crawl the site</code></pre>
+
+      <p>This file tells search engine bots they're welcome to index your site. Without it, they'll still probably crawl you, but it's good practice.</p>
+
+      <h3>Sitemap</h3>
+
+      <pre><code>Create a sitemap.xml file that lists all pages on the site</code></pre>
+
+      <p>A sitemap is like a table of contents for Google. It tells search engines exactly what pages exist and helps them index your site faster.</p>
+
+      <h3>Structured Data (JSON-LD)</h3>
+
+      <p>This is the one most people skip, but it's incredibly powerful for local businesses:</p>
+
+      <pre><code>Add structured data using JSON-LD for a local business. Include the business name, address, phone number, opening hours, and type of business. The bakery is at 123 Rue Saint-Laurent, Montreal, QC, open Monday to Saturday 7am to 6pm, phone 514-555-0123</code></pre>
+
+      <p>Structured data helps Google understand your business and can get you those nice rich results in search — with your hours, phone number, and address showing right in the search results.</p>
+
+      <h3>Submit to Google Search Console</h3>
+
+      <p>Last step: tell Google your site exists.</p>
+
+      <ol>
+        <li>Go to <strong>search.google.com/search-console</strong></li>
+        <li>Click <strong>Add Property</strong></li>
+        <li>Choose <strong>URL prefix</strong> and enter your domain (e.g., <code>https://goldencrust.com</code>)</li>
+        <li>Verify ownership — Google gives you a few options. The easiest is downloading an HTML verification file and adding it to your repo, or adding a DNS TXT record</li>
+        <li>Once verified, go to <strong>Sitemaps</strong> in the left sidebar</li>
+        <li>Submit your sitemap URL: <code>https://goldencrust.com/sitemap.xml</code></li>
+      </ol>
+
+      <p>Google will start crawling and indexing your site within a few days. It won't be on page one of Google instantly — that takes time and depends on many factors. But you've laid all the right groundwork.</p>
+
+      <h2>What You've Got Now</h2>
+
+      <p>Let's take stock. You now have:</p>
+
+      <ul>
+        <li>A professional website built with AI</li>
+        <li>Free hosting on GitHub Pages</li>
+        <li>A custom domain with SSL (the lock icon)</li>
+        <li>Proper SEO meta tags, structured data, and a sitemap</li>
+        <li>Social sharing previews that look great</li>
+      </ul>
+
+      <p>Total monthly cost: $0. Total annual cost: about $12 for the domain.</p>
+
+      <p>Compare that to the $180–$540/year people pay for Squarespace or Wix, or the $2,000+ they pay a developer. You did this yourself.</p>
+
+      <p>Next up: how to make changes and keep your site updated going forward. Because a website isn't something you build once and forget about — it should grow with your business.</p>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <nav class="module-bottom-nav">
+      <a href="module-08.html" class="btn-bottom btn-bottom-outline">← Previous: Going Live</a>
+      <a href="module-10.html" class="btn-bottom btn-bottom-primary">Next: Making Changes &amp; Keeping It Updated →</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

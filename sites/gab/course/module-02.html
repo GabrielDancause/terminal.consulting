@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/course-gate.js"></script>
+  <title>Module 2: Setting Up Your Tools — Course</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+
+  <div class="module-page">
+
+    <!-- Module Navigation -->
+    <nav class="module-nav">
+      <a href="../course.html" class="module-nav-back">← Back to Course</a>
+      <div class="module-nav-controls">
+        <a href="module-01.html" class="module-nav-prev">← Prev</a>
+        <span class="module-nav-label">Module 2 of 10</span>
+        <a href="module-03.html" class="module-nav-next">Next →</a>
+      </div>
+    </nav>
+
+    <!-- Module Header -->
+    <header class="module-header">
+      <span class="module-badge">Module 2</span>
+      <h1>Setting Up Your Tools</h1>
+      <p class="module-meta">~9 min listen · Written guide below</p>
+    </header>
+
+    <!-- Audio Player -->
+    <div class="module-audio">
+      <audio controls preload="metadata" style="width:100%">
+        <source src="audio/module-02.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- Module Content -->
+    <article class="module-content">
+
+      <p>This is the "boring but necessary" module. Setup takes about 20–30 minutes, and you only do it once. After this, you're free to build as many websites as you want. Follow each step in order — don't skip ahead.</p>
+
+      <h2>Step 1: Create a GitHub Account</h2>
+
+      <p>Go to <a href="https://github.com">github.com</a> and click <strong>Sign up</strong>.</p>
+
+      <p>Pick a username. This matters because your free website URL will be <code>yourusername.github.io</code>, so pick something professional. If your business is "Golden Crust Bakery," maybe use <code>goldencrustbakery</code> instead of <code>xXbaker_dude_99Xx</code>.</p>
+
+      <p>Enter your email, create a password, and follow the verification steps. GitHub will ask you a few questions about what you're using it for — you can skip most of those.</p>
+
+      <p>Once you're in, you'll see your GitHub dashboard. Don't worry about understanding anything here yet. We'll come back to this later.</p>
+
+      <h2>Step 2: Install Git</h2>
+
+      <p>Git is the tool that lets your computer talk to GitHub. Think of it as the delivery truck that moves your website files from your computer to the internet.</p>
+
+      <h3>On Mac</h3>
+
+      <p>Good news — Git is probably already on your Mac. But let's make sure. Open your <strong>Terminal</strong> app (press <code>Cmd + Space</code>, type "Terminal", hit Enter).</p>
+
+      <p>In the terminal, type this and press Enter:</p>
+
+      <pre><code>git --version</code></pre>
+
+      <p>If you see something like <code>git version 2.39.0</code>, you're good. Move to Step 3.</p>
+
+      <p>If you get a popup asking you to install "command line developer tools," click <strong>Install</strong>. This takes a few minutes. If nothing happens and you get an error, type this:</p>
+
+      <pre><code>xcode-select --install</code></pre>
+
+      <p>That will trigger the same installation. Wait for it to finish, then try <code>git --version</code> again.</p>
+
+      <h3>On Windows</h3>
+
+      <p>Go to <a href="https://git-scm.com">git-scm.com</a> and download the installer.</p>
+
+      <p>Run the installer. <strong>Use all the default settings</strong> — just keep clicking Next. Don't change anything unless you know what you're doing. The defaults are fine.</p>
+
+      <p>Once it's installed, open <strong>Command Prompt</strong> (press the Windows key, type "cmd", hit Enter) and type:</p>
+
+      <pre><code>git --version</code></pre>
+
+      <p>You should see a version number. If you do, you're good.</p>
+
+      <h2>Step 3: Install Node.js</h2>
+
+      <p>Node.js is what lets you run Claude Code. You don't need to know what Node.js does — just install it.</p>
+
+      <p>Go to <a href="https://nodejs.org">nodejs.org</a>.</p>
+
+      <p>Download the <strong>LTS</strong> version (the one on the left — it says "Recommended For Most Users"). LTS stands for Long Term Support, meaning it's the stable, reliable version. Don't grab the "Current" version.</p>
+
+      <p>Run the installer. Again, <strong>default settings for everything.</strong> Just click through it.</p>
+
+      <p>When it's done, go back to your terminal and type:</p>
+
+      <pre><code>node --version</code></pre>
+
+      <p>You should see something like <code>v22.x.x</code>. Then type:</p>
+
+      <pre><code>npm --version</code></pre>
+
+      <p>You should see a version number here too. <code>npm</code> is the tool that comes with Node.js — it's what you'll use to install Claude Code in the next step.</p>
+
+      <p>If either of those commands don't work, close your terminal completely and open a new one. Sometimes the terminal needs a restart to pick up new installations.</p>
+
+      <h2>Step 4: Install Claude Code</h2>
+
+      <p>Now the good stuff. In your terminal, type:</p>
+
+      <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+
+      <p>The <code>-g</code> means "install this globally" — so you can use it from anywhere on your computer. This might take a minute. You'll see a bunch of text scrolling by. That's normal.</p>
+
+      <p>If you get a <strong>permission error</strong> on Mac, try:</p>
+
+      <pre><code>sudo npm install -g @anthropic-ai/claude-code</code></pre>
+
+      <p>It'll ask for your computer password (the one you use to log in). Type it — you won't see the characters appear, that's normal — and press Enter.</p>
+
+      <p>On Windows, if you get permission issues, close Command Prompt and reopen it by right-clicking and selecting <strong>Run as administrator</strong>.</p>
+
+      <p>Once it's done, verify it worked:</p>
+
+      <pre><code>claude --version</code></pre>
+
+      <p>You should see a version number. If you do, Claude Code is installed.</p>
+
+      <h2>Step 5: Open Your Terminal</h2>
+
+      <p>If you haven't already, here's how to find your terminal:</p>
+
+      <h3>Mac</h3>
+
+      <p>Press <code>Cmd + Space</code> to open Spotlight, type <strong>Terminal</strong>, press Enter. That's it. You'll use this app a lot, so you might want to keep it in your Dock — just right-click its icon in the Dock while it's open and select "Options &gt; Keep in Dock."</p>
+
+      <h3>Windows</h3>
+
+      <p>Press the <strong>Windows key</strong>, type <strong>cmd</strong> or <strong>PowerShell</strong>, press Enter. I recommend PowerShell — it's a bit more modern. Either works for what we're doing.</p>
+
+      <p>This black (or white) window is your terminal. It's where you'll type commands and talk to Claude Code. I know it looks intimidating if you've never used it. It's not. You need exactly three commands, and I'll teach you those in a minute.</p>
+
+      <h2>Step 6: Run Claude Code for the First Time</h2>
+
+      <p>In your terminal, type:</p>
+
+      <pre><code>claude</code></pre>
+
+      <p>The first time you run it, Claude Code will ask you to authenticate. It'll open a browser window where you log in to your Anthropic account.</p>
+
+      <p>If you don't have an Anthropic account yet, create one at <a href="https://console.anthropic.com">console.anthropic.com</a>. You'll need to add a payment method for API usage — this is what powers Claude Code. The cost for building a website is minimal (we're talking a few dollars at most).</p>
+
+      <p>Follow the authentication steps. Once you're connected, you'll see Claude Code's prompt in your terminal — it looks something like:</p>
+
+      <pre><code>claude &gt;</code></pre>
+
+      <p>That means it's ready. You can type things to it and it'll respond. Try it:</p>
+
+      <pre><code>Say hello and tell me a fun fact about websites</code></pre>
+
+      <p>If Claude responds, everything is working. Type <code>/exit</code> to quit Claude Code for now.</p>
+
+      <h2>Step 7: Verify Everything Works</h2>
+
+      <p>Let's do a final check. Run these commands one by one:</p>
+
+      <pre><code>git --version</code></pre>
+      <pre><code>node --version</code></pre>
+      <pre><code>npm --version</code></pre>
+      <pre><code>claude --version</code></pre>
+
+      <p>If all four commands show version numbers, you're fully set up. If any of them fail, check the troubleshooting section below.</p>
+
+      <h2>Terminal Basics — The Only 3 Commands You Need</h2>
+
+      <p>You don't need to become a terminal expert. You need three commands:</p>
+
+      <h3><code>ls</code> — List what's here</h3>
+
+      <p>Type <code>ls</code> and press Enter. It shows you all the files and folders in your current location. On Windows, use <code>dir</code> instead.</p>
+
+      <pre><code>ls</code></pre>
+
+      <h3><code>cd</code> — Change directory (move to a folder)</h3>
+
+      <p>Type <code>cd</code> followed by a folder name to move into that folder.</p>
+
+      <pre><code>cd Documents</code></pre>
+
+      <p>To go back up one level:</p>
+
+      <pre><code>cd ..</code></pre>
+
+      <p>To go to a specific folder directly:</p>
+
+      <pre><code>cd ~/Desktop/my-website</code></pre>
+
+      <h3><code>mkdir</code> — Make a new folder</h3>
+
+      <p>Type <code>mkdir</code> followed by the folder name you want to create.</p>
+
+      <pre><code>mkdir my-website</code></pre>
+
+      <p>That's it. <code>ls</code> to look around, <code>cd</code> to move, <code>mkdir</code> to create a folder. You now know enough terminal to build websites.</p>
+
+      <h2>Troubleshooting Common Issues</h2>
+
+      <p><strong>"command not found: node" or "command not found: npm"</strong></p>
+      <p>Close your terminal and reopen it. If that doesn't work, reinstall Node.js from nodejs.org and make sure you go through the full installer.</p>
+
+      <p><strong>"EACCES: permission denied" when installing Claude Code</strong></p>
+      <p>On Mac, add <code>sudo</code> before the command. On Windows, run your terminal as administrator.</p>
+
+      <p><strong>"command not found: claude"</strong></p>
+      <p>The npm global install path might not be in your system PATH. Try closing and reopening terminal. If that doesn't help, on Mac run <code>npm config get prefix</code> — it'll show you something like <code>/usr/local</code>. Make sure <code>/usr/local/bin</code> is in your PATH.</p>
+
+      <p><strong>Git authentication issues</strong></p>
+      <p>When you first push to GitHub (we'll do this later), it might ask you to authenticate. GitHub now uses Personal Access Tokens instead of passwords. We'll handle this when we get to the deployment module.</p>
+
+      <p><strong>It all feels overwhelming</strong></p>
+      <p>That's normal. Every single person who's ever used a terminal for the first time felt the same way. I did too. The setup is the hardest part of this whole course, and you're almost through it. The building part is genuinely fun.</p>
+
+      <p>You're set up. Let's build something.</p>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <nav class="module-bottom-nav">
+      <a href="module-01.html" class="btn-bottom btn-bottom-outline">← Previous: What You're About to Build</a>
+      <a href="module-03.html" class="btn-bottom btn-bottom-primary">Next: Your First Prompt →</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

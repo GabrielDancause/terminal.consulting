@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automate Weekly Google Analytics Reports to Your Inbox — Gab</title>
+  <meta name="description" content="Stop logging into GA4 every week. Use Python and the GA4 Data API to send custom reports directly to your email or Slack.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Automate Weekly Google Analytics Reports to Your Inbox">
+  <meta property="og:description" content="Your data, delivered to you. How to automate GA4 reporting with Python.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gab.ae/blog/automate-ga4-reporting.html">
+  <meta property="og:image" content="https://gab.ae/images/og-blog-ga4.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automate Weekly Google Analytics Reports to Your Inbox">
+  <meta name="twitter:description" content="Your data, delivered to you. How to automate GA4 reporting with Python.">
+  <meta name="twitter:image" content="https://gab.ae/images/og-blog-ga4.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="blog-styles.css">
+</head>
+<body>
+
+  <div class="blog-post">
+
+    <!-- Navigation -->
+    <nav class="blog-post-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Blog</a></li>
+        <li aria-current="page">Automate Weekly Google Analytics Reports to Your Inbox</li>
+      </ol>
+      <a href="../" class="blog-nav-logo">Gab</a>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="blog-post-header">
+      <span class="blog-post-tag">Analytics</span>
+      <h1>Automate Weekly Google Analytics Reports to Your Inbox</h1>
+      <p class="blog-post-meta">Gab <span>&middot;</span> March 2026 <span>&middot;</span> 6 min read</p>
+    </header>
+
+    <!-- Post Content -->
+    <article class="blog-content">
+
+      <p>Google Analytics 4 (GA4) is powerful, but the interface can be overwhelming. You probably just want to know: "How did we do last week compared to the week before?"</p>
+
+      <p>Instead of clicking through menus every Monday morning, why not have a bot email you the key numbers?</p>
+
+      <h2>The Tools</h2>
+
+      <ul>
+        <li><strong>Google Analytics Data API (Beta)</strong>: Allows you to fetch data programmatically.</li>
+        <li><strong>Python</strong>: The language we'll use to script it.</li>
+        <li><strong>GitHub Actions</strong>: To run the script on a schedule (for free).</li>
+      </ul>
+
+      <h2>Step 1: Get Access Credentials</h2>
+
+      <p>This is the hardest part. You need a Service Account JSON key from Google Cloud Console.</p>
+
+      <ol>
+        <li>Go to <a href="https://console.cloud.google.com">Google Cloud Console</a>.</li>
+        <li>Create a project.</li>
+        <li>Enable the "Google Analytics Data API".</li>
+        <li>Create a Service Account and download the JSON key file.</li>
+        <li><strong>Important:</strong> Add the Service Account's email address (client_email in the JSON) as a user in your GA4 property (Admin > Property Access Management). Give it "Viewer" access.</li>
+      </ol>
+
+      <h2>Step 2: Ask Claude for the Script</h2>
+
+      <p>Now, let Claude do the heavy lifting.</p>
+
+      <p><strong>The Prompt:</strong></p>
+
+      <pre><code>Write a Python script that uses `google-analytics-data` library to fetch a report for the last 7 days.
+
+I need these metrics:
+- Active Users
+- Sessions
+- Screen Page Views
+
+I need to compare them to the previous 7-day period.
+
+Calculate the percentage change for each.
+
+Format the output as a simple text summary.
+I have my credentials in a file called `credentials.json` and my GA4 Property ID in an environment variable `GA4_PROPERTY_ID`.
+</code></pre>
+
+      <p>Claude will give you a script that uses the official client library.</p>
+
+      <h2>Step 3: Emailing the Report</h2>
+
+      <p>You can ask Claude to extend the script to send an email using Gmail (via SMTP) or simpler services like Mailgun or Resend.</p>
+
+      <pre><code>Extend the script to send this summary via email using `smtplib` and a Gmail App Password.
+Env vars: GMAIL_USER, GMAIL_APP_PASSWORD, RECIPIENT_EMAIL.
+</code></pre>
+
+      <h2>Step 4: Automate with GitHub Actions</h2>
+
+      <p>To run this every Monday at 9 AM, use a GitHub Actions workflow with a cron trigger:</p>
+
+      <pre><code>name: Weekly Analytics
+on:
+  schedule:
+    - cron: '0 9 * * 1' # Every Monday at 9 AM UTC
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - run: pip install google-analytics-data
+      - name: Run Report
+        env:
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: python report.py
+</code></pre>
+
+      <p>Note: For the credentials JSON, it's best to store the entire JSON string as a GitHub Secret and write it to a file during the workflow run.</p>
+
+      <h2>The Result</h2>
+
+      <p>Every Monday, you get an email: "Visits up 15%. Users down 2%." No login required. You know exactly what's happening with your business before your second coffee.</p>
+
+    </article>
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <h3>Data without the dashboard fatigue.</h3>
+      <p>Automate your reporting and spend your time acting on data, not finding it.</p>
+    </div>
+
+    <!-- Footer Nav -->
+    <nav class="blog-post-footer">
+      <a href="./" class="btn-back">&larr; All Posts</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

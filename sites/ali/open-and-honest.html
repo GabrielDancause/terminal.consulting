@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="consent.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open &amp; Honest — The Couples Course for Ethical Non-Monogamy | Ali Imperiale</title>
+  <meta name="description" content="A 5-module audio course for couples ready to explore ethical non-monogamy — with scripts, worksheets, and real talk from Ali.">
+  <meta property="og:title" content="Open & Honest — The Couples Course for Ethical Non-Monogamy">
+  <meta property="og:description" content="5 modules. Real scripts. No shame. A couples course for exploring ethical non-monogamy.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aliimperiale.com/open-and-honest.html">
+  <meta property="og:image" content="https://aliimperiale.com/avatar-pro.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open & Honest — The Couples Course">
+  <link rel="canonical" href="https://aliimperiale.com/open-and-honest.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="shared.css">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Nav */
+    .site-nav {
+      background: #2E3E24;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-nav .nav-logo { height: 32px; opacity: 0.9; }
+    .site-nav .nav-links { display: flex; gap: 24px; list-style: none; }
+    .site-nav .nav-links a { color: #C6C8BB; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.15s; }
+    .site-nav .nav-links a:hover { color: #FAF8EB; }
+
+    /* Hero */
+    .course-hero {
+      background: #2E3E24;
+      color: #FAF8EB;
+      text-align: center;
+      padding: 64px 20px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: #FAF8EB;
+      border-radius: 40px 40px 0 0;
+    }
+    .course-hero .label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #AD9846;
+      margin-bottom: 20px;
+    }
+    .course-hero h1 {
+      font-family: 'The Bloomington', cursive;
+      font-size: 4rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    .course-hero .subtitle {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 1.1rem;
+      color: #C6C8BB;
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .course-hero .cta-row {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-gold {
+      display: inline-block;
+      padding: 15px 36px;
+      background: #AD9846;
+      color: #FAF8EB;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .btn-gold:hover {
+      background: #967f30;
+      transform: translateY(-1px);
+    }
+    .btn-outline-light {
+      display: inline-block;
+      padding: 15px 36px;
+      background: transparent;
+      color: #C6C8BB;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid rgba(198, 200, 187, 0.3);
+      transition: all 0.15s;
+    }
+    .btn-outline-light:hover {
+      border-color: #C6C8BB;
+      color: #FAF8EB;
+    }
+    .hero-price {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: rgba(198, 200, 187, 0.6);
+    }
+
+    /* Trust bar */
+    .trust-bar {
+      padding: 36px 20px;
+      text-align: center;
+    }
+    .trust-items {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: #555549;
+    }
+    .trust-item strong { color: #2E3E24; }
+    .trust-icon { font-size: 1.2rem; }
+
+    /* Container */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Section */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #AD9846;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'The Bloomington', cursive;
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: #2E3E24;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .section-subtitle {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 0.95rem;
+      color: #555549;
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    /* Module cards */
+    .modules-section {
+      padding: 48px 0 20px;
+    }
+    .module-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(46, 62, 36, 0.06);
+      border: 1px solid rgba(46, 62, 36, 0.06);
+    }
+    .module-num {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #AD9846;
+      background: rgba(173, 152, 70, 0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .module-card h3 {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #2E3E24;
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+    .module-goal {
+      font-size: 0.85rem;
+      color: #AD9846;
+      font-style: italic;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .module-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .module-item:last-child { margin-bottom: 0; }
+    .module-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      margin-top: 2px;
+    }
+    .module-icon.audio { background: rgba(46, 62, 36, 0.08); }
+    .module-icon.action { background: rgba(173, 152, 70, 0.12); }
+    .module-icon.download { background: rgba(66, 38, 38, 0.08); }
+    .module-icon.homework { background: rgba(46, 62, 36, 0.06); }
+    .module-item-content h4 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 4px;
+    }
+    .module-item-content p {
+      font-size: 0.85rem;
+      color: #555549;
+      line-height: 1.65;
+    }
+    .module-item-content ul {
+      margin-top: 6px;
+      padding-left: 18px;
+    }
+    .module-item-content li {
+      font-size: 0.83rem;
+      color: #555549;
+      line-height: 1.65;
+      margin-bottom: 4px;
+    }
+
+    /* What's included */
+    .includes-section {
+      padding: 48px 0;
+    }
+    .includes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .include-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(46, 62, 36, 0.06);
+      border: 1px solid rgba(46, 62, 36, 0.06);
+    }
+    .include-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+    .include-card h4 {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: #2E3E24;
+      margin-bottom: 6px;
+    }
+    .include-card p {
+      font-size: 0.8rem;
+      color: #777;
+      line-height: 1.55;
+    }
+
+    /* About */
+    .about-section {
+      padding: 48px 0;
+    }
+    .about-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px;
+      box-shadow: 0 1px 4px rgba(46, 62, 36, 0.06);
+      border: 1px solid rgba(46, 62, 36, 0.06);
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .about-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #AD9846;
+      flex-shrink: 0;
+    }
+    .about-text h3 {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: #2E3E24;
+      margin-bottom: 8px;
+    }
+    .about-text p {
+      font-size: 0.88rem;
+      color: #555549;
+      line-height: 1.7;
+    }
+
+    /* Pricing */
+    .pricing-section {
+      padding: 48px 0;
+    }
+    .pricing-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(46, 62, 36, 0.08);
+      border: 2px solid #AD9846;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .pricing-card .price-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #AD9846;
+      margin-bottom: 8px;
+    }
+    .pricing-card .price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #2E3E24;
+      margin-bottom: 4px;
+    }
+    .pricing-card .price-note {
+      font-size: 0.82rem;
+      color: #8a8a7a;
+      margin-bottom: 24px;
+    }
+    .pricing-features {
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .pricing-features li {
+      list-style: none;
+      font-size: 0.88rem;
+      color: #2E3E24;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(46, 62, 36, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .check { color: #AD9846; font-weight: 700; }
+    .btn-dark {
+      display: inline-block;
+      padding: 16px 40px;
+      background: #2E3E24;
+      color: #FAF8EB;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.15s, transform 0.15s;
+      width: 100%;
+      text-align: center;
+    }
+    .btn-dark:hover {
+      background: #3a5030;
+      transform: translateY(-1px);
+    }
+    .pricing-guarantee {
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: #8a8a7a;
+    }
+
+    /* FAQ */
+    .faq-section {
+      padding: 48px 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(46, 62, 36, 0.1);
+    }
+    .faq-item:first-child {
+      border-top: 1px solid rgba(46, 62, 36, 0.1);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #2E3E24;
+      text-align: left;
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.3rem;
+      color: #AD9846;
+      transition: transform 0.2s;
+    }
+    .faq-item.open .faq-question::after {
+      content: '−';
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+    }
+    .faq-answer p {
+      font-size: 0.88rem;
+      color: #555549;
+      line-height: 1.7;
+      padding-bottom: 18px;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      background: #2E3E24;
+      color: #FAF8EB;
+      text-align: center;
+      padding: 56px 20px;
+      border-radius: 24px;
+      margin: 0 20px 48px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .final-cta h2 {
+      font-family: 'The Bloomington', cursive;
+      font-size: 2.4rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .final-cta p {
+      font-size: 0.92rem;
+      color: #C6C8BB;
+      margin-bottom: 24px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .site-nav { padding: 12px 16px; }
+      .course-hero { padding: 44px 16px 64px; }
+      .course-hero h1 { font-size: 2.8rem; }
+      .course-hero .subtitle { font-size: 0.95rem; }
+      .section-title { font-size: 2rem; }
+      .module-card { padding: 24px 20px; }
+      .module-card h3 { font-size: 1.15rem; }
+      .includes-grid { grid-template-columns: 1fr; }
+      .about-card { flex-direction: column; text-align: center; }
+      .pricing-card { padding: 32px 24px; }
+      .pricing-card .price { font-size: 2.5rem; }
+      .final-cta { margin: 0 12px 36px; padding: 44px 20px; }
+      .final-cta h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:10000;padding:8px 16px;background:#2E3E24;color:#FAF8EB;font-family:Montserrat,sans-serif;font-size:0.9rem;text-decoration:none;border-radius:0 0 8px 0" onfocus="this.style.cssText='position:fixed;left:0;top:0;width:auto;height:auto;overflow:visible;z-index:10000;padding:8px 16px;background:#2E3E24;color:#FAF8EB;font-family:Montserrat,sans-serif;font-size:0.9rem;text-decoration:none;border-radius:0 0 8px 0'" onblur="this.style.cssText='position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden'">Skip to content</a>
+
+  <!-- Nav -->
+  <nav class="site-nav">
+    <a href="/"><img class="nav-logo" src="logo-beige.webp" alt="Ali Imperiale" height="32"></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="https://www.youtube.com/@aliimperiale" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://www.patreon.com/c/aliimperiale" target="_blank" rel="noopener">Patreon</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="course-hero" id="main-content">
+    <span class="label">A Couples Course by Ali</span>
+    <h1>Open &amp; Honest</h1>
+    <p class="subtitle">The step-by-step course for couples ready to explore ethical non-monogamy — with real scripts, worksheets, and zero judgment.</p>
+    <div class="cta-row">
+      <a href="#pricing" class="btn-gold">Get the Course</a>
+      <a href="#modules" class="btn-outline-light">See What's Inside</a>
+    </div>
+    <p class="hero-price">5 modules &middot; Audio lessons + worksheets &middot; Lifetime access</p>
+  </section>
+
+  <!-- Trust bar -->
+  <section class="trust-bar">
+    <div class="trust-items">
+      <div class="trust-item">
+        <span class="trust-icon">&#127911;</span>
+        <span><strong>5</strong> audio modules</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#128196;</span>
+        <span><strong>4</strong> downloadable worksheets</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#128172;</span>
+        <span>Real scripts &amp; protocols</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">&#128274;</span>
+        <span>Lifetime access</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modules -->
+  <section class="modules-section" id="modules">
+    <div class="container">
+      <p class="section-label">What You'll Learn</p>
+      <h2 class="section-title">The 5 Modules</h2>
+      <p class="section-subtitle">From the first scary conversation to finding partners on the road — everything you need, in order.</p>
+
+      <!-- Module 1 -->
+      <div class="module-card">
+        <span class="module-num">Module 1</span>
+        <h3>The Blueprint — Designing Your Relationship</h3>
+        <p class="module-goal">Move from "we're just winging it" to "we have an agreement."</p>
+
+        <div class="module-item">
+          <div class="module-icon audio">&#127911;</div>
+          <div class="module-item-content">
+            <h4>Audio Lesson: Rules vs. Values</h4>
+            <p>Why trying to control your partner with 100 rules fails, and why a "Value System" works better.</p>
+          </div>
+        </div>
+
+        <div class="module-item">
+          <div class="module-icon action">&#9998;</div>
+          <div class="module-item-content">
+            <h4>The "Hard Limits" Audit</h4>
+            <ul>
+              <li>Sit down separately and write your 3 absolute hard limits (e.g., no exes, no mutual friends, safe sex mandatory)</li>
+              <li>Compare lists. These are the only rigid rules — everything else is negotiable.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-item">
+          <div class="module-icon download">&#128196;</div>
+          <div class="module-item-content">
+            <h4>Download: "Designer Relationship" Worksheet</h4>
+            <p>Checkboxes for what you are: Monogamish, Swinger, Open, Don't Ask Don't Tell.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 2 -->
+      <div class="module-card">
+        <span class="module-num">Module 2</span>
+        <h3>The Pitch — How to Open Up</h3>
+        <p class="module-goal">Have "The Conversation" without a fight or a breakup.</p>
+
+        <div class="module-item">
+          <div class="module-icon audio">&#127911;</div>
+          <div class="module-item-content">
+            <h4>Audio Lesson: The Scary Conversation</h4>
+            <p>How Ali brought it up to her partner. Timing, setting, and tone.</p>
+          </div>
+        </div>
+
+        <div class="module-item">
+          <div class="module-icon action">&#9998;</div>
+          <div class="module-item-content">
+            <h4>The 3-Step Script</h4>
+            <ul>
+              <li><strong>Step 1 — Validate:</strong> "I love our life and I'm so attracted to you."</li>
+              <li><strong>Step 2 — Express (use "I"):</strong> "I feel like I have a side of me that wants to explore X, not because you aren't enough, but because I want to experience Y."</li>
+              <li><strong>Step 3 — Safety Net:</strong> "I only want to do this if it brings us closer. If it hurts us, we stop."</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-item">
+          <div class="module-icon homework">&#128197;</div>
+          <div class="module-item-content">
+            <h4>Homework</h4>
+            <p>Schedule a "State of the Union" date night to discuss this — no phones, no TV.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 3 -->
+      <div class="module-card">
+        <span class="module-num">Module 3</span>
+        <h3>The Safety Net — Jealousy &amp; Aftercare</h3>
+        <p class="module-goal">Creating a protocol for when feelings get hurt.</p>
+
+        <div class="module-item">
+          <div class="module-icon audio">&#127911;</div>
+          <div class="module-item-content">
+            <h4>Audio Lesson: The Jealousy First-Aid Kit</h4>
+            <p>Treating jealousy as a "Check Engine Light," not a Stop Sign.</p>
+          </div>
+        </div>
+
+        <div class="module-item">
+          <div class="module-icon action">&#9998;</div>
+          <div class="module-item-content">
+            <h4>The "Gremlin" Protocol</h4>
+            <ul>
+              <li>When you feel jealous, text/say the code word (e.g., "Monkey")</li>
+              <li><strong>Partner's job:</strong> Pause. Reassure. Do not get defensive.</li>
+              <li><strong>Your job:</strong> Identify the specific fear — Am I being replaced? Do I feel left out?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-item">
+          <div class="module-icon action">&#9998;</div>
+          <div class="module-item-content">
+            <h4>The Reconnection Ritual (Aftercare)</h4>
+            <p>Define exactly what happens after a date with someone else — 10 minutes of cuddling, a shower together, or "don't tell me details until morning."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 4 -->
+      <div class="module-card">
+        <span class="module-num">Module 4</span>
+        <h3>The Hunt — Apps &amp; Finding Partners</h3>
+        <p class="module-goal">How to actually find people without being creepy or getting scammed.</p>
+
+        <div class="module-item">
+          <div class="module-icon audio">&#127911;</div>
+          <div class="module-item-content">
+            <h4>Audio Lesson: The Meat Market</h4>
+            <p>How to set up a profile on Feeld, Tinder, and local apps.</p>
+          </div>
+        </div>
+
+        <div class="module-item">
+          <div class="module-icon action">&#9998;</div>
+          <div class="module-item-content">
+            <h4>The Profile Audit</h4>
+            <ul>
+              <li><strong>Couples:</strong> Don't use a joint profile — it scares people. Link two separate profiles.</li>
+              <li><strong>Photos:</strong> 1 face, 1 full body, 1 "vibe" shot (travel/lifestyle).</li>
+              <li><strong>Bio:</strong> State exactly what you're looking for (e.g., "ENM couple looking for guest stars for travel").</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-item">
+          <div class="module-icon action">&#9998;</div>
+          <div class="module-item-content">
+            <h4>The 3-Question Vetting Screen</h4>
+            <ul>
+              <li>"Have you played with a couple/person in a relationship before?"</li>
+              <li>"What are your boundaries?"</li>
+              <li>"When was your last test?"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 5 -->
+      <div class="module-card">
+        <span class="module-num">Module 5</span>
+        <h3>The Lifestyle — Travel &amp; Logistics</h3>
+        <p class="module-goal">Executing this while on the road — the Ali special.</p>
+
+        <div class="module-item">
+          <div class="module-icon audio">&#127911;</div>
+          <div class="module-item-content">
+            <h4>Audio Lesson: Solo vs. Duo Play</h4>
+            <p>The difference between "Hall Passes" when traveling alone vs. playing together.</p>
+          </div>
+        </div>
+
+        <div class="module-item">
+          <div class="module-icon action">&#9998;</div>
+          <div class="module-item-content">
+            <h4>The "Location Scout" Technique</h4>
+            <ul>
+              <li>Safety protocol: "Share Location" rules and check-in times</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-item">
+          <div class="module-icon download">&#128196;</div>
+          <div class="module-item-content">
+            <h4>Download: Travel Safety Checklist</h4>
+            <p>What to pack: condoms, cash, burner phone info, local emergency numbers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included -->
+  <section class="includes-section">
+    <div class="container">
+      <p class="section-label">Everything You Get</p>
+      <h2 class="section-title">What's Included</h2>
+
+      <div class="includes-grid">
+        <div class="include-card">
+          <div class="include-icon">&#127911;</div>
+          <h4>5 Audio Lessons</h4>
+          <p>Real talk from a real couple — listen anywhere, no screen required.</p>
+        </div>
+        <div class="include-card">
+          <div class="include-icon">&#128196;</div>
+          <h4>Scripts &amp; Worksheets</h4>
+          <p>Word-for-word scripts, checklists, and printable worksheets you can use tonight.</p>
+        </div>
+        <div class="include-card">
+          <div class="include-icon">&#128274;</div>
+          <h4>Lifetime Access</h4>
+          <p>Listen at your own pace. Come back anytime. Updates included forever.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about-section">
+    <div class="container">
+      <p class="section-label">Your Guides</p>
+      <h2 class="section-title">Who Made This</h2>
+
+      <div class="about-card">
+        <img class="about-avatar" src="avatar-pro.webp" alt="Ali Imperiale" width="100" height="100">
+        <div class="about-text">
+          <h3>Ali</h3>
+          <p>I'm a real person who actually lives this. I've navigated jealousy, awkward conversations, threesomes, dating apps, and the lifestyle across 30+ countries and 3 continents. This course is everything I wish someone had told me before I started.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <p class="section-label">Get Instant Access</p>
+      <h2 class="section-title">Start Today</h2>
+
+      <div class="pricing-card">
+        <p class="price-label">Open &amp; Honest — Full Course</p>
+        <p class="price">$49</p>
+        <p class="price-note">One-time payment &middot; Lifetime access</p>
+
+        <ul class="pricing-features">
+          <li><span class="check">&#10003;</span> 5 audio modules with real-world examples</li>
+          <li><span class="check">&#10003;</span> Word-for-word conversation scripts</li>
+          <li><span class="check">&#10003;</span> 4 downloadable worksheets &amp; checklists</li>
+          <li><span class="check">&#10003;</span> The Travel Safety Checklist</li>
+          <li><span class="check">&#10003;</span> Lifetime access &amp; future updates</li>
+          <li><span class="check">&#10003;</span> 30-day money-back guarantee</li>
+        </ul>
+
+        <a href="https://buy.stripe.com/cNieV5fUkcR6gPx32xb7y01" class="btn-dark" target="_blank" rel="noopener">Get Instant Access — $49</a>
+        <p class="pricing-guarantee">&#128274; Secure checkout via Stripe. 30-day refund, no questions asked.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <p class="section-label">Questions</p>
+      <h2 class="section-title">FAQ</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">Who is this course for?</button>
+        <div class="faq-answer">
+          <p>Couples who are curious about opening their relationship — whether you've already started or just want to have the first conversation. It works for people at any stage: curious, exploring, or already living the lifestyle.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Do we both need to listen?</button>
+        <div class="faq-answer">
+          <p>Ideally, yes. The exercises are designed for both partners. But if one of you isn't ready yet, listening solo will still give you the language and tools to bring it up the right way.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Is this therapy?</button>
+        <div class="faq-answer">
+          <p>No. We're not therapists. We're a couple who's been through it and built a system that works. Think of it as the practical companion to therapy — the "how-to" that most therapists can't give you because they haven't lived it.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">How long is the course?</button>
+        <div class="faq-answer">
+          <p>Each module is 5–10 minutes of audio plus downloadable worksheets. Listen on your commute, at the gym, or in bed. You can go through the whole thing in an evening, or take it one module per week.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">What if it's not for me?</button>
+        <div class="faq-answer">
+          <p>30-day money-back guarantee, no questions asked. If it doesn't help, just email us and we'll refund you.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Will the charge show up as something weird?</button>
+        <div class="faq-answer">
+          <p>No. The billing goes through Stripe and appears as a generic charge. Nothing explicit. Your privacy matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <h2>Ready to Be Open &amp; Honest?</h2>
+    <p>The conversation doesn't have to be scary. You just need the right words.</p>
+    <a href="#pricing" class="btn-gold">Get the Course — $49</a>
+  </section>
+
+  <!-- Newsletter -->
+  <div style="padding:48px 20px;text-align:center">
+    <div style="max-width:480px;margin:0 auto;background:#FAF8EB;border-radius:18px;padding:36px 30px;box-shadow:0 1px 4px rgba(46,62,36,.06);border:1px solid rgba(46,62,36,.06)">
+      <h2 style="font-family:'The Bloomington',cursive;font-size:2rem;font-weight:400;color:#2E3E24;margin-bottom:10px">Not ready for the course?</h2>
+      <p style="font-size:.9rem;color:#555549;line-height:1.7;margin-bottom:20px">Join the free newsletter instead. Honest conversations about sex, relationships, and intimacy — plus a free Ethical Nightlife Guide.</p>
+      <form style="display:flex;gap:10px;max-width:380px;margin:0 auto" id="course-subscribe">
+        <input type="email" name="email" placeholder="Your email" required aria-label="Email address" style="flex:1;padding:12px 16px;border:1px solid #C6C8BB;border-radius:10px;font-family:Montserrat,sans-serif;font-size:.88rem;background:#fff;color:#2E3E24;outline:none">
+        <button type="submit" style="padding:12px 24px;background:#2E3E24;color:#FAF8EB;border:none;border-radius:10px;font-family:Montserrat,sans-serif;font-weight:600;font-size:.88rem;cursor:pointer;white-space:nowrap">Join Free</button>
+      </form>
+      <p class="course-subscribe-status" style="display:none;margin-top:14px;font-size:.85rem"></p>
+    </div>
+  </div>
+
+  <!-- Footer (from shared.css) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo-beige.webp" alt="Ali Imperiale" height="24">
+        <p>Casual chats about sex, relationships &amp; other fun stuff.</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>Content</h4>
+          <ul>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/reads.html">Reads</a></li>
+            <li><a href="https://www.youtube.com/@aliimperiale" target="_blank" rel="noopener">YouTube</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.patreon.com/c/aliimperiale" target="_blank" rel="noopener">Patreon</a></li>
+            <li><a href="https://www.instagram.com/aliimperiale/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@aliimperiale" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Course</h4>
+          <ul>
+            <li><a href="/open-and-honest.html">Open &amp; Honest</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Ali Imperiale &middot; <a href="mailto:ali@aliimperiale.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+  <script src="mobile-nav.js" defer></script>
+  <script src="back-to-top.js" defer></script>
+  <script src="newsletter-bar.js" defer></script>
+  <script>
+    // Newsletter subscribe
+    (function() {
+      var KIT_URL = 'https://app.kit.com/forms/9115688/subscriptions';
+      var form = document.getElementById('course-subscribe');
+      if (!form) return;
+      var status = form.parentElement.querySelector('.course-subscribe-status');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = form.querySelector('input[name="email"]').value.trim();
+        if (!email) return;
+        var btn = form.querySelector('button');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        var fd = new FormData();
+        fd.append('email_address', email);
+        fetch(KIT_URL, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
+        .then(function(r) { return r.json(); })
+        .then(function() {
+          status.style.display = 'block';
+          status.style.color = '#2E3E24';
+          status.textContent = 'You\u2019re in! Check your email to confirm.';
+          form.style.display = 'none';
+          try { localStorage.setItem('ali_newsletter_subscribed', email); } catch(ex) {}
+        }).catch(function() {
+          status.style.display = 'block';
+          status.style.color = '#2E3E24';
+          status.textContent = 'You\u2019re in! Check your email to confirm.';
+          form.style.display = 'none';
+          try { localStorage.setItem('ali_newsletter_subscribed', email); } catch(ex) {}
+        });
+      });
+    })();
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.parentElement;
+        var wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(el) {
+          el.classList.remove('open');
+        });
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

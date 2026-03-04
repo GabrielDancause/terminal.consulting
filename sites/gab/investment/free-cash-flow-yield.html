@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Cash Flow Yield — Investment Wiki</title>
+  <meta name="description" content="Technical reference for Free Cash Flow Yield. Formula, interpretation, comparison to earnings yield, and why FCF is harder to manipulate than EPS.">
+  <meta property="og:title" content="Free Cash Flow Yield — Investment Wiki">
+  <meta property="og:description" content="Free Cash Flow Yield explained: formula, interpretation, and why it matters more than earnings.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+<body>
+
+<div class="doc-container">
+
+  <nav class="doc-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="./">Investment</a>
+    <span class="sep">/</span>
+    Free Cash Flow Yield
+  </nav>
+
+  <header class="doc-header">
+    <h1 class="doc-title">Free Cash Flow Yield</h1>
+    <div class="doc-meta">
+      <span class="tag">Valuation Metric</span>
+      <span>Investment Wiki — Fundamentals</span>
+    </div>
+  </header>
+
+  <div class="doc-abstract">
+    Free Cash Flow Yield measures how much cash a business generates relative to its market valuation — it is the cash-based equivalent of the earnings yield and the single best indicator of whether a company can fund dividends, buybacks, and debt paydown without external financing. Unlike earnings per share, free cash flow is extremely difficult to manipulate through accounting choices, which makes FCF yield the preferred valuation metric for investors who care about what's real. A company can report growing EPS while burning cash — FCF yield catches that.
+  </div>
+
+  <div class="doc-content">
+
+    <div class="gab-stack-infobox">
+      <div class="infobox-header">Quick Reference</div>
+      <table>
+        <tr><td>Type</td><td>Valuation / Quality Metric</td></tr>
+        <tr><td>Formula</td><td>FCF ÷ Market Cap</td></tr>
+        <tr><td>Strong</td><td><span class="complexity-low">&gt; 5%</span></td></tr>
+        <tr><td>Moderate</td><td>3% – 5%</td></tr>
+        <tr><td>Weak</td><td><span class="complexity-high">&lt; 2%</span></td></tr>
+        <tr><td>Key Insight</td><td>Cash > Earnings</td></tr>
+      </table>
+    </div>
+
+    <section class="doc-section">
+      <h2>1.0 The Formula</h2>
+
+      <h3>Basic Form</h3>
+<pre><code><span class="code-label">formula</span>Free Cash Flow = Operating Cash Flow − Capital Expenditures
+
+FCF Yield = Free Cash Flow ÷ Market Capitalization × 100
+
+Per-share form:
+FCF Yield = (FCF per Share ÷ Share Price) × 100</code></pre>
+
+      <h3>Worked Example</h3>
+      <table>
+        <thead>
+          <tr><th>Company</th><th>Operating CF</th><th>CapEx</th><th>FCF</th><th>Market Cap</th><th>FCF Yield</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Company A</td><td>$12B</td><td>$3B</td><td>$9B</td><td>$150B</td><td><strong>6.0%</strong></td></tr>
+          <tr><td>Company B</td><td>$8B</td><td>$6B</td><td>$2B</td><td>$100B</td><td><strong>2.0%</strong></td></tr>
+          <tr><td>Company C</td><td>$5B</td><td>$7B</td><td>-$2B</td><td>$80B</td><td><strong>-2.5%</strong></td></tr>
+        </tbody>
+      </table>
+
+      <p>Company A generates $9B in free cash after paying for everything. At a $150B valuation, that's 6 cents of free cash per dollar of market cap. Company C is burning cash — it spends more on capex than it generates from operations. Negative FCF yield is a red flag regardless of what the income statement says.</p>
+
+      <div class="callout callout-note">
+        FCF yield is the mirror image of the <a href="price-to-earnings-ratio.html">P/E ratio's</a> earnings yield — but uses actual cash instead of accounting profit. A stock can have a P/E of 15 (earnings yield 6.7%) and an FCF yield of 2%. That gap means earnings are not converting to cash. Something is wrong.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>2.0 Why FCF Beats Earnings</h2>
+
+      <p>Earnings (net income, EPS) are an accounting construct. Free cash flow is what hits the bank account. The difference matters.</p>
+
+      <h3>What Accounting Can Distort</h3>
+      <table>
+        <thead>
+          <tr><th>Technique</th><th>Effect on EPS</th><th>Effect on FCF</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Capitalize expenses instead of expensing</td><td>EPS inflated (lower current expense)</td><td>No effect — cash was spent either way</td></tr>
+          <tr><td>Aggressive revenue recognition</td><td>EPS inflated (revenue booked early)</td><td>No effect until cash is collected</td></tr>
+          <tr><td>Depreciation schedule changes</td><td>EPS changes (lower depreciation = higher profit)</td><td>No effect — depreciation is non-cash</td></tr>
+          <tr><td>Working capital manipulation</td><td>Minimal direct effect</td><td>Directly visible in operating cash flow</td></tr>
+          <tr><td>Share buybacks</td><td>EPS rises (fewer shares)</td><td>FCF decreases (cash spent on buybacks)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-warn">
+        When EPS is growing but FCF is flat or declining, the earnings growth is not real. This is the single most important divergence to watch. It precedes almost every earnings quality blow-up.
+      </div>
+
+      <h3>The Cash Conversion Check</h3>
+<pre><code><span class="code-label">formula</span>Cash Conversion Ratio = Free Cash Flow ÷ Net Income
+
+Healthy:  > 0.80 (80%+ of earnings convert to cash)
+Warning:  0.50 – 0.80 (significant non-cash earnings)
+Red flag: < 0.50 (more than half of "earnings" are accounting)
+
+Example:
+  Net Income: $4.2B
+  Free Cash Flow: $3.8B
+  Cash Conversion: 3.8 / 4.2 = 0.90 ← Healthy</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>3.0 Interpretation</h2>
+
+      <h3>Yield Benchmarks</h3>
+      <table>
+        <thead>
+          <tr><th>FCF Yield</th><th>Signal</th><th>Typical Profile</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="complexity-low">&gt; 8%</span></td><td>Deep value</td><td>Mature businesses, cyclicals at trough, or companies the market is punishing. Verify it's sustainable — could be a value trap.</td></tr>
+          <tr><td>5% – 8%</td><td>Strong cash generator</td><td>Financials, energy majors, established tech. Good territory for income and total return investors.</td></tr>
+          <tr><td>3% – 5%</td><td>Reasonable</td><td>Large-cap quality names. Growth reinvestment absorbs some cash. Typical for MSFT, GOOGL, JNJ.</td></tr>
+          <tr><td>1% – 3%</td><td>Growth premium</td><td>High-growth tech, companies investing heavily in expansion. Acceptable if revenue growth exceeds 20%.</td></tr>
+          <tr><td><span class="complexity-high">&lt; 1% or negative</span></td><td>Cash burner</td><td>Pre-profit companies, hyper-growth with no margin, or capital-intensive businesses in build-out phase.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>FCF Yield vs. Dividend Yield</h3>
+<pre><code><span class="code-label">reference</span>FCF Yield = Total cash available to shareholders
+Div Yield  = Cash actually distributed to shareholders
+
+The gap between them is the "retained firepower":
+  FCF Yield: 6.0%
+  Div Yield: 2.5%
+  Retained:  3.5% → Available for buybacks, debt paydown,
+                     acquisitions, or future dividend raises.
+
+A company cannot sustainably pay dividends exceeding its
+FCF yield. If Div Yield > FCF Yield, the dividend is funded
+by debt or asset sales. That's a cut waiting to happen.</code></pre>
+
+      <h3>Sector Ranges</h3>
+      <table>
+        <thead>
+          <tr><th>Sector</th><th>Typical FCF Yield</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Energy</td><td>7% – 12%</td><td>Cash-heavy at high commodity prices. Low reinvestment rates at mature fields.</td></tr>
+          <tr><td>Financials</td><td>6% – 10%</td><td>Low capex, high operating leverage. FCF is essentially net income for banks.</td></tr>
+          <tr><td>Healthcare</td><td>4% – 7%</td><td>Patent-protected margins generate substantial cash. R&D is expensed, not capex.</td></tr>
+          <tr><td>Consumer Staples</td><td>4% – 6%</td><td>Predictable demand, low capex needs, steady margin structure.</td></tr>
+          <tr><td>Technology</td><td>2% – 5%</td><td>Asset-light but often reinvesting aggressively. Wide range depending on maturity.</td></tr>
+          <tr><td>Utilities</td><td>1% – 3%</td><td>Massive capex on infrastructure. Regulated returns limit free cash.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="doc-section">
+      <h2>4.0 Edge Cases and Pitfalls</h2>
+
+      <h3>When FCF Yield Misleads</h3>
+      <ul>
+        <li><strong>Cyclical peaks.</strong> An oil company generating 12% FCF yield at $90/barrel oil will generate 3% at $50/barrel. FCF yield at peak earnings overstates sustainable cash generation.</li>
+        <li><strong>Deferred capex.</strong> A company can temporarily inflate FCF by postponing maintenance capex. The factory still needs a new roof — the cash spend is just delayed. Check capex trends over 3-5 years, not a single quarter.</li>
+        <li><strong>Working capital swings.</strong> A retailer collecting receivables faster in Q4 inflates operating cash flow temporarily. Normalize for seasonal working capital changes.</li>
+        <li><strong>Acquisition-heavy companies.</strong> Acquisitions are classified as investing activities, not operating. A serial acquirer can show high FCF while burning massive amounts of cash on deals. Check total cash flow, not just FCF.</li>
+        <li><strong>Stock-based compensation.</strong> SBC is a non-cash expense that boosts operating cash flow but dilutes shareholders. Companies with heavy SBC have artificially inflated FCF. Subtract SBC for a truer picture.</li>
+      </ul>
+
+      <h3>Adjusted FCF</h3>
+<pre><code><span class="code-label">formula</span>Adjusted FCF = Operating Cash Flow
+             − Capital Expenditures
+             − Stock-Based Compensation
+
+This penalizes companies that "pay" employees with equity
+(diluting existing shareholders) instead of cash.
+
+Example (heavy SBC company):
+  Operating CF:  $18B
+  CapEx:         $6B
+  SBC:           $8B
+
+  Standard FCF:  $18B - $6B = $12B
+  Adjusted FCF:  $18B - $6B - $8B = $4B
+
+  Standard FCF Yield at $300B market cap: 4.0%
+  Adjusted FCF Yield:                     1.3%  ← Very different</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>5.0 FCF Yield in Practice</h2>
+
+      <h3>Screening Filter</h3>
+<pre><code><span class="code-label">pseudocode</span>Screen for cash generators:
+  1. Filter: FCF Yield > 4%
+  2. Filter: FCF positive for 5 consecutive years
+  3. Filter: Cash Conversion Ratio > 0.80
+  4. Filter: Market cap > $10B
+  5. Sort: FCF Yield descending
+
+Pair with:
+  - P/E < 20 (not overpaying on earnings either)
+  - PEG < 1.5 (growth is reasonably priced)
+  - Debt/Equity < 1.5 (not leveraged to the gills)</code></pre>
+
+      <h3>The Buyback + Dividend Framework</h3>
+      <p>FCF yield tells you the total shareholder return capacity. How the company allocates that cash defines the investment thesis:</p>
+      <table>
+        <thead>
+          <tr><th>Allocation</th><th>Effect</th><th>Best For</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Dividends</td><td>Direct income. Taxed immediately.</td><td>Income investors, retirees.</td></tr>
+          <tr><td>Share buybacks</td><td>Increases EPS, supports price. Tax-deferred.</td><td>Growth investors in taxable accounts.</td></tr>
+          <tr><td>Debt paydown</td><td>Reduces interest expense, lowers risk.</td><td>Deleveraging thesis, credit improvement.</td></tr>
+          <tr><td>Reinvestment (R&D, capex)</td><td>Grows future earnings. No immediate return.</td><td>Growth investors with long time horizon.</td></tr>
+        </tbody>
+      </table>
+
+      <p>The ideal is a company with 6%+ FCF yield that pays 2-3% as dividend, buys back 1-2% of shares annually, and reinvests the rest. That's a compounding machine.</p>
+    </section>
+
+    <section class="doc-section">
+      <h2>6.0 Related Pages</h2>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <h4><a href="price-to-earnings-ratio.html">P/E Ratio</a></h4>
+          <p>Earnings yield is the accounting-based cousin of FCF yield. Comparing the two reveals earnings quality — a wide gap means accounting profit isn't converting to cash.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="peg-ratio.html">PEG Ratio</a></h4>
+          <p>PEG adjusts P/E for growth. Pair it with FCF yield to confirm the growth is cash-backed, not just accounting-driven.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="portfolio-allocation-framework.html">Portfolio Allocation</a></h4>
+          <p>Higher FCF yield names support larger position sizes. Cash generation reduces downside risk and funds shareholder returns.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="doc-footer">
+    <a href="./">← Back to Investment Wiki</a>
+    <span style="color: var(--text-tertiary);">Investment Wiki</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Footage &mdash; Gab</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23E8A838'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .private-header { padding: 120px 0 48px; text-align: center; border-bottom: 1px solid var(--border); }
+    .private-header .section-subtitle { margin: 0 auto; }
+    .private-label { display: inline-block; padding: 4px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(232,168,56,0.15); color: var(--accent); margin-bottom: 16px; }
+    .footage-section { padding: 48px 0; }
+    .footage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .footage-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color var(--transition), transform var(--transition); cursor: pointer; }
+    .footage-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+    .footage-card .thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; background: var(--surface-elevated); }
+    .footage-card .thumb .duration { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.85); color: #fff; font-size: 0.72rem; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+    .footage-card .info { padding: 14px 16px 18px; }
+    .footage-card .info h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; line-height: 1.3; color: var(--text); }
+    .footage-card .info .meta { display: flex; gap: 12px; font-size: 0.75rem; color: var(--text-tertiary); }
+    .player-modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; padding: 40px; }
+    .player-modal.active { display: flex; }
+    .player-modal .player-inner { width: 100%; max-width: 1000px; aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; position: relative; }
+    .player-modal iframe { width: 100%; height: 100%; border: none; }
+    .player-modal .close-btn { position: absolute; top: -44px; right: 0; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; padding: 8px; }
+    .player-modal .close-btn:hover { color: var(--text); }
+    .fbtn { padding:8px 20px; border-radius:100px; border:1px solid var(--border); background:transparent; color:var(--text-secondary); font-family:inherit; font-size:0.82rem; font-weight:500; cursor:pointer; transition:all 0.2s; }
+    .fbtn:hover { border-color:var(--border-accent); color:var(--text); }
+    .fbtn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+    @media (max-width: 768px) { .footage-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="site-nav scrolled">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Gab</a>
+      <div class="nav-cta">
+        <a href="/footage.html" class="nav-link">Footage</a>
+        <a href="/vlog.html" class="nav-link">Vlogs</a>
+        <a href="/blog/" class="nav-link">Blog</a>
+        <a href="https://www.youtube.com/@gabrieldancause" class="btn btn-primary" target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="private-header">
+    <div class="container">
+      <span class="private-label">Unlisted</span>
+      <h1 class="section-title">Private footage</h1>
+      <p class="section-subtitle">All raw and edited footage streamed from Google Drive. This page is not indexed or linked from the main site.</p>
+    </div>
+  </section>
+
+  <section style="padding:24px 0;border-bottom:1px solid var(--border);position:sticky;top:56px;background:var(--bg);z-index:50;">
+    <div class="container" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <button class="fbtn active" data-filter="all">All</button>
+      <button class="fbtn" data-filter="scenic">Scenic Drives</button>
+      <button class="fbtn" data-filter="walking">Walking Tours</button>
+      <button class="fbtn" data-filter="slow-tv">Slow TV</button>
+      <button class="fbtn" data-filter="drone">Drone</button>
+      <button class="fbtn" data-filter="vlog">Vlogs</button>
+      <button class="fbtn" data-filter="shorts">Shorts</button>
+    </div>
+  </section>
+
+  <section class="footage-section">
+    <div class="container">
+      <div class="footage-grid" id="footageGrid"></div>
+    </div>
+  </section>
+
+  <div class="player-modal" id="playerModal">
+    <div class="player-inner">
+      <button class="close-btn" id="closePlayer">&times;</button>
+      <iframe id="playerFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; 2026 Gab</p>
+    </div>
+  </footer>
+
+  <script>
+    const VIDEOS = [
+      // Scenic Drives & Walking Tours (large)
+      {t:"Mérida to Chichén Itzá",l:"Mexico",d:"December 2024",c:"scenic",s:67.5,id:"1Ah2au4eKNDLXKS5e4xATZPIaRxc3uvB9",tp:"Scenic Drive"},
+      {t:"Slow TV — Biking in Canada",l:"Charlevoix, Québec",d:"September 2024",c:"slow-tv",s:62.8,id:"1ObGPqdrIqg3AMifqVY8tgquOCjP6TuvY",tp:"Slow TV"},
+      {t:"Parc du Mont-Royal",l:"Montréal, Canada",d:"December 2024",c:"walking",s:53.8,id:"1jDBQnTdxxnhphBTLDL0sHwLGKYNaexHq",tp:"Walking Tour"},
+      {t:"Slow TV — Project 2",l:"Canada",d:"2024",c:"slow-tv",s:50.6,id:"1mCWk2GvMVbBGdRozGPPRDmWLa3d5ccVb",tp:"Slow TV"},
+      {t:"Slow TV — Montréal 3",l:"Montréal, Canada",d:"September 2024",c:"slow-tv",s:47.5,id:"1dzDWVKZssri-PcuzSFf9_aCGNDrZYqxL",tp:"Slow TV"},
+      {t:"Road Trip — South Shore of Montréal",l:"Montréal, Canada",d:"December 2024",c:"scenic",s:40.7,id:"1lXZESqTmwV_Dkky-kmBp5NCF8QifeA9M",tp:"Scenic Drive"},
+      {t:"A Day in Québec",l:"Charlevoix, Québec",d:"October 2024",c:"scenic",s:39.5,id:"1p89dI-JSDvlRl5yqPoDqNI3zecsPRBEw",tp:"Scenic Drive"},
+      {t:"Slow TV — Montréal 4",l:"Montréal, Canada",d:"September 2024",c:"slow-tv",s:36.4,id:"1D863hjX76K4oi39oKFrKYEYhzVn24QBI",tp:"Slow TV"},
+      {t:"Poconos",l:"Poconos, Pennsylvania",d:"2024",c:"scenic",s:31.6,id:"1IJ4bLZk-Fb3OGl2RYhAmwnxhLAFzP1WN",tp:"Scenic Drive"},
+      {t:"Philadelphia",l:"Philadelphia, Pennsylvania",d:"February 2025",c:"scenic",s:31.6,id:"1crSUfz0TEHuPRjq6mRRazExpzqXXs157",tp:"Scenic Drive"},
+      {t:"Tokyo Walking Tour 2",l:"Tokyo, Japan",d:"February 2025",c:"walking",s:31.1,id:"1Sk7UmoiUyf5D_iWtL4ajHG7nk_AfEElu",tp:"Walking Tour"},
+      {t:"Snowstorm Drive — Bromont to Montréal",l:"Québec, Canada",d:"January 2025",c:"scenic",s:29.2,id:"1B35MyNamzcDHHzcLjg_felnlzT-opJHk",tp:"Scenic Drive"},
+      {t:"Montréal to Bromont Drive",l:"Québec, Canada",d:"January 2025",c:"scenic",s:29.1,id:"1AVTlmPoVlvVV28Yb7-c9VMUeZ1oLpg6E",tp:"Scenic Drive"},
+      {t:"Slow TV Episode",l:"Canada",d:"May 2024",c:"slow-tv",s:29.1,id:"1kzhPYPIC_L3pG6aMfNYVaMoc7joTSTSP",tp:"Slow TV"},
+      {t:"Playa del Carmen Nightlife",l:"Playa del Carmen, Mexico",d:"December 2024",c:"walking",s:27.9,id:"13E2GhTh7sHisdEvuev6yYXT6rgA5sNfM",tp:"Walking Tour"},
+      {t:"Philadelphia 2",l:"Philadelphia, Pennsylvania",d:"February 2025",c:"walking",s:27.1,id:"1jfAiQdyllLsrw5qy3Yet7FwqBJxj7YrS",tp:"Walking Tour"},
+      {t:"Slow TV 1",l:"Canada",d:"2024",c:"slow-tv",s:25.0,id:"1a71OXSECmvxqhU0vltQrQcDtXnjkcyqv",tp:"Slow TV"},
+      {t:"Victoria Walking Tour",l:"Victoria, British Columbia",d:"January 2025",c:"walking",s:24.0,id:"1AVhC_G1ZkUYAUh6SoHsmSSntN3qcvATd",tp:"Walking Tour"},
+      {t:"WeVideo Project",l:"USA",d:"February 2025",c:"scenic",s:21.9,id:"1qjSwBOU3GvNLAkUFK-br2zT8NWhpnE66",tp:"Scenic Drive"},
+      {t:"Slow TV — Montréal 5",l:"Montréal, Canada",d:"September 2024",c:"slow-tv",s:20.4,id:"14xKtvQ4LhJ5uyIK6XnlZO113PiDcxRUC",tp:"Slow TV"},
+      {t:"Botanical Loop Trail",l:"British Columbia",d:"November 2024",c:"walking",s:19.7,id:"1-ADJ_t-8EJrf5mXpBUp-BWHsb_vHI6M1",tp:"Walking Tour"},
+      {t:"Biking in Montréal 2",l:"Montréal, Canada",d:"September 2024",c:"slow-tv",s:17.8,id:"1U-N0pF6jzx6xE78_QK12y8vJ-yf_VxK4",tp:"Slow TV"},
+      {t:"Charlevoix Vlog",l:"Charlevoix, Québec",d:"October 2024",c:"vlog",s:14.6,id:"1ap3wSzLDBjeeGx1gFNQmDWqOGoI47CMp",tp:"Vlog"},
+      {t:"Bangkok After the Earthquake",l:"Bangkok, Thailand",d:"March 2025",c:"vlog",s:14.3,id:"1KoCfIRKpeZZx-gCVGFLQQr0mpjb7NPP8",tp:"Vlog"},
+      {t:"Tokyo Walking Tour",l:"Tokyo, Japan",d:"February 2025",c:"walking",s:14.1,id:"1Qb8iXc4R5rFrW9u5WTWxSSW3Moi0YCjf",tp:"Walking Tour"},
+      {t:"Stanley Park Walking Tour",l:"Vancouver, British Columbia",d:"December 2024",c:"walking",s:13.9,id:"1qB9c0hxxAzBDDMl8UxXeNkGZqrGBCjC2",tp:"Walking Tour"},
+      {t:"Bromont Drive",l:"Bromont, Québec",d:"2025",c:"scenic",s:13.4,id:"1jVZtobs7aJdlRdX7DMJ2Shqof_G1K6Im",tp:"Scenic Drive"},
+      {t:"Almost Drowned",l:"Charlevoix, Québec",d:"October 2024",c:"vlog",s:12.5,id:"1jHmNyOJcR6nTJeD8BHBMMr5eYCJs6En9",tp:"Vlog"},
+      {t:"Montréal Long Drive 2",l:"Montréal, Canada",d:"2024",c:"scenic",s:12.1,id:"1MBMoTGfClqLzYCmPmd_NFJxpBAefgLZT",tp:"Scenic Drive"},
+      {t:"A Day in Charlevoix 2",l:"Charlevoix, Québec",d:"October 2024",c:"scenic",s:12.0,id:"11L7p26rWD2mxNUX6da7_GSt6-u1sd-jz",tp:"Scenic Drive"},
+      {t:"Mystic Beach Hike",l:"British Columbia",d:"October 2024",c:"walking",s:11.9,id:"1xLvMhmMebxiyAhCcbUe-7OUP4lff-G0E",tp:"Walking Tour"},
+      {t:"Slow TV — Montréal 6",l:"Montréal, Canada",d:"September 2024",c:"slow-tv",s:11.9,id:"1pV4iCjI3MUPA4736IDepTv6zb92r5glI",tp:"Slow TV"},
+      {t:"Jordan River Surf",l:"British Columbia",d:"October 2024",c:"slow-tv",s:10.6,id:"1pa016geXzF3sxJTDW5z6DArcZcIGDo9o",tp:"Slow TV"},
+      {t:"Hiking",l:"Canada",d:"2024",c:"walking",s:9.9,id:"1WPWkNSt35seoWYEAfKO0n0pf759F0puZ",tp:"Walking Tour"},
+      {t:"Wind Turbines 2",l:"Québec, Canada",d:"2022",c:"slow-tv",s:9.7,id:"1TUKvWT7o1l6ji-b9Tj6bUBFLUX-Yfz69",tp:"Slow TV"},
+      {t:"Sailboat on the River",l:"Québec, Canada",d:"2022",c:"slow-tv",s:9.6,id:"16fjH3Y5Rvfa34-f0IsqsTmgQUajd8lo4",tp:"Slow TV"},
+      {t:"A Day in Charlevoix 3",l:"Charlevoix, Québec",d:"October 2024",c:"scenic",s:9.6,id:"1612Bf50gTH_ircGRBixOdkomVDlwF3ri",tp:"Scenic Drive"},
+      {t:"Wind Turbines 1",l:"Québec, Canada",d:"2022",c:"slow-tv",s:9.1,id:"1TSspWmWrG4RD6323GAjKPp4PTNgkzbiY",tp:"Slow TV"},
+      {t:"Night Skiing in Bromont",l:"Bromont, Québec",d:"December 2024",c:"slow-tv",s:8.2,id:"1AZm_enmhfeKrZ19ExQScXZCvMy47JiHC",tp:"Slow TV"},
+      {t:"Bromont Ski Runs",l:"Bromont, Québec",d:"January 2025",c:"slow-tv",s:7.9,id:"19TXpOShKkeES9oQZMlocUiUtfrS7nOOH",tp:"Slow TV"},
+      {t:"Cenotes to Playa del Carmen",l:"Riviera Maya, Mexico",d:"December 2024",c:"scenic",s:7.5,id:"1T_zVOrG0xRBMb5LMB521Z6qvlPVKVE0z",tp:"Scenic Drive"},
+      {t:"Sorrento",l:"Sorrento, Italy",d:"2022",c:"scenic",s:7.5,id:"1w9KAZ2NYzEnuKsIS4FknFyurwTk6NtrA",tp:"Scenic Drive"},
+      {t:"Slow TV — Montréal Bike",l:"Montréal, Canada",d:"2024",c:"slow-tv",s:7.2,id:"1MdxpEgau1UHZSWOViPuS5yRWTqzpCXMe",tp:"Slow TV"},
+      {t:"IJburg Amsterdam",l:"Amsterdam, Netherlands",d:"2024",c:"slow-tv",s:7.2,id:"1NckIekws7Uwr422rtp9LhxAGD9JhaZtx",tp:"Slow TV"},
+      {t:"Sailing Lac St-Pierre",l:"Lac St-Pierre, Québec",d:"2022",c:"slow-tv",s:7.2,id:"1_vzJRC-_vaXwMWsUnYVUzBWzoAwixbgE",tp:"Slow TV"},
+      {t:"Songkran Vlog",l:"Thailand",d:"April 2024",c:"vlog",s:7.1,id:"1XbB5ghRrTC0FpJdOIOneNaahoYaNETGc",tp:"Vlog"},
+      {t:"Driving Amsterdam",l:"Amsterdam, Netherlands",d:"2024",c:"scenic",s:7.1,id:"1LRn_wWlAVMl1gr6iaUt2ie9R2vvGUvO5",tp:"Scenic Drive"},
+      {t:"Montréal Drive",l:"Montréal, Canada",d:"November 2024",c:"scenic",s:6.1,id:"1gpCG33ki-N8f_SK3NVFWIp1ZabaeJsFD",tp:"Scenic Drive"},
+      {t:"Sunset in Charlevoix",l:"Charlevoix, Québec",d:"2022",c:"slow-tv",s:5.7,id:"1-_W2wdsOSCgdXj68kf1ooFmDPVbDIESb",tp:"Slow TV"},
+      {t:"Kite Cabana Brazil",l:"Brazil",d:"2022",c:"slow-tv",s:5.4,id:"1TIK5syyq8-xcRACaxpTfJt9a_Ai8Gwtt",tp:"Slow TV"},
+      {t:"Our Life in Khao Lak",l:"Khao Lak, Thailand",d:"2024",c:"vlog",s:5.2,id:"1ERhmx-DSwR_wbjj1ZpRobk6JP92LrP2l",tp:"Vlog"},
+      {t:"Pattaya Vlog",l:"Pattaya, Thailand",d:"2024",c:"vlog",s:5.0,id:"1RpDrM1IUJOUnxl6mcrNI-osdfoG5nfYY",tp:"Vlog"},
+      {t:"Khao Lak Vlog 2",l:"Khao Lak, Thailand",d:"2024",c:"vlog",s:4.9,id:"1dQHIL4M8_TLlxUm6WlAfR9Ez03UQjMvK",tp:"Vlog"},
+      {t:"Vlog For Ali (Bday and Dogs)",l:"Montréal, Canada",d:"October 2024",c:"vlog",s:4.7,id:"1BBllFgjNutuKlfjE9P-6rFDqDj14ffFc",tp:"Vlog"},
+      {t:"Mexico Vlog Arrival",l:"Mexico",d:"December 2024",c:"vlog",s:4.4,id:"15gGrnToOyIzTX63sXFIrWcAJEn0cpDhg",tp:"Vlog"},
+      {t:"Philadelphia Short",l:"Philadelphia, Pennsylvania",d:"February 2025",c:"walking",s:4.3,id:"10i8VSfToAZBfncfFjJld0jmOAMt6tYCy",tp:"Walking Tour"},
+      {t:"Ali Vlog 4",l:"Canada",d:"November 2024",c:"vlog",s:3.9,id:"1MHyqHfEKD8Ms4L591HOeDRDTLMS4ALqf",tp:"Vlog"},
+      {t:"Salt Surf — Khao Lak",l:"Khao Lak, Thailand",d:"March 2025",c:"slow-tv",s:3.8,id:"1uP5crygBJrin8EC06TD0yrYIGwPmnCBS",tp:"Slow TV"},
+      {t:"Colombia Retreat Vlog",l:"Colombia",d:"March 2025",c:"vlog",s:3.7,id:"1vQZ0EDUtDRtRlW3HzLVJTpow3McM2Pdc",tp:"Vlog"},
+      {t:"Final Vlog Thailand",l:"Thailand",d:"2024",c:"vlog",s:3.6,id:"1VY0Rqt2aVdcBH86b9DHIxLxPXBRoSRKC",tp:"Vlog"},
+      {t:"From Bix Café to Now",l:"Thailand",d:"2024",c:"vlog",s:3.4,id:"1yNvgYp0vqasnjvUBBzjAPN9mdASzgWJK",tp:"Vlog"},
+      {t:"Ali Vlog — Montréal to Stella",l:"Montréal, Canada",d:"October 2024",c:"vlog",s:3.2,id:"1UbK_tSPAIPUZSMGt302pVFjg5Eg30tFr",tp:"Vlog"},
+      {t:"Clouds Over Les Éboulements",l:"Les Éboulements, Québec",d:"2022",c:"drone",s:3.2,id:"1wd_hhAp7dzTkQ3vfYmkLr52qJXTLDP4e",tp:"Drone"},
+      {t:"Charlevoix Drone",l:"Charlevoix, Québec",d:"July 2022",c:"drone",s:3.1,id:"16iC3sFzoOdE4ge0izOz2swdcbZAILxup",tp:"Drone"},
+      {t:"Montréal Long Drive 1",l:"Montréal, Canada",d:"2024",c:"scenic",s:3.1,id:"1DlVTfu10sjKWDJ9cO-LtISmESOSomSQt",tp:"Scenic Drive"},
+      {t:"Waves & Mojitos",l:"Mexico",d:"2022",c:"slow-tv",s:2.9,id:"1RDjLRhjjIVuXF5-BwiP25dQRLnZbMBFh",tp:"Slow TV"},
+      {t:"Ali Vlog — Montréal to BC",l:"Canada",d:"November 2024",c:"vlog",s:2.7,id:"1Aqnp2JrRsYx3P6XjuKghb48z-g6H0ycx",tp:"Vlog"},
+      {t:"Woodview Mountain Top Skating",l:"Blue Mountain, Ontario",d:"February 2025",c:"slow-tv",s:2.7,id:"1Ze9Th5TAFxLk8tzcfxpiKNPKxvoaxX9s",tp:"Slow TV"},
+      {t:"Ali Vlog 2",l:"Canada",d:"November 2024",c:"vlog",s:2.6,id:"1Ul8sWnPwC35_Hoj9-mFiNc3cTbeFkIdq",tp:"Vlog"},
+      {t:"Ali Vlog 3",l:"Canada",d:"November 2024",c:"vlog",s:2.5,id:"1w6u8f86zK51IIxXyU2-RvFpmywyLRRaz",tp:"Vlog"},
+      {t:"Sunset on Île d'Orléans",l:"Île d'Orléans, Québec",d:"2022",c:"slow-tv",s:2.4,id:"1go8uDfypEgLbm2Z1ZPKI310E99Y3d9Wv",tp:"Slow TV"},
+      {t:"Mini Date Vlog",l:"Montréal, Canada",d:"November 2024",c:"vlog",s:2.2,id:"17JvMh3RfwbnO89i8rMunEtVdHtVudIAN",tp:"Vlog"},
+      {t:"Beach with Cicero",l:"Brazil",d:"2022",c:"slow-tv",s:2.2,id:"1Sttoz_rF8FNlbPib6HbZQL1JFva5X82J",tp:"Slow TV"},
+      {t:"Test Slow TV",l:"Canada",d:"2024",c:"slow-tv",s:2.0,id:"1D2KXXuhrC-o8ffWxbRtIB0p-vf__GfwL",tp:"Slow TV"},
+      {t:"Buying Something in Montréal",l:"Montréal, Canada",d:"September 2024",c:"vlog",s:2.0,id:"1exXhr-vmbBsDVnUZjWCa1CuLWsmUcg7b",tp:"Vlog"},
+      {t:"Arriving in Mexico",l:"Mexico",d:"December 2024",c:"vlog",s:1.7,id:"1kekSJbTq8AQBD-7hCzi_aQF5XQndXSD3",tp:"Vlog"},
+      {t:"Biking in Montréal at Night",l:"Montréal, Canada",d:"September 2024",c:"slow-tv",s:1.3,id:"1b-C43Afwjjskd1Q0E-q-kIS-0ihvQgm3",tp:"Slow TV"},
+      {t:"Travel Vlog",l:"Thailand",d:"July 2024",c:"vlog",s:1.3,id:"171YxvBrgj7a0zSU0zVog71U71eIyuaiU",tp:"Vlog"},
+      {t:"Greece Athens",l:"Athens, Greece",d:"July 2024",c:"walking",s:1.1,id:"1UQraNag7S8kPtSDQDsu9WcYePfAoecOY",tp:"Walking Tour"},
+      // Shorts
+      {t:"Surfing Short 3",l:"Thailand",d:"2024",c:"shorts",s:0.6,id:"1AvWROWGcogBoY16_QS4FEjJ-_pfbtsK7",tp:"Short"},
+      {t:"Yoyogi Park",l:"Tokyo, Japan",d:"February 2025",c:"shorts",s:0.6,id:"1oXA4os62jeHg2dGld6YMro0C5n16u5Z5",tp:"Short"},
+      {t:"Surfing Short 2",l:"Thailand",d:"2024",c:"shorts",s:0.5,id:"1NOPgvJ55CLDMGq4IquTGOCIXPLmGIXn4",tp:"Short"},
+      {t:"Skiing Short 3",l:"Bromont, Québec",d:"2025",c:"shorts",s:0.5,id:"1Cvyipd1jBpWHxHNHKh7X-pe_uehSKlYH",tp:"Short"},
+      {t:"Walking Short 1",l:"Japan",d:"2025",c:"shorts",s:0.5,id:"1pt9u4t9nnnMtS4tkkIm3ft-m7qdKVYEX",tp:"Short"},
+      {t:"Walking Short 3",l:"Japan",d:"2025",c:"shorts",s:0.5,id:"10oasV0dF0IwDnDNYwPU7nDiXmlpn_WjI",tp:"Short"},
+      {t:"Beach Short 3",l:"Mexico",d:"2024",c:"shorts",s:0.5,id:"1gU47VMfvqAX3K3qhx4p-dChMpseu4HWh",tp:"Short"},
+      {t:"Biking in Montréal",l:"Montréal, Canada",d:"September 2024",c:"slow-tv",s:0.4,id:"1zrZ7iFCE9YFByToDEJojVU6eAbGXseSD",tp:"Slow TV"},
+    ];
+
+    const grid = document.getElementById('footageGrid');
+    VIDEOS.forEach(v => {
+      const card = document.createElement('div');
+      card.className = 'footage-card';
+      card.dataset.category = v.c;
+      card.innerHTML = `
+        <div class="thumb">
+          <div style="width:100%;height:100%;background:var(--surface-elevated);display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="var(--text-tertiary)" opacity="0.4"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="duration">${v.s} GB</div>
+        </div>
+        <div class="info">
+          <h3>${v.t}</h3>
+          <div class="meta"><span>${v.l}</span><span>${v.d}</span><span>${v.tp}</span></div>
+        </div>`;
+      card.addEventListener('click', () => openPlayer(v.id));
+      grid.appendChild(card);
+    });
+
+    const modal = document.getElementById('playerModal');
+    const frame = document.getElementById('playerFrame');
+    const closeBtn = document.getElementById('closePlayer');
+    function openPlayer(driveId) { frame.src = `https://drive.google.com/file/d/${driveId}/preview`; modal.classList.add('active'); }
+    closeBtn.addEventListener('click', () => { modal.classList.remove('active'); frame.src = ''; });
+    modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.remove('active'); frame.src = ''; } });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) { modal.classList.remove('active'); frame.src = ''; } });
+
+    document.querySelectorAll('.fbtn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        document.querySelectorAll('.footage-card').forEach(card => {
+          card.style.display = (f === 'all' || card.dataset.category === f) ? '' : 'none';
+        });
+      });
+    });
+  </script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

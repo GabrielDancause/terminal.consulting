@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Allocation Framework — Investment Wiki</title>
+  <meta name="description" content="Technical reference for portfolio allocation. Position sizing, sector weighting, rebalancing triggers, and risk management for a concentrated equity portfolio.">
+  <meta property="og:title" content="Portfolio Allocation Framework — Investment Wiki">
+  <meta property="og:description" content="Portfolio allocation framework: position sizing, sector limits, and rebalancing rules.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+<body>
+
+<div class="doc-container">
+
+  <nav class="doc-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="./">Investment</a>
+    <span class="sep">/</span>
+    Portfolio Allocation
+  </nav>
+
+  <header class="doc-header">
+    <h1 class="doc-title">Portfolio Allocation Framework</h1>
+    <div class="doc-meta">
+      <span class="tag">Strategy</span>
+      <span>Investment Wiki — Portfolio Management</span>
+    </div>
+  </header>
+
+  <div class="doc-abstract">
+    Portfolio allocation is the decision of how much capital goes into each position — it determines more of your return than stock selection does. A concentrated portfolio of 15-25 names with rules-based position sizing outperforms both over-diversified index-hugging and conviction-less equal weighting. This framework uses valuation metrics (<a href="peg-ratio.html">PEG</a>, <a href="free-cash-flow-yield.html">FCF yield</a>, <a href="price-to-earnings-ratio.html">P/E</a>) to set position size, sector caps to manage correlation risk, and calendar-based rebalancing to enforce discipline.
+  </div>
+
+  <div class="doc-content">
+
+    <div class="gab-stack-infobox">
+      <div class="infobox-header">Quick Reference</div>
+      <table>
+        <tr><td>Type</td><td>Portfolio Strategy</td></tr>
+        <tr><td>Holdings</td><td>15–25 positions</td></tr>
+        <tr><td>Max Position</td><td>8% at cost</td></tr>
+        <tr><td>Sector Cap</td><td>30% max</td></tr>
+        <tr><td>Rebalance</td><td>Quarterly</td></tr>
+        <tr><td>Style</td><td>GARP (Growth at Reasonable Price)</td></tr>
+      </table>
+    </div>
+
+    <section class="doc-section">
+      <h2>1.0 Position Sizing</h2>
+
+      <p>Position size is a function of conviction and valuation. Cheaper stocks on a risk-adjusted basis get larger allocations. The framework uses a tiered system based on composite valuation scores.</p>
+
+      <h3>Tier System</h3>
+      <table>
+        <thead>
+          <tr><th>Tier</th><th>Criteria</th><th>Position Size</th><th>Max Positions</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Core</strong></td><td><a href="peg-ratio.html">PEG</a> &lt; 1.5, <a href="free-cash-flow-yield.html">FCF Yield</a> &gt; 4%, <a href="price-to-earnings-ratio.html">P/E</a> &lt; 22</td><td>5% – 8%</td><td>5–7</td></tr>
+          <tr><td><strong>Growth</strong></td><td>PEG 1.0 – 2.0, FCF Yield &gt; 2%, revenue growth &gt; 15%</td><td>3% – 5%</td><td>6–8</td></tr>
+          <tr><td><strong>Speculative</strong></td><td>PEG &gt; 2.0 or negative FCF, high-conviction thesis</td><td>1% – 3%</td><td>3–5</td></tr>
+          <tr><td><strong>Cash Reserve</strong></td><td>Dry powder for corrections</td><td>5% – 15%</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-note">
+        The tiers enforce discipline. A stock you love but can't justify on valuation gets a small position. A stock with strong fundamentals and a low PEG gets a large one. Emotion sets the watchlist; valuation sets the size.
+      </div>
+
+      <h3>Sizing Formula</h3>
+<pre><code><span class="code-label">pseudocode</span>For each position:
+
+  base_weight = 1 / number_of_positions  (equal weight baseline)
+
+  valuation_modifier:
+    PEG < 1.0              → +50% weight
+    PEG 1.0 – 1.5          → +25% weight
+    PEG 1.5 – 2.0          → +0%  (baseline)
+    PEG > 2.0              → -25% weight
+
+  quality_modifier:
+    FCF Yield > 6%         → +25% weight
+    FCF Yield 3% – 6%      → +0%  (baseline)
+    FCF Yield < 3%         → -25% weight
+
+  adjusted_weight = base_weight × (1 + valuation_modifier)
+                                × (1 + quality_modifier)
+
+  final_weight = min(adjusted_weight, 0.08)  // 8% hard cap
+  final_weight = max(final_weight, 0.01)     // 1% floor</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>2.0 Sector Constraints</h2>
+
+      <p>Valuation-driven sizing creates sector concentration risk. If energy stocks are cheap across the board, the model will pile into energy — right before oil drops 40%. Sector caps prevent this.</p>
+
+      <h3>Sector Limits</h3>
+      <table>
+        <thead>
+          <tr><th>Constraint</th><th>Limit</th><th>Rationale</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Single sector max</td><td>30%</td><td>Prevents correlation blow-ups. No single macro event should impact &gt;30% of the portfolio.</td></tr>
+          <tr><td>Top 2 sectors combined</td><td>50%</td><td>Forces minimum 3-sector diversification.</td></tr>
+          <tr><td>Single position max</td><td>8% at cost</td><td>Limits single-name risk. A 50% drawdown in the largest position costs 4% of portfolio.</td></tr>
+          <tr><td>Cash minimum</td><td>5%</td><td>Always have dry powder. Opportunities appear when everything else is selling off.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Handling Sector Overflow</h3>
+<pre><code><span class="code-label">pseudocode</span>After sizing all positions:
+
+  for each sector:
+    if sector_weight > 0.30:
+      overflow = sector_weight - 0.30
+      reduce each position in sector proportionally
+      redistribute overflow to underweight sectors
+      (prefer highest FCF yield names in underweight sectors)
+
+  Verify: no single position > 8%, no sector > 30%
+  Remainder → cash reserve</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>3.0 Rebalancing</h2>
+
+      <h3>Calendar Rebalancing</h3>
+      <p>Rebalance quarterly on the first trading day of January, April, July, and October. Calendar-based rules remove the temptation to time the market.</p>
+
+      <h3>Rebalancing Process</h3>
+<pre><code><span class="code-label">pseudocode</span>Quarterly rebalance:
+
+  1. Pull current prices and updated fundamentals
+     (P/E, PEG, FCF Yield for each holding)
+
+  2. Recalculate target weights using the sizing formula
+
+  3. Compare current weight vs. target weight:
+     - If drift > ±2% → trade to rebalance
+     - If drift < ±2% → no action (avoid overtrading)
+
+  4. Check for sells:
+     - PEG > 3.0 → sell entirely (valuation broken)
+     - Negative FCF for 2 consecutive quarters → sell
+     - Thesis invalidated (competitive, regulatory) → sell
+
+  5. Check for new entries:
+     - Scan watchlist for PEG < 1.5 + FCF Yield > 3%
+     - Fund new positions from cash reserve or trims
+
+  6. Apply sector constraints (step 2.0)
+  7. Execute trades</code></pre>
+
+      <h3>Threshold Rebalancing (Override)</h3>
+      <p>Between quarterly dates, rebalance only if:</p>
+      <ul>
+        <li>A single position exceeds <strong>12%</strong> of portfolio (price appreciation drove it too high).</li>
+        <li>A sector exceeds <strong>35%</strong> (5% above the soft cap).</li>
+        <li>Cash drops below <strong>3%</strong> (margin of safety breached).</li>
+        <li>A position drops <strong>30%+</strong> from cost basis (reassess thesis — hold, add, or cut).</li>
+      </ul>
+
+      <div class="callout callout-warn">
+        Rebalancing is not market timing. It's portfolio hygiene. Selling winners that have become overweight and buying more of underweight positions with strong fundamentals is systematically buying low and selling high.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>4.0 Risk Management</h2>
+
+      <h3>Drawdown Limits</h3>
+      <table>
+        <thead>
+          <tr><th>Scenario</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Portfolio down 10% from peak</td><td>Review all positions. Trim speculative tier. Increase cash to 10%+.</td></tr>
+          <tr><td>Portfolio down 20% from peak</td><td>Full rebalance. Cut all positions below conviction threshold. Cash to 15%+.</td></tr>
+          <tr><td>Single position down 30%+</td><td>Mandatory thesis review. Three options: add (double down), hold (unchanged conviction), cut (thesis broken).</td></tr>
+          <tr><td>Sector down 25%+</td><td>Evaluate whether sector-wide issue (macro) or company-specific. Macro = hold. Company-specific = cut the name.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Correlation Awareness</h3>
+      <p>Diversification is not about the number of stocks — it's about the number of independent risk factors. 20 tech stocks is not diversified. 15 stocks across 5 uncorrelated sectors is.</p>
+<pre><code><span class="code-label">reference</span>High correlation pairs (move together):
+  NVDA ↔ AMD (same sector, same demand drivers)
+  JPM ↔ BAC (both rate-sensitive, same macro exposure)
+  XOM ↔ CVX (both oil-price-dependent)
+
+Low correlation pairs (independent drivers):
+  NVDA ↔ JNJ (tech capex vs. healthcare demand)
+  JPM ↔ KO (interest rates vs. consumer staples)
+  XOM ↔ MSFT (commodity vs. subscription software)
+
+Build the portfolio from independent risk factors,
+not just different ticker symbols.</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>5.0 Entry and Exit Rules</h2>
+
+      <h3>Entry Criteria</h3>
+      <p>A stock enters the portfolio when all of the following are met:</p>
+      <ol>
+        <li><a href="peg-ratio.html">PEG ratio</a> &lt; 2.0 (growth is not overpriced).</li>
+        <li><a href="free-cash-flow-yield.html">FCF yield</a> &gt; 2% (business generates real cash).</li>
+        <li><a href="price-to-earnings-ratio.html">P/E ratio</a> below sector median (not the most expensive name in its space).</li>
+        <li>Positive revenue growth (business is not shrinking).</li>
+        <li>Adding the position does not breach sector constraints.</li>
+      </ol>
+
+      <h3>Exit Criteria</h3>
+      <p>A stock exits the portfolio when any of the following occur:</p>
+      <ul>
+        <li>PEG exceeds 3.0 for two consecutive quarters (sustained overvaluation).</li>
+        <li>FCF turns negative for two consecutive quarters (cash generation broken).</li>
+        <li>Fundamental thesis is invalidated (competitive disruption, regulatory change, management fraud).</li>
+        <li>Position exceeds 12% of portfolio and trimming to 8% makes more sense than holding.</li>
+      </ul>
+
+      <div class="callout callout-note">
+        Entry rules are strict. Exit rules are stricter on the upside (don't let winners become the whole portfolio) and thesis-driven on the downside (don't panic-sell a drawdown without checking fundamentals first).
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>6.0 Related Pages</h2>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <h4><a href="peg-ratio.html">PEG Ratio</a></h4>
+          <p>The primary valuation input for position sizing. Lower PEG drives higher allocation weight through the valuation modifier.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="free-cash-flow-yield.html">Free Cash Flow Yield</a></h4>
+          <p>The quality input for position sizing. Higher FCF yield drives higher allocation weight and validates earnings quality.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="price-to-earnings-ratio.html">P/E Ratio</a></h4>
+          <p>Entry filter and sector comparison tool. P/E below sector median is required for new positions.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="doc-footer">
+    <a href="./">← Back to Investment Wiki</a>
+    <span style="color: var(--text-tertiary);">Investment Wiki</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

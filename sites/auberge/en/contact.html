@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <title>Contact &mdash; Auberge de nos A&iuml;eux</title>
+  <meta name="description" content="Contact Auberge de nos A&iuml;eux in Les &Eacute;boulements, Charlevoix. Phone, email and contact form.">
+  <link rel="canonical" href="https://aubergedenosaieux.com/en/contact.html">
+  <link rel="alternate" hreflang="fr" href="https://aubergedenosaieux.com/contact.html">
+  <link rel="alternate" hreflang="en" href="https://aubergedenosaieux.com/en/contact.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .contact-hero {
+      background: var(--green-dark);
+      text-align: center;
+      padding: 64px 24px;
+    }
+    .contact-hero h1 { color: var(--cream); margin-bottom: 12px; }
+    .contact-hero p { color: var(--text-light); font-size: 1.05rem; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .contact-info h3 { margin-bottom: 20px; }
+    .contact-detail {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+    .contact-detail .icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .contact-detail .info h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 4px;
+    }
+    .contact-detail .info p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .contact-detail .info a {
+      color: var(--green-mid);
+      font-weight: 500;
+    }
+
+    .contact-form h3 { margin-bottom: 20px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid rgba(44,62,45,0.15);
+      border-radius: var(--radius-sm);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color 0.15s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .map-container {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      margin-top: 32px;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 320px;
+      border: 0;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="index.html"><img class="nav-logo" src="../images/logo.png" alt="Auberge de nos A&iuml;eux" height="36"></a>
+    <ul class="nav-links">
+      <li><a href="rooms.html">Rooms</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="../contact.html" class="lang-toggle">FR</a>
+      <a href="https://hotels.cloudbeds.com/fr/reservation/FjrK2q" target="_blank" rel="noopener" class="btn-book">Book Now</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="contact-hero">
+    <h1>Contact Us</h1>
+    <p>We're here to answer your questions</p>
+  </div>
+
+  <section class="section section-cream">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <h3>Contact Information</h3>
+
+          <div class="contact-detail">
+            <span class="icon">&#128205;</span>
+            <div class="info">
+              <h4>Address</h4>
+              <p><a href="https://www.google.com/maps/place/Auberge+de+nos+A%C3%AFeux/@47.4776896,-70.3262101,183m/data=!3m1!1e3!4m18!1m8!3m7!1s0x4cbf1b248afc7445:0x2adbfd89c0db328d!2s2178+Rte.+du+Fleuve,+Les+%C3%89boulements,+QC+G0A+2M0,+Canada!3b1!8m2!3d47.4777902!4d-70.3260624!16s%2Fg%2F11cphw_nf9!3m8!1s0x4cbf1b26eba6133b:0x964265b255de7a34!5m2!4m1!1i2!8m2!3d47.4778076!4d-70.3260806!16s%2Fg%2F1tjkfdjm?entry=ttu" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">2178 Route du Fleuve<br>Les &Eacute;boulements, QC<br>Canada, G0A 2M0</a></p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <span class="icon">&#128222;</span>
+            <div class="info">
+              <h4>Phone</h4>
+              <p><a href="tel:+15813336633">(581) 333-6633</a></p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <span class="icon">&#9993;</span>
+            <div class="info">
+              <h4>Email</h4>
+              <p><a href="mailto:info@aubergedenosaieux.com">info@aubergedenosaieux.com</a></p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <span class="icon">&#128339;</span>
+            <div class="info">
+              <h4>Support Hours</h4>
+              <p>Sunday to Thursday: 10am to 6pm<br>Friday and Saturday: 10am to 8pm</p>
+              <p style="margin-top:8px;"><strong>Check-in:</strong> 4pm &nbsp;|&nbsp; <strong>Check-out:</strong> 11am</p>
+            </div>
+          </div>
+
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2660.5!2d-70.3204!3d47.4842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4c89b5a0a0a0a0a1%3A0x1234567890abcdef!2s2178+Route+du+Fleuve%2C+Les+%C3%89boulements%2C+QC+G0A+2M0!5e0!3m2!1sfr!2sca!4v1700000000000!5m2!1sfr!2sca" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map of the inn"></iframe>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h3>Ask Us Your Question</h3>
+          <form id="contact-form" action="https://formspree.io/f/mzdagnyp" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required placeholder="Your question or comment..."></textarea>
+            </div>
+            <button type="submit" class="btn-book" style="width:100%; text-align:center; padding: 14px;">Send</button>
+            <p class="form-status" style="display:none; margin-top:14px; font-size:0.85rem; text-align:center;"></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../images/logo.png" alt="Auberge de nos A&iuml;eux" height="32" style="filter: brightness(2);">
+          <p>An incomparable view of the river, Isle-aux-Coudres and the Charlevoix mountains since the 1950s.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Practical Info</h4>
+          <ul>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://hotels.cloudbeds.com/fr/reservation/FjrK2q" target="_blank" rel="noopener">Book Now</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+15813336633">(581) 333-6633</a></li>
+            <li><a href="mailto:info@aubergedenosaieux.com">info@aubergedenosaieux.com</a></li>
+            <li style="color:var(--text-light); font-size:0.85rem; margin-top:8px;"><a href="https://www.google.com/maps/place/Auberge+de+nos+A%C3%AFeux/@47.4776896,-70.3262101,183m/data=!3m1!1e3!4m18!1m8!3m7!1s0x4cbf1b248afc7445:0x2adbfd89c0db328d!2s2178+Rte.+du+Fleuve,+Les+%C3%89boulements,+QC+G0A+2M0,+Canada!3b1!8m2!3d47.4777902!4d-70.3260624!16s%2Fg%2F11cphw_nf9!3m8!1s0x4cbf1b26eba6133b:0x964265b255de7a34!5m2!4m1!1i2!8m2!3d47.4778076!4d-70.3260806!16s%2Fg%2F1tjkfdjm?entry=ttu" target="_blank" rel="noopener" style="color:var(--text-light); text-decoration:none;">2178 Route du Fleuve<br>Les &Eacute;boulements, QC<br>G0A 2M0</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Auberge de nos A&iuml;eux &mdash; CITQ: 066986 &ndash; 627706</p>
+        <div class="footer-social">
+          <a href="https://facebook.com/aubergedenosaieux2020/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://instagram.com/aubergedenosaieux/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+<script src="../mobile-nav.js" defer></script>
+<script>
+(function() {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  var status = form.querySelector('.form-status');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(r) {
+      if (r.ok) {
+        status.style.display = 'block';
+        status.style.color = 'var(--green-dark)';
+        status.textContent = 'Thank you! We will get back to you as soon as possible.';
+        form.reset();
+      } else {
+        status.style.display = 'block';
+        status.style.color = '#c0392b';
+        status.textContent = 'An error occurred. Please try again or contact us by phone.';
+      }
+      btn.textContent = 'Send';
+      btn.disabled = false;
+    }).catch(function() {
+      status.style.display = 'block';
+      status.style.color = '#c0392b';
+      status.textContent = 'An error occurred. Please try again or contact us by phone.';
+      btn.textContent = 'Send';
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
+</body>
+</html>

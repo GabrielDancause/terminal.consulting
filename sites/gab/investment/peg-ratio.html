@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PEG Ratio — Investment Wiki</title>
+  <meta name="description" content="Technical reference for the PEG ratio. Formula, interpretation, worked examples, edge cases, and practical application for equity valuation.">
+  <meta property="og:title" content="PEG Ratio — Investment Wiki">
+  <meta property="og:description" content="PEG ratio explained: formula, interpretation, worked examples, and edge cases for equity valuation.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+<body>
+
+<div class="doc-container">
+
+  <nav class="doc-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="./">Investment</a>
+    <span class="sep">/</span>
+    PEG Ratio
+  </nav>
+
+  <header class="doc-header">
+    <h1 class="doc-title">PEG Ratio</h1>
+    <div class="doc-meta">
+      <span class="tag">Valuation Metric</span>
+      <span>Investment Wiki — Fundamentals</span>
+    </div>
+  </header>
+
+  <div class="doc-abstract">
+    The Price/Earnings-to-Growth ratio normalizes a stock's P/E multiple against its expected earnings growth rate, producing a single number that answers whether a stock is cheap or expensive relative to how fast it's growing. A P/E of 30 looks expensive in isolation — but if earnings are growing at 30% annually, the PEG is 1.0, which is textbook fair value. The metric was popularized by Peter Lynch in <em>One Up on Wall Street</em> and remains the fastest way to gut-check whether a growth premium is justified.
+  </div>
+
+  <div class="doc-content">
+
+    <div class="gab-stack-infobox">
+      <div class="infobox-header">Quick Reference</div>
+      <table>
+        <tr><td>Type</td><td>Valuation Ratio</td></tr>
+        <tr><td>Formula</td><td>P/E ÷ Earnings Growth %</td></tr>
+        <tr><td>Fair Value</td><td>1.0</td></tr>
+        <tr><td>Undervalued</td><td><span class="complexity-low">&lt; 1.0</span></td></tr>
+        <tr><td>Overvalued</td><td><span class="complexity-high">&gt; 2.0</span></td></tr>
+        <tr><td>Invented By</td><td>Peter Lynch</td></tr>
+      </table>
+    </div>
+
+    <section class="doc-section">
+      <h2>1.0 The Formula</h2>
+
+      <h3>Basic Form</h3>
+<pre><code><span class="code-label">formula</span>PEG = (Price / Earnings per Share) ÷ Annual EPS Growth Rate
+
+     = P/E Ratio ÷ EPS Growth %</code></pre>
+
+      <p>Both sides of the equation use earnings per share (EPS). The P/E ratio tells you how many dollars investors pay per dollar of current earnings. The growth rate tells you how fast those earnings are expanding. PEG divides one by the other.</p>
+
+      <h3>Worked Example</h3>
+      <table>
+        <thead>
+          <tr><th>Stock</th><th>Price</th><th>EPS</th><th>P/E</th><th>EPS Growth</th><th>PEG</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Company A</td><td>$150</td><td>$5.00</td><td>30.0</td><td>30%</td><td><strong>1.00</strong></td></tr>
+          <tr><td>Company B</td><td>$100</td><td>$5.00</td><td>20.0</td><td>10%</td><td><strong>2.00</strong></td></tr>
+          <tr><td>Company C</td><td>$50</td><td>$5.00</td><td>10.0</td><td>15%</td><td><strong>0.67</strong></td></tr>
+        </tbody>
+      </table>
+
+      <p>Company A has the highest P/E (30) but is fairly valued because earnings growth matches. Company B looks cheaper on P/E (20) but is actually the most expensive on a growth-adjusted basis. Company C is the cheapest — the market is underpricing its growth.</p>
+
+      <div class="callout callout-note">
+        P/E alone is misleading. A stock with a P/E of 50 growing at 60% is cheaper than a stock with a P/E of 15 growing at 5%. PEG is the normalizer.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>2.0 Interpretation</h2>
+
+      <h3>The Benchmark Scale</h3>
+      <table>
+        <thead>
+          <tr><th>PEG Range</th><th>Signal</th><th>Interpretation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="complexity-low">&lt; 1.0</span></td><td>Undervalued</td><td>Market is not fully pricing in the growth rate. Potential opportunity if growth estimates are reliable.</td></tr>
+          <tr><td>1.0</td><td>Fair value</td><td>The stock is priced proportionally to its growth. No discount, no premium. Peter Lynch's "perfectly priced" zone.</td></tr>
+          <tr><td>1.0 – 2.0</td><td>Moderate premium</td><td>Investors are paying some premium for growth. Acceptable for high-quality, predictable businesses.</td></tr>
+          <tr><td><span class="complexity-high">&gt; 2.0</span></td><td>Overvalued</td><td>Growth premium is stretched. Either growth expectations are too low, or the stock is genuinely expensive.</td></tr>
+          <tr><td>Negative</td><td>Invalid</td><td>Earnings are declining. PEG breaks when growth is negative — discard the result and use other metrics.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>What PEG = 1.0 Actually Means</h3>
+      <p>A PEG of 1.0 implies the market expects the earnings growth rate to justify the current price. If a stock trades at 25x earnings with a 25% growth rate, the market is saying: "We'll pay 25 dollars per dollar of earnings because we believe earnings will be 25% higher next year." Whether that belief is correct is a different question.</p>
+
+      <h3>Real-World Ranges</h3>
+<pre><code><span class="code-label">reference</span>PEG &lt; 0.5  │ Rare. Usually signals the market sees risk the
+           │ numbers don't show (debt, regulation, cyclical peak).
+           │
+PEG 0.5–1.0│ Value territory. Common in out-of-favor sectors
+           │ (energy, financials) or post-selloff tech names.
+           │
+PEG 1.0–1.5│ The sweet spot for GARP (Growth at a Reasonable
+           │ Price) investors. Fair value with slight margin.
+           │
+PEG 1.5–2.5│ Growth premium. Typical for large-cap tech with
+           │ strong moats (MSFT, GOOGL, AAPL).
+           │
+PEG &gt; 3.0  │ Priced for perfection. Any earnings miss and the
+           │ stock gets punished. High-conviction-only territory.</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>3.0 Growth Rate: Which One?</h2>
+      <p>The PEG ratio is only as good as the growth number you plug in. This is where most mistakes happen.</p>
+
+      <h3>Trailing vs. Forward</h3>
+      <table>
+        <thead>
+          <tr><th>Approach</th><th>Source</th><th>Pros</th><th>Cons</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Trailing PEG</strong></td><td>Past 12 months (TTM) EPS growth</td><td>Objective — based on reported numbers, no guessing</td><td>Backward-looking. Growth may be accelerating or decelerating.</td></tr>
+          <tr><td><strong>Forward PEG</strong></td><td>Analyst consensus estimates (next 12 months)</td><td>Forward-looking — prices in expected trajectory</td><td>Analyst estimates are frequently wrong, especially for cyclicals.</td></tr>
+          <tr><td><strong>5-Year PEG</strong></td><td>Expected 5-year annual EPS CAGR</td><td>Smooths short-term noise</td><td>Highly speculative. 5-year growth estimates are educated guesses at best.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-warn">
+        Always know which growth rate your data source uses. A stock can have a trailing PEG of 2.5 and a forward PEG of 1.1 if analysts expect a growth acceleration. The same ticker, two different conclusions.
+      </div>
+
+      <h3>Calculating Growth Rate</h3>
+<pre><code><span class="code-label">formula</span>Trailing EPS Growth (YoY):
+
+  growth_rate = ((EPS_current - EPS_prior) / |EPS_prior|) × 100
+
+Example:
+  EPS 2025: $6.20
+  EPS 2024: $5.00
+
+  growth_rate = ((6.20 - 5.00) / 5.00) × 100 = 24%
+
+If current P/E = 30:
+  PEG = 30 / 24 = 1.25</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>4.0 Edge Cases and Pitfalls</h2>
+
+      <h3>When PEG Breaks</h3>
+      <ul>
+        <li><strong>Negative earnings.</strong> If EPS is negative, the P/E is negative, and PEG is meaningless. Use price-to-sales or EV/revenue instead.</li>
+        <li><strong>Negative growth.</strong> If earnings are shrinking, dividing by a negative growth rate produces a negative PEG. Discard it — a negative PEG does not mean "undervalued."</li>
+        <li><strong>Zero growth.</strong> Division by zero. Mathematically undefined. A stock with zero growth has no business being evaluated on PEG.</li>
+        <li><strong>Cyclical earnings.</strong> Energy, mining, and commodity stocks have wildly fluctuating earnings. A PEG of 0.3 at the peak of a cycle does not mean undervalued — it means earnings are about to collapse.</li>
+        <li><strong>One-time charges.</strong> A massive write-down crushes EPS for one quarter, inflating the subsequent growth rate. The recovery "growth" isn't real growth — it's mean reversion.</li>
+      </ul>
+
+      <h3>Sector Comparisons</h3>
+      <p>PEG is most useful when comparing stocks within the same sector. Cross-sector comparisons are misleading because baseline growth rates differ structurally:</p>
+      <table>
+        <thead>
+          <tr><th>Sector</th><th>Typical P/E</th><th>Typical Growth</th><th>Typical PEG</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Technology</td><td>25–40</td><td>15–30%</td><td>1.2–2.0</td></tr>
+          <tr><td>Healthcare</td><td>18–30</td><td>10–20%</td><td>1.3–2.0</td></tr>
+          <tr><td>Financials</td><td>10–16</td><td>5–12%</td><td>1.0–1.8</td></tr>
+          <tr><td>Consumer Staples</td><td>20–28</td><td>5–8%</td><td>2.5–4.0</td></tr>
+          <tr><td>Energy</td><td>8–15</td><td>Cyclical</td><td>Unreliable</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-note">
+        A Consumer Staples company with a PEG of 2.5 is not necessarily overvalued — that's normal for the sector. A Tech stock with a PEG of 2.5 is expensive relative to its peers. Context matters.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>5.0 PEG in Practice</h2>
+
+      <h3>Screening Filter</h3>
+      <p>PEG works best as a first-pass filter. Screen a universe for PEG &lt; 1.5, then do the real work: read the 10-K, check the balance sheet, understand the competitive position.</p>
+<pre><code><span class="code-label">pseudocode</span>Screen:
+  1. Filter: PEG &lt; 1.5
+  2. Filter: Market cap &gt; $10B (liquidity)
+  3. Filter: Positive FCF (business is real)
+  4. Sort: PEG ascending
+
+Result: A shortlist of growth stocks the market may be underpricing.
+Then: Read the actual filings for each name on the list.</code></pre>
+
+      <h3>Pairing PEG with Other Metrics</h3>
+      <p>PEG should never be used in isolation. Pair it with:</p>
+      <ul>
+        <li><strong><a href="price-to-earnings-ratio.html">P/E Ratio</a></strong> — the numerator of the PEG formula. Understand P/E first, then layer in growth adjustment.</li>
+        <li><strong>Free Cash Flow Yield</strong> — confirms the business generates actual cash, not just accounting earnings. A low PEG with negative FCF is a red flag.</li>
+        <li><strong>Debt-to-Equity</strong> — a low PEG fueled by leverage is not the same as organic growth. Check how the growth is being financed.</li>
+        <li><strong>Revenue Growth</strong> — EPS growth driven by buybacks (shrinking share count) is mechanically different from EPS growth driven by top-line expansion. Revenue growth confirms demand is real.</li>
+        <li><strong>Return on Equity (ROE)</strong> — high ROE + low PEG is the ideal combination. The business is efficient and priced below its growth rate.</li>
+      </ul>
+
+      <h3>The Peter Lynch Rule of Thumb</h3>
+      <p>Lynch's original formulation was simple: a fairly valued company has a PEG of 1.0. He considered any stock with a PEG below 0.5 a strong buy and anything above 2.0 overpriced. He also added the dividend yield as a modifier:</p>
+<pre><code><span class="code-label">formula</span>Lynch Adjusted PEG = P/E ÷ (EPS Growth Rate + Dividend Yield)
+
+Example:
+  P/E: 18
+  EPS Growth: 12%
+  Dividend Yield: 3%
+
+  Adjusted PEG = 18 / (12 + 3) = 1.20</code></pre>
+      <p>This penalizes non-dividend payers and rewards companies returning cash to shareholders while still growing. It shifts the lens toward total return, not just earnings expansion.</p>
+    </section>
+
+    <section class="doc-section">
+      <h2>6.0 Related Pages</h2>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <h4><a href="price-to-earnings-ratio.html">P/E Ratio</a></h4>
+          <p>The numerator of the PEG formula. P/E measures what investors pay per dollar of earnings — PEG normalizes that against growth.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="portfolio-allocation-framework.html">Portfolio Allocation</a></h4>
+          <p>How PEG scores feed into position sizing. Lower PEG names receive higher allocation weights in the rebalancing framework.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="free-cash-flow-yield.html">Free Cash Flow Yield</a></h4>
+          <p>The critical companion metric. FCF yield confirms that reported earnings translate to real cash generation.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="doc-footer">
+    <a href="./">← Back to Investment Wiki</a>
+    <span style="color: var(--text-tertiary);">Investment Wiki</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

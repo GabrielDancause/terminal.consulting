@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discounted Cash Flow (DCF) — Investment Wiki</title>
+  <meta name="description"
+    content="Technical reference for Discounted Cash Flow (DCF). Formula, interpretation, worked examples, and practical application.">
+  <meta property="og:title" content="Discounted Cash Flow (DCF) — Investment Wiki">
+  <meta property="og:description"
+    content="Discounted Cash Flow (DCF) explained: formula, interpretation, worked examples, and why it matters.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+
+<body>
+
+  <div class="doc-container">
+
+    <nav class="doc-breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Investment</a>
+      <span class="sep">/</span>
+      Discounted Cash Flow (DCF)
+    </nav>
+
+    <header class="doc-header">
+      <h1 class="doc-title">Discounted Cash Flow (DCF)</h1>
+      <div class="doc-meta">
+        <span class="tag">Valuation Model</span>
+        <span>Investment Wiki — Fundamentals</span>
+      </div>
+    </header>
+
+    <div class="doc-abstract">
+      Discounted Cash Flow (DCF) analysis is an absolute valuation method used to estimate the intrinsic value of an
+      investment based on its expected future cash flows. It rests on the foundational financial principle that the
+      value of any asset is the present value of all the cash it will ever generate, discounted back to today at an
+      appropriate rate of return to account for time value and risk.
+    </div>
+
+    <div class="doc-content">
+
+      <div class="gab-stack-infobox">
+        <div class="infobox-header">Quick Reference</div>
+        <table>
+          <tr>
+            <td>Type</td>
+            <td>Valuation Model</td>
+          </tr>
+          <tr>
+            <td>Core Equation</td>
+            <td>Intrinsic Value = ∑ (FCF<sub>t</sub> / (1 + r)<sup>t</sup>) + Terminal Value</td>
+          </tr>
+          <tr>
+            <td>Discount Rate</td>
+            <td>Weighted Average Cost of Capital (WACC)</td>
+          </tr>
+          <tr>
+            <td>Target Output</td>
+            <td>Intrinsic Value > Market Price = Undervalued</td>
+          </tr>
+          <tr>
+            <td>Best Used For</td>
+            <td>Companies with predictable, stable cash flows</td>
+          </tr>
+        </table>
+      </div>
+
+      <section class="doc-section">
+        <h2>1.0 The Formula</h2>
+
+        <h3>Basic Form</h3>
+        <pre><code><span class="code-label">formula</span>DCF = (CF1 / (1+r)^1) + (CF2 / (1+r)^2) + ... + (CFn / (1+r)^n) + TV
+
+Where:
+CF = Expected Free Cash Flow for a given year
+r = Discount rate (usually WACC)
+n = Time period in years
+TV = Terminal Value (the value of the business beyond the forecast period)</code></pre>
+
+        <p>The DCF model projects free cash flows (FCF) for a specific horizon (usually 5 to 10 years). Because cash
+          generated 10 years from now is worth less than cash today, each year's cash flow is divided by a discount
+          factor <code>(1 + r)^t</code>. Finally, a Terminal Value is calculated to estimate the perpetual value of the
+          business past the explicit forecast period.</p>
+
+        <h3>Worked Example</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Projected FCF</th>
+              <th>Discount Factor (10%)</th>
+              <th>Present Value (PV)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Year 1</td>
+              <td>$100M</td>
+              <td>1.10</td>
+              <td><strong>$90.9M</strong></td>
+            </tr>
+            <tr>
+              <td>Year 2</td>
+              <td>$110M</td>
+              <td>1.21</td>
+              <td><strong>$90.9M</strong></td>
+            </tr>
+            <tr>
+              <td>Year 3</td>
+              <td>$121M</td>
+              <td>1.33</td>
+              <td><strong>$90.9M</strong></td>
+            </tr>
+            <tr>
+              <td>Terminal Value</td>
+              <td>$1,500M</td>
+              <td>1.33</td>
+              <td><strong>$1,126.9M</strong></td>
+            </tr>
+            <tr style="border-top: 2px solid #ddd;">
+              <td><strong>Total Enterprise Value</strong></td>
+              <td></td>
+              <td></td>
+              <td><strong>$1,399.6M</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>In this simple 3-year model with a 10% discount rate, the total present value of the cash flows plus the
+          terminal value is approximately $1.4 Billion. If the company has NO debt and 100 million shares outstanding,
+          the intrinsic value per share is $14.00. If the stock trades at $10.00, it is theoretically undervalued by
+          40%.</p>
+
+        <div class="callout callout-note">
+          The Terminal Value usually accounts for 60% to 80% of a DCF's total valuation. Because it relies heavily on
+          assumption (the perpetual growth rate), the terminal value is the most sensitive and heavily scrutinized part
+          of a DCF.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>2.0 Interpretation & Edge Cases</h2>
+
+        <h3>Interpreting the Output</h3>
+        <p>A DCF yields an "Intrinsic Price Target." Investors compare this target to the current market price:</p>
+        <ul>
+          <li><strong>Intrinsic Value > Current Price (e.g., $50 vs $30):</strong> The stock is undervalued. Investors
+            typically look for a "margin of safety" of 20-30% below intrinsic value before buying.</li>
+          <li><strong>Intrinsic Value = Current Price:</strong> The stock is fairly valued. You will exactly earn the
+            discount rate if holding the stock.</li>
+          <li><strong>Intrinsic Value < Current Price:</strong> The stock is overvalued.</li>
+        </ul>
+
+        <h3>When it Fails (Pitfalls)</h3>
+        <p>A DCF is only as good as its inputs ("Garbage in, garbage out"). Minor changes to the discount rate or
+          terminal growth rate can wildly alter the output.</p>
+
+        <div class="callout callout-warn">
+          DCF analysis is terrible for early-stage startups, highly cyclical companies (like commodity miners), or
+          distressed companies, because projecting precise cash flows 5 years out for these businesses is practically
+          impossible. Use DCF for mature, cash-generating businesses.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>3.0 Related Pages</h2>
+
+        <div class="integration-grid">
+          <div class="integration-card">
+            <h4><a href="free-cash-flow.html">Free Cash Flow (FCF)</a></h4>
+            <p>The "CF" in DCF. You must correctly calculate free cash flow before you can discount it.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="wacc.html">Weighted Average Cost of Capital (WACC)</a></h4>
+            <p>The standard discount rate used in a DCF model to bridge the gap between present and future value.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="portfolio-allocation-framework.html">Portfolio Allocation</a></h4>
+            <p>A high margin of safety (determined via DCF) justifies a heavier weighting in an investment portfolio.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="doc-footer">
+      <a href="./">← Back to Investment Wiki</a>
+      <span style="color: var(--text-tertiary);">Investment Wiki</span>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>

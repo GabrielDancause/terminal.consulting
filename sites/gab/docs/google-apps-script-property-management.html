@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Apps Script for Property Management — Gab Knowledge Base</title>
+  <meta name="description" content="Technical reference for using Google Apps Script as the serverless automation backbone for hotel property management — booking logs, webhooks, and guest communication.">
+  <meta property="og:title" content="Google Apps Script for Property Management — Gab Knowledge Base">
+  <meta property="og:description" content="Google Apps Script as the serverless automation backbone for hotel property management.">
+  <meta property="og:type" content="article">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs-styles.css">
+</head>
+<body>
+
+<div class="doc-container">
+
+  <nav class="doc-breadcrumb">
+    <a href="../index.html">gab.ae</a>
+    <span class="sep">/</span>
+    <a href="./">docs</a>
+    <span class="sep">/</span>
+    google-apps-script-property-management
+  </nav>
+
+  <header class="doc-header">
+    <h1 class="doc-title">Google Apps Script for Property Management</h1>
+    <div class="doc-meta">
+      <span class="tag">Tool Setup</span>
+      <span>Category A — Hotels</span>
+    </div>
+  </header>
+
+  <div class="doc-abstract">
+    Google Apps Script functions as the serverless middleware layer connecting Stripe payments, WhatsApp messaging, and Google Sheets into a unified property management system — at zero infrastructure cost. The script receives webhook POSTs, processes booking data, maintains a live inventory sheet, and orchestrates all outbound guest communication through time-driven triggers. This replaces a traditional PMS backend with 200 lines of JavaScript running on Google's infrastructure.
+  </div>
+
+  <div class="doc-content">
+
+    <div class="gab-stack-infobox">
+      <div class="infobox-header">The Gab Stack</div>
+      <table>
+        <tr><td>Primary Tool</td><td>Google Apps Script</td></tr>
+        <tr><td>Infrastructure</td><td>Google Cloud (auto-provisioned)</td></tr>
+        <tr><td>Cost to Run</td><td>$0.00 (within free tier quotas)</td></tr>
+        <tr><td>Complexity</td><td><span class="complexity-medium">Medium</span></td></tr>
+        <tr><td>Reference</td><td>Auberge de nos Aieux</td></tr>
+      </table>
+    </div>
+
+    <section class="doc-section">
+      <h2>1.0 Deployment Architecture</h2>
+      <p>Google Apps Script is the central nervous system. Every automated action in the hotel stack routes through it. The script is bound to a Google Sheet that serves as both the database and the operational dashboard for property staff.</p>
+
+      <h3>Operational Role</h3>
+      <table>
+        <thead>
+          <tr><th>Function</th><th>Input</th><th>Output</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Webhook receiver</td><td><a href="stripe-integration-hotels.html">Stripe</a> POST events</td><td>Parsed booking data</td></tr>
+          <tr><td>Booking logger</td><td>Parsed webhook data</td><td>Row in Google Sheet</td></tr>
+          <tr><td>Guest messenger</td><td>Sheet data + templates</td><td><a href="whatsapp-automation-hotels.html">WhatsApp API</a> calls</td></tr>
+          <tr><td>Receipt generator</td><td>Booking data</td><td>PDF via Gmail</td></tr>
+          <tr><td>Availability checker</td><td>Sheet date ranges</td><td>JSON endpoint for site</td></tr>
+        </tbody>
+      </table>
+
+      <h3>System Diagram</h3>
+<pre><code>                    ┌─────────────────────┐
+                    │   Google Sheets      │
+                    │   (Database Layer)   │
+                    │                      │
+                    │  • Bookings tab      │
+                    │  • Inventory tab     │
+                    │  • Revenue tab       │
+                    │  • Messages log tab  │
+                    └──────────┬───────────┘
+                               │
+                    ┌──────────▼───────────┐
+                    │  Google Apps Script   │
+                    │  (Logic Layer)        │
+                    │                      │
+  Stripe webhook ──▶│  doPost()            │──▶ WhatsApp API
+                    │  logBooking()        │──▶ Gmail (receipts)
+  Time triggers ───▶│  dailyCheckin()      │──▶ Google Sheets
+                    │  postCheckoutReview()│
+                    └──────────────────────┘</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>2.0 Prerequisites</h2>
+
+      <h3>Google Workspace</h3>
+      <ul>
+        <li>Google account with Google Sheets access.</li>
+        <li>Apps Script project created from the Sheet (Extensions → Apps Script).</li>
+        <li>Web app deployment enabled (requires Google Cloud project linking for external access).</li>
+      </ul>
+
+      <h3>Sheet Structure</h3>
+      <p>Create a Google Sheet with these tabs before writing any script:</p>
+      <table>
+        <thead>
+          <tr><th>Tab Name</th><th>Columns</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>Bookings</code></td><td>Timestamp, Stripe ID, Guest Name, Email, Phone, Room, Check-in, Check-out, Amount, Status</td></tr>
+          <tr><td><code>Inventory</code></td><td>Room Name, Type, Capacity, Rate/Night, Status, Next Available</td></tr>
+          <tr><td><code>Messages</code></td><td>Timestamp, Phone, Template, Status Code, Message ID</td></tr>
+          <tr><td><code>Revenue</code></td><td>Month, Bookings Count, Gross Revenue, Stripe Fees, Net Revenue</td></tr>
+        </tbody>
+      </table>
+
+      <h3>clasp CLI (Optional)</h3>
+      <p>For local development and version control with <a href="claude-code-workflow-hotels.html">Claude Code</a>:</p>
+<pre><code><span class="code-label">bash</span># Install clasp globally
+npm install -g @google/clasp
+
+# Login
+clasp login
+
+# Clone your Apps Script project locally
+clasp clone SCRIPT_ID
+
+# Push local changes to Apps Script
+clasp push
+
+# Pull remote changes
+clasp pull</code></pre>
+      <div class="callout callout-note">
+        Using clasp lets you edit Apps Script files in your local editor and commit them to the same <a href="github-pages-deployment-hotels.html">GitHub repository</a> as your hotel site. Version control for your automation logic.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>3.0 Step-by-Step Configuration</h2>
+
+      <h3>3.1 Webhook Receiver (doPost)</h3>
+      <p>This is the entry point for all <a href="stripe-integration-hotels.html">Stripe webhook</a> events:</p>
+<pre><code><span class="code-label">javascript</span>function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    const eventType = data.type;
+
+    switch (eventType) {
+      case "checkout.session.completed":
+        handleNewBooking(data.data.object);
+        break;
+      case "charge.refunded":
+        handleRefund(data.data.object);
+        break;
+      default:
+        Logger.log("Unhandled event type: " + eventType);
+    }
+
+    return ContentService.createTextOutput("OK")
+      .setMimeType(ContentService.MimeType.TEXT);
+  } catch (err) {
+    Logger.log("doPost error: " + err.message);
+    return ContentService.createTextOutput("ERROR")
+      .setMimeType(ContentService.MimeType.TEXT);
+  }
+}</code></pre>
+
+      <h3>3.2 Booking Logger</h3>
+<pre><code><span class="code-label">javascript</span>function handleNewBooking(session) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName("Bookings");
+
+  const guest = session.customer_details;
+  const meta = session.metadata;
+
+  sheet.appendRow([
+    new Date(),                              // Timestamp
+    session.id,                              // Stripe session ID
+    guest.name,                              // Guest name
+    guest.email,                             // Email
+    guest.phone || "",                       // Phone
+    meta.room_type || "",                    // Room
+    meta.checkin_date || "",                 // Check-in
+    meta.checkout_date || "",               // Check-out
+    (session.amount_total / 100).toFixed(2), // Amount
+    "confirmed"                              // Status
+  ]);
+
+  // Update inventory
+  updateRoomAvailability(meta.room_type, meta.checkin_date, meta.checkout_date);
+
+  // Send WhatsApp confirmation
+  if (guest.phone) {
+    sendWhatsAppTemplate(
+      guest.phone.replace(/\D/g, ''),
+      "booking_confirmation",
+      [guest.name, meta.room_type, meta.checkin_date,
+       "$" + (session.amount_total / 100).toFixed(2)]
+    );
+  }
+
+  // Send email receipt
+  sendReceipt(guest.email, guest.name, session);
+}</code></pre>
+
+      <h3>3.3 Room Availability Endpoint</h3>
+      <p>Expose room availability as a JSON endpoint that the <a href="github-pages-deployment-hotels.html">static site</a> can fetch:</p>
+<pre><code><span class="code-label">javascript</span>function doGet(e) {
+  const action = e.parameter.action;
+
+  if (action === "availability") {
+    const inventory = getAvailability();
+    return ContentService.createTextOutput(JSON.stringify(inventory))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  return ContentService.createTextOutput("Unknown action")
+    .setMimeType(ContentService.MimeType.TEXT);
+}
+
+function getAvailability() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet()
+    .getSheetByName("Inventory");
+  const data = sheet.getDataRange().getValues();
+  const headers = data.shift();
+
+  return data.map(row => ({
+    room: row[0],
+    type: row[1],
+    capacity: row[2],
+    rate: row[3],
+    status: row[4],
+    next_available: row[5]
+  })).filter(room => room.status === "available");
+}</code></pre>
+
+      <h3>3.4 Deploy as Web App</h3>
+<pre><code><span class="code-label">bash</span># Via clasp
+clasp deploy --description "Hotel PMS v1.0"
+
+# Or manually:
+# Apps Script Editor → Deploy → New Deployment
+# Type: Web app
+# Execute as: Me
+# Access: Anyone
+# Copy the deployment URL → use as Stripe webhook endpoint</code></pre>
+
+      <h3>3.5 Set Up Time-Driven Triggers</h3>
+<pre><code><span class="code-label">javascript</span>function createScheduledTriggers() {
+  // Run daily at 6 AM — check for today's check-ins
+  ScriptApp.newTrigger("sendDailyCheckinMessages")
+    .timeBased()
+    .everyDays(1)
+    .atHour(6)
+    .create();
+
+  // Run daily at 9 AM — check for today's checkouts
+  ScriptApp.newTrigger("sendCheckoutReminders")
+    .timeBased()
+    .everyDays(1)
+    .atHour(9)
+    .create();
+
+  // Run daily at midnight — update revenue dashboard
+  ScriptApp.newTrigger("updateRevenueSummary")
+    .timeBased()
+    .everyDays(1)
+    .atHour(0)
+    .create();
+}</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>4.0 Integration Points</h2>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <h4><a href="stripe-integration-hotels.html">Stripe Integration</a></h4>
+          <p>Apps Script is the webhook consumer. All Stripe events are received, parsed, and routed through doPost(). Booking data flows from Stripe into Google Sheets.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="whatsapp-automation-hotels.html">WhatsApp Automation</a></h4>
+          <p>Apps Script makes all WhatsApp API calls. Template messages, scheduled sends, and delivery status logging all originate from this script.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="claude-code-workflow-hotels.html">Claude Code</a></h4>
+          <p>Claude Code writes and iterates on Apps Script functions locally via clasp. It generates boilerplate, debugs webhook handlers, and refactors trigger logic.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="github-pages-deployment-hotels.html">GitHub Pages</a></h4>
+          <p>The static site fetches room availability from the doGet() endpoint. Apps Script serves as the only "backend" the GitHub Pages site needs.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="doc-footer">
+    <a href="./">← Back to Knowledge Base</a>
+    <span style="color: var(--text-tertiary);">gab.ae/docs</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

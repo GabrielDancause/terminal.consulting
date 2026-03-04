@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Price-to-Book (P/B) Ratio — Investment Wiki</title>
+  <meta name="description"
+    content="Technical reference for the Price-to-Book (P/B) Ratio. Formula, interpretation, worked examples, and practical application.">
+  <meta property="og:title" content="Price-to-Book (P/B) Ratio — Investment Wiki">
+  <meta property="og:description"
+    content="Price-to-Book (P/B) Ratio explained: formula, interpretation, worked examples, and why it matters.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+
+<body>
+
+  <div class="doc-container">
+
+    <nav class="doc-breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Investment</a>
+      <span class="sep">/</span>
+      Price-to-Book (P/B) Ratio
+    </nav>
+
+    <header class="doc-header">
+      <h1 class="doc-title">Price-to-Book (P/B) Ratio</h1>
+      <div class="doc-meta">
+        <span class="tag">Valuation Metric</span>
+        <span>Investment Wiki — Fundamentals</span>
+      </div>
+    </header>
+
+    <div class="doc-abstract">
+      The Price-to-Book (P/B) Ratio compares a company's current market capitalization to its book value (its total
+      assets minus total liabilities). It is an old-school value investing metric designed to determine if you are
+      paying too much for what the company would theoretically be worth if it were liquidated and all its debts paid off
+      today.
+    </div>
+
+    <div class="doc-content">
+
+      <div class="gab-stack-infobox">
+        <div class="infobox-header">Quick Reference</div>
+        <table>
+          <tr>
+            <td>Type</td>
+            <td>Valuation Metric</td>
+          </tr>
+          <tr>
+            <td>Formula</td>
+            <td>Market Price per Share ÷ Book Value per Share</td>
+          </tr>
+          <tr>
+            <td>Value Territory</td>
+            <td><span class="complexity-low">
+                < 1.0 (Trading below book value)</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Premium Territory</td>
+            <td>> 3.0</td>
+          </tr>
+          <tr>
+            <td>Best Used For</td>
+            <td>Banks, financial firms, and asset-heavy industries</td>
+          </tr>
+        </table>
+      </div>
+
+      <section class="doc-section">
+        <h2>1.0 The Formula</h2>
+
+        <h3>Basic Form</h3>
+        <pre><code><span class="code-label">formula</span>P/B = Market Price per Share / Book Value per Share
+
+Book Value = Total Assets - Total Liabilities</code></pre>
+
+        <p>The <strong>Book Value</strong> is essentially the net asset value of a company. If a company sold off all
+          its factories, inventory, and cash to pay off every single debt it owed, the Book Value is what would be left
+          over for shareholders. P/B asks how much a stock market investor must pay to "buy" $1 of that net asset value.
+        </p>
+
+        <h3>Worked Example</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Price per Share</th>
+              <th>Book Value per Share</th>
+              <th>P/B Ratio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Company A (Bank)</td>
+              <td>$50.00</td>
+              <td>$50.00</td>
+              <td><strong>1.0x</strong></td>
+            </tr>
+            <tr>
+              <td>Company B (Steel)</td>
+              <td>$20.00</td>
+              <td>$30.00</td>
+              <td><strong>0.66x</strong></td>
+            </tr>
+            <tr>
+              <td>Company C (Software)</td>
+              <td>$150.00</td>
+              <td>$15.00</td>
+              <td><strong>10.0x</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Company B is trading below its book value (P/B of 0.66). Theoretically, you are buying the company for less
+          than its component parts are worth. Company C trades at 10x its book value, because its real value lies in
+          software code and brand power, which do not show up accurately on the balance sheet.</p>
+
+        <div class="callout callout-note">
+          Traditional value investors (like Benjamin Graham) hunted obsessively for stocks trading at a P/B under 1.0,
+          viewing the book value as a hard floor for the stock price.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>2.0 Interpretation & Edge Cases</h2>
+
+        <h3>Benchmarks</h3>
+        <p>A "good" P/B ratio depends entirely on the industry. It is most effectively used on balance sheet-heavy
+          financial institutions.</p>
+        <ul>
+          <li><strong>P/B < 1.0:</strong> The company is either severely undervalued or it is a "value trap" with toxic,
+                overstated assets on its balance sheet that are about to be written down.</li>
+          <li><strong>P/B ~ 1.0 - 2.0:</strong> Normal range for banks and capital-intensive traditional businesses.
+          </li>
+          <li><strong>P/B > 5.0+:</strong> Common in tech, consulting, and service industries where capital assets
+            aren't required to generate massive cash flows.</li>
+        </ul>
+
+        <h3>When it Fails (Pitfalls)</h3>
+        <p>The P/B ratio is nearly useless for modern technology companies. A company like Microsoft or <a href="google.html">Google</a> derives
+          its immense value from intellectual property, patents, algorithms, and brand loyalty. The accounting rules
+          dictating "Book Value" do not adequately capture these intangible assets. Consequently, applying P/B to a
+          software stock will make it look monstrously overvalued, missing the entire point.</p>
+
+        <div class="callout callout-warn">
+          Beware of intangible assets like "Goodwill" inflating the Book Value. Many analysts use
+          <strong>Price-to-Tangible Book Value (PTBV)</strong> instead, which strips out goodwill and patents to look
+          purely at hard assets.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>3.0 Related Pages</h2>
+
+        <div class="integration-grid">
+          <div class="integration-card">
+            <h4><a href="return-on-equity.html">Return on Equity (ROE)</a></h4>
+            <p>Links directly. P/B dictates the premium you pay, but ROE dictates the return generated on that book
+              value.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="price-to-earnings-ratio.html">P/E Ratio</a></h4>
+            <p>While P/B uses the balance sheet for valuation, P/E uses the income statement.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="debt-to-equity-ratio.html">Debt-to-Equity Ratio</a></h4>
+            <p>Uses the exact same book value (Equity) denominator, helping highlight financial leverage.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="doc-footer">
+      <a href="./">← Back to Investment Wiki</a>
+      <span style="color: var(--text-tertiary);">Investment Wiki</span>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>

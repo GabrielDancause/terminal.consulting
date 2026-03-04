@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="consent.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter — Ali Imperiale</title>
+  <meta name="description" content="Join Ali's newsletter for honest conversations about sex, relationships, and intimacy. Get a free guide when you subscribe.">
+  <meta property="og:title" content="Join Ali's Newsletter — Free Guide Inside">
+  <meta property="og:description" content="Honest conversations about sex, relationships, and intimacy — plus a free guide when you join.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aliimperiale.com/newsletter.html">
+  <meta property="og:image" content="https://aliimperiale.com/avatar-pro.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Join Ali's Newsletter — Free Guide Inside">
+  <link rel="canonical" href="https://aliimperiale.com/newsletter.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="shared.css">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .site-nav { background: #2E3E24; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .site-nav .nav-logo { height: 32px; opacity: 0.9; }
+    .site-nav .nav-links { display: flex; gap: 24px; list-style: none; }
+    .site-nav .nav-links a { color: #C6C8BB; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.15s; }
+    .site-nav .nav-links a:hover { color: #FAF8EB; }
+
+    /* Hero */
+    .nl-hero {
+      background: #2E3E24;
+      color: #FAF8EB;
+      text-align: center;
+      padding: 64px 20px 88px;
+      position: relative;
+      overflow: hidden;
+    }
+    .nl-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0; right: 0;
+      height: 40px;
+      background: #FAF8EB;
+      border-radius: 40px 40px 0 0;
+    }
+    .nl-hero .label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #AD9846;
+      margin-bottom: 20px;
+    }
+    .nl-hero h1 {
+      font-family: 'The Bloomington', cursive;
+      font-size: 3.8rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+    .nl-hero .subtitle {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 1.05rem;
+      color: #C6C8BB;
+      max-width: 500px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    /* Hero form */
+    .nl-form-wrap { max-width: 460px; margin: 0 auto; }
+    .nl-form { display: flex; gap: 10px; }
+    .nl-input {
+      flex: 1; padding: 15px 18px;
+      border: 1px solid rgba(198,200,187,.3);
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.9rem;
+      background: rgba(250,248,235,.08); color: #FAF8EB;
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .nl-input::placeholder { color: rgba(198,200,187,.5); }
+    .nl-input:focus { border-color: #AD9846; box-shadow: 0 0 0 3px rgba(173,152,70,.2); }
+    .nl-btn {
+      padding: 15px 28px; background: #AD9846; color: #FAF8EB;
+      border: none; border-radius: 10px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; white-space: nowrap;
+      transition: background .15s, transform .15s;
+    }
+    .nl-btn:hover { background: #c4ad52; transform: translateY(-1px); }
+    .nl-btn:disabled { opacity: .6; cursor: wait; transform: none; }
+    .nl-note { font-size: 0.75rem; color: rgba(198,200,187,.5); margin-top: 14px; }
+    .nl-error { font-size: 0.82rem; color: #e88; margin-top: 10px; display: none; }
+    .nl-success { display: none; text-align: center; }
+    .nl-success .success-icon { font-size: 2.4rem; margin-bottom: 10px; }
+    .nl-success h3 { font-family: 'The Bloomington', cursive; font-size: 2rem; font-weight: 400; color: #FAF8EB; margin-bottom: 8px; }
+    .nl-success p { font-size: 0.9rem; color: #C6C8BB; margin-bottom: 20px; }
+    .nl-success .download-link {
+      display: inline-block; padding: 13px 32px;
+      background: #AD9846; color: #FAF8EB;
+      text-decoration: none; border-radius: 10px;
+      font-weight: 600; font-size: 0.9rem;
+      transition: background .15s, transform .15s;
+    }
+    .nl-success .download-link:hover { background: #c4ad52; transform: translateY(-1px); }
+
+    /* Free guide badge */
+    .hero-bonus {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(173,152,70,.15);
+      border: 1px solid rgba(173,152,70,.3);
+      padding: 10px 22px; border-radius: 30px;
+      font-size: 0.82rem; font-weight: 600; color: #AD9846;
+      margin-top: 24px;
+    }
+    .hero-bonus span { font-size: 1.1rem; }
+
+    /* Container */
+    .container { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+    .section-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: #AD9846; text-align: center; margin-bottom: 8px; }
+    .section-title { font-family: 'The Bloomington', cursive; font-size: 2.4rem; font-weight: 400; color: #2E3E24; text-align: center; margin-bottom: 12px; }
+    .section-subtitle { font-family: 'New Standard', Georgia, serif; font-size: 0.95rem; color: #555549; text-align: center; max-width: 500px; margin: 0 auto 36px; line-height: 1.7; }
+
+    /* Perks */
+    .perks-section { padding: 48px 0; }
+    .perks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .perk-card {
+      background: #fff; border-radius: 14px; padding: 28px 22px; text-align: center;
+      box-shadow: 0 1px 4px rgba(46,62,36,.06);
+      border: 1px solid rgba(46,62,36,.06);
+    }
+    .perk-icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .perk-card h4 { font-family: 'New Standard', Georgia, serif; font-size: 0.95rem; font-weight: 400; color: #2E3E24; margin-bottom: 6px; }
+    .perk-card p { font-size: 0.82rem; color: #777; line-height: 1.6; }
+
+    /* Sample topics */
+    .topics-section { padding: 20px 0 48px; }
+    .topics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .topic-item {
+      display: flex; align-items: center; gap: 12px;
+      background: #fff; border-radius: 12px; padding: 16px 18px;
+      box-shadow: 0 1px 4px rgba(46,62,36,.06);
+      border: 1px solid rgba(46,62,36,.06);
+      font-size: 0.88rem; color: #2E3E24; line-height: 1.4;
+    }
+    .topic-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+    /* Promise section */
+    .promise-section { padding: 20px 0 48px; }
+    .promise-card {
+      background: #fff; border-radius: 18px; padding: 32px 28px;
+      box-shadow: 0 1px 4px rgba(46,62,36,.06);
+      border: 1px solid rgba(46,62,36,.06);
+    }
+    .promise-list { list-style: none; }
+    .promise-list li {
+      font-size: 0.9rem; color: #2E3E24; padding: 10px 0;
+      border-bottom: 1px solid rgba(46,62,36,.06);
+      display: flex; align-items: center; gap: 12px; line-height: 1.5;
+    }
+    .promise-list li:last-child { border-bottom: none; }
+    .promise-check { color: #AD9846; font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
+    .promise-x { color: #c47070; font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
+
+    /* About */
+    .about-section { padding: 20px 0 48px; }
+    .about-card {
+      background: #fff; border-radius: 18px; padding: 32px 28px;
+      box-shadow: 0 1px 4px rgba(46,62,36,.06);
+      border: 1px solid rgba(46,62,36,.06);
+      display: flex; gap: 24px; align-items: center;
+    }
+    .about-avatar { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid #AD9846; flex-shrink: 0; }
+    .about-text h3 { font-family: 'New Standard', Georgia, serif; font-size: 1.15rem; font-weight: 400; color: #2E3E24; margin-bottom: 8px; }
+    .about-text p { font-size: 0.88rem; color: #555549; line-height: 1.7; }
+
+    /* Bottom CTA */
+    .bottom-cta {
+      background: #2E3E24; color: #FAF8EB; text-align: center;
+      padding: 56px 20px; border-radius: 24px;
+      margin: 0 20px 48px; max-width: 720px; margin-left: auto; margin-right: auto;
+    }
+    .bottom-cta h2 { font-family: 'The Bloomington', cursive; font-size: 2.4rem; font-weight: 400; margin-bottom: 12px; }
+    .bottom-cta > p { font-size: 0.92rem; color: #C6C8BB; margin-bottom: 28px; max-width: 400px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+    .bottom-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+    .bottom-input {
+      flex: 1; padding: 15px 18px;
+      border: 1px solid rgba(198,200,187,.3); border-radius: 10px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.9rem;
+      background: rgba(250,248,235,.08); color: #FAF8EB; outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .bottom-input::placeholder { color: rgba(198,200,187,.5); }
+    .bottom-input:focus { border-color: #AD9846; box-shadow: 0 0 0 3px rgba(173,152,70,.2); }
+    .bottom-btn {
+      padding: 15px 28px; background: #AD9846; color: #FAF8EB;
+      border: none; border-radius: 10px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; white-space: nowrap;
+      transition: background .15s, transform .15s;
+    }
+    .bottom-btn:hover { background: #c4ad52; transform: translateY(-1px); }
+    .bottom-btn:disabled { opacity: .6; cursor: wait; transform: none; }
+    .bottom-note { font-size: 0.75rem; color: rgba(198,200,187,.5); margin-top: 14px; }
+    .bottom-error { font-size: 0.82rem; color: #e88; margin-top: 10px; display: none; }
+    .bottom-success { display: none; }
+    .bottom-success .success-icon { font-size: 2.4rem; margin-bottom: 10px; }
+    .bottom-success h3 { font-family: 'The Bloomington', cursive; font-size: 2rem; font-weight: 400; margin-bottom: 8px; }
+    .bottom-success p { font-size: 0.9rem; color: #C6C8BB; margin-bottom: 20px; }
+    .bottom-success .download-link {
+      display: inline-block; padding: 13px 32px;
+      background: #AD9846; color: #FAF8EB;
+      text-decoration: none; border-radius: 10px;
+      font-weight: 600; font-size: 0.9rem;
+      transition: background .15s, transform .15s;
+    }
+    .bottom-success .download-link:hover { background: #c4ad52; transform: translateY(-1px); }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .site-nav { padding: 12px 16px; }
+      .nl-hero { padding: 48px 16px 68px; }
+      .nl-hero h1 { font-size: 2.6rem; }
+      .section-title { font-size: 2rem; }
+      .perks-grid { grid-template-columns: 1fr; }
+      .topics-grid { grid-template-columns: 1fr; }
+      .about-card { flex-direction: column; text-align: center; }
+      .nl-form { flex-direction: column; }
+      .nl-input, .nl-btn { width: 100%; }
+      .nl-btn { min-height: 44px; }
+      .bottom-form { flex-direction: column; }
+      .bottom-input, .bottom-btn { width: 100%; }
+      .bottom-btn { min-height: 44px; }
+      .bottom-cta { margin: 0 12px 36px; padding: 44px 20px; }
+      .bottom-cta h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:10000;padding:8px 16px;background:#2E3E24;color:#FAF8EB;font-family:Montserrat,sans-serif;font-size:0.9rem;text-decoration:none;border-radius:0 0 8px 0" onfocus="this.style.cssText='position:fixed;left:0;top:0;width:auto;height:auto;overflow:visible;z-index:10000;padding:8px 16px;background:#2E3E24;color:#FAF8EB;font-family:Montserrat,sans-serif;font-size:0.9rem;text-decoration:none;border-radius:0 0 8px 0'" onblur="this.style.cssText='position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden'">Skip to content</a>
+
+  <nav class="site-nav">
+    <a href="/"><img class="nav-logo" src="logo-beige.webp" alt="Ali Imperiale" height="32"></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="https://www.youtube.com/@aliimperiale" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://www.patreon.com/c/aliimperiale" target="_blank" rel="noopener">Patreon</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="nl-hero" id="main-content">
+    <span class="label">Free Newsletter</span>
+    <h1>Stay Curious</h1>
+    <p class="subtitle">The stuff about sex and relationships you actually want to talk about but never do. Honest, judgment-free, and straight to your inbox.</p>
+
+    <div class="nl-form-wrap" id="nl-form-wrap">
+      <form class="nl-form" id="nl-form">
+        <input class="nl-input" type="email" name="email" placeholder="Your email address" required autocomplete="email">
+        <button class="nl-btn" type="submit">Join Free</button>
+      </form>
+      <p class="nl-note">100% free. No spam. Unsubscribe in one click.</p>
+      <p class="nl-error" id="nl-error"></p>
+    </div>
+    <div class="nl-success" id="nl-success">
+      <div class="success-icon">&#10024;</div>
+      <h3>You're In!</h3>
+      <p>Welcome to the community. Here's your free guide as a thank you.</p>
+      <a class="download-link" href="/blog/guides/ethical-nightlife-guide.pdf" download>Download Your Free Guide &#8594;</a>
+    </div>
+
+    <div class="hero-bonus">
+      <span>&#127873;</span> Subscribe now and get the Ethical Nightlife Guide free
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="perks-section">
+    <div class="container">
+      <p class="section-label">What You Get</p>
+      <h2 class="section-title">More Than Just Emails</h2>
+      <p class="section-subtitle">Here's what shows up in your inbox when you join.</p>
+
+      <div class="perks-grid">
+        <div class="perk-card">
+          <div class="perk-icon">&#128221;</div>
+          <h4>New Articles First</h4>
+          <p>Be the first to read new blog posts before they go live on social media.</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-icon">&#128214;</div>
+          <h4>Free Guides &amp; PDFs</h4>
+          <p>Subscriber-only guides and resources you won't find anywhere else.</p>
+        </div>
+        <div class="perk-card">
+          <div class="perk-icon">&#128172;</div>
+          <h4>Unfiltered Real Talk</h4>
+          <p>Personal stories, hot takes, and honest conversations I can't post on YouTube.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics I cover -->
+  <section class="topics-section">
+    <div class="container">
+      <p class="section-label">Topics</p>
+      <h2 class="section-title">Things We Talk About</h2>
+      <p class="section-subtitle">A taste of what past subscribers have loved.</p>
+
+      <div class="topics-grid">
+        <div class="topic-item">
+          <span class="topic-icon">&#128293;</span>
+          How to actually talk about what you want in bed
+        </div>
+        <div class="topic-item">
+          <span class="topic-icon">&#127758;</span>
+          Nightlife culture and sexual openness around the world
+        </div>
+        <div class="topic-item">
+          <span class="topic-icon">&#128154;</span>
+          Navigating jealousy, boundaries, and open relationships
+        </div>
+        <div class="topic-item">
+          <span class="topic-icon">&#129505;</span>
+          Pleasure tips that actually work (backed by research)
+        </div>
+        <div class="topic-item">
+          <span class="topic-icon">&#128587;</span>
+          The awkward, funny, and real side of dating
+        </div>
+        <div class="topic-item">
+          <span class="topic-icon">&#128218;</span>
+          Book and product recommendations I've personally tested
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The promise -->
+  <section class="promise-section">
+    <div class="container">
+      <p class="section-label">The Promise</p>
+      <h2 class="section-title">What You Will &amp; Won't Get</h2>
+
+      <div class="promise-card">
+        <ul class="promise-list">
+          <li><span class="promise-check">&#10003;</span> Honest, personal emails written by Ali (not a marketing team)</li>
+          <li><span class="promise-check">&#10003;</span> Free guides and resources only subscribers get</li>
+          <li><span class="promise-check">&#10003;</span> One-click unsubscribe, always</li>
+          <li><span class="promise-x">&#10005;</span> No daily spam flooding your inbox</li>
+          <li><span class="promise-x">&#10005;</span> No selling your email to anyone, ever</li>
+          <li><span class="promise-x">&#10005;</span> No clickbait garbage</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about-section">
+    <div class="container">
+      <p class="section-label">From</p>
+      <h2 class="section-title">Hey, I'm Ali</h2>
+
+      <div class="about-card">
+        <img class="about-avatar" src="avatar-pro.webp" alt="Ali Imperiale" width="100" height="100">
+        <div class="about-text">
+          <h3>Ali Imperiale</h3>
+          <p>Canadian nomad, sex educator in training, and the person behind 100+ videos about the stuff most people are too shy to talk about. My newsletter is where I go deeper — personal stories, honest takes, and things I can't say on YouTube.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bottom-cta">
+    <div id="bottom-form-wrap">
+      <h2>Don't Be a Stranger</h2>
+      <p>Join the community and get your free Ethical Nightlife Guide as a welcome gift.</p>
+      <form class="bottom-form" id="bottom-form">
+        <input class="bottom-input" type="email" name="email" placeholder="Your email address" required autocomplete="email">
+        <button class="bottom-btn" type="submit">Join Free</button>
+      </form>
+      <p class="bottom-note">No spam. Unsubscribe anytime.</p>
+      <p class="bottom-error" id="bottom-error"></p>
+    </div>
+    <div class="bottom-success" id="bottom-success">
+      <div class="success-icon">&#10024;</div>
+      <h3>Welcome!</h3>
+      <p>You're in. Here's your free guide.</p>
+      <a class="download-link" href="/blog/guides/ethical-nightlife-guide.pdf" download>Download the Guide &#8594;</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo-beige.webp" alt="Ali Imperiale" height="24">
+        <p>Casual chats about sex, relationships &amp; other fun stuff.</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>Content</h4>
+          <ul>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/reads.html">Reads</a></li>
+            <li><a href="https://www.youtube.com/@aliimperiale" target="_blank" rel="noopener">YouTube</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.patreon.com/c/aliimperiale" target="_blank" rel="noopener">Patreon</a></li>
+            <li><a href="https://www.instagram.com/aliimperiale/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@aliimperiale" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Course</h4>
+          <ul>
+            <li><a href="/open-and-honest.html">Open &amp; Honest</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Ali Imperiale &middot; <a href="mailto:ali@aliimperiale.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+  <script src="mobile-nav.js" defer></script>
+  <script src="back-to-top.js" defer></script>
+  <script>
+  (function() {
+    'use strict';
+    var KIT_URL = 'https://app.kit.com/forms/9115688/subscriptions';
+    var STORAGE_KEY = 'ali_newsletter_subscribed';
+
+    var alreadySubscribed = false;
+    try { alreadySubscribed = !!localStorage.getItem(STORAGE_KEY); } catch(e) {}
+    if (alreadySubscribed) { showAllSuccess(); }
+
+    var nlForm = document.getElementById('nl-form');
+    var nlFormWrap = document.getElementById('nl-form-wrap');
+    var nlSuccess = document.getElementById('nl-success');
+    var nlError = document.getElementById('nl-error');
+
+    if (nlForm) {
+      nlForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitKit(nlForm.querySelector('.nl-input'), nlForm.querySelector('.nl-btn'), nlError, function() {
+          nlFormWrap.style.display = 'none';
+          nlSuccess.style.display = 'block';
+          showBottomSuccess();
+          // Hide the bonus badge
+          var badge = document.querySelector('.hero-bonus');
+          if (badge) badge.style.display = 'none';
+        });
+      });
+    }
+
+    var bottomForm = document.getElementById('bottom-form');
+    var bottomFormWrap = document.getElementById('bottom-form-wrap');
+    var bottomSuccess = document.getElementById('bottom-success');
+    var bottomError = document.getElementById('bottom-error');
+
+    if (bottomForm) {
+      bottomForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        submitKit(bottomForm.querySelector('.bottom-input'), bottomForm.querySelector('.bottom-btn'), bottomError, function() {
+          bottomFormWrap.style.display = 'none';
+          bottomSuccess.style.display = 'block';
+          showHeroSuccess();
+        });
+      });
+    }
+
+    function submitKit(input, btn, errorEl, onSuccess) {
+      var email = input.value.trim();
+      errorEl.style.display = 'none';
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorEl.textContent = 'Please enter a valid email address.';
+        errorEl.style.display = 'block';
+        input.focus();
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Sending\u2026';
+      var fd = new FormData();
+      fd.append('email_address', email);
+      fetch(KIT_URL, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
+      .then(function(r) { return r.json(); })
+      .then(function() {
+        try { localStorage.setItem(STORAGE_KEY, email); } catch(ex) {}
+        onSuccess();
+      })
+      .catch(function() {
+        try { localStorage.setItem(STORAGE_KEY, email); } catch(ex) {}
+        onSuccess();
+      });
+    }
+
+    function showHeroSuccess() {
+      if (nlFormWrap && nlSuccess) {
+        nlFormWrap.style.display = 'none';
+        nlSuccess.style.display = 'block';
+        var badge = document.querySelector('.hero-bonus');
+        if (badge) badge.style.display = 'none';
+      }
+    }
+    function showBottomSuccess() {
+      if (bottomFormWrap && bottomSuccess) { bottomFormWrap.style.display = 'none'; bottomSuccess.style.display = 'block'; }
+    }
+    function showAllSuccess() { showHeroSuccess(); showBottomSuccess(); }
+  })();
+  </script>
+</body>
+</html>

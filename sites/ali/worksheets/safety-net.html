@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Safety Net Worksheet — Open &amp; Honest</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #FAF8EB;
+      color: #2E3E24;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .worksheet {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 48px 40px;
+      box-shadow: 0 2px 12px rgba(46, 62, 36, 0.08);
+      border: 1px solid rgba(46, 62, 36, 0.06);
+    }
+    .ws-header {
+      text-align: center;
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid rgba(173, 152, 70, 0.2);
+    }
+    .ws-brand {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #AD9846;
+      margin-bottom: 8px;
+    }
+    .ws-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2E3E24;
+      margin-bottom: 8px;
+    }
+    .ws-header p {
+      font-size: 0.88rem;
+      color: #555549;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .ws-module {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: rgba(173, 152, 70, 0.1);
+      color: #AD9846;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .section {
+      margin-bottom: 36px;
+    }
+    .section h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section .subtitle {
+      font-size: 0.82rem;
+      color: #8a8a7a;
+      font-style: italic;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .field-group {
+      margin-bottom: 20px;
+    }
+    .field-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 8px;
+    }
+    .field-group .hint {
+      display: block;
+      font-size: 0.78rem;
+      color: #8a8a7a;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .text-input {
+      width: 100%;
+      border: 1px solid rgba(46, 62, 36, 0.15);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      font-family: 'Montserrat', sans-serif;
+      background: rgba(250, 248, 235, 0.5);
+    }
+    .text-input:focus {
+      outline: none;
+      border-color: #AD9846;
+      background: #ffffff;
+    }
+    .notes-area {
+      width: 100%;
+      border: 1px solid rgba(46, 62, 36, 0.15);
+      border-radius: 8px;
+      padding: 14px 16px;
+      min-height: 80px;
+      font-size: 0.85rem;
+      font-family: 'Montserrat', sans-serif;
+      background: rgba(250, 248, 235, 0.5);
+      resize: vertical;
+    }
+    .notes-area:focus {
+      outline: none;
+      border-color: #AD9846;
+      background: #ffffff;
+    }
+    .highlight-box {
+      background: rgba(173, 152, 70, 0.06);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(173, 152, 70, 0.12);
+    }
+    .highlight-box h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 8px;
+    }
+    .highlight-box p {
+      font-size: 0.85rem;
+      color: #555549;
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+    .highlight-box p:last-child { margin-bottom: 0; }
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(46, 62, 36, 0.06);
+      font-size: 0.85rem;
+      color: #555549;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: #AD9846;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+    .protocol-card {
+      background: #ffffff;
+      border: 1px solid rgba(46, 62, 36, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .protocol-card h4 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #AD9846;
+      margin-bottom: 6px;
+    }
+    .protocol-card p {
+      font-size: 0.83rem;
+      color: #555549;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    .reminder {
+      text-align: center;
+      padding: 20px;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: #8a8a7a;
+      font-style: italic;
+    }
+    .reminder strong { color: #AD9846; }
+    .print-btn {
+      display: block;
+      margin: 24px auto 0;
+      padding: 14px 32px;
+      background: #2E3E24;
+      color: #FAF8EB;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .print-btn:hover { background: #3a5030; }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: #AD9846;
+      text-decoration: none;
+    }
+    .back-link:hover { text-decoration: underline; }
+    @media print {
+      body { background: #ffffff; padding: 0; }
+      .worksheet { box-shadow: none; border: none; padding: 24px; border-radius: 0; }
+      .print-btn, .back-link { display: none !important; }
+      .text-input, .notes-area { border: 1px solid #ccc; }
+    }
+    @media (max-width: 480px) {
+      .worksheet { padding: 28px 20px; border-radius: 0; }
+      .ws-header h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="worksheet">
+    <div class="ws-header">
+      <p class="ws-brand">Open &amp; Honest &mdash; Ali Imperiale</p>
+      <span class="ws-module">Module 3</span>
+      <h1>The Safety Net Worksheet</h1>
+      <p>Build your jealousy protocol and reconnection ritual. Your emotional insurance policy for when things get real.</p>
+    </div>
+
+    <!-- Section 1: Code Word -->
+    <div class="section">
+      <h2><span class="icon">&#128226;</span> Part 1: The Code Word</h2>
+      <p class="subtitle">Choose a word or phrase that means "I'm feeling jealous and I need reassurance." Something that doesn't sound dramatic but signals a check-in.</p>
+
+      <div class="field-group">
+        <label>Our Code Word / Phrase
+          <span class="hint">Examples: "Monkey," "Red light," "SOS," "Pineapple"</span>
+        </label>
+        <input type="text" class="text-input" placeholder="Our code word is...">
+      </div>
+
+      <div class="highlight-box">
+        <h3>When You Hear the Code Word</h3>
+        <ul class="checklist">
+          <li><input type="checkbox"> <span><strong>Pause</strong> what you're doing immediately</span></li>
+          <li><input type="checkbox"> <span><strong>Reassure</strong> — genuinely, not defensively</span></li>
+          <li><input type="checkbox"> <span><strong>Don't say:</strong> "You're being ridiculous"</span></li>
+          <li><input type="checkbox"> <span><strong>Do say:</strong> "I hear you. I'm right here. What do you need?"</span></li>
+        </ul>
+      </div>
+
+      <div class="highlight-box">
+        <h3>When You Say the Code Word</h3>
+        <ul class="checklist">
+          <li><input type="checkbox"> <span><strong>Identify the specific fear:</strong> Am I being replaced? Do I feel left out? Is my ego hurt?</span></li>
+          <li><input type="checkbox"> <span><strong>Ask for what you need:</strong> "Can you text me when you're on your way home?" or "I need 10 minutes of just us."</span></li>
+          <li><input type="checkbox"> <span><strong>Don't weaponize it:</strong> The code word is for real feelings, not for control.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section 2: Jealousy Types -->
+    <div class="section">
+      <h2><span class="icon">&#128161;</span> Part 2: Know Your Jealousy Type</h2>
+      <p class="subtitle">Understanding what kind of jealousy you tend to feel helps your partner respond better.</p>
+
+      <div class="protocol-card">
+        <h4>Fear of Replacement</h4>
+        <p>"They're going to leave me for this person."</p>
+        <label>Partner A — How likely are you to feel this? (1 = never, 5 = often)</label>
+        <input type="text" class="text-input" placeholder="1-5" style="max-width: 80px; margin-bottom: 8px;">
+        <br>
+        <label>Partner B — How likely are you to feel this?</label>
+        <input type="text" class="text-input" placeholder="1-5" style="max-width: 80px;">
+      </div>
+
+      <div class="protocol-card">
+        <h4>Fear of Missing Out</h4>
+        <p>"They're having more fun than me."</p>
+        <label>Partner A — How likely? (1-5)</label>
+        <input type="text" class="text-input" placeholder="1-5" style="max-width: 80px; margin-bottom: 8px;">
+        <br>
+        <label>Partner B — How likely? (1-5)</label>
+        <input type="text" class="text-input" placeholder="1-5" style="max-width: 80px;">
+      </div>
+
+      <div class="protocol-card">
+        <h4>Ego Jealousy</h4>
+        <p>"I don't like the idea of someone else touching my partner."</p>
+        <label>Partner A — How likely? (1-5)</label>
+        <input type="text" class="text-input" placeholder="1-5" style="max-width: 80px; margin-bottom: 8px;">
+        <br>
+        <label>Partner B — How likely? (1-5)</label>
+        <input type="text" class="text-input" placeholder="1-5" style="max-width: 80px;">
+      </div>
+    </div>
+
+    <!-- Section 3: Reconnection Ritual -->
+    <div class="section">
+      <h2><span class="icon">&#128149;</span> Part 3: Our Reconnection Ritual</h2>
+      <p class="subtitle">Define exactly what happens after a date or experience with someone else. This is how you come back to each other.</p>
+
+      <div class="field-group">
+        <label>What we do immediately after (within the first hour)
+          <span class="hint">Examples: 10 minutes of cuddling, a shower together, cook a meal together</span>
+        </label>
+        <textarea class="notes-area" placeholder="When one of us comes home from a date, we will..."></textarea>
+      </div>
+
+      <div class="field-group">
+        <label>When we talk about it
+          <span class="hint">Examples: "Right away," "The next morning," "Only if I ask," "Never"</span>
+        </label>
+        <input type="text" class="text-input" placeholder="We debrief...">
+      </div>
+
+      <div class="field-group">
+        <label>How much detail we share
+          <span class="hint">Examples: "Everything," "Just the basics," "Only if asked," "Nothing"</span>
+        </label>
+        <input type="text" class="text-input" placeholder="We share...">
+      </div>
+
+      <div class="field-group">
+        <label>Things we never want to hear about
+          <span class="hint">Be specific — this prevents accidental hurt</span>
+        </label>
+        <textarea class="notes-area" placeholder="We agree to never share details about..."></textarea>
+      </div>
+    </div>
+
+    <!-- Section 4: Emergency Protocol -->
+    <div class="section">
+      <h2><span class="icon">&#128680;</span> Part 4: Emergency Stop</h2>
+      <p class="subtitle">Define when and how you hit pause on the whole arrangement — no shame, no blame.</p>
+
+      <div class="field-group">
+        <label>Our "Pause" signal
+          <span class="hint">A phrase that means "I need us to stop everything and talk" — different from the jealousy code word</span>
+        </label>
+        <input type="text" class="text-input" placeholder="Our pause phrase is...">
+      </div>
+
+      <div class="field-group">
+        <label>What happens during a pause</label>
+        <ul class="checklist">
+          <li><input type="checkbox"> <span>All dates with others are cancelled immediately</span></li>
+          <li><input type="checkbox"> <span>We schedule a dedicated conversation within 24 hours</span></li>
+          <li><input type="checkbox"> <span>No decisions are made until both partners feel heard</span></li>
+          <li><input type="checkbox"> <span>We revisit the Hard Limits Audit and Designer Relationship Worksheet</span></li>
+          <li><input type="checkbox"> <span>We consider speaking with a therapist if needed</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+      <h2><span class="icon">&#128221;</span> Additional Notes</h2>
+      <textarea class="notes-area" placeholder="Anything else you want to add to your Safety Net..."></textarea>
+    </div>
+
+    <div class="reminder">
+      <strong>Remember:</strong> The Safety Net isn't about controlling each other. It's about knowing that no matter what happens out there, you have a way back to each other.
+    </div>
+
+    <button class="print-btn" onclick="window.print()">&#128424; Print / Save as PDF</button>
+    <a href="/open-and-honest-course.html#module-3" class="back-link">&larr; Back to Module 3</a>
+  </div>
+</body>
+</html>

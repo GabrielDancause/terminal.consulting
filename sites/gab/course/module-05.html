@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/course-gate.js"></script>
+  <title>Module 5: Adding Pages &amp; Navigation — Course</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+  <div class="module-page">
+    <nav class="module-nav">
+      <a href="../course.html" class="module-nav-back">&larr; Back to Course</a>
+      <div class="module-nav-controls">
+        <a href="module-04.html" class="module-nav-prev">&larr; Prev</a>
+        <span class="module-nav-label">Module 5 of 10</span>
+        <a href="module-06.html" class="module-nav-next">Next &rarr;</a>
+      </div>
+    </nav>
+    <header class="module-header">
+      <span class="module-badge">Module 5</span>
+      <h1>Adding Pages &amp; Navigation</h1>
+      <p class="module-meta">~9 min listen &middot; Written guide below</p>
+    </header>
+    <div class="module-audio">
+      <audio controls preload="metadata" style="width:100%">
+        <source src="audio/module-05.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <article class="module-content">
+      <p>A one-page site works for some businesses, but most of the time you need more. An About page tells your story. A Contact page makes it easy for people to reach you. Let's add them.</p>
+      <h2>Why Multi-Page?</h2>
+      <p>Separate pages let you:</p>
+      <ul>
+        <li>Keep things organized and easy to find</li>
+        <li>Give each topic room to breathe</li>
+        <li>Look more professional and established</li>
+        <li>Rank better in search engines (each page can target different keywords)</li>
+      </ul>
+      <h2>Creating the About Page</h2>
+      <pre><code>Create an about.html page that matches the exact same design style as index.html &mdash; same fonts, colors, header, and footer. Include a hero banner, a history section, a team section with 3 members, and a values section.</code></pre>
+      <p>Claude will create <code>about.html</code> using the same <code>styles.css</code>. If it creates a separate CSS file, tell it to use the existing one.</p>
+      <h2>Creating the Contact Page</h2>
+      <pre><code>Create a contact.html page matching the same design as index.html. Include a contact form, business address with Google Maps embed, phone, email, hours, and social media links.</code></pre>
+      <p><strong>Note:</strong> The form won't actually send emails yet &mdash; it's just HTML. We'll wire it up in a later module.</p>
+      <h2>Adding Navigation to All Pages</h2>
+      <pre><code>Add a navigation bar to the top of all three pages (index.html, about.html, contact.html) with links to Home, About, and Contact. The nav should highlight the current page, be sticky, and collapse to a hamburger menu on mobile. Make it look the same on all pages.</code></pre>
+      <p>After Claude makes the changes, test every link from every page. Make sure the active state changes correctly.</p>
+      <h2>Keeping the Design Consistent</h2>
+      <p><strong>Use one stylesheet.</strong> All pages should link to the same <code>styles.css</code>.</p>
+      <p><strong>Always say</strong> "match the same design as index.html" when creating new pages.</p>
+      <p><strong>Check side by side.</strong> Open all pages in different tabs and compare.</p>
+      <h2>Adding a Footer to All Pages</h2>
+      <pre><code>Add a footer to all pages with: business name and tagline, quick links, address, phone, email, social media icons, copyright, and a back-to-top button. Dark background, light text.</code></pre>
+      <h2>Your File Structure</h2>
+      <pre><code>my-website/
+  index.html
+  about.html
+  contact.html
+  styles.css
+  images/</code></pre>
+      <p>That's your entire website. A few HTML files, one CSS file, and your images. Clean and simple.</p>
+      <h2>Adding More Pages</h2>
+      <p>The process is identical for any new page. The formula: one prompt to create the page, one prompt to update the nav on ALL pages. Don't forget that second step.</p>
+      <p>You now have a multi-page, professionally designed, mobile-responsive website built entirely with plain English descriptions.</p>
+    </article>
+    <nav class="module-bottom-nav">
+      <a href="module-04.html" class="btn-bottom btn-bottom-outline">&larr; Previous: Customizing the Design</a>
+      <a href="module-06.html" class="btn-bottom btn-bottom-primary">Next: Images, Favicons &amp; Polish &rarr;</a>
+    </nav>
+  </div>
+</body>
+</html>

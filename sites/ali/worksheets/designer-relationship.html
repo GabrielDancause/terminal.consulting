@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Designer Relationship Worksheet — Open &amp; Honest</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #FAF8EB;
+      color: #2E3E24;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .worksheet {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 48px 40px;
+      box-shadow: 0 2px 12px rgba(46, 62, 36, 0.08);
+      border: 1px solid rgba(46, 62, 36, 0.06);
+    }
+    .ws-header {
+      text-align: center;
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid rgba(173, 152, 70, 0.2);
+    }
+    .ws-brand {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #AD9846;
+      margin-bottom: 8px;
+    }
+    .ws-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2E3E24;
+      margin-bottom: 8px;
+    }
+    .ws-header p {
+      font-size: 0.88rem;
+      color: #555549;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .ws-module {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: rgba(173, 152, 70, 0.1);
+      color: #AD9846;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .section {
+      margin-bottom: 36px;
+    }
+    .section h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section .subtitle {
+      font-size: 0.82rem;
+      color: #8a8a7a;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .option-group {
+      margin-bottom: 24px;
+    }
+    .option-group h3 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 12px;
+    }
+    .option-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: 1px solid transparent;
+    }
+    .option-row:hover {
+      background: rgba(173, 152, 70, 0.04);
+    }
+    .option-row input[type="radio"],
+    .option-row input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: #AD9846;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+    .option-label {
+      flex: 1;
+    }
+    .option-label strong {
+      display: block;
+      font-size: 0.88rem;
+      color: #2E3E24;
+      margin-bottom: 2px;
+    }
+    .option-label span {
+      font-size: 0.8rem;
+      color: #777;
+      line-height: 1.5;
+    }
+    .spectrum-section {
+      margin-bottom: 28px;
+    }
+    .spectrum-section h3 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 14px;
+    }
+    .spectrum-bar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+    .spectrum-option {
+      flex: 1;
+      text-align: center;
+      padding: 14px 8px;
+      border: 2px solid rgba(46, 62, 36, 0.1);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: #ffffff;
+    }
+    .spectrum-option:hover {
+      border-color: #AD9846;
+      background: rgba(173, 152, 70, 0.04);
+    }
+    .spectrum-option.selected {
+      border-color: #AD9846;
+      background: rgba(173, 152, 70, 0.1);
+    }
+    .spectrum-option strong {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 4px;
+    }
+    .spectrum-option span {
+      font-size: 0.7rem;
+      color: #777;
+      line-height: 1.4;
+    }
+    .partner-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .partner-col {
+      background: rgba(46, 62, 36, 0.02);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(46, 62, 36, 0.06);
+    }
+    .partner-col h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #AD9846;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .notes-area {
+      width: 100%;
+      border: 1px solid rgba(46, 62, 36, 0.15);
+      border-radius: 8px;
+      padding: 14px 16px;
+      min-height: 80px;
+      font-size: 0.85rem;
+      font-family: 'Montserrat', sans-serif;
+      background: rgba(250, 248, 235, 0.5);
+      resize: vertical;
+    }
+    .notes-area:focus {
+      outline: none;
+      border-color: #AD9846;
+      background: #ffffff;
+    }
+    .agreement-box {
+      background: rgba(173, 152, 70, 0.06);
+      border-radius: 14px;
+      padding: 24px;
+      margin-top: 8px;
+    }
+    .agreement-box h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .agreement-box p {
+      font-size: 0.85rem;
+      color: #555549;
+      text-align: center;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .sign-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .sign-field {
+      text-align: center;
+    }
+    .sign-field label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #8a8a7a;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .sign-field input {
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid rgba(46, 62, 36, 0.15);
+      padding: 8px 4px;
+      font-size: 0.9rem;
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      background: transparent;
+    }
+    .sign-field input:focus {
+      outline: none;
+      border-bottom-color: #AD9846;
+    }
+    .reminder {
+      text-align: center;
+      padding: 20px;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: #8a8a7a;
+      font-style: italic;
+    }
+    .reminder strong { color: #AD9846; }
+    .print-btn {
+      display: block;
+      margin: 24px auto 0;
+      padding: 14px 32px;
+      background: #2E3E24;
+      color: #FAF8EB;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .print-btn:hover { background: #3a5030; }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: #AD9846;
+      text-decoration: none;
+    }
+    .back-link:hover { text-decoration: underline; }
+    @media print {
+      body { background: #ffffff; padding: 0; }
+      .worksheet { box-shadow: none; border: none; padding: 24px; border-radius: 0; }
+      .print-btn, .back-link { display: none !important; }
+      .notes-area { border: 1px solid #ccc; }
+    }
+    @media (max-width: 480px) {
+      .worksheet { padding: 28px 20px; border-radius: 0; }
+      .ws-header h1 { font-size: 1.4rem; }
+      .partner-columns { grid-template-columns: 1fr; }
+      .spectrum-bar { flex-direction: column; }
+      .sign-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="worksheet">
+    <div class="ws-header">
+      <p class="ws-brand">Open &amp; Honest &mdash; Ali Imperiale</p>
+      <span class="ws-module">Module 1</span>
+      <h1>Designer Relationship Worksheet</h1>
+      <p>Define exactly what kind of open relationship works for both of you. Because "open" means different things to different people.</p>
+    </div>
+
+    <!-- Section 1: Relationship Style -->
+    <div class="section">
+      <h2><span class="icon">&#128142;</span> Step 1: What Are We?</h2>
+      <p class="subtitle">Each partner checks the style that resonates most. You can each pick different ones — that's the starting point for discussion.</p>
+
+      <div class="partner-columns">
+        <div class="partner-col">
+          <h3>&#128100; Partner A</h3>
+          <label class="option-row"><input type="radio" name="style-a"><div class="option-label"><strong>Monogamish</strong><span>Mostly monogamous, with occasional flexibility (e.g., threesomes, flirting)</span></div></label>
+          <label class="option-row"><input type="radio" name="style-a"><div class="option-label"><strong>Swinger</strong><span>Sexual experiences with others, usually together as a couple</span></div></label>
+          <label class="option-row"><input type="radio" name="style-a"><div class="option-label"><strong>Open</strong><span>Open to emotional connections, but the primary relationship comes first</span></div></label>
+          <label class="option-row"><input type="radio" name="style-a"><div class="option-label"><strong>Fully Open</strong><span>Both partners free to date and form relationships independently</span></div></label>
+          <label class="option-row"><input type="radio" name="style-a"><div class="option-label"><strong>Don't Ask, Don't Tell</strong><span>Freedom to explore, but no details shared</span></div></label>
+        </div>
+        <div class="partner-col">
+          <h3>&#128101; Partner B</h3>
+          <label class="option-row"><input type="radio" name="style-b"><div class="option-label"><strong>Monogamish</strong><span>Mostly monogamous, with occasional flexibility</span></div></label>
+          <label class="option-row"><input type="radio" name="style-b"><div class="option-label"><strong>Swinger</strong><span>Sexual experiences with others, usually together</span></div></label>
+          <label class="option-row"><input type="radio" name="style-b"><div class="option-label"><strong>Open</strong><span>Open to emotional connections, primary relationship first</span></div></label>
+          <label class="option-row"><input type="radio" name="style-b"><div class="option-label"><strong>Fully Open</strong><span>Both free to date and form relationships independently</span></div></label>
+          <label class="option-row"><input type="radio" name="style-b"><div class="option-label"><strong>Don't Ask, Don't Tell</strong><span>Freedom to explore, no details shared</span></div></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Communication Level -->
+    <div class="section">
+      <h2><span class="icon">&#128172;</span> Step 2: How Much Do We Share?</h2>
+      <p class="subtitle">How much information do you want before and after experiences with others?</p>
+
+      <div class="spectrum-section">
+        <h3>Partner A</h3>
+        <div class="spectrum-bar">
+          <div class="spectrum-option" onclick="this.classList.toggle('selected')">
+            <strong>Everything Before</strong>
+            <span>Tell me your plans in advance</span>
+          </div>
+          <div class="spectrum-option" onclick="this.classList.toggle('selected')">
+            <strong>Everything After</strong>
+            <span>Tell me what happened afterward</span>
+          </div>
+          <div class="spectrum-option" onclick="this.classList.toggle('selected')">
+            <strong>Just the Basics</strong>
+            <span>I want to know it happened, not the details</span>
+          </div>
+          <div class="spectrum-option" onclick="this.classList.toggle('selected')">
+            <strong>Don't Tell Me</strong>
+            <span>I don't want to know unless I ask</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="spectrum-section">
+        <h3>Partner B</h3>
+        <div class="spectrum-bar">
+          <div class="spectrum-option" onclick="this.classList.toggle('selected')">
+            <strong>Everything Before</strong>
+            <span>Tell me your plans in advance</span>
+          </div>
+          <div class="spectrum-option" onclick="this.classList.toggle('selected')">
+            <strong>Everything After</strong>
+            <span>Tell me what happened afterward</span>
+          </div>
+          <div class="spectrum-option" onclick="this.classList.toggle('selected')">
+            <strong>Just the Basics</strong>
+            <span>I want to know it happened, not the details</span>
+          </div>
+          <div class="spectrum-option" onclick="this.classList.toggle('selected')">
+            <strong>Don't Tell Me</strong>
+            <span>I don't want to know unless I ask</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Boundaries Spectrum -->
+    <div class="section">
+      <h2><span class="icon">&#128207;</span> Step 3: Physical Boundaries</h2>
+      <p class="subtitle">Check everything that's on the table for your relationship. Both partners should fill this out.</p>
+
+      <div class="partner-columns">
+        <div class="partner-col">
+          <h3>&#128100; Partner A</h3>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Same room only</strong><span>We play together, in the same space</span></div></label>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Separate rooms</strong><span>Okay to be in different rooms at the same venue</span></div></label>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Solo dates allowed</strong><span>Each partner can go on dates alone</span></div></label>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Overnight stays</strong><span>Okay to sleep at someone else's place</span></div></label>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Emotional connections</strong><span>Okay to develop feelings beyond physical</span></div></label>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Recurring partners</strong><span>Okay to see the same person more than once</span></div></label>
+        </div>
+        <div class="partner-col">
+          <h3>&#128101; Partner B</h3>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Same room only</strong><span>We play together, in the same space</span></div></label>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Separate rooms</strong><span>Okay to be in different rooms at same venue</span></div></label>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Solo dates allowed</strong><span>Each partner can go on dates alone</span></div></label>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Overnight stays</strong><span>Okay to sleep at someone else's place</span></div></label>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Emotional connections</strong><span>Okay to develop feelings beyond physical</span></div></label>
+          <label class="option-row"><input type="checkbox"><div class="option-label"><strong>Recurring partners</strong><span>Okay to see the same person more than once</span></div></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+      <h2><span class="icon">&#128221;</span> Discussion Notes</h2>
+      <p class="subtitle">Where did you agree? Where did you differ? What needs more conversation?</p>
+      <textarea class="notes-area" placeholder="Write your thoughts, compromises, and anything you need to revisit..."></textarea>
+    </div>
+
+    <!-- Agreement -->
+    <div class="agreement-box">
+      <h2>&#129309; Our Agreement</h2>
+      <p>We've discussed our relationship style, communication level, and boundaries. We agree to revisit this worksheet whenever things change.</p>
+      <div class="sign-row">
+        <div class="sign-field">
+          <label>Partner A</label>
+          <input type="text" placeholder="Name &amp; Date">
+        </div>
+        <div class="sign-field">
+          <label>Partner B</label>
+          <input type="text" placeholder="Name &amp; Date">
+        </div>
+      </div>
+    </div>
+
+    <div class="reminder">
+      <strong>Remember:</strong> This is a living document. Your relationship will evolve — so should this worksheet.
+    </div>
+
+    <button class="print-btn" onclick="window.print()">&#128424; Print / Save as PDF</button>
+    <a href="/open-and-honest-course.html#module-1" class="back-link">&larr; Back to Module 1</a>
+  </div>
+</body>
+</html>

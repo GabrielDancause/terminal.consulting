@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/course-gate.js"></script>
+  <title>Module 8: Going Live with GitHub Pages — Course</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+  <div class="module-page">
+    <nav class="module-nav">
+      <a href="../course.html" class="module-nav-back">&larr; Back to Course</a>
+      <div class="module-nav-controls">
+        <a href="module-07.html" class="module-nav-prev">&larr; Prev</a>
+        <span class="module-nav-label">Module 8 of 10</span>
+        <a href="module-09.html" class="module-nav-next">Next &rarr;</a>
+      </div>
+    </nav>
+    <header class="module-header">
+      <span class="module-badge">Module 8</span>
+      <h1>Going Live with GitHub Pages</h1>
+      <p class="module-meta">~4 min listen &middot; Written guide below</p>
+    </header>
+    <div class="module-audio">
+      <audio controls preload="metadata" style="width:100%">
+        <source src="audio/module-08.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <article class="module-content">
+      <p>This is it. The moment your website goes from "files on a screen" to "live on the internet." And it's going to take you about two minutes.</p>
+      <h2>Step 1: Go to Your Repository</h2>
+      <p>Open your browser and go to your GitHub repository:</p>
+      <pre><code>https://github.com/YOUR-USERNAME/my-bakery-website</code></pre>
+      <h2>Step 2: Open Pages Settings</h2>
+      <ol>
+        <li>Click <strong>Settings</strong> in the top menu bar</li>
+        <li>In the left sidebar, click <strong>Pages</strong></li>
+      </ol>
+      <h2>Step 3: Configure the Source</h2>
+      <ol>
+        <li>Under Source, select <strong>"Deploy from a branch"</strong></li>
+        <li>Select branch <strong>"main"</strong></li>
+        <li>Leave folder as <strong>"/ (root)"</strong></li>
+        <li>Click <strong>Save</strong></li>
+      </ol>
+      <h2>Step 4: Wait for the Build</h2>
+      <p>GitHub needs 1&ndash;2 minutes. Check the <strong>Actions</strong> tab for progress. Green checkmark = you're live.</p>
+      <h2>Step 5: Visit Your Live Site</h2>
+      <p>Go back to Settings &rarr; Pages. You'll see:</p>
+      <pre><code>Your site is live at https://YOUR-USERNAME.github.io/my-bakery-website/</code></pre>
+      <p>That's your website. On the internet. Right now. Anyone with that link can see it.</p>
+      <h2>Troubleshooting</h2>
+      <p><strong>Site not showing up?</strong></p>
+      <ul>
+        <li>Check the Actions tab for build errors</li>
+        <li>Make sure your main file is called <code>index.html</code></li>
+        <li>Verify you selected the right branch and folder</li>
+      </ul>
+      <p><strong>Getting a 404?</strong></p>
+      <ul>
+        <li>Make sure <code>index.html</code> is in the root, not a subfolder</li>
+        <li>Wait a few more minutes</li>
+      </ul>
+      <p><strong>CSS or images not loading?</strong></p>
+      <ul>
+        <li>Check file paths &mdash; use <code>styles.css</code> not <code>/styles.css</code></li>
+        <li>Tell Claude: "Fix the file paths to work with GitHub Pages."</li>
+      </ul>
+      <h2>You Just Did It</h2>
+      <p>You have a live website on the internet. Free hosting. Copy that URL and text it to someone. That URL works on any phone, any computer, anywhere in the world.</p>
+      <p>Next up: connecting a custom domain and setting up SEO so people can find you on Google.</p>
+    </article>
+    <nav class="module-bottom-nav">
+      <a href="module-07.html" class="btn-bottom btn-bottom-outline">&larr; Previous: Git &amp; GitHub</a>
+      <a href="module-09.html" class="btn-bottom btn-bottom-primary">Next: Custom Domain &amp; SEO &rarr;</a>
+    </nav>
+  </div>
+</body>
+</html>

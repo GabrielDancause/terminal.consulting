@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gab &mdash; Footage</title>
+  <meta name="description" content="4K scenic drives, walking tours, and cinematic travel footage from Canada, Mexico, and beyond.">
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23E8A838'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Footage page specific styles */
+    .footage-header {
+      padding: 120px 0 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .footage-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .footage-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .footage-stat {
+      text-align: center;
+    }
+
+    .footage-stat .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .footage-stat .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 6px;
+    }
+
+    /* Footage grid */
+    .footage-section {
+      padding: 48px 0;
+    }
+
+    .footage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .footage-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .footage-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .footage-card .thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--surface-elevated);
+    }
+
+    .footage-card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .footage-card:hover .thumb img {
+      transform: scale(1.05);
+    }
+
+    .footage-card .thumb .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .footage-card:hover .play-overlay {
+      opacity: 1;
+    }
+
+    .play-overlay svg {
+      width: 48px;
+      height: 48px;
+      fill: white;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+
+    .footage-card .thumb .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-public {
+      background: rgba(52, 199, 89, 0.9);
+      color: #fff;
+    }
+
+    .badge-members {
+      background: rgba(232, 168, 56, 0.9);
+      color: #fff;
+    }
+
+    .footage-card .thumb .duration {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .footage-card .info {
+      padding: 14px 16px 18px;
+    }
+
+    .footage-card .info h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .footage-card .info .meta {
+      display: flex;
+      gap: 12px;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    /* Embedded player modal */
+    .player-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0, 0, 0, 0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .player-modal.active {
+      display: flex;
+    }
+
+    .player-modal .player-inner {
+      width: 100%;
+      max-width: 1000px;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .player-modal iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .player-modal .close-btn {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+      transition: color var(--transition);
+    }
+
+    .player-modal .close-btn:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .footage-grid {
+        grid-template-columns: 1fr;
+      }
+      .footage-stats {
+        gap: 24px;
+      }
+      .footage-stat .stat-number {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="site-nav scrolled">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Gab</a>
+      <div class="nav-cta">
+        <a href="/#videos" class="nav-link">Videos</a>
+        <a href="/footage.html" class="nav-link" aria-current="page">Footage</a>
+        <a href="/vlog.html" class="nav-link">Vlogs</a>
+        <a href="/blog/" class="nav-link">Blog</a>
+        <a href="https://www.youtube.com/@gabrieldancause" class="btn btn-primary" target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="footage-header">
+    <div class="container">
+      <p class="section-label">Footage Library</p>
+      <h1 class="section-title">Browse all footage</h1>
+      <p class="section-subtitle">4K scenic drives, walking tours, and cinematic travel footage from Canada, Mexico, and beyond.</p>
+      <div class="footage-stats">
+        <div class="footage-stat">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Videos</div>
+        </div>
+        <div class="footage-stat">
+          <div class="stat-number">4K</div>
+          <div class="stat-label">Resolution</div>
+        </div>
+        <div class="footage-stat">
+          <div class="stat-number">14h+</div>
+          <div class="stat-label">Watch Time</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footage Grid -->
+  <section class="footage-section">
+    <div class="container">
+      <div class="footage-grid" id="footageGrid"></div>
+    </div>
+  </section>
+
+  <!-- Inline Player -->
+  <div class="player-modal" id="playerModal">
+    <div class="player-inner">
+      <button class="close-btn" id="closePlayer">&times;</button>
+      <iframe id="playerFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; 2026 Gab</p>
+    </div>
+  </footer>
+
+  <script>
+    const VIDEOS = [
+      {t:"Scenic Driving & Walking in Québec City",l:"Québec City",dur:"3:46:53",id:"8TT23nRI7Dk",tp:"Scenic Drive"},
+      {t:"Road Trip to Nowhere — South Shore of Montréal",l:"Montréal, Canada",dur:"1:56:19",id:"2u8J1FzR7lw",tp:"Scenic Drive"},
+      {t:"Old Quebec City at Christmas",l:"Québec City",dur:"1:38:33",id:"XP_qTT4ZxVI",tp:"Walking Tour"},
+      {t:"Scenic Winter Roads in Montréal",l:"Montréal, Canada",dur:"1:26:34",id:"KQkZC2lDpqQ",tp:"Scenic Drive"},
+      {t:"Montréal at Night",l:"Montréal, Canada",dur:"1:10:57",id:"DrF1xB8G22w",tp:"Walking Tour"},
+      {t:"Beach Walking Tour in Puerto Morelos",l:"Puerto Morelos, Mexico",dur:"1:10:38",id:"nF0gw06FmG4",tp:"Walking Tour"},
+      {t:"Driving Around Montréal",l:"Montréal, Canada",dur:"58:22",id:"orMY64oXOrM",tp:"Scenic Drive"},
+      {t:"Dusk Walk in Saint-Jean-sur-Richelieu",l:"Saint-Jean-sur-Richelieu, Québec",dur:"40:16",id:"qzCZwgkd7Fw",tp:"Walking Tour"},
+      {t:"Day Drive Through Poconos, Pennsylvania",l:"Poconos, Pennsylvania",dur:"34:11",id:"wU4YAhqJrKM",tp:"Scenic Drive"},
+      {t:"Bromont's Sleepless Night",l:"Bromont, Québec",dur:"16:05",id:"tnHdEjR162E",tp:"Skiing"},
+    ];
+
+    const grid = document.getElementById('footageGrid');
+    VIDEOS.forEach(v => {
+      const card = document.createElement('div');
+      card.className = 'footage-card';
+      card.style.cursor = 'pointer';
+      card.innerHTML = `
+        <div class="thumb">
+          <img src="https://img.youtube.com/vi/${v.id}/maxresdefault.jpg" alt="${v.t}" loading="lazy">
+          <div class="play-overlay"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="duration">${v.dur}</div>
+        </div>
+        <div class="info">
+          <h3>${v.t}</h3>
+          <div class="meta">
+            <span>${v.l}</span>
+            <span>${v.tp}</span>
+          </div>
+        </div>`;
+      card.addEventListener('click', () => openPlayer(v.id));
+      grid.appendChild(card);
+    });
+
+    const modal = document.getElementById('playerModal');
+    const frame = document.getElementById('playerFrame');
+    const closeBtn = document.getElementById('closePlayer');
+
+    function openPlayer(ytId) {
+      frame.src = `https://www.youtube.com/embed/${ytId}?autoplay=1`;
+      modal.classList.add('active');
+    }
+
+    closeBtn.addEventListener('click', () => { modal.classList.remove('active'); frame.src = ''; });
+    modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.remove('active'); frame.src = ''; } });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) { modal.classList.remove('active'); frame.src = ''; } });
+  </script>
+
+  <script src="js/main.js" defer></script>
+</body>
+
+</html>

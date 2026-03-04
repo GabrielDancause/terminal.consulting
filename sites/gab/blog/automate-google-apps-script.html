@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automate Your Admin Work with Google Apps Script and Claude — Gab</title>
+  <meta name="description" content="How to use Claude to write Google Apps Script code that connects Gmail, Sheets, and Drive. Automate your boring admin tasks in minutes.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Automate Your Admin Work with Google Apps Script and Claude">
+  <meta property="og:description" content="Stop doing manual data entry. Let Claude write the code to connect your Google Apps together.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gab.ae/blog/automate-google-apps-script.html">
+  <meta property="og:image" content="https://gab.ae/images/og-blog-google-apps.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automate Your Admin Work with Google Apps Script and Claude">
+  <meta name="twitter:description" content="Stop doing manual data entry. Let Claude write the code to connect your Google Apps together.">
+  <meta name="twitter:image" content="https://gab.ae/images/og-blog-google-apps.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="blog-styles.css">
+</head>
+<body>
+
+  <div class="blog-post">
+
+    <!-- Navigation -->
+    <nav class="blog-post-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Blog</a></li>
+        <li aria-current="page">Automate Your Admin Work with Google Apps Script and Claude</li>
+      </ol>
+      <a href="../" class="blog-nav-logo">Gab</a>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="blog-post-header">
+      <span class="blog-post-tag">Automation</span>
+      <h1>Automate Your Admin Work with Google Apps Script and Claude</h1>
+      <p class="blog-post-meta">Gab <span>&middot;</span> March 2026 <span>&middot;</span> 6 min read</p>
+    </header>
+
+    <!-- Post Content -->
+    <article class="blog-content">
+
+      <p>If you run a small business or a side project, you probably spend too much time on "admin glue work" &mdash; moving data from an email to a spreadsheet, saving attachments to Drive, or sending calendar invites.</p>
+
+      <p>Google has a built-in tool called <strong>Google Apps Script</strong> that can automate almost anything across Gmail, Sheets, Docs, and Drive. It's powerful, but it requires writing JavaScript.</p>
+
+      <p>Here's the secret: You don't need to know JavaScript. You just need to know how to ask Claude to write it for you.</p>
+
+      <h2>What is Google Apps Script?</h2>
+
+      <p>Think of it as the "macro" language for the web. It runs on Google's servers, not your computer. You can set triggers so scripts run automatically (e.g., every hour, or whenever a form is submitted).</p>
+
+      <h2>Example 1: Save Email Invoices to Drive</h2>
+
+      <p>Let's say you get invoices from various SaaS tools (GitHub, Vercel, OpenAI) in your inbox. You want them saved to a "Receipts/March 2026" folder in Google Drive.</p>
+
+      <p><strong>The Prompt for Claude:</strong></p>
+
+      <pre><code>Write a Google Apps Script that searches my Gmail for threads with the label "Invoices".
+For each email found:
+1. Check if it has a PDF attachment.
+2. If yes, save the attachment to a Google Drive folder named "Receipts/[Current Month Year]".
+3. If the folder doesn't exist, create it.
+4. Mark the email as read and remove the "Invoices" label.
+</code></pre>
+
+      <p>Claude will generate a function like <code>processInvoices()</code>. You copy-paste it into the script editor (extensions > Apps Script in Sheets, or script.google.com), save, and run.</p>
+
+      <h2>Example 2: Log Contact Form Submissions to Sheets</h2>
+
+      <p>If you receive lead notifications via email (e.g., from a WordPress site or a simple HTML form), you might want them in a spreadsheet to track follow-ups.</p>
+
+      <p><strong>The Prompt for Claude:</strong></p>
+
+      <pre><code>I receive emails with the subject "New Lead".
+The body looks like:
+Name: John Doe
+Email: john@example.com
+Message: Interested in services.
+
+Write a script to:
+1. Find all unread emails with subject "New Lead".
+2. Parse the body to extract Name, Email, and Message.
+3. Append a new row to the active Google Sheet with [Date, Name, Email, Message].
+4. Mark the email as read.
+</code></pre>
+
+      <p>Now your spreadsheet fills itself up automatically.</p>
+
+      <h2>How to Set It Up</h2>
+
+      <ol>
+        <li>Go to <a href="https://script.google.com">script.google.com</a> or open a Google Sheet and click <strong>Extensions > Apps Script</strong>.</li>
+        <li>Delete the default <code>myFunction</code> code.</li>
+        <li>Paste the code Claude gave you.</li>
+        <li>Click the "Save" icon.</li>
+        <li>Click "Run" to test it. Google will ask for permissions &mdash; grant them.</li>
+        <li>To make it run automatically, click the <strong>Clock icon (Triggers)</strong> on the left sidebar.
+          <ul>
+            <li>Choose your function.</li>
+            <li>Select event source: <strong>Time-driven</strong>.</li>
+            <li>Select type: <strong>Hourly timer</strong> (or daily, depending on your needs).</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h2>Why This is Better Than Zapier</h2>
+
+      <p>Tools like Zapier or Make are great, but they get expensive once you start processing high volumes. Google Apps Script is free (within generous quotas). For simple tasks involving Google's own ecosystem, it's often faster and more reliable because it's native.</p>
+
+      <p>Plus, with Claude writing the code, the technical barrier is gone. You describe the workflow; Claude handles the syntax.</p>
+
+    </article>
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <h3>Need more automation ideas?</h3>
+      <p>Check out my full guide on building a faceless business with automated tools.</p>
+      <a href="../#pricing" class="btn">Get the Guide &mdash; $39</a>
+    </div>
+
+    <!-- Footer Nav -->
+    <nav class="blog-post-footer">
+      <a href="./" class="btn-back">&larr; All Posts</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

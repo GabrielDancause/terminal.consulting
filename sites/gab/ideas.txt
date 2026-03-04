@@ -1,0 +1,10 @@
+1. Why Local AI is the Future of Web Development
+2. How to Automate Pull Requests with Google Jule
+3. Building a Static Blog Engine from Scratch in HTML
+4. The True Cost of "Free" Hosting: Exploring GitHub Pages
+5. Five Micro-SaaS Ideas You Can Build This Weekend
+6. How I Saved $1,000/Month by Replacing SaaS Tools with Local Scripts
+7. The Anatomy of a Perfect SEO-Optimized Blog Post
+8. Managing a Content Calendar with Plain Text Files
+9. Why Every Developer Should Have a Faceless YouTube Channel
+10. Using AI to Repurpose Content: From Video to 5 Different Platforms

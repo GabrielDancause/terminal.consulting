@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise Value (EV) — Investment Wiki</title>
+  <meta name="description"
+    content="Technical reference for Enterprise Value (EV). Formula, interpretation, and practical application.">
+  <meta property="og:title" content="Enterprise Value (EV) — Investment Wiki">
+  <meta property="og:description"
+    content="Enterprise Value (EV) explained: formula, interpretation, worked examples, and why it matters.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+
+<body>
+  <div class="doc-container">
+    <nav class="doc-breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Investment</a>
+      <span class="sep">/</span>
+      Enterprise Value (EV)
+    </nav>
+
+    <header class="doc-header">
+      <h1 class="doc-title">Enterprise Value (EV)</h1>
+      <div class="doc-meta">
+        <span class="tag">Valuation Metric</span>
+        <span>Investment Wiki — Fundamentals</span>
+      </div>
+    </header>
+
+    <div class="doc-abstract">
+      Enterprise Value (EV) is a comprehensive measure of a company's total value, often used as a more rigorous
+      alternative to market capitalization. EV calculates how much it would cost to buy the entire business outright
+      today, assuming you buy all the equity, pay off all the debt, but get to keep all the company's existing cash.
+    </div>
+
+    <div class="doc-content">
+      <div class="gab-stack-infobox">
+        <div class="infobox-header">Quick Reference</div>
+        <table>
+          <tr>
+            <td>Type</td>
+            <td>Valuation Metric</td>
+          </tr>
+          <tr>
+            <td>Formula</td>
+            <td>Market Cap + Total Debt - Cash & Equivalents</td>
+          </tr>
+          <tr>
+            <td>Primary Use</td>
+            <td>M&A valuations and calculating EV/EBITDA</td>
+          </tr>
+        </table>
+      </div>
+
+      <section class="doc-section">
+        <h2>1.0 The Formula</h2>
+        <h3>Basic Form</h3>
+        <pre><code><span class="code-label">formula</span>EV = Market Capitalization + Total Debt - Cash and Cash Equivalents</code></pre>
+        <p>Market Cap only measures the equity tag. By adding Debt (because an acquirer must take on or pay off that
+          debt) and subtracting Cash (because an acquirer gets to pocket that cash to reduce their effective purchase
+          price), EV represents the true <em>Takeover Value</em>.</p>
+
+        <h3>Worked Example</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Market Cap</th>
+              <th>Total Debt</th>
+              <th>Cash</th>
+              <th>Enterprise Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Company A</td>
+              <td>$10 Billion</td>
+              <td>$2 Billion</td>
+              <td>$1 Billion</td>
+              <td><strong>$11 Billion</strong></td>
+            </tr>
+            <tr>
+              <td>Company B</td>
+              <td>$10 Billion</td>
+              <td>$0</td>
+              <td>$5 Billion</td>
+              <td><strong>$5 Billion</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Company A and Company B have the exact same stock market valuation (Market Cap). But Company B has massive
+          cash reserves and no debt. Buying Company B is fundamentally twice as cheap as buying Company A, a reality
+          reflected natively in the EV metric.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2>2.0 Interpretation & Edge Cases</h2>
+        <p>Enterprise Value is rarely used in isolation. It forms the numerator for critical valuation multiples, most
+          notably <strong>EV/EBITDA</strong> and <strong>EV/Free Cash Flow</strong>. These multiples are superior to the
+          P/E ratio because they are neutral to the capital structure (how much debt the company uses).</p>
+
+        <div class="callout callout-warn">
+          A negative Enterprise Value is technically possible. If a company's cash reserves are greater than its Market
+          Cap and Debt combined, it is extremely undervalued or an outright value trap bleeding cash.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>3.0 Related Pages</h2>
+        <div class="integration-grid">
+          <div class="integration-card">
+            <h4><a href="ebitda.html">EBITDA</a></h4>
+            <p>The standard denominator for EV in buyout and M&A evaluations (the EV/EBITDA multiple).</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="free-cash-flow.html">Free Cash Flow (FCF)</a></h4>
+            <p>Used to calculate the Free Cash Flow to the Firm (FCFF) relative to the Enterprise Value.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="doc-footer">
+      <a href="./">← Back to Investment Wiki</a>
+      <span style="color: var(--text-tertiary);">Investment Wiki</span>
+    </footer>
+  </div>
+</body>
+
+</html>

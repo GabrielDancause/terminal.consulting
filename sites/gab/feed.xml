@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>Gab's Blog</title>
+  <link>https://gab.ae/blog/</link>
+  <description>Thoughts on building websites with AI, static hosting, and running a business without paying for developers.</description>
+  <language>en-us</language>
+  <lastBuildDate>Sun, 01 Feb 2026 00:00:00 GMT</lastBuildDate>
+  <item>
+    <title>Automate Google Flow Visuals with Claude — Complete the Pipeline</title>
+    <link>https://gab.ae/blog/automate-google-flow-with-claude.html</link>
+    <description>Part IV: The last manual step dies. Use Claude to drive Google Flow, generate music video visuals, and close the full automation loop.</description>
+    <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>Automate Suno Music Creation with Claude's Browser Extension</title>
+    <link>https://gab.ae/blog/automate-suno-with-claude.html</link>
+    <description>Part III: Let Claude drive Suno for you. Automate prompt writing, track generation, and downloads using the Claude browser extension.</description>
+    <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>Automate Your Faceless Channel — How to Auto-Upload to YouTube with Python</title>
+    <link>https://gab.ae/blog/automate-your-faceless-channel.html</link>
+    <description>Part II: Automate YouTube uploads for your faceless channel. A Python script that handles titles, descriptions, tags, and scheduling.</description>
+    <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>How to Create an Album and a Faceless Channel with Suno, Google Flow and DistroKid</title>
+    <link>https://gab.ae/blog/how-to-create-a-faceless-channel.html</link>
+    <description>Create a full album with AI-generated music, build a faceless YouTube channel, and distribute to every streaming platform. No studio required.</description>
+    <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>Claude Code vs Hiring a Web Developer — Real Cost Breakdown</title>
+    <link>https://gab.ae/blog/claude-code-vs-web-developer.html</link>
+    <description>A side-by-side comparison of building a business website with Claude Code vs hiring a freelance developer. Real numbers, real trade-offs.</description>
+    <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>5 Websites You Can Build for Free This Weekend</title>
+    <link>https://gab.ae/blog/5-websites-you-can-build-for-free.html</link>
+    <description>Five real website ideas you can build and launch this weekend using Claude Code and GitHub Pages. Free hosting, no coding, live by Sunday.</description>
+    <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>Why I Stopped Using WordPress for My Hotel Websites</title>
+    <link>https://gab.ae/blog/why-i-stopped-using-wordpress.html</link>
+    <description>I run a 60+ room hotel in Quebec. For years I paid developers and dealt with WordPress headaches. Then I found a better way that costs $0/month.</description>
+    <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>What Is GitHub Pages? A Non-Technical Explanation</title>
+    <link>https://gab.ae/blog/what-is-github-pages.html</link>
+    <description>GitHub Pages explained in plain English. How it works, why it's free, what it can and can't do, and why more people should be using it.</description>
+    <pubDate>Sun, 01 Feb 2026 00:00:00 GMT</pubDate>
+  </item>
+</channel>
+</rss>

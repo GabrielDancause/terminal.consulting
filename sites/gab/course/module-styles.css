@@ -1,0 +1,310 @@
+/* ============================================
+   Module Page Styles
+   Shared across all course module HTML pages
+   ============================================ */
+
+.module-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ---------- Top Navigation ---------- */
+.module-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.module-nav-back {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.module-nav-back:hover {
+  color: var(--text);
+}
+
+.module-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.module-nav-label {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+}
+
+.module-nav-next,
+.module-nav-prev {
+  color: var(--accent-light);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.module-nav-next:hover,
+.module-nav-prev:hover {
+  color: var(--text);
+}
+
+/* ---------- Module Header ---------- */
+.module-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.module-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.module-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.module-meta {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
+/* ---------- Audio Player ---------- */
+.module-audio {
+  margin-bottom: 48px;
+}
+
+.audio-placeholder {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
+.audio-icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* When audio is ready, replace .audio-placeholder with:
+   <audio controls src="audio/module-XX.mp3" style="width:100%"></audio>
+*/
+
+/* ---------- Module Content ---------- */
+.module-content {
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.module-content h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-top: 48px;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.module-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 36px;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.module-content p {
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.module-content strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.module-content ul,
+.module-content ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+.module-content li {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.module-content code {
+  background: var(--surface-elevated);
+  color: var(--accent-light);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.module-content pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  margin-top: 12px;
+}
+
+.module-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--text);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.module-content a {
+  color: var(--accent-light);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+
+.module-content a:hover {
+  border-bottom-color: var(--accent-light);
+}
+
+.module-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  margin: 20px 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.module-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.module-content th,
+.module-content td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.module-content th {
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.module-content td {
+  color: var(--text-secondary);
+}
+
+/* Tip callouts */
+.module-content .tip {
+  background: var(--accent-glow);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-size: 0.9rem;
+}
+
+.module-content .tip strong {
+  color: var(--accent-light);
+}
+
+/* ---------- Bottom Navigation ---------- */
+.module-bottom-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-top: 40px;
+  margin-top: 48px;
+  border-top: 1px solid var(--border);
+}
+
+.btn-bottom {
+  padding: 12px 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-xs);
+  text-decoration: none;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.btn-bottom-outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-bottom-outline:hover {
+  color: var(--text);
+  border-color: var(--text-tertiary);
+}
+
+.btn-bottom-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-bottom-primary:hover {
+  background: var(--accent-light);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .module-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .module-nav {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .module-bottom-nav {
+    flex-direction: column;
+  }
+
+  .btn-bottom {
+    width: 100%;
+    text-align: center;
+  }
+
+  .module-content pre {
+    font-size: 0.8rem;
+  }
+}

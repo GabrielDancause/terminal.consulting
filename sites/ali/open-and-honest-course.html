@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="consent.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Open &amp; Honest — Your Course | Ali Imperiale</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="shared.css">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* Nav */
+    .site-nav {
+      background: #2E3E24;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-nav .nav-logo { height: 32px; opacity: 0.9; }
+    .site-nav .nav-links { display: flex; gap: 24px; list-style: none; }
+    .site-nav .nav-links a { color: #C6C8BB; text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.15s; }
+    .site-nav .nav-links a:hover { color: #FAF8EB; }
+
+    /* Course header */
+    .course-header {
+      background: #2E3E24;
+      color: #FAF8EB;
+      text-align: center;
+      padding: 48px 20px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: #FAF8EB;
+      border-radius: 40px 40px 0 0;
+    }
+    .course-header .welcome-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #AD9846;
+      margin-bottom: 16px;
+    }
+    .course-header h1 {
+      font-family: 'The Bloomington', cursive;
+      font-size: 3.6rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .course-header .welcome-text {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 1rem;
+      color: #C6C8BB;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Container */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Progress nav */
+    .module-nav {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(46, 62, 36, 0.08);
+      margin-bottom: 36px;
+    }
+    .module-nav-inner {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .module-nav a {
+      display: inline-block;
+      padding: 8px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #555549;
+      background: rgba(46, 62, 36, 0.04);
+      border-radius: 20px;
+      border: 1px solid rgba(46, 62, 36, 0.08);
+      transition: all 0.15s;
+    }
+    .module-nav a:hover {
+      background: rgba(173, 152, 70, 0.1);
+      border-color: #AD9846;
+      color: #AD9846;
+    }
+
+    /* Lesson block */
+    .lesson-block {
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(46, 62, 36, 0.08);
+    }
+    .lesson-block:last-child {
+      border-bottom: none;
+    }
+
+    /* Module header */
+    .module-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #AD9846;
+      background: rgba(173, 152, 70, 0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .lesson-block h2 {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #2E3E24;
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+    .lesson-goal {
+      font-size: 0.88rem;
+      color: #AD9846;
+      font-style: italic;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* Audio player */
+    .audio-player {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(46, 62, 36, 0.06);
+      border: 1px solid rgba(46, 62, 36, 0.06);
+    }
+    .audio-player-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 12px;
+    }
+    .audio-player-label .icon {
+      font-size: 1.1rem;
+    }
+    .audio-player audio {
+      width: 100%;
+      height: 40px;
+      border-radius: 8px;
+    }
+    .audio-placeholder {
+      background: rgba(46, 62, 36, 0.04);
+      border: 2px dashed rgba(46, 62, 36, 0.12);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #8a8a7a;
+      font-style: italic;
+    }
+
+    /* Content sections within lessons */
+    .lesson-content {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 4px rgba(46, 62, 36, 0.06);
+      border: 1px solid rgba(46, 62, 36, 0.06);
+    }
+    .lesson-content h3 {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #2E3E24;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lesson-content h3 .icon {
+      font-size: 1rem;
+    }
+    .lesson-content h4 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin: 18px 0 8px;
+    }
+    .lesson-content h4:first-of-type {
+      margin-top: 0;
+    }
+    .lesson-content p {
+      font-size: 0.88rem;
+      color: #555549;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+    .lesson-content p:last-child {
+      margin-bottom: 0;
+    }
+    .lesson-content ul, .lesson-content ol {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+    .lesson-content li {
+      font-size: 0.86rem;
+      color: #555549;
+      line-height: 1.7;
+      margin-bottom: 6px;
+    }
+    .lesson-content li:last-child {
+      margin-bottom: 0;
+    }
+    .lesson-content strong {
+      color: #2E3E24;
+    }
+    .lesson-content em {
+      color: #AD9846;
+    }
+    .lesson-content blockquote {
+      border-left: 3px solid #AD9846;
+      padding: 12px 16px;
+      margin: 16px 0;
+      background: rgba(173, 152, 70, 0.04);
+      border-radius: 0 8px 8px 0;
+    }
+    .lesson-content blockquote p {
+      font-style: italic;
+      color: #555549;
+      margin-bottom: 0;
+    }
+
+    /* Download buttons */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: rgba(173, 152, 70, 0.1);
+      color: #AD9846;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.15s;
+      margin-top: 8px;
+    }
+    .download-btn:hover {
+      background: rgba(173, 152, 70, 0.18);
+    }
+
+    /* Homework callout */
+    .homework-callout {
+      background: rgba(46, 62, 36, 0.04);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-top: 16px;
+      border: 1px solid rgba(46, 62, 36, 0.08);
+    }
+    .homework-callout h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .homework-callout p {
+      font-size: 0.85rem;
+      color: #555549;
+      line-height: 1.65;
+    }
+
+    /* Divider */
+    .section-divider {
+      text-align: center;
+      padding: 32px 0 8px;
+      font-size: 1.3rem;
+      color: rgba(173, 152, 70, 0.3);
+      letter-spacing: 0.4em;
+    }
+
+    /* Support box */
+    .support-box {
+      background: #2E3E24;
+      color: #FAF8EB;
+      border-radius: 18px;
+      padding: 36px 28px;
+      text-align: center;
+      margin: 36px 0 48px;
+    }
+    .support-box h3 {
+      font-family: 'The Bloomington', cursive;
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    .support-box p {
+      font-size: 0.88rem;
+      color: #C6C8BB;
+      line-height: 1.65;
+      margin-bottom: 4px;
+    }
+    .support-box a {
+      color: #AD9846;
+      text-decoration: none;
+    }
+    .support-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .site-nav { padding: 12px 16px; }
+      .course-header { padding: 36px 16px 52px; }
+      .course-header h1 { font-size: 2.6rem; }
+      .lesson-block h2 { font-size: 1.25rem; }
+      .lesson-content { padding: 20px 18px; }
+      .audio-player { padding: 16px 18px; }
+      .module-nav a { padding: 6px 12px; font-size: 0.72rem; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:10000;padding:8px 16px;background:#2E3E24;color:#FAF8EB;font-family:Montserrat,sans-serif;font-size:0.9rem;text-decoration:none;border-radius:0 0 8px 0" onfocus="this.style.cssText='position:fixed;left:0;top:0;width:auto;height:auto;overflow:visible;z-index:10000;padding:8px 16px;background:#2E3E24;color:#FAF8EB;font-family:Montserrat,sans-serif;font-size:0.9rem;text-decoration:none;border-radius:0 0 8px 0'" onblur="this.style.cssText='position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden'">Skip to content</a>
+
+  <!-- Nav -->
+  <nav class="site-nav">
+    <a href="/"><img class="nav-logo" src="logo-beige.webp" alt="Ali Imperiale" height="32"></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="https://www.youtube.com/@aliimperiale" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://www.patreon.com/c/aliimperiale" target="_blank" rel="noopener">Patreon</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header class="course-header" id="main-content">
+    <span class="welcome-badge">Welcome — You're In</span>
+    <h1>Open &amp; Honest</h1>
+    <p class="welcome-text">Your course is ready. Listen at your own pace, download the worksheets, and come back anytime.</p>
+  </header>
+
+  <!-- Module navigation -->
+  <div class="container">
+    <nav class="module-nav" aria-label="Course modules">
+      <div class="module-nav-inner">
+        <a href="#intro">Intro</a>
+        <a href="#module-1">Module 1</a>
+        <a href="#module-2">Module 2</a>
+        <a href="#module-3">Module 3</a>
+        <a href="#module-4">Module 4</a>
+        <a href="#module-5">Module 5</a>
+        <a href="#conclusion">Conclusion</a>
+      </div>
+    </nav>
+
+    <!-- ============================================
+         INTRO
+         ============================================ -->
+    <div class="lesson-block" id="intro">
+      <span class="module-label">Introduction</span>
+      <h2>Welcome to Open &amp; Honest</h2>
+      <p class="lesson-goal">Before we start, let's talk about why this exists and what you're actually getting into.</p>
+
+      <!-- Audio player -->
+      <div class="audio-player">
+        <div class="audio-player-label">
+          <span class="icon">&#127911;</span> Listen to the Introduction
+        </div>
+        <audio controls preload="metadata">
+          <source src="audio/intro.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <!-- Lesson content -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#128214;</span> Lesson Notes</h3>
+
+        <h4>Who We Are</h4>
+        <p>I'm Ali. I've been with my partner for almost 5 years. We're a couple that practices ethical non-monogamy. We've travelled to over 30 countries, lived in 3 (Canada, Mexico, and Thailand), built a life most people don't understand, and navigated the uncomfortable, beautiful, and chaotic world of open relationships together.</p>
+
+        <h4>Why This Course Exists</h4>
+        <p>When we first opened our relationship, there was no one we could turn to who spoke our language. The books were too clinical. Reddit was too chaotic. Therapists were helpful, but they hadn't lived it.</p>
+        <p>So we figured it out on our own. Through trial, error, jealousy, breakthroughs, and a lot of hard conversations. This course is the distilled version of everything we've learned.</p>
+
+        <h4>What This Course Is</h4>
+        <ul>
+          <li>A practical, step-by-step guide for couples who want to explore ethical non-monogamy.</li>
+          <li>Real scripts you can actually use.</li>
+          <li>Worksheets you can fill out together.</li>
+          <li>Stories from our own experience — what worked, what failed, and why.</li>
+        </ul>
+
+        <h4>What This Course Is Not</h4>
+        <ul>
+          <li>This is not therapy. We're not therapists.</li>
+          <li>This is not an excuse to cheat. If you're looking for permission to sneak around, this isn't for you.</li>
+          <li>This is not one-size-fits-all. We'll give you frameworks, but you and your partner design the rules.</li>
+        </ul>
+
+        <h4>How to Use This Course</h4>
+        <p>Listen together, or alone first. Do the exercises. Pause when you need to. Some of these topics will bring up big feelings — that's normal. Go at your pace.</p>
+
+        <h4>Let's Go</h4>
+        <p>By the end of this course, you'll have a shared agreement, a jealousy protocol, a vetting system, and the confidence to stop whispering about this stuff and start living it.</p>
+      </div>
+    </div>
+
+    <div class="section-divider">&#183; &#183; &#183;</div>
+
+    <!-- ============================================
+         MODULE 1
+         ============================================ -->
+    <div class="lesson-block" id="module-1">
+      <span class="module-label">Module 1</span>
+      <h2>The Blueprint &mdash; Designing Your Relationship</h2>
+      <p class="lesson-goal">Move from "we're just winging it" to "we have an agreement."</p>
+
+      <!-- Audio player -->
+      <div class="audio-player">
+        <div class="audio-player-label">
+          <span class="icon">&#127911;</span> Listen to Module 1
+        </div>
+        <audio controls preload="metadata">
+          <source src="audio/module-1.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <!-- Audio lesson content -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#127911;</span> Audio Lesson: Rules vs. Values</h3>
+
+        <p>Most couples who try to open their relationship start with rules. Pages of rules. "You can't sleep with anyone who lives in our city. You can't sleep with someone more than twice. You can't stay the night." And on and on.</p>
+
+        <p>Here's the problem: rules are built on fear. They're designed to control outcomes. And the moment life throws you something unexpected — which it will — the rules break. And then both of you feel betrayed, even if no one technically did anything wrong.</p>
+
+        <p>We tried the rules-based approach. It didn't work. What works? Values.</p>
+
+        <h4>The Value System</h4>
+        <p>Instead of 30 rigid rules, have 3-5 core values that guide your behavior. For example:</p>
+        <ul>
+          <li><strong>Transparency:</strong> We tell each other what's happening — before, during, or after.</li>
+          <li><strong>Safety:</strong> We always use protection. No exceptions.</li>
+          <li><strong>Priority:</strong> Our relationship comes first. If something is hurting us, we pause.</li>
+        </ul>
+        <p>These values are flexible. They evolve. They don't break the first time someone catches feelings or changes their mind about a rule.</p>
+      </div>
+
+      <!-- Exercise: Hard Limits Audit -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#9998;</span> Exercise: The "Hard Limits" Audit</h3>
+        <p>This is your first exercise as a couple. Here's how it works:</p>
+        <ol>
+          <li><strong>Sit down separately.</strong> Don't talk to each other yet.</li>
+          <li><strong>Write your 3 absolute hard limits.</strong> These are the things that are non-negotiable. Examples: No exes. No mutual friends. Safe sex mandatory. No sleepovers.</li>
+          <li><strong>Come back together.</strong> Share your lists.</li>
+          <li><strong>Find the overlap.</strong> Whatever you both agree on — those are your only rigid rules. Everything else is negotiable.</li>
+        </ol>
+
+        <blockquote>
+          <p>The point: You don't need 50 rules. You need 3-5 that you both genuinely agree on, grounded in your shared values.</p>
+        </blockquote>
+      </div>
+
+      <!-- Download: Designer Relationship Worksheet -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#128196;</span> Download: "Designer Relationship" Worksheet</h3>
+        <p>This worksheet helps you define exactly what kind of open relationship you are. Because "open" means different things to different people.</p>
+        <p>What you'll fill out:</p>
+        <ul>
+          <li><strong>Relationship Style:</strong> Monogamish, Swinger, Open, Don't Ask Don't Tell.</li>
+          <li><strong>Communication Level:</strong> Tell everything before, tell everything after, tell only the basics, don't tell at all.</li>
+          <li><strong>Boundaries Spectrum:</strong> Same room only, separate rooms, solo dates allowed, overnight stays.</li>
+        </ul>
+
+        <a href="/worksheets/hard-limits-audit.html" class="download-btn" target="_blank">&#9998; Open: Hard Limits Audit Worksheet</a>
+        <a href="/worksheets/hard-limits-audit.pdf" class="download-btn" download>&#128196; Download PDF: Hard Limits Audit</a>
+        <a href="/worksheets/designer-relationship.html" class="download-btn" target="_blank">&#9998; Open: Designer Relationship Worksheet</a>
+        <a href="/worksheets/designer-relationship.pdf" class="download-btn" download>&#128196; Download PDF: Designer Relationship</a>
+      </div>
+
+      <div class="homework-callout">
+        <h4>&#128197; Homework</h4>
+        <p>Complete the Hard Limits Audit and Designer Relationship Worksheet together before moving to Module 2. Don't skip this — it's the foundation for everything else.</p>
+      </div>
+    </div>
+
+    <div class="section-divider">&#183; &#183; &#183;</div>
+
+    <!-- ============================================
+         MODULE 2
+         ============================================ -->
+    <div class="lesson-block" id="module-2">
+      <span class="module-label">Module 2</span>
+      <h2>The Pitch &mdash; How to Open Up</h2>
+      <p class="lesson-goal">Have "The Conversation" without a fight or a breakup.</p>
+
+      <!-- Audio player -->
+      <div class="audio-player">
+        <div class="audio-player-label">
+          <span class="icon">&#127911;</span> Listen to Module 2
+        </div>
+        <audio controls preload="metadata">
+          <source src="audio/module-2.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <!-- Audio lesson content -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#127911;</span> Audio Lesson: The Scary Conversation</h3>
+
+        <p>This is the part most people dread. How do you tell your partner you want to open the relationship? How do you bring it up without them thinking you're unhappy, that they're not enough, or that you've already cheated?</p>
+
+        <p>Here's the truth: there's no perfect way to say it. But there's a wrong way — and we've seen it happen a lot. Don't bring it up during a fight. Don't blurt it out after drinks. Don't casually mention it and then say, "Just kidding, unless you're into it." All of those damage trust before the conversation even starts.</p>
+
+        <h4>How Ali Brought It Up</h4>
+        <p>I brought this up to my partner about a year into our relationship. I didn't come with an ultimatum. I came with curiosity. I said: "Hey, I've been thinking about something, and I want to share it with you because I value our honesty."</p>
+        <p>That one sentence changed everything. She didn't make it about what she wanted to do. She made it about what she valued — honesty. And that opened the door.</p>
+
+        <h4>The 3-Step Script</h4>
+        <p>If you're the one bringing it up, follow this structure:</p>
+      </div>
+
+      <!-- Exercise: The 3-Step Script -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#9998;</span> The 3-Step Script</h3>
+        <p>Use these exact steps when you sit down with your partner:</p>
+
+        <h4>Step 1 — Validate</h4>
+        <blockquote><p>"I love our life. I'm incredibly attracted to you. Nothing about this conversation means I'm unhappy."</p></blockquote>
+
+        <h4>Step 2 — Express (Use "I" Statements)</h4>
+        <blockquote><p>"I feel like I have a side of me that wants to explore [X]. Not because you aren't enough — but because I want to experience [Y] and I want us to do it together."</p></blockquote>
+
+        <h4>Step 3 — The Safety Net</h4>
+        <blockquote><p>"I only want to do this if it brings us closer. If at any point it hurts us, we stop. You are my priority."</p></blockquote>
+
+        <p>That's it. Three steps. Validate. Express. Protect.</p>
+        <p>After you say your piece, shut up. Seriously. Let them process. Don't fill the silence. Don't over-explain. Let them respond.</p>
+      </div>
+
+      <!-- What if they say no -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#128172;</span> What If They Say No?</h3>
+        <p>They might. And that's okay. If your partner says no, it's not a rejection of you — it's a boundary. Respect it. Don't push. Don't sulk. Say: "Thank you for being honest. I respect that completely. I'd rather have this conversation and know where we stand than never bring it up."</p>
+        <p>Sometimes "no" becomes "maybe" six months later. Sometimes it doesn't. Either way, you've planted a seed of honesty, and that matters.</p>
+      </div>
+
+      <div class="homework-callout">
+        <h4>&#128197; Homework</h4>
+        <p>Schedule a "State of the Union" date night. No phones, no TV. Bring the 3-Step Script, either written or memorized. This is the most important conversation you'll have in this course.</p>
+      </div>
+    </div>
+
+    <div class="section-divider">&#183; &#183; &#183;</div>
+
+    <!-- ============================================
+         MODULE 3
+         ============================================ -->
+    <div class="lesson-block" id="module-3">
+      <span class="module-label">Module 3</span>
+      <h2>The Safety Net &mdash; Jealousy &amp; Aftercare</h2>
+      <p class="lesson-goal">Creating a protocol for when feelings get hurt.</p>
+
+      <!-- Audio player -->
+      <div class="audio-player">
+        <div class="audio-player-label">
+          <span class="icon">&#127911;</span> Listen to Module 3
+        </div>
+        <audio controls preload="metadata">
+          <source src="audio/module-3.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <!-- Audio lesson: Jealousy -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#127911;</span> Audio Lesson: The Jealousy First-Aid Kit</h3>
+
+        <p>Jealousy. Let's talk about it. Because if you open your relationship, it will show up. Maybe on the first night. Maybe three months in. But it will come. And if you don't have a plan for it, it will destroy everything.</p>
+
+        <p>Most people treat jealousy like a red flag. "If I feel jealous, it means we shouldn't be doing this." Wrong. Jealousy is a check engine light. It's telling you something needs attention. It's not telling you to stop driving.</p>
+
+        <h4>The 3 Types of Jealousy</h4>
+        <ul>
+          <li><strong>Fear of Replacement:</strong> "They're going to leave me for this person."</li>
+          <li><strong>Fear of Missing Out:</strong> "They're having more fun than me."</li>
+          <li><strong>Ego Jealousy:</strong> "I don't like the idea of someone else touching my partner."</li>
+        </ul>
+
+        <p>Each one has a different root. And each one has a different solution. The first step is always the same: name it. Don't say "I'm jealous." Say "I feel like I'm being replaced" or "I feel left out." That gives your partner something to work with.</p>
+      </div>
+
+      <!-- The "Gremlin" Protocol -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#9998;</span> The "Gremlin" Protocol</h3>
+        <p>This is your emergency protocol for when jealousy hits in real time. It's simple, and it works.</p>
+
+        <h4>Step 1: The Code Word</h4>
+        <p>Pick a code word or phrase that means "I'm feeling jealous and I need reassurance." It can be anything — "Monkey," "Red light," "SOS." Something that doesn't sound dramatic but signals that you need a check-in.</p>
+
+        <h4>Step 2: Partner's Response</h4>
+        <p>When you hear the code word:</p>
+        <ul>
+          <li>Pause what you're doing.</li>
+          <li>Reassure. Not defensively — genuinely.</li>
+          <li>Don't say: "You're being ridiculous." Do say: "I hear you. I'm right here. What do you need?"</li>
+        </ul>
+
+        <h4>Step 3: Your Job</h4>
+        <p>When you say the code word:</p>
+        <ul>
+          <li>Identify the specific fear. Not "I'm jealous" — but "I feel like I'm being replaced" or "I feel left out of something."</li>
+          <li>Ask for what you need: "Can you text me when you're on your way home?" or "I need 10 minutes of just us before we talk about it."</li>
+        </ul>
+      </div>
+
+      <!-- The Reconnection Ritual -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#9998;</span> The Reconnection Ritual (Aftercare)</h3>
+        <p>After one of you has a date or experience with someone else, what happens next? This is where most couples mess up. They either ignore it or over-talk it.</p>
+        <p>Create a Reconnection Ritual — a set of actions you always do after a date with someone else. Examples:</p>
+        <ul>
+          <li>10 minutes of cuddling, no talking.</li>
+          <li>A shower together.</li>
+          <li>"Don't tell me details until morning."</li>
+          <li>A specific meal you cook together.</li>
+        </ul>
+        <p>The ritual isn't about controlling the narrative. It's about coming back to each other. It says: "No matter what happened out there, this is home."</p>
+
+        <a href="/worksheets/safety-net.html" class="download-btn" target="_blank">&#9998; Open: Safety Net Worksheet</a>
+        <a href="/worksheets/safety-net.pdf" class="download-btn" download>&#128196; Download PDF: Safety Net</a>
+      </div>
+
+      <div class="homework-callout">
+        <h4>&#128197; Homework</h4>
+        <p>Choose your code word. Define your Reconnection Ritual. Write them down together. This is your emotional insurance policy.</p>
+      </div>
+    </div>
+
+    <div class="section-divider">&#183; &#183; &#183;</div>
+
+    <!-- ============================================
+         MODULE 4
+         ============================================ -->
+    <div class="lesson-block" id="module-4">
+      <span class="module-label">Module 4</span>
+      <h2>The Hunt &mdash; Apps &amp; Finding Partners</h2>
+      <p class="lesson-goal">How to actually find people without being creepy or getting scammed.</p>
+
+      <!-- Audio player -->
+      <div class="audio-player">
+        <div class="audio-player-label">
+          <span class="icon">&#127911;</span> Listen to Module 4
+        </div>
+        <audio controls preload="metadata">
+          <source src="audio/module-4.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <!-- Audio lesson: The Meat Market -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#127911;</span> Audio Lesson: The Meat Market</h3>
+
+        <p>You've had the conversation. You've set your values. You've got a jealousy protocol. Now the next question is: where do you actually find people?</p>
+
+        <h4>The Apps</h4>
+        <ul>
+          <li><strong>Feeld:</strong> The gold standard for non-monogamous couples. It's designed for this. You can link profiles, set preferences, and filter by what you're looking for.</li>
+          <li><strong>Tinder:</strong> Still works, but you have to be clear in your bio. If you don't mention you're in a relationship, you're starting with a lie.</li>
+          <li><strong>3Fun, #open:</strong> Niche apps that work well in bigger cities but can be dead in smaller ones.</li>
+          <li><strong>Local Apps:</strong> Wherever you're traveling, check what's popular locally. In some countries, there are apps you've never heard of that are way more active than Tinder.</li>
+        </ul>
+
+        <h4>Couples Profile vs. Separate Profiles</h4>
+        <p>This is a big one. Many couples create a single profile — "John &amp; Jane." Don't do that. Joint profiles tend to feel impersonal and sometimes predatory. Instead, create two separate profiles, and mention each other in the bio. Link your profiles on Feeld. On Tinder, add a photo together. This way, the third person gets to talk to a real individual, not a committee.</p>
+      </div>
+
+      <!-- The Profile Audit -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#9998;</span> The Profile Audit</h3>
+        <p>Your profile is your first impression. Make it count.</p>
+
+        <h4>Photos</h4>
+        <ul>
+          <li><strong>Photo 1:</strong> Clear face shot. Smiling. Good lighting.</li>
+          <li><strong>Photo 2:</strong> Full body shot. No sunglasses. Show your vibe.</li>
+          <li><strong>Photo 3:</strong> Lifestyle shot — traveling, cooking, doing something interesting. Shows personality.</li>
+        </ul>
+
+        <h4>Bio</h4>
+        <p>State exactly what you're looking for. Be specific. The more specific, the better the matches. Examples:</p>
+        <ul>
+          <li>"ENM couple, looking for a fun third for travel adventures. We're clean, communicative, and drama-free."</li>
+          <li>"Ethically non-monogamous. In a relationship with [name]. She knows and approves. Looking for casual connections."</li>
+        </ul>
+        <p>Don't be vague. Vague profiles attract vague people.</p>
+      </div>
+
+      <!-- The 3-Question Vetting Screen -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#9998;</span> The 3-Question Vetting Screen</h3>
+        <p>Before meeting anyone, ask these three questions:</p>
+        <ol>
+          <li><strong>"Have you played with a couple/person in a relationship before?"</strong> — Experience matters. Someone who's new to this might catch feelings or not respect boundaries.</li>
+          <li><strong>"What are your boundaries?"</strong> — If they can't answer this clearly, that's a red flag.</li>
+          <li><strong>"When was your last test?"</strong> — Non-negotiable. If they dodge this, unmatch.</li>
+        </ol>
+        <p>Three questions. That's it. If they pass all three, you can move to a casual meet (coffee, drink — always in public first).</p>
+      </div>
+
+      <div class="homework-callout">
+        <h4>&#128197; Homework</h4>
+        <p>Set up your profiles (separate ones) on at least one app. Use the Profile Audit as your checklist. Have your partner review your profile before going live.</p>
+      </div>
+    </div>
+
+    <div class="section-divider">&#183; &#183; &#183;</div>
+
+    <!-- ============================================
+         MODULE 5
+         ============================================ -->
+    <div class="lesson-block" id="module-5">
+      <span class="module-label">Module 5</span>
+      <h2>The Lifestyle &mdash; Travel &amp; Logistics</h2>
+      <p class="lesson-goal">Executing this while on the road &mdash; the Ali special.</p>
+
+      <!-- Audio player -->
+      <div class="audio-player">
+        <div class="audio-player-label">
+          <span class="icon">&#127911;</span> Listen to Module 5
+        </div>
+        <audio controls preload="metadata">
+          <source src="audio/module-5.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <!-- Audio lesson: Solo vs. Duo Play -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#127911;</span> Audio Lesson: Solo vs. Duo Play</h3>
+
+        <p>This module is the one that's specific to us — and to anyone who travels as a couple while living the lifestyle. Most ENM advice assumes you're in one city, with one routine. But we've done this across 30+ countries — while living in Canada, Mexico, and Thailand — and the logistics change everything.</p>
+
+        <h4>Solo Play (Hall Passes)</h4>
+        <p>This is when one partner goes out solo — a date, a hookup, a night out — while the other stays home or does their own thing. It's the most common form for travel couples.</p>
+        <p>Ground rules for solo play:</p>
+        <ul>
+          <li>Always share your live location.</li>
+          <li>Set a check-in time (e.g., "Text me by 11 PM").</li>
+          <li>Have a safe word that means "come get me" — no questions asked.</li>
+          <li>Debrief the next day using the Reconnection Ritual from Module 3.</li>
+        </ul>
+
+        <h4>Duo Play (Together)</h4>
+        <p>This is when both of you engage together — threesomes, clubs, parties. It's a completely different dynamic and requires a different set of rules.</p>
+        <p>Ground rules for duo play:</p>
+        <ul>
+          <li>Eye contact check-ins: look at your partner every 15-20 minutes. A smile means "I'm good." A raised eyebrow means "check on me."</li>
+          <li>Tap-out signal: a hand on the shoulder means "I want to leave — now."</li>
+          <li>Never split up at a venue unless you've both explicitly agreed.</li>
+          <li>Debrief together after. This is non-negotiable.</li>
+        </ul>
+      </div>
+
+      <!-- The "Location Scout" Technique -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#9998;</span> The "Location Scout" Technique</h3>
+        <p>You're in a new city. How do you find the lifestyle scene?</p>
+
+        <h4>Step 1: Research Before You Land</h4>
+        <p>Google "[city name] swinger clubs" or "[city name] lifestyle clubs." Check Feeld activity in the area. Look at Reddit threads for recommendations.</p>
+
+        <h4>Step 2: Safety Protocol</h4>
+        <ul>
+          <li>Share live location with each other at all times.</li>
+          <li>Set check-in times.</li>
+          <li>Have a "get-out" plan — know your exit route, have cash for a taxi, keep your phone charged.</li>
+          <li>Never leave your drink unattended.</li>
+        </ul>
+      </div>
+
+      <!-- Download: Travel Safety Checklist -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#128196;</span> Download: Travel Safety Checklist</h3>
+        <p>Your go-bag checklist for lifestyle travel:</p>
+        <ul>
+          <li>Condoms (your own — don't rely on anyone else's)</li>
+          <li>Cash (always have local currency)</li>
+          <li>Burner phone or secondary SIM info</li>
+          <li>Local emergency numbers</li>
+          <li>Uber/taxi app installed and ready</li>
+          <li>Hotel address written down (in case your phone dies)</li>
+          <li>Location sharing turned on with your partner</li>
+        </ul>
+
+        <a href="/worksheets/travel-safety-checklist.html" class="download-btn" target="_blank">&#9998; Open: Travel Safety Checklist</a>
+        <a href="/worksheets/travel-safety-checklist.pdf" class="download-btn" download>&#128196; Download PDF: Travel Safety Checklist</a>
+      </div>
+
+      <div class="homework-callout">
+        <h4>&#128197; Homework</h4>
+        <p>If you're planning a trip, use the Location Scout technique for your next destination. Set up your solo play ground rules and duo play signals before you leave.</p>
+      </div>
+    </div>
+
+    <div class="section-divider">&#183; &#183; &#183;</div>
+
+    <!-- ============================================
+         CONCLUSION
+         ============================================ -->
+    <div class="lesson-block" id="conclusion">
+      <span class="module-label">Conclusion</span>
+      <h2>Where Do You Go From Here?</h2>
+      <p class="lesson-goal">The closing chapter &mdash; and the beginning of everything else.</p>
+
+      <!-- Audio player -->
+      <div class="audio-player">
+        <div class="audio-player-label">
+          <span class="icon">&#127911;</span> Listen to the Conclusion
+        </div>
+        <audio controls preload="metadata">
+          <source src="audio/conclusion.m4a" type="audio/mp4">
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+
+      <!-- Conclusion content -->
+      <div class="lesson-content">
+        <h3><span class="icon">&#128214;</span> Final Notes</h3>
+
+        <h4>What You've Built</h4>
+        <p>If you've done the work — genuinely done it — here's what you now have:</p>
+        <ul>
+          <li>A <strong>Designer Relationship</strong> — custom-built by both of you, not copied from someone else's Instagram.</li>
+          <li>A <strong>Jealousy First-Aid Kit</strong> — a code word, a protocol, and a Reconnection Ritual that keeps you anchored.</li>
+          <li>A <strong>3-Step Script</strong> — for having the hardest conversation in your relationship without destroying it.</li>
+          <li>A <strong>Vetting System</strong> — so you stop attracting chaos and start finding people who respect your dynamic.</li>
+          <li>A <strong>Travel Playbook</strong> — because doing this on the road requires its own skill set.</li>
+        </ul>
+
+        <h4>Your Relationship Is Not "Normal"</h4>
+        <p>Good. "Normal" was never the goal. The goal was honest. And if you've made it through this course, you're more honest with your partner than 95% of couples who claim to be monogamous.</p>
+        <p>This isn't the end. It's the beginning. Your relationship is a living thing — it will evolve. Revisit these modules when things shift. Redo the worksheets when your boundaries change. Use the scripts again when a new conversation comes up.</p>
+
+        <h4>One Last Thing</h4>
+        <p>We're proud of you. Seriously. Most people are too afraid to even think about this stuff, let alone build a system around it. You did. That takes courage, vulnerability, and a hell of a lot of trust in each other.</p>
+        <p>Now go live it.</p>
+        <p>With love,<br>Ali</p>
+      </div>
+    </div>
+
+    <!-- Support box -->
+    <div class="support-box">
+      <h3>Need Help?</h3>
+      <p>Questions about the course? Something not working?</p>
+      <p>Email us at <a href="mailto:ali@aliimperiale.com">ali@aliimperiale.com</a> &mdash; we'll get back to you.</p>
+    </div>
+  </div>
+
+  <!-- Footer (from shared.css) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo-beige.webp" alt="Ali Imperiale" height="24">
+        <p>Casual chats about sex, relationships &amp; other fun stuff.</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>Content</h4>
+          <ul>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/reads.html">Reads</a></li>
+            <li><a href="https://www.youtube.com/@aliimperiale" target="_blank" rel="noopener">YouTube</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.patreon.com/c/aliimperiale" target="_blank" rel="noopener">Patreon</a></li>
+            <li><a href="https://www.instagram.com/aliimperiale/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@aliimperiale" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Course</h4>
+          <ul>
+            <li><a href="/open-and-honest.html">Open &amp; Honest</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Ali Imperiale &middot; <a href="mailto:ali@aliimperiale.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top">&#8593;</button>
+
+  <script src="mobile-nav.js" defer></script>
+  <script src="back-to-top.js" defer></script>
+  <script>
+    // Smooth scroll for module nav
+    document.querySelectorAll('.module-nav a').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+/* Shared styles — Ali Imperiale
+   Used across all pages: base, fonts, footer, hamburger menu, related posts */
+
+/* Brand Fonts */
+@font-face {
+  font-family: 'New Standard';
+  src: url('/fonts/NewStandard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'The Bloomington';
+  src: url('/fonts/TheBloomington-Script.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #FAF8EB;
+  color: #2E3E24;
+  min-height: 100vh;
+}
+
+/* Footer */
+.site-footer {
+  background: #2E3E24;
+  color: #C6C8BB;
+  padding: 48px 24px 28px;
+}
+
+.footer-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.footer-brand img {
+  height: 28px;
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.footer-brand p {
+  font-size: 0.8rem;
+  color: #8a8a7a;
+  line-height: 1.5;
+}
+
+.footer-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+
+.footer-col h4 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #AD9846;
+  margin-bottom: 14px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 10px;
+}
+
+.footer-col a {
+  color: #C6C8BB;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.15s;
+}
+
+.footer-col a:hover {
+  color: #FAF8EB;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(198, 200, 187, 0.15);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #8a8a7a;
+}
+
+.footer-bottom a {
+  color: #AD9846;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* Hamburger Menu */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+  z-index: 101;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #C6C8BB;
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.nav-hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .nav-hamburger {
+    display: block;
+  }
+  .site-nav .nav-links,
+  nav .nav-links,
+  .nav .nav-links {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #2E3E24;
+    flex-direction: column;
+    padding: 12px 24px 20px;
+    gap: 0;
+    border-top: 1px solid rgba(198, 200, 187, 0.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .site-nav .nav-links.nav-open,
+  nav .nav-links.nav-open,
+  .nav .nav-links.nav-open {
+    display: flex !important;
+  }
+  .site-nav .nav-links li,
+  nav .nav-links li,
+  .nav .nav-links li {
+    border-bottom: 1px solid rgba(198, 200, 187, 0.08);
+  }
+  .site-nav .nav-links li:last-child,
+  nav .nav-links li:last-child,
+  .nav .nav-links li:last-child {
+    border-bottom: none;
+  }
+  .site-nav .nav-links a,
+  nav .nav-links a,
+  .nav .nav-links a {
+    display: block;
+    padding: 12px 0;
+    font-size: 0.95rem;
+  }
+  .site-nav,
+  nav,
+  .nav {
+    position: relative;
+  }
+}
+
+/* Related Posts */
+.related-posts {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px 48px;
+}
+.related-posts h2 {
+  font-family: 'The Bloomington', cursive;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #2E3E24;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.related-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #2E3E24;
+  box-shadow: 0 1px 4px rgba(46, 62, 36, 0.06);
+  border: 1px solid rgba(46, 62, 36, 0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.related-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 62, 36, 0.1);
+}
+.related-thumb {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+.related-title {
+  padding: 12px 14px;
+  font-family: 'New Standard', Georgia, serif;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .related-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .related-thumb {
+    height: 160px;
+  }
+  .related-posts h2 {
+    font-size: 1.7rem;
+  }
+}
+
+/* Back to Top */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #2E3E24;
+  color: #FAF8EB;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.15s ease;
+  z-index: 90;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.back-to-top.visible {
+  opacity: 0.85;
+  visibility: visible;
+}
+.back-to-top:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Footer mobile */
+@media (max-width: 480px) {
+  .footer-columns {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* ============================================
+   Large screens (1200px+)
+   Widen layout containers for 1440p / 4K displays
+   ============================================ */
+@media (min-width: 1200px) {
+  /* Footer */
+  .footer-inner {
+    max-width: 1100px;
+  }
+
+  /* Related posts */
+  .related-posts {
+    max-width: 1100px;
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+
+  .related-thumb {
+    height: 150px;
+  }
+
+  /* Site nav — widen inner content */
+  .site-nav,
+  nav {
+    padding-left: calc((100% - 1100px) / 2 + 24px);
+    padding-right: calc((100% - 1100px) / 2 + 24px);
+  }
+
+  /* Blog index — wider grid with vertical cards */
+  .blog-grid {
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .blog-card {
+    flex-direction: column;
+  }
+
+  .blog-card .thumb {
+    width: 100% !important;
+    height: 200px !important;
+  }
+
+  .blog-filters {
+    max-width: 1100px;
+  }
+
+  /* Homepage container */
+  .container {
+    max-width: 1100px;
+  }
+
+  /* Reads page — wider grid, 2-column */
+  .books-grid {
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* Blog post article — keep text readable but widen wrapper */
+  .article-container {
+    max-width: 760px;
+  }
+
+  .breadcrumb {
+    max-width: 760px;
+  }
+
+  /* Wider article header for visual impact */
+  .article-header h1 {
+    max-width: 700px;
+  }
+
+  .article-subtitle {
+    max-width: 580px;
+  }
+
+  /* Blog preview cards — 2-column on homepage */
+  .blog-preview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+/* Extra-large screens (1800px+) — 4K */
+@media (min-width: 1800px) {
+  .footer-inner,
+  .related-posts,
+  .blog-grid,
+  .blog-filters,
+  .books-grid,
+  .container {
+    max-width: 1320px;
+  }
+
+  .site-nav,
+  nav {
+    padding-left: calc((100% - 1320px) / 2 + 24px);
+    padding-right: calc((100% - 1320px) / 2 + 24px);
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .blog-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .blog-card .thumb {
+    height: 220px !important;
+  }
+
+  .article-container {
+    max-width: 800px;
+  }
+
+  .breadcrumb {
+    max-width: 800px;
+  }
+}

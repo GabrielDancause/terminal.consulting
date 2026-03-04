@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Traveler's Guide to Navigating Nightlife Culture Abroad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="../../shared.css">
+  <link rel="stylesheet" href="../../shared.css">
+  <style>
+body {
+      font-family: 'Montserrat', sans-serif;
+      color: #2E3E24;
+      background: #fff;
+      line-height: 1.7;
+      font-size: 11pt;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 48px;
+    }
+
+    /* Cover */
+    .cover {
+      text-align: center;
+      padding: 100px 40px 80px;
+      page-break-after: always;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      font-size: 9pt;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #AD9846;
+      margin-bottom: 24px;
+    }
+
+    .cover h1 {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 28pt;
+      font-weight: 400;
+      line-height: 1.25;
+      color: #2E3E24;
+      margin-bottom: 20px;
+    }
+
+    .cover .subtitle {
+      font-size: 12pt;
+      color: #555549;
+      max-width: 400px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .cover .author {
+      font-size: 10pt;
+      color: #8a8a7a;
+    }
+
+    .cover .author strong {
+      color: #2E3E24;
+      font-weight: 600;
+    }
+
+    .cover .brand-line {
+      width: 50px;
+      height: 2px;
+      background: #AD9846;
+      margin: 30px auto;
+      border-radius: 1px;
+    }
+
+    .cover .url {
+      font-size: 9pt;
+      color: #AD9846;
+      letter-spacing: 0.02em;
+    }
+
+    /* Sections */
+    h2 {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 16pt;
+      font-weight: 400;
+      color: #2E3E24;
+      margin: 36px 0 16px;
+      line-height: 1.3;
+    }
+
+    h3 {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 12pt;
+      font-weight: 400;
+      color: #422626;
+      margin: 24px 0 10px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      font-size: 10.5pt;
+    }
+
+    ul, ol {
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      font-size: 10.5pt;
+    }
+
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .checklist li {
+      padding-left: 28px;
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #AD9846;
+      border-radius: 3px;
+      background: #fff;
+    }
+
+    .pull-quote {
+      border-left: 3px solid #AD9846;
+      padding: 12px 0 12px 20px;
+      margin: 24px 0;
+      font-style: italic;
+      color: #422626;
+      font-size: 11pt;
+      line-height: 1.65;
+    }
+
+    .section-divider {
+      width: 40px;
+      height: 2px;
+      background: #AD9846;
+      margin: 36px 0;
+      border-radius: 1px;
+    }
+
+    .section-number {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background: #2E3E24;
+      color: #FAF8EB;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      font-size: 10pt;
+      font-weight: 600;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    /* Footer */
+    .guide-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #e8e6d8;
+      text-align: center;
+      font-size: 9pt;
+      color: #8a8a7a;
+    }
+
+    .guide-footer a {
+      color: #AD9846;
+      text-decoration: none;
+    }
+
+    /* About section */
+    .about-box {
+      background: #FAF8EB;
+      border-radius: 12px;
+      padding: 28px;
+      margin-top: 36px;
+      text-align: center;
+    }
+
+    .about-box h3 {
+      margin-top: 0;
+      color: #2E3E24;
+    }
+
+    .about-box p {
+      font-size: 10pt;
+      color: #555549;
+      max-width: 480px;
+      margin: 0 auto 12px;
+    }
+
+    .about-box a {
+      color: #AD9846;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Print styles */
+    @page {
+      margin: 0.6in 0.7in;
+    }
+
+    @media print {
+      body { font-size: 10.5pt; }
+      .page { padding: 0; max-width: 100%; }
+      .cover { padding: 80px 0 60px; }
+      h2 { page-break-after: avoid; }
+      h3 { page-break-after: avoid; }
+      .checklist li, li { page-break-inside: avoid; }
+      .about-box { page-break-inside: avoid; }
+      .pull-quote { page-break-inside: avoid; }
+      .section-divider { page-break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COVER PAGE -->
+  <div class="page cover">
+    <div class="cover-badge">Free Guide</div>
+    <h1>A Traveler's Guide to Navigating Nightlife Culture Abroad</h1>
+    <p class="subtitle">Practical questions, ethical frameworks, and honest reflections for curious travelers.</p>
+    <div class="brand-line"></div>
+    <p class="author">By <strong>Ali Imperiale</strong></p>
+    <p class="url">aliimperiale.com</p>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="page">
+
+    <h2><span class="section-number">1</span> Why This Guide Exists</h2>
+
+    <p>Traveling exposes you to cultures, customs, and industries that challenge your worldview. Nightlife and adult entertainment vary wildly from country to country, and it's easy to feel unprepared, overwhelmed, or conflicted about what you see.</p>
+
+    <p>This guide isn't here to tell you what to do. It's here to help you <em>think</em> more clearly about the choices you make when you travel, and to process the experiences you encounter with honesty instead of judgment.</p>
+
+    <div class="pull-quote">
+      There's a difference between judging something from a distance and trying to understand it up close. Neither is comfortable, but only one requires honesty.
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2><span class="section-number">2</span> Before You Go: Questions to Ask Yourself</h2>
+
+    <p>Before visiting nightlife venues abroad, take a moment to reflect. There are no right or wrong answers here, just honest ones.</p>
+
+    <ul class="checklist">
+      <li>What am I genuinely curious about? Am I seeking understanding, entertainment, or something else?</li>
+      <li>Am I comfortable being in spaces that may challenge my values? How will I handle that discomfort?</li>
+      <li>Have I researched the local laws and cultural norms around nightlife in my destination?</li>
+      <li>Do I understand the difference between legal, tolerated, and exploitative establishments?</li>
+      <li>Am I prepared to leave a situation if it feels wrong, even if others around me are staying?</li>
+      <li>How will I communicate boundaries, especially in a language or cultural context I'm not familiar with?</li>
+      <li>Am I going alone or with others? How might group dynamics affect my choices?</li>
+    </ul>
+
+    <div class="section-divider"></div>
+
+    <h2><span class="section-number">3</span> Understanding the Local Context</h2>
+
+    <p>Every destination has its own economic, cultural, and legal relationship with nightlife and adult entertainment. Spending 30 minutes researching before you go makes a real difference.</p>
+
+    <h3>What to research</h3>
+    <ul>
+      <li><strong>Legal status:</strong> Is sex work legal, decriminalized, tolerated, or criminalized in your destination? The answer changes everything about what you're walking into.</li>
+      <li><strong>Economic context:</strong> Understand average wages and the economic forces that shape the industry. Tourism-driven economies often create complex dynamics around adult entertainment.</li>
+      <li><strong>Cultural attitudes:</strong> What do locals think about their own nightlife industry? Expat blogs and local journalism offer better insights than tourist guides.</li>
+      <li><strong>Worker organizations:</strong> Do workers have unions, advocacy groups, or legal protections? Their existence (or absence) tells you a lot about conditions.</li>
+      <li><strong>Tourist vs. local venues:</strong> Places designed for tourists often operate very differently from local establishments. Understand which you're entering.</li>
+    </ul>
+
+    <div class="section-divider"></div>
+
+    <h2><span class="section-number">4</span> In the Moment: An Ethical Framework</h2>
+
+    <p>When you're actually there, everything gets more complicated. Here's a framework to help you stay grounded.</p>
+
+    <h3>Consent and agency</h3>
+    <p>Ask yourself whether the people you're interacting with appear to be there by choice. Look for signs of autonomy: are workers free to move around, refuse interactions, or take breaks? Coercion isn't always obvious, but a lack of visible freedom is a signal worth noticing.</p>
+
+    <h3>Dignity and respect</h3>
+    <p>Regardless of the setting, every person deserves to be treated with basic respect. This means no photos without permission, no touching without invitation, and no treating people as less than human because of their profession.</p>
+
+    <h3>Your role as a visitor</h3>
+    <p>Tourists carry economic power. Your money matters to the local economy, which means your choices have consequences beyond your personal experience. Spend thoughtfully. Tip fairly. Leave places better than you found them.</p>
+
+    <h3>The discomfort is information</h3>
+    <p>If something feels off, pay attention to that feeling. Discomfort doesn't always mean something is wrong, but it's always worth examining. Sometimes the discomfort comes from confronting your own assumptions. Sometimes it comes from witnessing something genuinely harmful. Learn to tell the difference.</p>
+
+    <div class="section-divider"></div>
+
+    <h2><span class="section-number">5</span> After the Experience: Processing What You Saw</h2>
+
+    <p>The most important part of any challenging travel experience is how you integrate it afterward. Here are some reflection prompts:</p>
+
+    <ul class="checklist">
+      <li>What surprised me most about what I experienced? Why?</li>
+      <li>Did anything make me uncomfortable? What specifically triggered that feeling?</li>
+      <li>Did I learn something that challenges a belief I held before this trip?</li>
+      <li>Would I make the same choices if I could do it again? What would I change?</li>
+      <li>How do I feel about sharing this experience with others? What makes me hesitant?</li>
+      <li>Did I treat everyone I encountered with dignity? Were there moments I wish I'd handled differently?</li>
+    </ul>
+
+    <p>There's no timeline for processing. Some experiences take days, others take months. The goal isn't to arrive at a clean conclusion. It's to stay honest with yourself about what you saw and how it affected you.</p>
+
+    <div class="pull-quote">
+      The point isn't to have all the answers. It's to keep asking better questions.
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2><span class="section-number">6</span> Resources</h2>
+
+    <ul>
+      <li><strong>Global Network of Sex Work Projects</strong> (nswp.org) &mdash; Rights-based resources on sex work worldwide</li>
+      <li><strong>The Freedom Fund</strong> (freedomfund.org) &mdash; Anti-trafficking organization with transparent reporting</li>
+      <li><strong>Responsible Travel</strong> (responsibletravel.com) &mdash; Ethical tourism guidance and destination reviews</li>
+      <li><strong>ECPAT International</strong> (ecpat.org) &mdash; Protecting children from exploitation in travel and tourism</li>
+    </ul>
+
+    <h3>Recommended Reading</h3>
+    <ul>
+      <li><strong>Not Your Rescue Project</strong> by Chanelle Gallant &amp; Elene Lam &mdash; How anti-trafficking policies harm migrant sex workers, centering their fight for justice and autonomy</li>
+      <li><strong>Sex Tourism in Thailand</strong> by Ronald Weitzer &mdash; An ethnographic study examining Thailand's diverse sex industry and how it has transformed over four decades</li>
+      <li><strong>East West Sex: A History of the Erotic Encounter</strong> by Richard Bernstein &mdash; A historical exploration of the erotic encounters between Eastern and Western cultures</li>
+    </ul>
+
+    <!-- About -->
+    <div class="about-box">
+      <h3>About Ali</h3>
+      <p>I'm Ali Imperiale, a sex educator in training who believes the best conversations are the honest ones. I create content about sex, relationships, and all the things we're secretly curious about.</p>
+      <p>
+        <a href="https://www.youtube.com/@aliimperiale">YouTube</a> &nbsp;&bull;&nbsp;
+        <a href="https://aliimperiale.com/blog/">Blog</a> &nbsp;&bull;&nbsp;
+        <a href="https://aliimperiale.com">aliimperiale.com</a>
+      </p>
+    </div>
+
+    <div class="guide-footer">
+      <p>&copy; Ali Imperiale &bull; aliimperiale.com</p>
+      <p>This guide is free. Feel free to share it with anyone who might find it useful.</p>
+    </div>
+
+  </div>
+
+<script src="../../mobile-nav.js" defer></script>
+<script src="../../back-to-top.js" defer></script>
+</body>
+</html>

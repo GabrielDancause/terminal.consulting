@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/course-gate.js"></script>
+  <title>Module 10: Making Changes &amp; Keeping It Updated — Course</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+
+  <div class="module-page">
+
+    <!-- Module Navigation -->
+    <nav class="module-nav">
+      <a href="../course.html" class="module-nav-back">← Back to Course</a>
+      <div class="module-nav-controls">
+        <a href="module-09.html" class="module-nav-prev">← Prev</a>
+        <span class="module-nav-label">Module 10 of 10</span>
+      </div>
+    </nav>
+
+    <!-- Module Header -->
+    <header class="module-header">
+      <span class="module-badge">Module 10</span>
+      <h1>Making Changes &amp; Keeping It Updated</h1>
+      <p class="module-meta">~7 min listen · Written guide below</p>
+    </header>
+
+    <!-- Audio Player -->
+    <div class="module-audio">
+      <audio controls preload="metadata" style="width:100%">
+        <source src="audio/module-10.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <!-- Module Content -->
+    <article class="module-content">
+
+      <p>Your site is live. You have a custom domain. People can find you on Google. Now what?</p>
+
+      <p>Now you use it. And you change it. Your business isn't static — your website shouldn't be either. New menu items, updated hours, holiday closures, a new team member, a seasonal promotion. This stuff changes all the time.</p>
+
+      <p>The good news: updating your site is even easier than building it. Here's the workflow I use for all my business websites.</p>
+
+      <h2>The Update Workflow</h2>
+
+      <p>Every time you want to change something on your site, it's the same five steps. Once you do it twice, it becomes muscle memory.</p>
+
+      <p><strong>1. Open your terminal and navigate to your project folder:</strong></p>
+
+      <pre><code>cd ~/my-bakery-website</code></pre>
+
+      <p><strong>2. Launch Claude Code:</strong></p>
+
+      <pre><code>claude</code></pre>
+
+      <p><strong>3. Tell Claude what to change.</strong></p>
+
+      <p>Be specific. Just say it in plain English:</p>
+
+      <pre><code>Update the opening hours to show we're now open Sundays from 8am to 2pm</code></pre>
+      <pre><code>Add a new menu item called "Sourdough Loaf" priced at $8.50 in the breads section</code></pre>
+      <pre><code>Change the hero image to images/summer-storefront.jpg</code></pre>
+      <pre><code>Add a banner at the top of the homepage that says "Closed Dec 24-26 for the holidays"</code></pre>
+
+      <p>Claude makes the changes. Preview them in your browser to make sure they look right (<code>open index.html</code> on Mac, or just refresh the page if it's already open).</p>
+
+      <p><strong>4. Push the update to GitHub:</strong></p>
+
+      <pre><code>git add .
+git commit -m "Update hours and add Sunday schedule"
+git push</code></pre>
+
+      <p><strong>5. Wait 1–2 minutes.</strong> GitHub Pages automatically rebuilds your site. Refresh your live URL and the changes are there.</p>
+
+      <p>That's it. Five steps. Takes about three minutes total for most changes.</p>
+
+      <h2>Let Claude Handle the Git Part</h2>
+
+      <p>If you don't want to remember git commands, just tell Claude:</p>
+
+      <pre><code>Commit these changes with the message "Add sourdough loaf to menu" and push to GitHub</code></pre>
+
+      <p>Claude runs <code>git add</code>, <code>git commit</code>, and <code>git push</code> for you. Same result, less typing. I do this all the time.</p>
+
+      <h2>Adding a Blog or News Section</h2>
+
+      <p>At some point you might want to post updates — a new seasonal menu, an event you're hosting, a press feature. You don't need WordPress for this.</p>
+
+      <p>Tell Claude:</p>
+
+      <pre><code>Add a blog section to the site. Create a blog listing page at blog.html and a sample blog post. Each post should be its own HTML page. Add a "News" link in the navigation.</code></pre>
+
+      <p>Claude will set up a simple blog structure. When you want to write a new post:</p>
+
+      <pre><code>Create a new blog post titled "Our New Summer Menu Is Here" with today's date. Write 2-3 paragraphs about the new seasonal items we're offering. Add it to the blog listing page.</code></pre>
+
+      <p>You tell Claude what to write, it creates the page and updates the blog index. Push to GitHub, and it's live.</p>
+
+      <p>Is this as fancy as WordPress with categories and tags and comments? No. But for a small business posting occasional updates, it's perfect. And it's fast, simple, and doesn't require a database or plugins.</p>
+
+      <h2>Adding a Contact Form That Actually Works</h2>
+
+      <p>Static sites (HTML/CSS) can't process form submissions on their own — there's no server to receive the data. But there's a dead-simple fix: <strong>Formspree</strong>.</p>
+
+      <p>Formspree (formspree.io) gives you a free form backend. Their free tier handles up to 50 submissions a month, which is plenty for most small businesses.</p>
+
+      <ol>
+        <li>Go to <strong>formspree.io</strong> and create a free account</li>
+        <li>Create a new form — you'll get an endpoint URL like <code>https://formspree.io/f/xrgvalqz</code></li>
+        <li>Tell Claude:</li>
+      </ol>
+
+      <pre><code>Wire the contact form to use Formspree with the action URL https://formspree.io/f/YOUR-FORM-ID</code></pre>
+
+      <p>Claude updates your form's HTML to submit to Formspree. When someone fills out the form on your site, you get an email with their message. No server needed, no backend code, nothing to maintain.</p>
+
+      <p>Test it by submitting the form yourself after pushing the update. Check your email — the submission should show up.</p>
+
+      <h2>Adding Google Analytics</h2>
+
+      <p>If you want to know how many people visit your site, where they come from, and what pages they look at, add Google Analytics. It's free.</p>
+
+      <ol>
+        <li>Go to <strong>analytics.google.com</strong></li>
+        <li>Create an account and a property for your website</li>
+        <li>Google gives you a tracking code (starts with <code>G-</code>)</li>
+        <li>Tell Claude:</li>
+      </ol>
+
+      <pre><code>Add Google Analytics with tracking ID G-XXXXXXXXXX to all pages</code></pre>
+
+      <p>Claude adds the tracking script to every page. Push to GitHub. Within 24–48 hours, you'll start seeing visitor data in your Analytics dashboard.</p>
+
+      <p>Don't obsess over the numbers. Check it once a week or so. It's useful for knowing if people are actually finding you, and which pages they care about most.</p>
+
+      <h2>When to Consider Moving Beyond GitHub Pages</h2>
+
+      <p>GitHub Pages is excellent for what it does. But there are things it can't do. You might outgrow it if you need:</p>
+
+      <ul>
+        <li><strong>E-commerce</strong> — selling products with a cart and checkout. You'll need Shopify, or a platform like Snipcart that adds a cart to static sites.</li>
+        <li><strong>User accounts</strong> — if people need to log in, you need a backend. GitHub Pages can't do this.</li>
+        <li><strong>A database</strong> — storing data that changes dynamically (reservations, orders, inventory). Static sites don't have databases.</li>
+        <li><strong>Server-side processing</strong> — anything that needs to happen on a server before sending the page to the user.</li>
+      </ul>
+
+      <p>For most small businesses — bakeries, restaurants, hotels, salons, contractors, freelancers, agencies — a static site on GitHub Pages is more than enough. I run a 60+ room hotel and my websites are all static sites. If your site is mainly about presenting information and letting people contact you, you're good.</p>
+
+      <p>If you do outgrow it, everything you've learned still applies. The HTML and CSS Claude wrote for you works anywhere. You can move to Netlify, Vercel, or a traditional host and just upload the same files.</p>
+
+      <h2>You Now Have a Skill Most People Pay Thousands For</h2>
+
+      <p>I mean that literally. Businesses pay $2,000 to $10,000 for a professional website. They pay $200–$500/month for ongoing maintenance. They pay $50–$150/hour for developers to make changes.</p>
+
+      <p>You can now:</p>
+
+      <ul>
+        <li>Build a professional website from scratch in a couple of hours</li>
+        <li>Host it for free</li>
+        <li>Update it anytime in minutes</li>
+        <li>Add features as you need them</li>
+      </ul>
+
+      <p>That's a real, valuable skill. Use it.</p>
+
+      <h2>What to Build Next</h2>
+
+      <p>Now that you know how this works, think about what else you could build:</p>
+
+      <ul>
+        <li><strong>A personal portfolio</strong> — show off your work, your projects, your resume</li>
+        <li><strong>A landing page</strong> for a side project or product idea</li>
+        <li><strong>A website for a friend's business</strong> — do it as a favor, or charge for it. You now know how.</li>
+        <li><strong>A simple documentation site</strong> for something you want to teach</li>
+        <li><strong>An event page</strong> — wedding, conference, community gathering</li>
+      </ul>
+
+      <p>Every new site is the same process: start Claude Code, describe what you want, polish it, push to GitHub, turn on Pages. The more you do it, the faster you get.</p>
+
+      <h2>Final Words</h2>
+
+      <p>Here's what I believe: the best website is the one that's live.</p>
+
+      <p>Not the one that's perfectly designed. Not the one with the fanciest animations. Not the one you've been "meaning to get around to" for six months. The one that's actually on the internet, doing its job, right now.</p>
+
+      <p>You have that now. A real website, live on the internet, with your name on it.</p>
+
+      <p>If something isn't perfect, change it tomorrow. If you want to add something, add it next week. The site is a living thing — it grows with your business. That's the whole point.</p>
+
+      <p>You didn't need a computer science degree. You didn't need to hire anyone. You just needed to describe what you wanted and let the tools do the heavy lifting.</p>
+
+      <p>Go build something.</p>
+
+      <p>— Gab</p>
+
+    </article>
+
+    <!-- Bottom Navigation -->
+    <nav class="module-bottom-nav">
+      <a href="module-09.html" class="btn-bottom btn-bottom-outline">← Previous: Custom Domain &amp; SEO</a>
+      <a href="../course.html" class="btn-bottom btn-bottom-primary">Back to Course →</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

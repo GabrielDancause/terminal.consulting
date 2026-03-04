@@ -1,0 +1,35 @@
+# Source/working files (not part of the website)
+*.zip
+*.png.tmp
+Screenshot *.png
+IMG_9936 Copy.JPG
+youtube-feed.xml
+.DS_Store
+.claude/
+
+# Raw brand assets (keep originals locally, not in repo)
+brand-assets/
+brand-guidelines/
+social-media/
+
+# Source font files (woff2 versions are in /fonts/)
+fonts/bloomington/
+fonts/new-standard/
+
+# Raw audio files (converted versions in /audio/)
+*.WAV
+*.wav
+
+# Old avatar
+avatar.jpg
+
+# Raw photos (keep locally, not in repo)
+*.HEIC
+*.JPG
+IMG_*.jpg
+
+# Misc working files
+ec3493f6-*.jpg
+ethical-nightlife-guide (2).pdf
+resolution.pdf
+worksheets/Claude Code*

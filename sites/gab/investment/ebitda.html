@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EBITDA — Investment Wiki</title>
+  <meta name="description"
+    content="Technical reference for EBITDA. Formula, interpretation, worked examples, and practical application.">
+  <meta property="og:title" content="EBITDA — Investment Wiki">
+  <meta property="og:description"
+    content="EBITDA explained: formula, interpretation, worked examples, and why it matters.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+
+<body>
+  <div class="doc-container">
+    <nav class="doc-breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Investment</a>
+      <span class="sep">/</span>
+      EBITDA
+    </nav>
+
+    <header class="doc-header">
+      <h1 class="doc-title">EBITDA</h1>
+      <div class="doc-meta">
+        <span class="tag">Profitability Metric</span>
+        <span>Investment Wiki — Fundamentals</span>
+      </div>
+    </header>
+
+    <div class="doc-abstract">
+      EBITDA stands for Earnings Before Interest, Taxes, Depreciation, and Amortization. It serves as a clear measure of
+      a company's core operating profitability by stripping out the arbitrary accounting rules and financing structure
+      decisions (debt and taxes) that often obscure actual business performance.
+    </div>
+
+    <div class="doc-content">
+      <div class="gab-stack-infobox">
+        <div class="infobox-header">Quick Reference</div>
+        <table>
+          <tr>
+            <td>Type</td>
+            <td>Profitability Metric</td>
+          </tr>
+          <tr>
+            <td>Formula</td>
+            <td>Net Income + Interest + Taxes + D&A</td>
+          </tr>
+          <tr>
+            <td>Alternatively</td>
+            <td>Operating Income (EBIT) + D&A</td>
+          </tr>
+          <tr>
+            <td>Best Used For</td>
+            <td>Company-to-company operational comparisons</td>
+          </tr>
+        </table>
+      </div>
+
+      <section class="doc-section">
+        <h2>1.0 The Formula</h2>
+        <h3>Basic Form</h3>
+        <pre><code><span class="code-label">formula</span>EBITDA = Net Income + Taxes + Interest Expense + D&A</code></pre>
+        <p>The calculation starts at the bottom of the Income Statement (Net Income) and works backward. You add back
+          the Taxes (which exist outside management's operational control), Interest (which isolates the capital
+          structure), and Depreciation/Amortization (non-cash accounting charges for capital expenses).</p>
+
+        <h3>Worked Example</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Company A</th>
+              <th>Company B</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Net Income</td>
+              <td>$10M</td>
+              <td>$10M</td>
+            </tr>
+            <tr>
+              <td>Depreciation</td>
+              <td>$2M</td>
+              <td>$15M</td>
+            </tr>
+            <tr>
+              <td>Interest</td>
+              <td>$1M</td>
+              <td>$5M</td>
+            </tr>
+            <tr style="border-top: 1px solid #ddd;">
+              <td><strong>EBITDA</strong></td>
+              <td><strong>$13M</strong></td>
+              <td><strong>$30M</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Despite showing the exact same Net Income, Company B is generating significantly more core operating cash.
+          Their Net Income was artificially reduced by high depreciation charges (because they bought machinery earlier)
+          and high interest (due to debt).</p>
+      </section>
+
+      <section class="doc-section">
+        <h2>2.0 Interpretation & Edge Cases</h2>
+        <p>Private equity firms universally use EBITDA to value acquisitions (typically targeting 6x to 12x EV/EBITDA).
+          Because they plan to change the company's debt structure and tax strategies after buying it, they only care
+          about the purest operational cash engine.</p>
+
+        <div class="callout callout-warn">
+          Charlie Munger famous called EBITDA "bullshit earnings." Because it ignores Depreciation, it pretends that
+          physical equipment doesn't wear out and need replacing (Capital Expenditures). Never confuse EBITDA with Free
+          Cash Flow.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>3.0 Related Pages</h2>
+        <div class="integration-grid">
+          <div class="integration-card">
+            <h4><a href="enterprise-value.html">Enterprise Value (EV)</a></h4>
+            <p>The numerator to EBITDA. EV/EBITDA is the gold standard valuation multiple for M&A.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="operating-margin.html">Operating Margin</a></h4>
+            <p>Operating margin relies on EBIT. Adding D&A morphs this into the EBITDA margin.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="doc-footer">
+      <a href="./">← Back to Investment Wiki</a>
+      <span style="color: var(--text-tertiary);">Investment Wiki</span>
+    </footer>
+  </div>
+</body>
+
+</html>

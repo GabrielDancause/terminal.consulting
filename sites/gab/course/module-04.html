@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/course-gate.js"></script>
+  <title>Module 4: Customizing the Design — Course</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+  <div class="module-page">
+    <nav class="module-nav">
+      <a href="../course.html" class="module-nav-back">&larr; Back to Course</a>
+      <div class="module-nav-controls">
+        <a href="module-03.html" class="module-nav-prev">&larr; Prev</a>
+        <span class="module-nav-label">Module 4 of 10</span>
+        <a href="module-05.html" class="module-nav-next">Next &rarr;</a>
+      </div>
+    </nav>
+    <header class="module-header">
+      <span class="module-badge">Module 4</span>
+      <h1>Customizing the Design</h1>
+      <p class="module-meta">~10 min listen &middot; Written guide below</p>
+    </header>
+    <div class="module-audio">
+      <audio controls preload="metadata" style="width:100%">
+        <source src="audio/module-04.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <article class="module-content">
+      <p>Your homepage exists. It looks decent. Now we're going to make it look <em>yours</em>. This module is all about telling Claude Code exactly what to change &mdash; colors, fonts, images, layout &mdash; until the site matches your vision.</p>
+
+      <h2>Colors</h2>
+      <p>Colors set the whole mood of your site. You can be specific with hex codes:</p>
+      <pre><code>Change the primary color to navy blue (#1B2A4A) and the accent color to coral (#FF6B6B). Keep the background white and use dark gray (#333) for body text.</code></pre>
+      <p>Or just describe the vibe:</p>
+      <pre><code>Make the color scheme feel like a luxury hotel &mdash; dark, elegant, with gold accents.</code></pre>
+      <p>Claude understands vibes. Use that.</p>
+      <p><strong>Tip:</strong> Stick to 3&ndash;4 colors max. A primary color, an accent color, a background color, and a text color. More than that and things start looking messy.</p>
+
+      <h2>Fonts</h2>
+      <p>Fonts make a bigger difference than most people think. A site with great fonts looks professional. A site with default fonts looks like a school project.</p>
+      <pre><code>Use the font Playfair Display for all headings and Inter for body text. Import them from Google Fonts.</code></pre>
+      <p>Some font combinations that work well:</p>
+      <ul>
+        <li><strong>Elegant/luxury:</strong> Playfair Display (headings) + Lato (body)</li>
+        <li><strong>Modern/clean:</strong> Montserrat (headings) + Open Sans (body)</li>
+        <li><strong>Bold/startup:</strong> Poppins (headings) + Inter (body)</li>
+        <li><strong>Classic/editorial:</strong> Merriweather (headings) + Source Sans Pro (body)</li>
+        <li><strong>Minimal/tech:</strong> Inter for everything</li>
+      </ul>
+      <p>Don't know what to pick? Just tell Claude to choose something that fits the vibe. It'll pick something good.</p>
+
+      <h2>Images</h2>
+      <p>Real photos of your business, your products, your team &mdash; they make all the difference.</p>
+      <p>First, create an images folder:</p>
+      <pre><code>mkdir images</code></pre>
+      <p>Drag your photos into that folder, then tell Claude:</p>
+      <pre><code>Use images/hero.jpg as the background image for the hero section. Make it cover the full section with a dark overlay so the white text is readable on top of it.</code></pre>
+      <p><strong>Tip on image sizes:</strong> Hero images should be around 1920px wide, under 500KB. Product images around 800px wide, under 200KB. Use <a href="https://squoosh.app">squoosh.app</a> to resize for free.</p>
+      <p>If you don't have photos yet, use placeholders:</p>
+      <pre><code>Use placeholder images from picsum.photos for now. Use a food-related Unsplash image for the hero section.</code></pre>
+
+      <h2>Layout Changes</h2>
+      <p>Layout is how things are arranged on the page. You don't need technical terms:</p>
+      <pre><code>Make the services section a 3-column grid instead of a single-column list.</code></pre>
+      <pre><code>Put the about section text on the left and the image on the right, side by side. On mobile, stack them vertically.</code></pre>
+      <p>Describe how you want things arranged. Claude handles the how.</p>
+
+      <h2>Spacing and Sizing</h2>
+      <p>These small tweaks make a big difference in how polished your site feels:</p>
+      <pre><code>Add more padding to each section &mdash; at least 80px top and bottom. The content feels too cramped right now.</code></pre>
+      <pre><code>Make the main headline bigger &mdash; around 56px on desktop, 36px on mobile.</code></pre>
+      <p><strong>Tip:</strong> When in doubt, add more white space. Generous spacing between sections makes a site look more professional.</p>
+
+      <h2>Mobile Responsiveness</h2>
+      <p>More than half of web traffic is mobile now. Your site needs to look good on phones.</p>
+      <pre><code>Make sure the navigation collapses to a hamburger menu on mobile screens.</code></pre>
+      <pre><code>On mobile, the 3-column grid should become a single column.</code></pre>
+      <p><strong>How to check mobile:</strong> Right-click the page, click "Inspect," and toggle the device toolbar (the phone/tablet icon) to simulate different screen sizes.</p>
+
+      <h2>Dark Mode (Bonus)</h2>
+      <p>One prompt and you've got a dark mode toggle:</p>
+      <pre><code>Add a dark mode toggle button in the top-right corner of the navigation. When clicked, switch to a dark background with light text. Remember the user's preference using localStorage.</code></pre>
+
+      <h2>Common Design Prompts Cheat Sheet</h2>
+      <p>Copy and modify these for your own site:</p>
+      <pre><code>Make the hero section full-screen height with a background image, dark overlay, and centered white text.</code></pre>
+      <pre><code>Style all buttons with rounded corners, a solid background color, white text, and a subtle hover effect.</code></pre>
+      <pre><code>Add a subtle box shadow to all cards and a slight lift effect on hover.</code></pre>
+      <pre><code>Make the navigation bar sticky so it stays at the top when scrolling.</code></pre>
+      <pre><code>Add smooth scrolling when clicking navigation links.</code></pre>
+      <pre><code>Add subtle fade-in animations as sections come into view when scrolling.</code></pre>
+      <pre><code>Create a simple SVG favicon using the first letter of the business name.</code></pre>
+
+      <h2>When to Stop Tweaking</h2>
+      <p>Here's something I wish someone told me earlier: <strong>good enough is good enough.</strong></p>
+      <p>If a regular person would look at your site and say "that looks professional," you're done. Get it to 90%. Ship it. You can always come back and tweak later &mdash; that's the beauty of this setup. It takes 30 seconds to make a change and push it live.</p>
+      <p>Now let's add more pages to your site.</p>
+    </article>
+    <nav class="module-bottom-nav">
+      <a href="module-03.html" class="btn-bottom btn-bottom-outline">&larr; Previous: Your First Prompt</a>
+      <a href="module-05.html" class="btn-bottom btn-bottom-primary">Next: Adding Pages &amp; Navigation &rarr;</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debt-to-Equity Ratio — Investment Wiki</title>
+  <meta name="description"
+    content="Technical reference for the Debt-to-Equity Ratio. Formula, interpretation, worked examples, and practical application.">
+  <meta property="og:title" content="Debt-to-Equity Ratio — Investment Wiki">
+  <meta property="og:description"
+    content="Debt-to-Equity Ratio explained: formula, interpretation, worked examples, and why it matters.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+
+<body>
+
+  <div class="doc-container">
+
+    <nav class="doc-breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Investment</a>
+      <span class="sep">/</span>
+      Debt-to-Equity Ratio
+    </nav>
+
+    <header class="doc-header">
+      <h1 class="doc-title">Debt-to-Equity Ratio</h1>
+      <div class="doc-meta">
+        <span class="tag">Leverage Ratio</span>
+        <span>Investment Wiki — Fundamentals</span>
+      </div>
+    </header>
+
+    <div class="doc-abstract">
+      The Debt-to-Equity (D/E) Ratio is a solvency metric that compares a company's total debt to its total shareholder
+      equity. It illustrates how aggressively a company is financing its growth with borrowed money (leverage) versus
+      its own cash (equity). A high ratio indicates a risky, highly-leveraged capital structure.
+    </div>
+
+    <div class="doc-content">
+
+      <div class="gab-stack-infobox">
+        <div class="infobox-header">Quick Reference</div>
+        <table>
+          <tr>
+            <td>Type</td>
+            <td>Leverage / Solvency Ratio</td>
+          </tr>
+          <tr>
+            <td>Formula</td>
+            <td>Total Liabilities ÷ Total Shareholders' Equity</td>
+          </tr>
+          <tr>
+            <td>Conservative Target</td>
+            <td><span class="complexity-low">
+                < 1.0</span>
+            </td>
+          </tr>
+          <tr>
+            <td>High Risk Zone</td>
+            <td><span class="complexity-high">> 2.0 (Industry dependent)</span></td>
+          </tr>
+          <tr>
+            <td>Best Used For</td>
+            <td>Assessing bankruptcy risk and financial leverage</td>
+          </tr>
+        </table>
+      </div>
+
+      <section class="doc-section">
+        <h2>1.0 The Formula</h2>
+
+        <h3>Basic Form</h3>
+        <pre><code><span class="code-label">formula</span>D/E Ratio = Total Liabilities / Total Shareholders' Equity</code></pre>
+
+        <p>Both figures are found on the company's Balance Sheet. "Total Liabilities" encompasses all short-term and
+          long-term debt, while "Total Shareholders' Equity" represents the net asset value of the company's stock.</p>
+
+        <h3>Worked Example</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Total Liabilities</th>
+              <th>Total Equity</th>
+              <th>D/E Ratio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Company X</td>
+              <td>$500M</td>
+              <td>$1,000M</td>
+              <td><strong>0.50</strong></td>
+            </tr>
+            <tr>
+              <td>Company Y</td>
+              <td>$1,500M</td>
+              <td>$500M</td>
+              <td><strong>3.00</strong></td>
+            </tr>
+            <tr>
+              <td>Company Z</td>
+              <td>$0M</td>
+              <td>$800M</td>
+              <td><strong>0.00</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Company X has half as much debt as it does equity, demonstrating a strong, conservative balance sheet.
+          Company Y has three times more debt than equity; while they may be generating higher ROE by borrowing money,
+          their insolvency risk during a downturn is massive. Company Z is completely debt-free.</p>
+
+        <div class="callout callout-note">
+          Because debt turbo-charges the balance sheet, a highly leveraged company (high D/E) will typically show an
+          artificially high Return on Equity (ROE) via the DuPont equation.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>2.0 Interpretation & Edge Cases</h2>
+
+        <h3>Benchmarks</h3>
+        <p>Like all ratios, D/E must be compared inside its specific industry sector:</p>
+        <ul>
+          <li><strong>0.0 - 0.5:</strong> Exceptional financial strength. The company runs entirely off its own cash.
+            Common in dominant tech monopolies.</li>
+          <li><strong>1.0 - 2.0:</strong> Normal range for capital-intensive companies (e.g., manufacturing, automakers,
+            airlines). They must borrow to buy expensive machinery.</li>
+          <li><strong>> 2.5:</strong> Typical of financial institutions, banks, or highly leveraged buyout targets.
+            Banks inherently operate with D/E ratios of 10.0 or more because deposits count as liabilities.</li>
+        </ul>
+
+        <h3>When it Fails (Pitfalls)</h3>
+        <p>A D/E ratio of 5.0 sounds terrifying—but what if that debt is locked in for 30 years at 1% interest? The D/E
+          ratio fails to account for the *cost of servicing the debt*.</p>
+
+        <div class="callout callout-warn">
+          Never use Debt-to-Equity alone. You must pair it with the <strong>Interest Coverage Ratio</strong>. If a
+          company owes a billion dollars but generates ten billion dollars in free cash flow every year, the debt load
+          is completely trivial, even if the D/E ratio looks high.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>3.0 Related Pages</h2>
+
+        <div class="integration-grid">
+          <div class="integration-card">
+            <h4><a href="interest-coverage-ratio.html">Interest Coverage Ratio</a></h4>
+            <p>D/E shows how much debt exists; Interest Coverage shows if the company can actually afford the monthly
+              payments.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="return-on-equity.html">Return on Equity (ROE)</a></h4>
+            <p>Debt is one of the three levers in DuPont analysis that mathematically increases ROE. High D/E often
+              equals a boosted ROE.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="current-ratio.html">Current Ratio</a></h4>
+            <p>While D/E assesses long-term leverage risk, the Current Ratio answers if the company can survive the next
+              12 months.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="doc-footer">
+      <a href="./">← Back to Investment Wiki</a>
+      <span style="color: var(--text-tertiary);">Investment Wiki</span>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+# Audio source files (WAV)
+*.WAV
+*.wav
+
+# macOS
+.DS_Store
+._*
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc

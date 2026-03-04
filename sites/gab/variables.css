@@ -1,0 +1,18 @@
+/* ---------- CSS Custom Properties (Theme) ---------- */
+:root {
+  --bg: #FFFFFF;
+  --surface: #F7F7F7;
+  --surface-elevated: #EFEFEF;
+  --accent: #222222;
+  --accent-light: #555555;
+  --text: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-tertiary: #999999;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-accent: rgba(0, 0, 0, 0.2);
+  --radius: 0px;
+  --radius-sm: 0px;
+  --radius-xs: 0px;
+  --container: 1100px;
+  --transition: 0.2s ease;
+}

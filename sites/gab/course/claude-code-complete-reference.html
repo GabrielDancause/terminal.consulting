@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Complete Reference — Prompt Library, Commands & Troubleshooting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --purple: #6C5CE7;
+            --purple-light: #a29bfe;
+            --purple-bg: #f3f1ff;
+            --purple-border: #e0dbff;
+            --dark: #1a1a2e;
+            --text: #2d2d3f;
+            --text-light: #6b6b80;
+            --bg: #ffffff;
+            --code-bg: #f5f3ff;
+            --border: #e8e8f0;
+            --green: #00b894;
+            --green-bg: #e6f9f4;
+            --orange: #e17055;
+            --orange-bg: #fef5f0;
+            --red: #d63031;
+            --red-bg: #fef5f5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            font-size: 10.5pt;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        @page { size: letter; margin: 0.55in 0.65in; }
+
+        @media print {
+            body { font-size: 10pt; }
+            .page-break { page-break-before: always; }
+            .no-break { page-break-inside: avoid; }
+            .cover-page { page-break-after: always; }
+        }
+
+        /* Cover */
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .cover-badge {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.4rem 1.2rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+
+        .cover-title {
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            max-width: 560px;
+        }
+
+        .cover-title span { color: var(--purple); }
+
+        .cover-subtitle {
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 480px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .cover-includes {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .cover-stat {
+            text-align: center;
+        }
+
+        .cover-stat-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--purple);
+        }
+
+        .cover-stat-label {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .cover-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--purple);
+            border-radius: 2px;
+            margin-bottom: 2rem;
+        }
+
+        .cover-author {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .cover-author-url {
+            font-size: 0.85rem;
+            color: var(--purple);
+            font-weight: 500;
+        }
+
+        .cover-footer {
+            position: absolute;
+            bottom: 1in;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.68rem;
+            color: var(--text-light);
+        }
+
+        /* Section Headers */
+        .section-header {
+            margin-bottom: 1.2rem;
+            padding-top: 0.2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .section-header p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .section-number {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Prompt Cards */
+        .prompt-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.9rem 1rem;
+            margin-bottom: 0.7rem;
+            page-break-inside: avoid;
+        }
+
+        .prompt-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .prompt-code {
+            background: var(--code-bg);
+            border: 1px solid var(--purple-border);
+            border-radius: 6px;
+            padding: 0.65rem 0.85rem;
+            margin-bottom: 0.4rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            line-height: 1.5;
+            color: var(--dark);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .prompt-note {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            line-height: 1.45;
+        }
+
+        .prompt-note strong {
+            color: var(--text);
+        }
+
+        /* Category Header */
+        .cat-header {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--purple);
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid var(--purple-border);
+        }
+
+        /* Command Table */
+        .cmd-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.2rem;
+            font-size: 0.78rem;
+        }
+
+        .cmd-table th {
+            background: var(--purple-bg);
+            color: var(--dark);
+            font-weight: 700;
+            text-align: left;
+            padding: 0.5rem 0.7rem;
+            border: 1px solid var(--purple-border);
+            font-size: 0.72rem;
+        }
+
+        .cmd-table td {
+            padding: 0.45rem 0.7rem;
+            border: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        .cmd-table code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            background: var(--code-bg);
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+        }
+
+        .cmd-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        /* Troubleshooting */
+        .trouble-card {
+            border-left: 3px solid var(--orange);
+            padding: 0.7rem 0.9rem;
+            margin-bottom: 0.7rem;
+            background: var(--orange-bg);
+            border-radius: 0 6px 6px 0;
+            page-break-inside: avoid;
+        }
+
+        .trouble-error {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--red);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .trouble-fix {
+            font-size: 0.78rem;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .trouble-fix strong {
+            color: var(--dark);
+        }
+
+        .trouble-fix code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            background: white;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            border: 1px solid var(--border);
+        }
+
+        /* Checklist */
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid var(--border);
+            page-break-inside: avoid;
+        }
+
+        .checklist-item:last-child { border-bottom: none; }
+
+        .check-box {
+            width: 16px;
+            height: 16px;
+            min-width: 16px;
+            border: 2px solid var(--purple-border);
+            border-radius: 3px;
+            margin-top: 2px;
+        }
+
+        .checklist-text {
+            font-size: 0.78rem;
+            color: var(--text);
+            line-height: 1.45;
+        }
+
+        .checklist-text strong { color: var(--dark); }
+
+        /* Tip Box */
+        .tip-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            background: var(--green-bg);
+            border-radius: 6px;
+            padding: 0.5rem 0.7rem;
+            font-size: 0.72rem;
+            color: #00856b;
+            line-height: 1.45;
+            margin-bottom: 0.8rem;
+        }
+
+        .tip-icon {
+            font-weight: 700;
+            font-size: 0.65rem;
+            min-width: fit-content;
+        }
+
+        /* Resource Link */
+        .resource-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.7rem 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            page-break-inside: avoid;
+        }
+
+        .resource-icon {
+            font-size: 1.1rem;
+            min-width: 28px;
+            text-align: center;
+        }
+
+        .resource-info {
+            flex: 1;
+        }
+
+        .resource-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .resource-desc {
+            font-size: 0.72rem;
+            color: var(--text-light);
+        }
+
+        .resource-url {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--purple);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COVER -->
+    <div class="cover-page">
+        <div class="cover-badge">Course Bonus &#8212; Customers Only</div>
+        <h1 class="cover-title">Claude Code <span>Complete Reference</span></h1>
+        <p class="cover-subtitle">50+ ready-to-use prompts, every terminal command, troubleshooting fixes, and the full project checklist. Your permanent companion for building with Claude Code.</p>
+        <div class="cover-includes">
+            <div class="cover-stat">
+                <div class="cover-stat-num">50+</div>
+                <div class="cover-stat-label">Prompts</div>
+            </div>
+            <div class="cover-stat">
+                <div class="cover-stat-num">25+</div>
+                <div class="cover-stat-label">Commands</div>
+            </div>
+            <div class="cover-stat">
+                <div class="cover-stat-num">15</div>
+                <div class="cover-stat-label">Fixes</div>
+            </div>
+        </div>
+        <div class="cover-divider"></div>
+        <p class="cover-author">By Gab</p>
+        <p class="cover-author-url">gab.ae</p>
+        <div class="cover-footer">
+            Exclusive bonus for course customers &middot; gab.ae &middot; Do not redistribute
+        </div>
+    </div>
+
+    <!-- SECTION 1: PROMPT LIBRARY — BUILDING -->
+    <div class="page-break"></div>
+
+    <div class="section-number">Section 1</div>
+    <div class="section-header">
+        <h2>Prompt Library: Building Your Site</h2>
+        <p>Copy, replace the [BRACKETS], paste into Claude Code.</p>
+    </div>
+
+    <div class="cat-header">Homepage &amp; Landing Pages</div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Full Homepage from Scratch</div>
+        <div class="prompt-code">Build a modern, responsive homepage for [BUSINESS NAME]. Include: a hero section with headline "[YOUR HEADLINE]" and a CTA button that says "[BUTTON TEXT]", an about section, a services grid with [3-4] items, a testimonials section with 3 cards, and a footer with email, phone, and social links. Use [COLOR] as the accent on a dark/light theme. Mobile-first.</div>
+        <p class="prompt-note"><strong>When to use:</strong> Starting a brand new project. This gives you a complete, deployable page in one prompt.</p>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Landing Page with Email Capture</div>
+        <div class="prompt-code">Build a landing page for [PRODUCT/SERVICE]. Hero section with a strong headline, 3 benefit bullets, and an email capture form (name + email fields + submit button). Below that: a "How it works" section with 3 steps, social proof with [NUMBER] testimonials, and a final CTA section that repeats the email form. Accent color [COLOR].</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Portfolio / Gallery Page</div>
+        <div class="prompt-code">Create a portfolio page with a filterable grid. Categories: [LIST YOURS]. Each item should have a thumbnail image placeholder, title, category tag, and a hover overlay with a "View" button. Include a hero with my name "[NAME]" and tagline "[TAGLINE]". Responsive grid: 3 columns desktop, 2 tablet, 1 mobile.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Pricing Table</div>
+        <div class="prompt-code">Add a pricing section with [2-3] tiers. Tier names: [LIST]. Prices: [LIST]. Each tier should have a feature list with checkmarks. Highlight the middle tier as "Most Popular" with a different background color. Add a monthly/yearly toggle that shows a discount for yearly. Match existing design system.</div>
+    </div>
+
+    <div class="cat-header">Additional Pages</div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">About Page</div>
+        <div class="prompt-code">Create an about.html that matches index.html exactly (same CSS, header, footer, fonts, colors). Include: a hero banner with the headline "About [BUSINESS]", a story section with 2-3 paragraphs, a team section with [NUMBER] members (photo placeholder, name, role), and a values section with [3-4] values in a grid.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Contact Page with Form</div>
+        <div class="prompt-code">Create a contact.html that matches the existing design. Include: a hero, a two-column layout with a contact form on the left (name, email, subject dropdown, message textarea, submit button) and contact details on the right (address, phone, email, business hours). Add a Google Maps embed placeholder below.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">FAQ Accordion</div>
+        <div class="prompt-code">Add an FAQ section with [NUMBER] questions. Use an accordion that opens/closes on click with a smooth animation. Only one answer should be open at a time. Questions: [LIST YOUR QUESTIONS]. Style the section to match the existing design with the same fonts and accent color.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Blog Index Page</div>
+        <div class="prompt-code">Create a blog index page (blog/index.html) with a grid of post cards. Each card: thumbnail placeholder, category tag, title, excerpt (2 lines max), date, and "Read more" link. 3 columns on desktop, 1 on mobile. Add a hero with "Blog" title and a short subtitle. Match existing design system.</div>
+    </div>
+
+    <!-- SECTION 2: DESIGN & POLISH PROMPTS -->
+    <div class="page-break"></div>
+
+    <div class="section-number">Section 2</div>
+    <div class="section-header">
+        <h2>Prompt Library: Design &amp; Polish</h2>
+        <p>Run these after your initial build to make it look professional.</p>
+    </div>
+
+    <div class="cat-header">Visual Polish</div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">The Full Polish Pass</div>
+        <div class="prompt-code">Review this entire website and improve the design: add hover effects to all interactive elements, add subtle fade-in animations on scroll using IntersectionObserver, improve typography hierarchy (heading sizes, line heights, letter spacing), ensure consistent spacing throughout, and add a premium feel with subtle gradients or shadows where appropriate.</div>
+        <p class="prompt-note"><strong>Pro tip:</strong> Run this as the very last design step. It's like hiring a designer for a final review.</p>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Color System Overhaul</div>
+        <div class="prompt-code">Refactor the CSS to use CSS custom properties for all colors. Primary: [COLOR], Secondary: [COLOR], Accent: [COLOR], Background: [COLOR], Text: [COLOR]. Create light/dark variants of each. Apply them consistently across every element. Make sure contrast ratios pass WCAG AA.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Typography Upgrade</div>
+        <div class="prompt-code">Change the fonts to [HEADING FONT] for headings and [BODY FONT] for body text. Import from Google Fonts. Set up a proper type scale: h1 = 3rem, h2 = 2rem, h3 = 1.5rem, body = 1rem, small = 0.875rem. Line height 1.6 for body, 1.2 for headings. Letter-spacing -0.02em for headings.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Micro-Animations</div>
+        <div class="prompt-code">Add these animations: buttons scale to 1.02 on hover with a 0.2s transition. Cards lift with a subtle shadow on hover. Navigation links have an underline that slides in from left on hover. Page sections fade in and slide up 20px as they scroll into view using IntersectionObserver. Keep all animations under 0.3s. Respect prefers-reduced-motion.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Dark Mode Toggle</div>
+        <div class="prompt-code">Add a dark mode toggle button in the navigation (sun/moon icon). When toggled, switch all colors using CSS custom properties. Save the preference in localStorage so it persists. Default to the user's system preference (prefers-color-scheme). The transition between modes should be smooth (0.3s).</div>
+    </div>
+
+    <div class="cat-header">Mobile &amp; Responsive</div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Complete Mobile Audit</div>
+        <div class="prompt-code">Check every section at 375px width (iPhone SE). Fix: text that's too small (min 16px body), buttons too close together (min 44px tap targets), images that overflow, grids that don't stack properly, padding that looks off, horizontal scrolling. Add a hamburger menu for mobile navigation with a slide-in animation.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Responsive Images</div>
+        <div class="prompt-code">Audit all images on the site. Add width and height attributes to prevent layout shift. Add loading="lazy" to all images below the fold. Make sure hero images use object-fit: cover. Ensure no image is wider than its container on any screen size. Add srcset for images that have multiple sizes available.</div>
+    </div>
+
+    <!-- SECTION 3: SEO & LAUNCH PROMPTS -->
+    <div class="page-break"></div>
+
+    <div class="section-number">Section 3</div>
+    <div class="section-header">
+        <h2>Prompt Library: SEO &amp; Launch</h2>
+        <p>Get your site ready for search engines and the public.</p>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Full SEO Setup</div>
+        <div class="prompt-code">Add complete SEO to every HTML page: a unique title tag (under 60 chars), meta description (under 155 chars), Open Graph tags (og:title, og:description, og:image, og:url), Twitter card tags, canonical URL, and proper heading hierarchy (only one h1 per page). Add a robots.txt and sitemap.xml that lists all pages.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Performance Optimization</div>
+        <div class="prompt-code">Optimize this site for speed: move all CSS to a single minified file, defer non-critical JavaScript, add preconnect hints for external fonts, ensure images have explicit dimensions, add a service worker for offline caching, and verify there's no render-blocking resources. Target a Lighthouse score of 95+.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Accessibility Check</div>
+        <div class="prompt-code">Audit this site for accessibility: add alt text to every image, ensure all interactive elements are keyboard-navigable, add aria-labels where needed, check color contrast meets WCAG AA, add skip-to-content link, ensure forms have proper labels, and add focus-visible styles that are visible and clear.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Structured Data</div>
+        <div class="prompt-code">Add JSON-LD structured data to the site. For the homepage: Organization schema with name, url, logo, and sameAs (social links). For blog posts: Article schema with headline, author, datePublished, and description. For a business: LocalBusiness schema with address, phone, hours, and geo coordinates.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Analytics &amp; Tracking Setup</div>
+        <div class="prompt-code">Add Google Analytics 4 to every page. Measurement ID: [YOUR-ID]. Load it asynchronously so it doesn't block rendering. Add event tracking for: CTA button clicks, form submissions, outbound link clicks, and scroll depth (25%, 50%, 75%, 100%). Also add a cookie consent banner that loads GA4 only after consent.</div>
+    </div>
+
+    <!-- SECTION 4: ADVANCED PROMPTS -->
+    <div class="page-break"></div>
+
+    <div class="section-number">Section 4</div>
+    <div class="section-header">
+        <h2>Prompt Library: Advanced Features</h2>
+        <p>Level up your site with interactive features and integrations.</p>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Multi-Step Form</div>
+        <div class="prompt-code">Build a multi-step form with [NUMBER] steps. Step 1: [FIELDS]. Step 2: [FIELDS]. Step 3: [FIELDS]. Show a progress bar at the top. Validate each step before allowing "Next." Show a summary before the final submit button. Add smooth slide transitions between steps. On submit, POST to [URL] as JSON.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Image Lightbox Gallery</div>
+        <div class="prompt-code">Create an image gallery with a lightbox. Grid of thumbnails (3 columns). Clicking a thumbnail opens a full-screen overlay with the large image, left/right arrows for navigation, keyboard support (arrow keys, Escape to close), and a counter showing "3 of 12". Swipe support on mobile. Smooth fade transition.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Animated Stats Counter</div>
+        <div class="prompt-code">Add a stats section with [3-4] numbers. Each stat should count up from 0 to its final value when it scrolls into view, using IntersectionObserver. Numbers: [LIST, e.g., "500+ clients", "10 years", "50 projects"]. Add a suffix/prefix to each number. Animation duration: 2 seconds with easeOutExpo.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Sticky Header with Scroll Effect</div>
+        <div class="prompt-code">Make the navigation sticky. When the user scrolls past 100px: shrink the header height, add a subtle backdrop-blur background, reduce the logo size, and add a slim bottom shadow. All transitions should be smooth (0.3s). On mobile, keep the hamburger menu working with the sticky header.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Newsletter Popup</div>
+        <div class="prompt-code">Create a newsletter popup that appears after the user has been on the page for 30 seconds OR when they move their mouse toward the browser close button (exit intent). Include a headline, 2 benefit bullets, email input, and submit button. Add a "No thanks" close button. Save dismissal in localStorage so it only shows once per week.</div>
+    </div>
+
+    <div class="prompt-card no-break">
+        <div class="prompt-label">Custom 404 Page</div>
+        <div class="prompt-code">Create a 404.html page that matches the site design. Include a large "404" heading, a friendly message like "This page doesn't exist," a search bar, 3 suggested links to popular pages, and a "Go Home" button. Keep it minimal and on-brand. Add it to the sitemap exclusions.</div>
+    </div>
+
+    <!-- SECTION 5: TERMINAL COMMANDS -->
+    <div class="page-break"></div>
+
+    <div class="section-number">Section 5</div>
+    <div class="section-header">
+        <h2>Every Command You Need</h2>
+        <p>The complete terminal reference. Copy and paste.</p>
+    </div>
+
+    <div class="cat-header">Git Essentials</div>
+    <table class="cmd-table">
+        <tr><th style="width:40%">Command</th><th>What It Does</th></tr>
+        <tr><td><code>git init</code></td><td>Start tracking this folder with Git</td></tr>
+        <tr><td><code>git status</code></td><td>See what files changed since last commit</td></tr>
+        <tr><td><code>git add .</code></td><td>Stage all changed files for commit</td></tr>
+        <tr><td><code>git add [file]</code></td><td>Stage one specific file</td></tr>
+        <tr><td><code>git commit -m "message"</code></td><td>Save a snapshot with a description</td></tr>
+        <tr><td><code>git push</code></td><td>Upload your commits to GitHub</td></tr>
+        <tr><td><code>git pull</code></td><td>Download latest changes from GitHub</td></tr>
+        <tr><td><code>git log --oneline</code></td><td>See your commit history (compact)</td></tr>
+        <tr><td><code>git diff</code></td><td>See exactly what changed (line by line)</td></tr>
+        <tr><td><code>git checkout -- [file]</code></td><td>Undo changes to a file (revert to last commit)</td></tr>
+        <tr><td><code>git remote -v</code></td><td>Check which GitHub repo is connected</td></tr>
+    </table>
+
+    <div class="cat-header">GitHub Pages</div>
+    <table class="cmd-table">
+        <tr><th style="width:40%">Command / Action</th><th>What It Does</th></tr>
+        <tr><td><code>git remote add origin [URL]</code></td><td>Connect your local folder to a GitHub repo</td></tr>
+        <tr><td><code>git push -u origin main</code></td><td>Push to GitHub for the first time</td></tr>
+        <tr><td>Settings &#8594; Pages &#8594; main &#8594; Save</td><td>Enable GitHub Pages on the repo</td></tr>
+        <tr><td>Create <code>CNAME</code> file</td><td>Set a custom domain (file contains just the domain)</td></tr>
+        <tr><td>Add 4 A records to DNS</td><td>185.199.108.153, .109., .110., .111.</td></tr>
+        <tr><td>Add CNAME <code>www</code> to DNS</td><td>Points to [username].github.io</td></tr>
+    </table>
+
+    <div class="cat-header">Claude Code</div>
+    <table class="cmd-table">
+        <tr><th style="width:40%">Command</th><th>What It Does</th></tr>
+        <tr><td><code>npm install -g @anthropic-ai/claude-code</code></td><td>Install Claude Code globally</td></tr>
+        <tr><td><code>claude</code></td><td>Start Claude Code in current folder</td></tr>
+        <tr><td><code>claude --version</code></td><td>Check installed version</td></tr>
+        <tr><td><code>/clear</code></td><td>Clear conversation (save tokens)</td></tr>
+        <tr><td><code>/help</code></td><td>See all available slash commands</td></tr>
+        <tr><td><code>Ctrl+C</code></td><td>Cancel current generation</td></tr>
+        <tr><td><code>Escape</code></td><td>Exit Claude Code</td></tr>
+    </table>
+
+    <div class="cat-header">Node.js &amp; npm</div>
+    <table class="cmd-table">
+        <tr><th style="width:40%">Command</th><th>What It Does</th></tr>
+        <tr><td><code>node --version</code></td><td>Check Node.js is installed</td></tr>
+        <tr><td><code>npm --version</code></td><td>Check npm is installed</td></tr>
+        <tr><td><code>npm install -g [package]</code></td><td>Install a package globally</td></tr>
+        <tr><td><code>npm update -g @anthropic-ai/claude-code</code></td><td>Update Claude Code to latest</td></tr>
+        <tr><td><code>npx serve</code></td><td>Quick local server to preview your site</td></tr>
+    </table>
+
+    <!-- SECTION 6: TROUBLESHOOTING -->
+    <div class="page-break"></div>
+
+    <div class="section-number">Section 6</div>
+    <div class="section-header">
+        <h2>Troubleshooting: 15 Common Errors &amp; Fixes</h2>
+        <p>When something breaks, find the error here.</p>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">Site shows 404 on GitHub Pages</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Make sure your main file is called <code>index.html</code> (not <code>home.html</code> or <code>Index.HTML</code>). Check that Pages is set to the <code>main</code> branch in Settings &#8594; Pages. Wait 2-3 minutes after pushing.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">CSS changes not showing up</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Hard refresh: <code>Cmd+Shift+R</code> (Mac) or <code>Ctrl+Shift+R</code> (Windows). GitHub Pages can cache for up to 10 minutes. Also check you actually committed and pushed: run <code>git status</code> to verify.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">git push rejected (failed to push)</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Run <code>git pull --rebase</code> first, then try <code>git push</code> again. This happens when the remote has changes you don't have locally (like editing files on GitHub directly).</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">Images not loading on GitHub Pages</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Check the file path. GitHub is case-sensitive: <code>Photo.JPG</code> is not the same as <code>photo.jpg</code>. Use lowercase filenames, no spaces. Make sure the images were committed: <code>git status</code> should show no untracked image files.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">npm: command not found</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Node.js isn't installed. Download from <a href="https://nodejs.org">nodejs.org</a> (LTS version). After installing, close and reopen your terminal, then try again.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">claude: command not found</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Run <code>npm install -g @anthropic-ai/claude-code</code> to install. If already installed, close and reopen your terminal. On Mac, you might need <code>sudo npm install -g @anthropic-ai/claude-code</code>.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">Permission denied (publickey) on git push</div>
+        <div class="trouble-fix"><strong>Fix:</strong> You need to authenticate with GitHub. Easiest way: install GitHub CLI (<code>brew install gh</code> on Mac) then run <code>gh auth login</code>. Or use HTTPS URL instead of SSH when adding remote.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">Custom domain not working</div>
+        <div class="trouble-fix"><strong>Fix:</strong> DNS takes up to 48 hours (usually 1-2 hours). Check: CNAME file exists in repo root, 4 A records point to GitHub IPs (185.199.108-111.153), and the domain is set in Settings &#8594; Pages. Use <code>dig yourdomain.com</code> to verify DNS.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">HTTPS not working / "Not Secure" warning</div>
+        <div class="trouble-fix"><strong>Fix:</strong> In your repo Settings &#8594; Pages, check "Enforce HTTPS." If it's grayed out, wait for GitHub to provision the certificate (can take up to 24 hours after setting up the custom domain).</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">Mobile layout broken (horizontal scrolling)</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Usually caused by an element wider than the viewport. Tell Claude: "Find and fix any element that causes horizontal scrolling on mobile. Check for fixed widths, overflowing images, and elements with negative margins."</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">Form not submitting</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Check the form <code>action</code> URL is correct. Check the browser console for errors (F12 &#8594; Console). If using JavaScript to handle the form, make sure you're calling <code>e.preventDefault()</code> and the fetch URL is right.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">Fonts not loading / fallback showing</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Check that the Google Fonts <code>&lt;link&gt;</code> tag is in the <code>&lt;head&gt;</code> of every HTML file. Add <code>preconnect</code> hints: <code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</code>. Check spelling of the font name in your CSS.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">Claude Code running slow / timing out</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Break large prompts into smaller ones. Instead of "build me an entire site," do it page by page. Use <code>/clear</code> to reset context if the conversation is long. Check your API usage hasn't hit rate limits.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">Changes overwritten by Claude</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Always commit before asking Claude to make changes: <code>git add . && git commit -m "save point"</code>. If Claude breaks something, revert with <code>git checkout -- .</code> to go back to your last commit.</div>
+    </div>
+
+    <div class="trouble-card no-break">
+        <div class="trouble-error">GitHub Pages shows old version</div>
+        <div class="trouble-fix"><strong>Fix:</strong> Check your push actually went through: <code>git log --oneline -3</code> should show your latest commit. Then check GitHub Actions tab &#8212; Pages builds there and sometimes fails. Hard refresh your browser. Wait 5 minutes.</div>
+    </div>
+
+    <!-- SECTION 7: FULL PROJECT CHECKLIST -->
+    <div class="page-break"></div>
+
+    <div class="section-number">Section 7</div>
+    <div class="section-header">
+        <h2>Full Project Checklist: Zero to Live</h2>
+        <p>Check off each item as you complete it. This is the entire process.</p>
+    </div>
+
+    <div class="cat-header">Phase 1: Setup</div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text"><strong>VS Code</strong> installed and opened</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text"><strong>Node.js LTS</strong> installed &#8212; <code>node --version</code> works</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text"><strong>Git</strong> installed &#8212; <code>git --version</code> works</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text"><strong>Claude Code</strong> installed &#8212; <code>claude --version</code> works</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text"><strong>GitHub account</strong> created and signed in</div></div>
+
+    <div class="cat-header">Phase 2: Build</div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Project folder created (<code>mkdir</code> + <code>cd</code>)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Homepage built with Claude Code</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Colors, fonts, and branding applied</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Additional pages created (About, Contact, etc.)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Navigation links working between all pages</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Real images added and compressed (&lt;500KB each)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Favicon added (browser tab icon)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Contact form functional</div></div>
+
+    <div class="cat-header">Phase 3: Polish</div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Hover effects on all buttons and links</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Scroll animations added</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Mobile tested at 375px &#8212; no broken layouts</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">All text readable (min 16px body text)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Consistent spacing and alignment throughout</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Footer complete with all contact info and links</div></div>
+
+    <div class="cat-header">Phase 4: SEO &amp; Meta</div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Unique <code>&lt;title&gt;</code> tag on every page (under 60 chars)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Meta description on every page (under 155 chars)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Open Graph tags added (title, description, image)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">All images have alt text</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">One <code>h1</code> per page, proper heading hierarchy</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text"><code>robots.txt</code> created</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text"><code>sitemap.xml</code> created</div></div>
+
+    <div class="cat-header">Phase 5: Launch</div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">GitHub repo created</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Code pushed to GitHub (<code>git push</code>)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">GitHub Pages enabled (Settings &#8594; Pages &#8594; main)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Site loads at <code>username.github.io/repo</code></div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Custom domain configured (optional)</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">HTTPS enforced</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Google Analytics added</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Site submitted to Google Search Console</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">PageSpeed Insights score 90+ on mobile</div></div>
+    <div class="checklist-item"><div class="check-box"></div><div class="checklist-text">Shared with a friend for final feedback</div></div>
+
+    <!-- SECTION 8: RESOURCES -->
+    <div class="page-break"></div>
+
+    <div class="section-number">Section 8</div>
+    <div class="section-header">
+        <h2>Resources &amp; Tools</h2>
+        <p>Every tool and link mentioned in the course, in one place.</p>
+    </div>
+
+    <div class="cat-header">Essential (Free)</div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#128187;</div>
+        <div class="resource-info">
+            <div class="resource-name">VS Code</div>
+            <div class="resource-desc">Code editor for viewing and managing your files</div>
+            <div class="resource-url">code.visualstudio.com</div>
+        </div>
+    </div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#9881;</div>
+        <div class="resource-info">
+            <div class="resource-name">Node.js</div>
+            <div class="resource-desc">Required to run Claude Code (download LTS)</div>
+            <div class="resource-url">nodejs.org</div>
+        </div>
+    </div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#128200;</div>
+        <div class="resource-info">
+            <div class="resource-name">Git</div>
+            <div class="resource-desc">Version control and deployment to GitHub</div>
+            <div class="resource-url">git-scm.com</div>
+        </div>
+    </div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#128640;</div>
+        <div class="resource-info">
+            <div class="resource-name">GitHub</div>
+            <div class="resource-desc">Free hosting for your website via GitHub Pages</div>
+            <div class="resource-url">github.com</div>
+        </div>
+    </div>
+
+    <div class="cat-header">Images &amp; Design</div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#128247;</div>
+        <div class="resource-info">
+            <div class="resource-name">Unsplash &amp; Pexels</div>
+            <div class="resource-desc">Free, high-quality stock photos (no attribution needed)</div>
+            <div class="resource-url">unsplash.com &middot; pexels.com</div>
+        </div>
+    </div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#128230;</div>
+        <div class="resource-info">
+            <div class="resource-name">TinyPNG &amp; Squoosh</div>
+            <div class="resource-desc">Compress images before adding to your site</div>
+            <div class="resource-url">tinypng.com &middot; squoosh.app</div>
+        </div>
+    </div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#127912;</div>
+        <div class="resource-info">
+            <div class="resource-name">Favicon.io</div>
+            <div class="resource-desc">Generate a favicon from text, image, or emoji</div>
+            <div class="resource-url">favicon.io</div>
+        </div>
+    </div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#127464;</div>
+        <div class="resource-info">
+            <div class="resource-name">Google Fonts</div>
+            <div class="resource-desc">Free web fonts (Inter, Playfair Display, etc.)</div>
+            <div class="resource-url">fonts.google.com</div>
+        </div>
+    </div>
+
+    <div class="cat-header">Testing &amp; SEO</div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#9889;</div>
+        <div class="resource-info">
+            <div class="resource-name">PageSpeed Insights</div>
+            <div class="resource-desc">Test your site's speed and get fix recommendations</div>
+            <div class="resource-url">pagespeed.web.dev</div>
+        </div>
+    </div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#128270;</div>
+        <div class="resource-info">
+            <div class="resource-name">Google Search Console</div>
+            <div class="resource-desc">Submit your site to Google, monitor search performance</div>
+            <div class="resource-url">search.google.com/search-console</div>
+        </div>
+    </div>
+    <div class="resource-card no-break">
+        <div class="resource-icon">&#128202;</div>
+        <div class="resource-info">
+            <div class="resource-name">Google Analytics 4</div>
+            <div class="resource-desc">Track visitors, page views, and conversions</div>
+            <div class="resource-url">analytics.google.com</div>
+        </div>
+    </div>
+
+    <div class="tip-box" style="margin-top: 1.5rem;">
+        <span class="tip-icon">BOOKMARK THIS</span>
+        Keep this PDF open while you build. It's meant to be your reference &#8212; not something you read once and put away.
+    </div>
+
+</body>
+</html>

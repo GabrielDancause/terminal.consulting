@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OG Image Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #1a1a2e;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 60px;
+    }
+
+    h2 {
+      color: #a29bfe;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .og-card {
+      width: 1200px;
+      height: 630px;
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* === MAIN OG (index.html) === */
+    .og-main {
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 40%, #2d1b69 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 90px;
+    }
+
+    .og-main .og-badge {
+      display: inline-block;
+      background: rgba(108, 92, 231, 0.2);
+      border: 1px solid rgba(108, 92, 231, 0.4);
+      color: #a29bfe;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      width: fit-content;
+    }
+
+    .og-main h1 {
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      max-width: 900px;
+    }
+
+    .og-main h1 span {
+      color: #6C5CE7;
+    }
+
+    .og-main .og-sub {
+      font-size: 24px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 400;
+      max-width: 700px;
+      line-height: 1.5;
+    }
+
+    .og-main .og-price {
+      position: absolute;
+      bottom: 70px;
+      right: 90px;
+      background: #6C5CE7;
+      color: white;
+      font-size: 28px;
+      font-weight: 800;
+      padding: 14px 32px;
+      border-radius: 12px;
+    }
+
+    .og-main .og-author {
+      position: absolute;
+      bottom: 78px;
+      left: 90px;
+      font-size: 20px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+    }
+
+    .og-main .og-author strong {
+      color: white;
+    }
+
+    .og-main .og-domain {
+      color: #6C5CE7;
+      font-weight: 600;
+    }
+
+    /* Corner accent */
+    .og-main::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(108, 92, 231, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .og-main::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(108, 92, 231, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    /* === BLOG OG === */
+    .og-blog {
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 40%, #2d1b69 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 90px;
+    }
+
+    .og-blog .og-tag {
+      display: inline-block;
+      background: rgba(108, 92, 231, 0.2);
+      border: 1px solid rgba(108, 92, 231, 0.4);
+      color: #a29bfe;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      width: fit-content;
+    }
+
+    .og-blog h1 {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      max-width: 950px;
+    }
+
+    .og-blog .og-sub {
+      font-size: 22px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 400;
+      max-width: 700px;
+    }
+
+    .og-blog .og-footer {
+      position: absolute;
+      bottom: 60px;
+      left: 90px;
+      right: 90px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .og-blog .og-footer-author {
+      font-size: 20px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .og-blog .og-footer-author strong {
+      color: white;
+    }
+
+    .og-blog .og-footer-domain {
+      font-size: 20px;
+      color: #6C5CE7;
+      font-weight: 600;
+    }
+
+    .og-blog::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(108, 92, 231, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .instructions {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 24px 32px;
+      max-width: 800px;
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+    }
+
+    .instructions strong {
+      color: #6C5CE7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="instructions">
+    <strong>How to save these as images:</strong><br>
+    For each card below: right-click &rarr; Inspect &rarr; select the <code>.og-card</code> div &rarr; right-click the element &rarr; "Capture node screenshot" (Chrome). Save each to <code>/images/</code> folder.<br><br>
+    Or: zoom your browser to 100%, screenshot each card, and crop to exactly 1200&times;630.
+  </div>
+
+  <!-- 1. MAIN OG IMAGE (index.html) -->
+  <h2>1. Main — og-main.png</h2>
+  <div class="og-card og-main">
+    <div class="og-badge">Audio Tutorial</div>
+    <h1>Build &amp; Host a Website <span>for Free</span></h1>
+    <p class="og-sub">A step-by-step audio tutorial. Build a real website with AI and host it for free — no coding needed.</p>
+    <p class="og-author">By <strong>Gab</strong> &middot; <span class="og-domain">gab.ae</span></p>
+    <div class="og-price">$39</div>
+  </div>
+
+  <!-- 2. BLOG INDEX -->
+  <h2>2. Blog Index — og-blog.png</h2>
+  <div class="og-card og-blog">
+    <div class="og-tag">Blog</div>
+    <h1>Web Development Tips &amp; Tutorials</h1>
+    <p class="og-sub">Practical guides for building websites with AI tools, no coding experience required.</p>
+    <div class="og-footer">
+      <span class="og-footer-author">By <strong>Gab</strong></span>
+      <span class="og-footer-domain">gab.ae/blog</span>
+    </div>
+  </div>
+
+  <!-- 3. BLOG POST: Why I Stopped Using WordPress -->
+  <h2>3. Blog Post — og-blog-wordpress.png</h2>
+  <div class="og-card og-blog">
+    <div class="og-tag">Blog</div>
+    <h1>Why I Stopped Using WordPress</h1>
+    <p class="og-sub">After 10 years on WordPress, I switched to building sites with Claude Code and GitHub Pages. Here's why.</p>
+    <div class="og-footer">
+      <span class="og-footer-author">By <strong>Gab</strong></span>
+      <span class="og-footer-domain">gab.ae/blog</span>
+    </div>
+  </div>
+
+  <!-- 4. BLOG POST: Claude Code vs Web Developer -->
+  <h2>4. Blog Post — og-blog-claude-vs-dev.png</h2>
+  <div class="og-card og-blog">
+    <div class="og-tag">Blog</div>
+    <h1>Claude Code vs Hiring a Web Developer</h1>
+    <p class="og-sub">When AI makes sense, when a developer makes sense, and how to decide for your project.</p>
+    <div class="og-footer">
+      <span class="og-footer-author">By <strong>Gab</strong></span>
+      <span class="og-footer-domain">gab.ae/blog</span>
+    </div>
+  </div>
+
+  <!-- 5. BLOG POST: 5 Websites You Can Build for Free -->
+  <h2>5. Blog Post — og-blog-5-websites.png</h2>
+  <div class="og-card og-blog">
+    <div class="og-tag">Blog</div>
+    <h1>5 Websites You Can Build for Free with Claude Code</h1>
+    <p class="og-sub">Real examples of sites you can build and host without spending a dollar.</p>
+    <div class="og-footer">
+      <span class="og-footer-author">By <strong>Gab</strong></span>
+      <span class="og-footer-domain">gab.ae/blog</span>
+    </div>
+  </div>
+
+  <!-- 6. BLOG POST: What Is GitHub Pages -->
+  <h2>6. Blog Post — og-blog-github-pages.png</h2>
+  <div class="og-card og-blog">
+    <div class="og-tag">Blog</div>
+    <h1>What Is GitHub Pages? Free Hosting Explained</h1>
+    <p class="og-sub">How GitHub Pages works, what it costs (nothing), and why it's the best option for static sites.</p>
+    <div class="og-footer">
+      <span class="og-footer-author">By <strong>Gab</strong></span>
+      <span class="og-footer-domain">gab.ae/blog</span>
+    </div>
+  </div>
+
+</body>
+</html>

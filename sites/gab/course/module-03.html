@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/course-gate.js"></script>
+  <title>Module 3: Your First Prompt — Course</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+  <div class="module-page">
+    <nav class="module-nav">
+      <a href="../course.html" class="module-nav-back">&larr; Back to Course</a>
+      <div class="module-nav-controls">
+        <a href="module-02.html" class="module-nav-prev">&larr; Prev</a>
+        <span class="module-nav-label">Module 3 of 10</span>
+        <a href="module-04.html" class="module-nav-next">Next &rarr;</a>
+      </div>
+    </nav>
+    <header class="module-header">
+      <span class="module-badge">Module 3</span>
+      <h1>Your First Prompt: Building the Homepage</h1>
+      <p class="module-meta">~9 min listen &middot; Written guide below</p>
+    </header>
+    <div class="module-audio">
+      <audio controls preload="metadata" style="width:100%">
+        <source src="audio/module-03.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <article class="module-content">
+      <p>This is where it gets fun. You're about to go from a blank folder to a full website in about five minutes.</p>
+
+      <h2>Create Your Project Folder</h2>
+      <p>Open your terminal. Navigate to wherever you want to keep your project. I like using the Desktop because it's easy to find, but anywhere works.</p>
+      <pre><code>mkdir my-website &amp;&amp; cd my-website</code></pre>
+      <p>That creates a folder called <code>my-website</code> and moves you inside it. If you type <code>ls</code> right now, you'll see nothing &mdash; it's an empty folder. Not for long.</p>
+
+      <h2>Launch Claude Code</h2>
+      <p>Type:</p>
+      <pre><code>claude</code></pre>
+      <p>You should see the Claude Code prompt. You're now talking directly to an AI that can write code and create files for you, right in this folder.</p>
+
+      <h2>The Golden Prompt</h2>
+      <p>Here's the thing about Claude Code &mdash; the better you describe what you want, the better the result. You need to be <strong>specific about the things that matter</strong> and let Claude handle the rest.</p>
+      <p>Here's what a great first prompt includes:</p>
+      <ol>
+        <li><strong>What kind of business</strong> (bakery, hotel, consulting firm, gym, etc.)</li>
+        <li><strong>The business name and location</strong></li>
+        <li><strong>What sections you want</strong> (hero, about, services, testimonials, contact)</li>
+        <li><strong>Color preferences</strong> (even vague ones like "warm" or "modern and dark" help)</li>
+        <li><strong>That it should be mobile-responsive</strong></li>
+        <li><strong>What files to create</strong></li>
+      </ol>
+      <p>Here's an example prompt for a bakery:</p>
+      <pre><code>Build me a professional one-page website for a bakery called "Golden Crust Bakery" in Montreal. It should have: a hero section with a big headline and a short tagline, an about section telling the bakery's story, a menu section showcasing 6 items with names, descriptions, and prices, a testimonials section with 3 customer reviews, and a contact section with the address, phone number, and business hours. Use a warm color scheme. Make it mobile-responsive. Use modern, clean typography. Create index.html and styles.css files.</code></pre>
+      <p>Type that into Claude Code (or adapt it to your own business) and press Enter.</p>
+
+      <h2>What Claude Generates</h2>
+      <p>Claude Code will start working. You'll see it creating files &mdash; usually <code>index.html</code> and <code>styles.css</code>. It might take 30 seconds to a minute. When it's done, you'll have a complete website in your folder.</p>
+      <p>Two files. That's your entire website. <code>index.html</code> is the content and structure. <code>styles.css</code> is the design &mdash; colors, fonts, spacing, layout.</p>
+
+      <h2>Preview Your Site</h2>
+      <p>On Mac:</p>
+      <pre><code>open index.html</code></pre>
+      <p>On Windows:</p>
+      <pre><code>start index.html</code></pre>
+      <p>This opens your website in your default browser. That's it. You're looking at your website.</p>
+      <p>If things look weird (images not loading, for example), you can run a quick local server:</p>
+      <pre><code>npx serve</code></pre>
+      <p>It'll give you a URL like <code>http://localhost:3000</code>. Open that in your browser.</p>
+
+      <h2>How to Iterate</h2>
+      <p>Your first result will be good, maybe even great. But you'll want to tweak things. That's the process: <strong>prompt, preview, adjust, repeat.</strong></p>
+      <p>Go back to Claude Code and start making requests:</p>
+      <pre><code>Make the hero section taller &mdash; it should take up the full viewport height. Make the main headline bigger, around 4rem.</code></pre>
+      <pre><code>The gold accent color is too bright. Make it more of a muted, warm gold. Something like #C9A96E.</code></pre>
+      <pre><code>Add a subtle fade-in animation to each section as the user scrolls down the page.</code></pre>
+      <p>Every time you make a change, refresh your browser and check if you like it. If not, tell Claude what to adjust.</p>
+
+      <h2>Tips for Writing Good Prompts</h2>
+      <p><strong>Be specific about what you see, not what you want technically.</strong></p>
+      <ul>
+        <li>Bad: "Add a CSS grid with 3 columns and gap of 2rem"</li>
+        <li>Good: "Make the menu items display in a 3-column grid with space between them"</li>
+      </ul>
+      <p><strong>Reference real websites you like.</strong></p>
+      <pre><code>I want the hero section to feel like the Apple homepage &mdash; big, clean, lots of white space, one strong headline centered on the page.</code></pre>
+      <p><strong>Give context about your brand.</strong> The more Claude understands the vibe, the better the result.</p>
+      <p><strong>One change at a time.</strong> When iterating, don't ask for 10 changes at once. Ask for one or two. Check the result. Then ask for more.</p>
+
+      <h2>What If the First Result Isn't Great?</h2>
+      <p><strong>Start over with a better prompt.</strong> If the whole thing is off, delete the files and write a more detailed prompt:</p>
+      <pre><code>rm index.html styles.css</code></pre>
+      <p>Then go back to Claude and try again with a refined prompt.</p>
+      <p><strong>Use screenshots as reference.</strong> If you see a website you love, describe it in detail to Claude.</p>
+      <p><strong>Be patient with yourself.</strong> Your first website won't be perfect, and that's fine. The iteration cycle is so fast that you can experiment without any risk.</p>
+      <p>You now have a homepage. Let's make it look exactly the way you want.</p>
+    </article>
+    <nav class="module-bottom-nav">
+      <a href="module-02.html" class="btn-bottom btn-bottom-outline">&larr; Previous: Setting Up Your Tools</a>
+      <a href="module-04.html" class="btn-bottom btn-bottom-primary">Next: Customizing the Design &rarr;</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automate Your Faceless Channel — How to Auto-Upload to YouTube with Python — Gab</title>
+  <meta name="description" content="Part II of the faceless channel guide. Automate the most tedious step — uploading videos to YouTube — with a simple Python script and the YouTube Data API.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Automate Your Faceless Channel — How to Auto-Upload to YouTube with Python">
+  <meta property="og:description" content="Part II: Automate YouTube uploads for your faceless channel. A Python script that handles titles, descriptions, tags, and scheduling.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gab.ae/blog/automate-your-faceless-channel.html">
+  <meta property="og:image" content="https://gab.ae/images/og-blog-automate-faceless.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automate Your Faceless Channel — How to Auto-Upload to YouTube with Python">
+  <meta name="twitter:description" content="Part II: Automate YouTube uploads for your faceless channel. A Python script that handles titles, descriptions, tags, and scheduling.">
+  <meta name="twitter:image" content="https://gab.ae/images/og-blog-automate-faceless.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="blog-styles.css">
+</head>
+<body>
+
+  <div class="blog-post">
+
+    <!-- Navigation -->
+    <nav class="blog-post-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Blog</a></li>
+        <li aria-current="page">Automate Your Faceless Channel &mdash; How to Auto-Upload to YouTube with Python</li>
+      </ol>
+      <a href="../" class="blog-nav-logo">Gab</a>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="blog-post-header">
+      <span class="blog-post-tag">Automation</span>
+      <h1>Automate Your Faceless Channel &mdash; How to Auto-Upload to YouTube with Python</h1>
+      <p class="blog-post-meta">Gab <span>&middot;</span> February 2026 <span>&middot;</span> 8 min read</p>
+    </header>
+
+    <!-- Post Content -->
+    <article class="blog-content">
+
+      <p>This is Part II of the <a href="how-to-create-a-faceless-channel.html">faceless channel guide</a>. In Part I, we covered the full workflow &mdash; generating music with Suno, creating visuals with Google Flow, and distributing with DistroKid.</p>
+
+      <p>But there's a bottleneck. Every time you finish a video, you have to manually go to YouTube Studio, click upload, type a title, write a description, add tags, set a thumbnail, pick a category, and hit publish. Do that twice a week and it gets old fast.</p>
+
+      <p>Let's automate it.</p>
+
+      <h2>The Problem: Manual Uploading Doesn't Scale</h2>
+
+      <p>If you're releasing 1-2 videos per week, that's 100+ uploads a year. Each one takes 10-15 minutes of clicking around YouTube Studio. That's 25+ hours a year spent on something a script can do in seconds.</p>
+
+      <p>Worse, manual uploads introduce inconsistency. You forget tags, your descriptions vary, you skip scheduling. Automation fixes all of that.</p>
+
+      <h2>The Solution: YouTube Data API + Python</h2>
+
+      <p>Google provides a free API that lets you upload videos, set metadata, and schedule publishes &mdash; all programmatically. You write a script once, then every upload is a single command.</p>
+
+      <p><strong>What you can automate:</strong></p>
+      <ul>
+        <li>Video file upload</li>
+        <li>Title, description, and tags</li>
+        <li>Category and language</li>
+        <li>Privacy status (public, unlisted, private)</li>
+        <li>Scheduled publish time</li>
+        <li>Thumbnail upload</li>
+        <li>Playlist assignment</li>
+      </ul>
+
+      <h2>Step 1: Set Up Google Cloud Credentials</h2>
+
+      <p>Before writing any code, you need API access.</p>
+
+      <ol>
+        <li>Go to the Google Cloud Console and create a new project</li>
+        <li>Enable the <strong>YouTube Data API v3</strong></li>
+        <li>Create OAuth 2.0 credentials (Desktop application type)</li>
+        <li>Download the <code>client_secrets.json</code> file</li>
+      </ol>
+
+      <p>This is a one-time setup. The credentials file lets your script authenticate as your YouTube account.</p>
+
+      <p><strong>Important:</strong> The YouTube Data API has a daily quota of 10,000 units. A single video upload costs about 1,600 units, so you can upload roughly 6 videos per day on the free tier. More than enough for a faceless channel.</p>
+
+      <h2>Step 2: Install Dependencies</h2>
+
+      <p>You need two Python packages:</p>
+
+      <pre><code>pip install google-api-python-client google-auth-oauthlib</code></pre>
+
+      <p>That's it. No frameworks, no complex setup.</p>
+
+      <h2>Step 3: The Upload Script</h2>
+
+      <p>Here's the core script structure. It reads a video file, sets the metadata, and uploads it to your channel.</p>
+
+      <pre><code>import os
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+from google_auth_oauthlib.flow import InstalledAppFlow
+
+SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
+
+def authenticate():
+    flow = InstalledAppFlow.from_client_secrets_file(
+        "client_secrets.json", SCOPES
+    )
+    credentials = flow.run_local_server(port=0)
+    return build("youtube", "v3", credentials=credentials)
+
+def upload_video(youtube, file_path, title, description, tags):
+    body = {
+        "snippet": {
+            "title": title,
+            "description": description,
+            "tags": tags,
+            "categoryId": "10",  # Music
+        },
+        "status": {
+            "privacyStatus": "public",
+            "selfDeclaredMadeForKids": False,
+        },
+    }
+
+    media = MediaFileUpload(file_path, resumable=True)
+
+    request = youtube.videos().insert(
+        part="snippet,status",
+        body=body,
+        media_body=media,
+    )
+
+    response = request.execute()
+    print(f"Uploaded: https://youtu.be/{response['id']}")
+    return response
+
+youtube = authenticate()
+upload_video(
+    youtube,
+    file_path="output/midnight-rain.mp4",
+    title="Midnight Rain — Lofi Ambient",
+    description="A late-night ambient track for focus and calm.",
+    tags=["lofi", "ambient", "chill", "focus music"],
+)</code></pre>
+
+      <p>Run this once and it opens a browser for Google sign-in. After that first auth, you can save the token and skip the login on future uploads.</p>
+
+      <h2>Step 4: Batch Uploads with a Config File</h2>
+
+      <p>Typing metadata into the script every time defeats the purpose. Instead, use a simple JSON config file for each batch of uploads.</p>
+
+      <pre><code>{
+  "uploads": [
+    {
+      "file": "output/midnight-rain.mp4",
+      "title": "Midnight Rain — Lofi Ambient",
+      "description": "A late-night ambient track for focus and calm.\n\nMade with Suno + Google Flow.\n\n#lofi #ambient #focusmusic",
+      "tags": ["lofi", "ambient", "chill", "focus music"],
+      "scheduled": "2026-03-01T14:00:00Z"
+    },
+    {
+      "file": "output/neon-drift.mp4",
+      "title": "Neon Drift — Synthwave",
+      "description": "Retro synthwave vibes for late-night drives.\n\nMade with Suno + Google Flow.\n\n#synthwave #retro #nightdrive",
+      "tags": ["synthwave", "retro", "electronic"],
+      "scheduled": "2026-03-04T14:00:00Z"
+    }
+  ]
+}</code></pre>
+
+      <p>Then your script reads this file and uploads everything in sequence:</p>
+
+      <pre><code>import json
+
+with open("upload-batch.json") as f:
+    batch = json.load(f)
+
+for video in batch["uploads"]:
+    upload_video(
+        youtube,
+        file_path=video["file"],
+        title=video["title"],
+        description=video["description"],
+        tags=video["tags"],
+    )
+    print(f"Done: {video['title']}")</code></pre>
+
+      <p>Batch-create on the weekend, fill out the JSON file, run the script. Your whole week of content uploads in under a minute.</p>
+
+      <h2>Step 5: Auto-Generate Descriptions and Tags</h2>
+
+      <p>You can take this one step further. Instead of writing descriptions manually, use an LLM to generate them from the track title and genre.</p>
+
+      <pre><code>import anthropic
+
+client = anthropic.Anthropic()
+
+def generate_metadata(title, genre):
+    message = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=300,
+        messages=[{
+            "role": "user",
+            "content": f"Write a short YouTube description (3-4 lines) and 8 relevant tags for a {genre} music track titled '{title}'. Format as JSON with 'description' and 'tags' keys."
+        }]
+    )
+    return json.loads(message.content[0].text)</code></pre>
+
+      <p>Now your workflow is: generate music, generate visuals, combine them, and let the script handle the title, description, tags, and upload. The only manual step left is quality control &mdash; listening to the track and making sure the video looks right.</p>
+
+      <h2>Step 6: Add Thumbnail Generation</h2>
+
+      <p>YouTube thumbnails matter, even for faceless channels. You can automate these too.</p>
+
+      <p><strong>Option 1:</strong> Use an AI image generator (Midjourney, DALL-E, or Google Imagen) to create a thumbnail that matches your visual style. Prompt it with your track title and genre.</p>
+
+      <p><strong>Option 2:</strong> Create a template in Figma or Canva and use a script to swap out the track title text. Same layout every time, just different text. This actually builds brand recognition faster.</p>
+
+      <p><strong>Option 3:</strong> Extract a frame from your Google Flow video. Pick the most visually striking moment, export it as a 1280x720 image, and upload it as the thumbnail via the API:</p>
+
+      <pre><code>youtube.thumbnails().set(
+    videoId=video_id,
+    media_body=MediaFileUpload("thumbnail.jpg")
+).execute()</code></pre>
+
+      <h2>The Automated Pipeline</h2>
+
+      <p>Here's what your workflow looks like once everything is wired up:</p>
+
+      <ol>
+        <li><strong>Create</strong> &mdash; Generate tracks in Suno, visuals in Google Flow (still manual, still creative)</li>
+        <li><strong>Combine</strong> &mdash; Merge audio + video in your editor, export the final file</li>
+        <li><strong>Configure</strong> &mdash; Add the file and basic info to your <code>upload-batch.json</code></li>
+        <li><strong>Run</strong> &mdash; Execute the script. It generates the description, tags, uploads the video, sets the thumbnail, and schedules the publish date</li>
+      </ol>
+
+      <p>The creative work stays manual. The repetitive publishing work disappears.</p>
+
+      <h2>What Else Can You Automate?</h2>
+
+      <p>Once you have the YouTube API wired up, there are a few more things worth automating:</p>
+
+      <ul>
+        <li><strong>Playlist management</strong> &mdash; Automatically add each upload to the right playlist based on genre or mood</li>
+        <li><strong>YouTube Shorts</strong> &mdash; Script that extracts a 30-60 second clip from each video, adds a title overlay, and uploads it as a Short</li>
+        <li><strong>Analytics tracking</strong> &mdash; Pull view counts and watch time weekly, dump it to a spreadsheet to track what's working</li>
+        <li><strong>Cross-posting</strong> &mdash; Use the TikTok and Instagram APIs to post the same clips to Reels and TikTok automatically</li>
+      </ul>
+
+      <p>You don't need all of this on day one. Start with the upload script. Once that's running smoothly, add layers.</p>
+
+      <h2>The Point</h2>
+
+      <p>A faceless channel is a content machine. The creative part &mdash; making the music, choosing the visuals &mdash; should take most of your time. Everything after that should be automated.</p>
+
+      <p>One Python script and a JSON file turn 15 minutes of clicking into 10 seconds of running a command. Over a year, that's hours of your life back. Spend it making better music instead.</p>
+
+      <p>Read <a href="how-to-create-a-faceless-channel.html">Part I</a> if you haven't set up the channel yet.</p>
+
+      <p><strong>Next up:</strong> In <a href="automate-suno-with-claude.html">Part III</a>, I show you how to automate the music creation step itself &mdash; using Claude's browser extension to drive Suno for you.</p>
+
+    </article>
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <h3>Want the full step-by-step walkthrough?</h3>
+      <p>My tutorial covers everything from setup to going live. 10 audio modules you can follow along with.</p>
+      <a href="../#pricing" class="btn">Get the Tutorial &mdash; $39</a>
+    </div>
+
+    <!-- Footer Nav -->
+    <nav class="blog-post-footer">
+      <a href="./" class="btn-back">&larr; All Posts</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

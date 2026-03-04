@@ -1,0 +1,428 @@
+/* ============================================
+   Gab — Technical Knowledge Base
+   Wiki Architecture Stylesheet
+   ============================================ */
+
+@import '../variables.css';
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Override default container width */
+  --container: 960px;
+
+  /* Doc-specific variables */
+  --code-bg: #1a1a2e;
+  --code-border: rgba(108, 92, 231, 0.2);
+  --infobox-bg: #111114;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--accent-light);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: #fff;
+}
+
+/* ---------- Doc Layout ---------- */
+.doc-container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ---------- Breadcrumb ---------- */
+.doc-breadcrumb {
+  padding: 20px 0;
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.doc-breadcrumb a {
+  color: var(--text-tertiary);
+}
+
+.doc-breadcrumb a:hover {
+  color: var(--accent-light);
+}
+
+.doc-breadcrumb .sep {
+  margin: 0 8px;
+  opacity: 0.4;
+}
+
+/* ---------- Doc Header ---------- */
+.doc-header {
+  margin-bottom: 48px;
+}
+
+.doc-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.doc-meta {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.doc-meta .tag {
+  background: var(--accent-glow);
+  color: var(--accent-light);
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Abstract ---------- */
+.doc-abstract {
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  padding: 20px 24px;
+  margin-bottom: 40px;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* ---------- Gab Stack Infobox ---------- */
+.gab-stack-infobox {
+  float: right;
+  width: 280px;
+  margin: 0 0 24px 32px;
+  background: var(--infobox-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.gab-stack-infobox .infobox-header {
+  background: var(--accent);
+  padding: 10px 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #fff;
+}
+
+.gab-stack-infobox table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gab-stack-infobox td {
+  padding: 10px 16px;
+  font-size: 0.82rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.gab-stack-infobox td:first-child {
+  color: var(--text-tertiary);
+  font-weight: 600;
+  width: 110px;
+  white-space: nowrap;
+}
+
+.gab-stack-infobox td:last-child {
+  color: var(--text);
+}
+
+.gab-stack-infobox tr:last-child td {
+  border-bottom: none;
+}
+
+.complexity-low {
+  color: var(--success) !important;
+}
+
+.complexity-medium {
+  color: var(--warning) !important;
+}
+
+.complexity-high {
+  color: #FF453A !important;
+}
+
+/* ---------- Content Sections ---------- */
+.doc-content {
+  clear: none;
+}
+
+.doc-content::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.doc-section {
+  margin-bottom: 48px;
+}
+
+.doc-section h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: -0.01em;
+}
+
+.doc-section h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 24px 0 12px;
+}
+
+.doc-section p {
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.doc-section ul,
+.doc-section ol {
+  margin: 0 0 16px 20px;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.doc-section li {
+  margin-bottom: 6px;
+}
+
+.doc-section li code {
+  background: var(--code-bg);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--accent-light);
+}
+
+/* ---------- Code Blocks ---------- */
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-xs);
+  padding: 20px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+pre code {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: none;
+  padding: 0;
+}
+
+code {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  background: var(--code-bg);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.84rem;
+  color: var(--accent-light);
+}
+
+.code-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 3px 10px;
+  border-radius: 0 7px 0 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Integration Links ---------- */
+.integration-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.integration-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 20px;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.integration-card:hover {
+  border-color: var(--border-accent);
+  background: var(--surface-elevated);
+}
+
+.integration-card h4 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.integration-card h4 a {
+  color: var(--text);
+}
+
+.integration-card h4 a:hover {
+  color: var(--accent-light);
+}
+
+.integration-card p {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ---------- Tables ---------- */
+.doc-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+}
+
+.doc-section th {
+  background: var(--surface);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  border-bottom: 1px solid var(--border);
+}
+
+.doc-section td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* ---------- Callout Boxes ---------- */
+.callout {
+  padding: 16px 20px;
+  border-radius: var(--radius-xs);
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+}
+
+.callout-note {
+  background: rgba(108, 92, 231, 0.08);
+  border-left: 3px solid var(--accent);
+  color: var(--text-secondary);
+}
+
+.callout-warn {
+  background: rgba(255, 159, 10, 0.08);
+  border-left: 3px solid var(--warning);
+  color: var(--text-secondary);
+}
+
+/* ---------- Footer ---------- */
+.doc-footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+}
+
+.doc-footer a {
+  color: var(--text-tertiary);
+}
+
+.doc-footer a:hover {
+  color: var(--accent-light);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .gab-stack-infobox {
+    float: none;
+    width: 100%;
+    margin: 0 0 32px 0;
+  }
+
+  .doc-title {
+    font-size: 1.6rem;
+  }
+
+  .doc-container {
+    padding: 0 16px 60px;
+  }
+
+  .integration-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .doc-footer {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .doc-title {
+    font-size: 1.35rem;
+  }
+
+  pre {
+    padding: 14px;
+    font-size: 0.78rem;
+  }
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Automate Pull Requests with Google Jule — Gab</title>
+    <meta name="description"
+        content="Stop switching contexts to manage Git. Learn how to use Google Jule to automatically push code and open Pull Requests while you keep building.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="How to Automate Pull Requests with Google Jule">
+    <meta property="og:description"
+        content="Stop switching contexts to manage Git. Learn how to use Google Jule to automatically push code and open Pull Requests while you keep building.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://gab.ae/blog/automate-pull-requests-google-jule.html">
+    <meta property="og:image" content="https://gab.ae/images/og-blog.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Automate Pull Requests with Google Jule">
+    <meta name="twitter:description"
+        content="Stop switching contexts to manage Git. Learn how to use Google Jule to automatically push code and open Pull Requests while you keep building.">
+    <meta name="twitter:image" content="https://gab.ae/images/og-blog.png">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="blog-styles.css">
+</head>
+
+<body>
+
+    <div class="blog-post">
+
+        <!-- Navigation -->
+        <nav class="blog-post-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Blog</a></li>
+        <li aria-current="page">How to Automate Pull Requests with Google Jule</li>
+      </ol>
+      <a href="../" class="blog-nav-logo">Gab</a>
+    </nav>
+
+        <!-- Post Header -->
+        <header class="blog-post-header">
+            <span class="blog-post-tag">Automation</span>
+            <h1>How to Automate Pull Requests with Google Jule</h1>
+            <p class="blog-post-meta">Gab <span>&middot;</span> February 2026 <span>&middot;</span> 6 min read</p>
+        </header>
+
+        <!-- Post Content -->
+        <article class="blog-content">
+
+            <p>Context switching is the enemy of deep work. Every time you stop coding to stage files, write a commit
+                message, push to a remote branch, and open a browser window to create a Pull Request, you lose momentum.
+            </p>
+
+            <p>What if you could hand off that entire process to an autonomous agent? Enter Google Jule.</p>
+
+            <h2>What is Google Jule?</h2>
+
+            <p>Google Jule acts as an intelligent CI/CD bridging tool directly within your local environment. Instead of
+                relying on rigid bash scripts or GitHub Actions that only trigger <em>after</em> a push, Jule monitors
+                your workspace, understands the context of your changes, and handles the version control logistics for
+                you.</p>
+
+            <h2>The "Always Be Building" Workflow</h2>
+
+            <p>The traditional Git workflow looks like this:</p>
+            <ol>
+                <li>Write code.</li>
+                <li>Realize you have 40 untracked files.</li>
+                <li>Break flow state.</li>
+                <li><code>git add .</code></li>
+                <li><code>git commit -m "fixed stuff"</code></li>
+                <li><code>git push origin main</code></li>
+                <li>Go to GitHub to create PR.</li>
+            </ol>
+
+            <p>With an AI-assisted workflow using Jule, it looks like this:</p>
+            <ol>
+                <li>Write code.</li>
+                <li>Keep writing code.</li>
+            </ol>
+
+            <p>While you build, Jule batches logical units of work. It reads your file diffs to generate highly
+                semantic, descriptive commit messages. Then, it automatically pushes those branches and opens detailed
+                Pull Requests summarizing the architectural changes.</p>
+
+            <h2>Handling Asynchronous Development (The Flight Scenario)</h2>
+
+            <p>One of the most powerful use cases for this automation is asynchronous or offline development. I
+                frequently write batches of blog posts or prototype features while traveling.</p>
+
+            <p>Normally, when you have no internet access, you just pile up local commits. The moment you hit a Wi-Fi
+                network, you have to spend 30 minutes untangling branches and pushing them up.</p>
+
+            <p>When you pair local AI tools (like Claude Code) with Jule, the handoff is seamless. The AI generates the
+                content locally. As soon as a connection is established, Jule synchronizes the queued state,
+                automatically pushing the drafts as distinct PRs. Because the PR generation is automated, you only have
+                to tap "Merge" on your phone when you land.</p>
+
+            <h2>Setting It Up for Maximum Throughput</h2>
+
+            <p>To really scale this, you want to decouple the <em>generation</em> of code/content from the
+                <em>deployment</em>.</p>
+            <ul>
+                <li><strong>Local AI:</strong> Dedicated to writing the raw logic, CSS, or markdown copy.</li>
+                <li><strong>Editor AI (Me):</strong> Dedicated to formatting those raw outputs into your specific site
+                    template.</li>
+                <li><strong>Google Jule:</strong> Dedicated entirely to packaging those formatted changes into neat,
+                    reviewable PRs.</li>
+            </ul>
+
+            <p>By automating the Git layer with Jule, you remove the final bottleneck in the solopreneur stack. You stop
+                acting as the version control manager, and go back to being the architect.</p>
+
+        </article>
+
+        <!-- CTA -->
+        <div class="blog-cta">
+            <h3>Need to generate thousands of assets?</h3>
+            <p>Read my breakdown on how to automate music and visuals using Claude and Suno.</p>
+            <a href="automate-suno-with-claude.html" class="btn">Read the Automation Guide</a>
+        </div>
+
+        <!-- Footer Nav -->
+        <nav class="blog-post-footer">
+            <a href="./" class="btn-back">&larr; All Posts</a>
+        </nav>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Pages Deployment for Hotels — Gab Knowledge Base</title>
+  <meta name="description" content="Technical reference for deploying hotel property websites on GitHub Pages — custom domains, CI/CD, and static site architecture for zero-cost hosting.">
+  <meta property="og:title" content="GitHub Pages Deployment for Hotels — Gab Knowledge Base">
+  <meta property="og:description" content="GitHub Pages deployment for hotel property websites with custom domains and CI/CD.">
+  <meta property="og:type" content="article">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs-styles.css">
+</head>
+<body>
+
+<div class="doc-container">
+
+  <nav class="doc-breadcrumb">
+    <a href="../index.html">gab.ae</a>
+    <span class="sep">/</span>
+    <a href="./">docs</a>
+    <span class="sep">/</span>
+    github-pages-deployment-hotels
+  </nav>
+
+  <header class="doc-header">
+    <h1 class="doc-title">GitHub Pages Deployment for Hotels</h1>
+    <div class="doc-meta">
+      <span class="tag">Tool Setup</span>
+      <span>Category A — Hotels</span>
+    </div>
+  </header>
+
+  <div class="doc-abstract">
+    GitHub Pages provides zero-cost, zero-maintenance hosting for hotel property websites by serving static HTML directly from a Git repository with automatic SSL and CDN distribution. The deployment model eliminates hosting fees, server administration, and WordPress vulnerabilities by treating the entire website as a Git repository that <a href="claude-code-workflow-hotels.html">Claude Code</a> can read, modify, and deploy in a single terminal session. Combined with Stripe Payment Links and a Google Apps Script backend, this creates a full hotel web presence for $0/month in hosting costs.
+  </div>
+
+  <div class="doc-content">
+
+    <div class="gab-stack-infobox">
+      <div class="infobox-header">The Gab Stack</div>
+      <table>
+        <tr><td>Primary Tool</td><td>GitHub Pages</td></tr>
+        <tr><td>Infrastructure</td><td>GitHub CDN / Fastly</td></tr>
+        <tr><td>Cost to Run</td><td>$0.00 (free tier)</td></tr>
+        <tr><td>Complexity</td><td><span class="complexity-low">Low</span></td></tr>
+        <tr><td>Reference</td><td>Auberge de nos Aieux / Ali Imperiale</td></tr>
+      </table>
+    </div>
+
+    <section class="doc-section">
+      <h2>1.0 Deployment Architecture</h2>
+      <p>GitHub Pages sits at the front of the stack. It is the only public-facing surface. Everything behind it — <a href="stripe-integration-hotels.html">Stripe</a>, <a href="google-apps-script-property-management.html">Apps Script</a>, <a href="whatsapp-automation-hotels.html">WhatsApp</a> — operates through API calls and webhooks that the static site itself never handles.</p>
+
+      <h3>Hosting Model Comparison</h3>
+      <table>
+        <thead>
+          <tr><th>Metric</th><th>Traditional (WordPress)</th><th>Gab Stack (GitHub Pages)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monthly cost</td><td>$15–$50/mo (hosting + domain)</td><td>$0/mo (domain only: ~$12/yr)</td></tr>
+          <tr><td>Server maintenance</td><td>PHP/MySQL updates, security patches</td><td>None — static files on CDN</td></tr>
+          <tr><td>Page load (TTFB)</td><td>800ms–2s</td><td>&lt;100ms (CDN edge)</td></tr>
+          <tr><td>Security surface</td><td>PHP, plugins, database, admin panel</td><td>None — no server-side code</td></tr>
+          <tr><td>Deployment</td><td>FTP/cPanel or managed host</td><td><code>git push origin main</code></td></tr>
+          <tr><td>Rollback</td><td>Backup restore (if backups exist)</td><td><code>git revert</code></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Repository Structure</h3>
+<pre><code>auberge-site/
+├── index.html              # Landing page with room cards + CTAs
+├── styles.css              # Design system (CSS custom properties)
+├── js/
+│   └── main.js             # Navigation, scroll animations
+├── rooms/
+│   ├── chambre-riviere.html
+│   ├── chambre-foret.html
+│   └── suite-panoramique.html
+├── images/
+│   ├── hero.webp
+│   ├── rooms/
+│   └── og-cards/
+├── thank-you.html          # Post-payment redirect
+├── CNAME                   # Custom domain config
+├── sitemap.xml             # SEO sitemap
+├── robots.txt              # Crawler directives
+├── feed.xml                # RSS feed (optional)
+└── CLAUDE.md               # Claude Code project context</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>2.0 Prerequisites</h2>
+
+      <h3>Accounts & Tools</h3>
+      <ul>
+        <li>GitHub account (free tier is sufficient).</li>
+        <li>Git installed locally.</li>
+        <li>Custom domain registered (optional but recommended).</li>
+        <li><a href="claude-code-workflow-hotels.html">Claude Code</a> installed for site generation and maintenance.</li>
+      </ul>
+
+      <h3>GitHub CLI</h3>
+<pre><code><span class="code-label">bash</span># Install GitHub CLI (macOS)
+brew install gh
+
+# Authenticate
+gh auth login
+
+# Verify
+gh auth status</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>3.0 Step-by-Step Configuration</h2>
+
+      <h3>3.1 Create Repository</h3>
+<pre><code><span class="code-label">bash</span># Create and initialize
+mkdir auberge-site && cd auberge-site
+git init
+
+# Create the repository on GitHub
+gh repo create auberge-de-nos-aieux --public --source=. --push
+
+# Or for an organization:
+gh repo create GabHotels/auberge-site --public --source=. --push</code></pre>
+
+      <h3>3.2 Enable GitHub Pages</h3>
+<pre><code><span class="code-label">bash</span># Enable Pages via CLI (deploy from main branch, root directory)
+gh api repos/{owner}/{repo}/pages \
+  --method POST \
+  --field source='{"branch":"main","path":"/"}'
+
+# Or via GitHub UI:
+# Settings → Pages → Source: Deploy from branch → main → / (root)</code></pre>
+
+      <h3>3.3 Configure Custom Domain</h3>
+<pre><code><span class="code-label">bash</span># Create CNAME file in repo root
+echo "aubergedenosai eux.com" > CNAME
+
+# DNS configuration at your registrar:
+# A records (GitHub Pages IPs):
+#   185.199.108.153
+#   185.199.109.153
+#   185.199.110.153
+#   185.199.111.153
+#
+# CNAME record (for www subdomain):
+#   www → your-username.github.io
+
+# Verify DNS propagation
+dig aubergedenosai eux.com +short
+
+# Enable HTTPS (automatic after DNS propagates)
+gh api repos/{owner}/{repo}/pages \
+  --method PUT \
+  --field https_enforced=true</code></pre>
+
+      <h3>3.4 Deploy Workflow</h3>
+      <p>The simplest deployment — push to main:</p>
+<pre><code><span class="code-label">bash</span># Make changes (or let Claude Code make them)
+# Then:
+git add -A
+git commit -m "Update room pricing for winter season"
+git push origin main
+
+# Site updates in 30-60 seconds</code></pre>
+
+      <h3>3.5 GitHub Actions for Validation (Optional)</h3>
+      <p>Add a CI step that validates HTML and checks for broken links before deploy:</p>
+<pre><code><span class="code-label">yaml</span># .github/workflows/validate.yml
+name: Validate HTML
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check HTML
+        uses: anishathalye/proof-html@v2
+        with:
+          directory: .
+          check_html: true
+          check_opengraph: true
+          enforce_https: true
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --exclude-loopback --no-progress './**/*.html'
+          fail: true</code></pre>
+
+      <h3>3.6 Sitemap and SEO</h3>
+<pre><code><span class="code-label">xml</span>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://aubergedenosai eux.com/&lt;/loc&gt;
+    &lt;lastmod&gt;2025-12-01&lt;/lastmod&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://aubergedenosai eux.com/rooms/chambre-riviere.html&lt;/loc&gt;
+    &lt;lastmod&gt;2025-12-01&lt;/lastmod&gt;
+    &lt;priority&gt;0.8&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</code></pre>
+
+      <h3>3.7 Performance Baseline</h3>
+      <p>Static sites on GitHub Pages typically score:</p>
+      <table>
+        <thead>
+          <tr><th>Metric</th><th>Target</th><th>Typical Result</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lighthouse Performance</td><td>&gt;95</td><td>98-100</td></tr>
+          <tr><td>First Contentful Paint</td><td>&lt;1.0s</td><td>0.3-0.6s</td></tr>
+          <tr><td>Time to Interactive</td><td>&lt;1.5s</td><td>0.5-0.8s</td></tr>
+          <tr><td>Total Page Weight</td><td>&lt;500KB</td><td>150-300KB</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="doc-section">
+      <h2>4.0 Integration Points</h2>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <h4><a href="stripe-integration-hotels.html">Stripe Integration</a></h4>
+          <p>Payment Link URLs are embedded as href attributes on CTA buttons throughout the static site. No Stripe.js needed — checkout is fully Stripe-hosted.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="google-apps-script-property-management.html">Google Apps Script</a></h4>
+          <p>The static site fetches room availability from the Apps Script doGet() endpoint. This is the only dynamic data on an otherwise static site.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="claude-code-workflow-hotels.html">Claude Code</a></h4>
+          <p>Claude Code is the site builder. It generates pages, updates content, and pushes deployments — all from the terminal. The entire site is maintained through prompts.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="whatsapp-automation-hotels.html">WhatsApp Automation</a></h4>
+          <p>The static site includes click-to-chat links (<code>wa.me/number</code>) for pre-booking inquiries. Post-booking communication happens entirely off-site via the WhatsApp API.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="doc-footer">
+    <a href="./">← Back to Knowledge Base</a>
+    <span style="color: var(--text-tertiary);">gab.ae/docs</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

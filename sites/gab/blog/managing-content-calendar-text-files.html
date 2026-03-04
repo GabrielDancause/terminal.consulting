@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing a Content Calendar with Plain Text Files — Gab</title>
+    <meta name="description"
+        content="Why I ditched Notion, Trello, and Airtable for a single folder of markdown files to manage my entire content strategy.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Managing a Content Calendar with Plain Text Files">
+    <meta property="og:description"
+        content="Why I ditched Notion, Trello, and Airtable for a single folder of markdown files to manage my entire content strategy.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://gab.ae/blog/managing-content-calendar-text-files.html">
+    <meta property="og:image" content="https://gab.ae/images/og-blog.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Managing a Content Calendar with Plain Text Files">
+    <meta name="twitter:description"
+        content="Why I ditched Notion, Trello, and Airtable for a single folder of markdown files to manage my entire content strategy.">
+    <meta name="twitter:image" content="https://gab.ae/images/og-blog.png">
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="blog-styles.css">
+</head>
+
+<body>
+
+    <div class="blog-post">
+
+        <!-- Navigation -->
+        <nav class="blog-post-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Blog</a></li>
+        <li aria-current="page">Managing a Content Calendar with Plain Text Files</li>
+      </ol>
+      <a href="../" class="blog-nav-logo">Gab</a>
+    </nav>
+
+        <!-- Post Header -->
+        <header class="blog-post-header">
+            <span class="blog-post-tag">Process</span>
+            <h1>Managing a Content Calendar with Plain Text Files</h1>
+            <p class="blog-post-meta">Gab <span>&middot;</span> February 2026 <span>&middot;</span> 4 min read</p>
+        </header>
+
+        <!-- Post Content -->
+        <article class="blog-content">
+
+            <p>There's an entire industry built around selling you complex SaaS tools to organize your thoughts. I spent
+                years bouncing between Notion, Trello, Airtable, and Monday.com, trying to find the perfect system to
+                manage my blog and video content pipelines.</p>
+
+            <p>The ironic part? The more complex the system got, the less actual writing I did. Eventually, I threw it
+                all out and moved to the most resilient format on earth: plain text.</p>
+
+            <h2>The Problem with SaaS Content Calendars</h2>
+
+            <p>When you use a tool like Notion to track content, you are fighting two hidden layers of friction:</p>
+
+
+            <h3>1. The Loading Tax</h3>
+            <p>Every time you have an idea, you have to open a browser, wait for the app to load, navigate to the
+                specific database, click "New Row," add tags, set a status, and <em>then</em> type the idea. By the time
+                you get to the text box, the spark is gone.</p>
+
+            <h3>2. The AI Disconnect</h3>
+            <p>If you are building an automated pipeline as a solo developer (using agents like Claude or Antigravity),
+                these AI tools live natively in your file system. Trying to force a terminal-based AI agent to read an
+                Airtable base via an API key just to get the title of tomorrow's blog post is a massive engineering
+                overhead for no reason.</p>
+
+            <h2>The Plain Text Paradigm</h2>
+
+            <p>My entire content pipeline now runs out of a single local folder called <code>content-ops/</code>.</p>
+
+            <p>Inside, there are three things:</p>
+            <ol>
+                <li><code>ideas.txt</code> &mdash; A running list where every new line is a new concept.</li>
+                <li><code>drafts/</code> &mdash; A folder full of Markdown files (.md), where the actual writing
+                    happens.</li>
+                <li><code>published/</code> &mdash; A folder where completed files live before being compiled into HTML.
+                </li>
+            </ol>
+
+            <h2>Why This Works So Well</h2>
+
+            <p>The beauty of this system is that it removes all formatting from the writing process. When I am taking
+                notes on an airplane, I open a text editor and I type. No internet required. No database schemas to
+                maintain.</p>
+
+            <p>More importantly, it creates a perfect, frictionless handoff to my AI agents. I can write a script that
+                says:</p>
+
+            <code>"Read ideas.txt, grab the first line, write a 600-word draft about it, and save it to drafts/01-new-post.md."</code>
+
+            <p>Because everything is a plain file, tools like grep, sed, and git can manipulate the content pipeline at
+                incredible speeds. When I want to "publish" a post, I simply move the markdown file from
+                <code>drafts/</code> to <code>published/</code>, and a GitHub Actions script generates the final HTML
+                page.</p>
+
+            <p>Organization is a spectrum. Sometimes, a relational database is exactly what you need. But quite often,
+                for solo creators managing a content funnel, a <code>.txt</code> file is the ultimate productivity
+                software.</p>
+
+        </article>
+
+        <!-- CTA -->
+        <div class="blog-cta">
+            <h3>Ready to automate your newly created plain text posts?</h3>
+            <p>Learn how to use Google Jule to handle the version control side for you.</p>
+            <a href="automate-pull-requests-google-jule.html" class="btn">Read the Next Post</a>
+        </div>
+
+        <!-- Footer Nav -->
+        <nav class="blog-post-footer">
+            <a href="./" class="btn-back">&larr; All Posts</a>
+        </nav>
+
+    </div>
+
+</body>
+
+</html>

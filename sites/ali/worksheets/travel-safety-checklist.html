@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Travel Safety Checklist — Open &amp; Honest</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #FAF8EB;
+      color: #2E3E24;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .worksheet {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 48px 40px;
+      box-shadow: 0 2px 12px rgba(46, 62, 36, 0.08);
+      border: 1px solid rgba(46, 62, 36, 0.06);
+    }
+    .ws-header {
+      text-align: center;
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid rgba(173, 152, 70, 0.2);
+    }
+    .ws-brand {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #AD9846;
+      margin-bottom: 8px;
+    }
+    .ws-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #2E3E24;
+      margin-bottom: 8px;
+    }
+    .ws-header p {
+      font-size: 0.88rem;
+      color: #555549;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .ws-module {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: rgba(173, 152, 70, 0.1);
+      color: #AD9846;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .destination-field {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(46, 62, 36, 0.08);
+    }
+    .destination-field label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #2E3E24;
+      white-space: nowrap;
+    }
+    .destination-field input {
+      flex: 1;
+      border: none;
+      border-bottom: 2px solid rgba(46, 62, 36, 0.15);
+      padding: 8px 4px;
+      font-size: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      background: transparent;
+    }
+    .destination-field input:focus {
+      outline: none;
+      border-bottom-color: #AD9846;
+    }
+    .category {
+      margin-bottom: 32px;
+    }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(46, 62, 36, 0.08);
+    }
+    .category-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(173, 152, 70, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .category-header h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2E3E24;
+    }
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(46, 62, 36, 0.04);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: #AD9846;
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    .checklist .item-text {
+      flex: 1;
+    }
+    .checklist .item-text strong {
+      display: block;
+      font-size: 0.88rem;
+      color: #2E3E24;
+      margin-bottom: 2px;
+    }
+    .checklist .item-text span {
+      font-size: 0.8rem;
+      color: #777;
+      line-height: 1.5;
+    }
+    .fill-in {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .fill-in label {
+      font-size: 0.78rem;
+      color: #8a8a7a;
+      white-space: nowrap;
+    }
+    .fill-in input {
+      flex: 1;
+      border: none;
+      border-bottom: 1px solid rgba(46, 62, 36, 0.15);
+      padding: 4px;
+      font-size: 0.82rem;
+      font-family: 'Montserrat', sans-serif;
+      background: transparent;
+    }
+    .fill-in input:focus {
+      outline: none;
+      border-bottom-color: #AD9846;
+    }
+    .rules-section {
+      background: rgba(173, 152, 70, 0.06);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(173, 152, 70, 0.12);
+    }
+    .rules-section h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 6px;
+    }
+    .rules-section .subtitle {
+      font-size: 0.82rem;
+      color: #8a8a7a;
+      font-style: italic;
+      margin-bottom: 14px;
+    }
+    .rule-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .rule-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2E3E24;
+      min-width: 140px;
+    }
+    .rule-input {
+      flex: 1;
+      border: 1px solid rgba(46, 62, 36, 0.12);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      font-family: 'Montserrat', sans-serif;
+      background: #ffffff;
+    }
+    .rule-input:focus {
+      outline: none;
+      border-color: #AD9846;
+    }
+    .notes-area {
+      width: 100%;
+      border: 1px solid rgba(46, 62, 36, 0.15);
+      border-radius: 8px;
+      padding: 14px 16px;
+      min-height: 80px;
+      font-size: 0.85rem;
+      font-family: 'Montserrat', sans-serif;
+      background: rgba(250, 248, 235, 0.5);
+      resize: vertical;
+    }
+    .notes-area:focus {
+      outline: none;
+      border-color: #AD9846;
+      background: #ffffff;
+    }
+    .section { margin-bottom: 28px; }
+    .section h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #2E3E24;
+      margin-bottom: 6px;
+    }
+    .section .subtitle {
+      font-size: 0.82rem;
+      color: #8a8a7a;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .reminder {
+      text-align: center;
+      padding: 20px;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: #8a8a7a;
+      font-style: italic;
+    }
+    .reminder strong { color: #AD9846; }
+    .print-btn {
+      display: block;
+      margin: 24px auto 0;
+      padding: 14px 32px;
+      background: #2E3E24;
+      color: #FAF8EB;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .print-btn:hover { background: #3a5030; }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: #AD9846;
+      text-decoration: none;
+    }
+    .back-link:hover { text-decoration: underline; }
+    @media print {
+      body { background: #ffffff; padding: 0; }
+      .worksheet { box-shadow: none; border: none; padding: 24px; border-radius: 0; }
+      .print-btn, .back-link { display: none !important; }
+      .rule-input, .notes-area, .destination-field input, .fill-in input { border-color: #ccc; }
+    }
+    @media (max-width: 480px) {
+      .worksheet { padding: 28px 20px; border-radius: 0; }
+      .ws-header h1 { font-size: 1.4rem; }
+      .rule-row { flex-direction: column; gap: 4px; }
+      .rule-label { min-width: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="worksheet">
+    <div class="ws-header">
+      <p class="ws-brand">Open &amp; Honest &mdash; Ali Imperiale</p>
+      <span class="ws-module">Module 5</span>
+      <h1>Travel Safety Checklist</h1>
+      <p>Your go-bag checklist for exploring the lifestyle while travelling. Fill this out before every new destination.</p>
+    </div>
+
+    <div class="destination-field">
+      <label>&#127758; Destination:</label>
+      <input type="text" placeholder="City, Country">
+      <label>&#128197; Date:</label>
+      <input type="text" placeholder="MM/DD/YYYY" style="max-width: 140px;">
+    </div>
+
+    <!-- Category 1: Essentials -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-icon">&#127890;</div>
+        <h2>Essentials — Don't Leave Without</h2>
+      </div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Condoms (your own supply)</strong>
+            <span>Never rely on anyone else's. Bring more than you think you'll need.</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Lube (travel-size)</strong>
+            <span>Not always easy to find in every country. Bring your preferred brand.</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Cash in local currency</strong>
+            <span>Always have cash. Cards can fail, and some venues are cash-only.</span>
+            <div class="fill-in">
+              <label>Amount:</label>
+              <input type="text" placeholder="e.g., 2000 THB / $100 USD">
+            </div>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Phone fully charged + portable charger</strong>
+            <span>Your phone is your lifeline — location sharing, taxi apps, emergency calls.</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Hotel address written down</strong>
+            <span>In case your phone dies. Write it on paper or save it offline.</span>
+            <div class="fill-in">
+              <label>Hotel:</label>
+              <input type="text" placeholder="Name &amp; address">
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Category 2: Phone & Digital -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-icon">&#128241;</div>
+        <h2>Phone &amp; Digital Safety</h2>
+      </div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Location sharing ON with partner</strong>
+            <span>Google Maps, Find My, or WhatsApp live location. Always on.</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Taxi/ride app installed &amp; working</strong>
+            <span>Uber, Grab, Bolt, or whatever works locally. Test it before you need it.</span>
+            <div class="fill-in">
+              <label>App:</label>
+              <input type="text" placeholder="e.g., Grab, Bolt">
+            </div>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Burner phone or secondary SIM</strong>
+            <span>Optional, but useful if you want to keep your main number private.</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Dating apps set up for this location</strong>
+            <span>Update your location on Feeld/Tinder. Check what apps are popular locally.</span>
+            <div class="fill-in">
+              <label>Local apps:</label>
+              <input type="text" placeholder="e.g., Feeld, Tinder, local app">
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Category 3: Safety Protocol -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-icon">&#128737;</div>
+        <h2>Safety Protocol</h2>
+      </div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Local emergency number saved</strong>
+            <span>Not always 911. Look it up before you arrive.</span>
+            <div class="fill-in">
+              <label>Emergency #:</label>
+              <input type="text" placeholder="e.g., 191 (Thailand), 911 (Mexico)">
+            </div>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Nearest hospital / clinic located</strong>
+            <span>Know where to go if something goes wrong. Save the address.</span>
+            <div class="fill-in">
+              <label>Hospital:</label>
+              <input type="text" placeholder="Name &amp; address">
+            </div>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Check-in time agreed with partner</strong>
+            <span>Set a time for a text or call, especially during solo play.</span>
+            <div class="fill-in">
+              <label>Check-in time:</label>
+              <input type="text" placeholder="e.g., 11:00 PM">
+            </div>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>"Come get me" safe word set</strong>
+            <span>Different from the jealousy code word. This means "I need out — no questions asked."</span>
+            <div class="fill-in">
+              <label>Safe word:</label>
+              <input type="text" placeholder="Our emergency word is...">
+            </div>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Exit plan discussed</strong>
+            <span>How do you leave a venue quickly? Know your route, have cash for a taxi, keep your phone charged.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Category 4: Venue Research -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-icon">&#127970;</div>
+        <h2>Venue Research</h2>
+      </div>
+      <ul class="checklist">
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Lifestyle clubs researched</strong>
+            <span>Google "[city] lifestyle club" or "[city] swinger club." Check reviews and membership requirements.</span>
+            <div class="fill-in">
+              <label>Club(s):</label>
+              <input type="text" placeholder="Names &amp; addresses">
+            </div>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Dress code / entry rules checked</strong>
+            <span>Many clubs have strict dress codes or couples-only policies. Don't show up unprepared.</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Local laws checked</strong>
+            <span>Some countries have strict laws around sex work, LGBTQ+ activity, or even public displays of affection. Know before you go.</span>
+          </div>
+        </li>
+        <li>
+          <input type="checkbox">
+          <div class="item-text">
+            <strong>Safe meeting spots identified</strong>
+            <span>For first-time meets with new people — always a public place (hotel lobby, cafe, bar).</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Ground Rules for This Trip -->
+    <div class="rules-section">
+      <h2>&#129309; Our Ground Rules for This Trip</h2>
+      <p class="subtitle">Fill these out together before each trip or new destination.</p>
+
+      <div class="rule-row">
+        <span class="rule-label">Solo play allowed?</span>
+        <input type="text" class="rule-input" placeholder="Yes / No / Only if...">
+      </div>
+      <div class="rule-row">
+        <span class="rule-label">Duo play allowed?</span>
+        <input type="text" class="rule-input" placeholder="Yes / No / Only at clubs...">
+      </div>
+      <div class="rule-row">
+        <span class="rule-label">Overnight stays?</span>
+        <input type="text" class="rule-input" placeholder="Yes / No / Only if...">
+      </div>
+      <div class="rule-row">
+        <span class="rule-label">Max nights out?</span>
+        <input type="text" class="rule-input" placeholder="e.g., 2 per week">
+      </div>
+      <div class="rule-row">
+        <span class="rule-label">Off-limits days?</span>
+        <input type="text" class="rule-input" placeholder="e.g., Anniversaries, first/last night">
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+      <h2>&#128221; Trip Notes</h2>
+      <p class="subtitle">Anything specific to this destination — recommendations, contacts, things to avoid.</p>
+      <textarea class="notes-area" placeholder="Notes for this trip..."></textarea>
+    </div>
+
+    <div class="reminder">
+      <strong>Remember:</strong> Fill this out together before every new destination. Different countries, different rules, different risks.
+    </div>
+
+    <button class="print-btn" onclick="window.print()">&#128424; Print / Save as PDF</button>
+    <a href="/open-and-honest-course.html#module-5" class="back-link">&larr; Back to Module 5</a>
+  </div>
+</body>
+</html>

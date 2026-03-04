@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/course-gate.js"></script>
+  <title>Your Course — Build & Host a Website for Free</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .course-page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .course-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .course-header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .course-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .course-welcome {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      margin-bottom: 40px;
+    }
+
+    .course-welcome h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .course-welcome p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .course-section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-light);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .module-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+
+    .module-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: border-color var(--transition);
+    }
+
+    .module-item:hover {
+      border-color: var(--border-accent);
+    }
+
+    .module-num {
+      background: var(--accent);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .module-info {
+      flex: 1;
+    }
+
+    .module-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .module-duration {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+    }
+
+    .module-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-module {
+      padding: 8px 14px;
+      font-size: 0.78rem;
+      border-radius: var(--radius-xs);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition);
+    }
+
+    .btn-listen {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-listen:hover {
+      background: var(--accent-light);
+    }
+
+    .btn-read {
+      background: var(--surface-elevated);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-read:hover {
+      color: var(--text);
+      border-color: var(--text-tertiary);
+    }
+
+    .bonus-section {
+      margin-bottom: 48px;
+    }
+
+    .bonus-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .bonus-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .bonus-info {
+      flex: 1;
+    }
+
+    .bonus-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .bonus-desc {
+      font-size: 0.82rem;
+      color: var(--text-tertiary);
+    }
+
+    .course-footer {
+      text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+    }
+
+    .course-footer a {
+      color: var(--accent-light);
+    }
+
+    @media (max-width: 600px) {
+      .module-item {
+        flex-wrap: wrap;
+      }
+
+      .module-actions {
+        width: 100%;
+        margin-top: 8px;
+      }
+
+      .btn-module {
+        flex: 1;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="course-page">
+
+    <div class="course-header">
+      <h1>Build & Host a Website for Free</h1>
+      <p>with Claude Code & GitHub Pages — by Gab</p>
+    </div>
+
+    <div class="course-welcome">
+      <h2>Welcome to the course</h2>
+      <p>Listen to the audio modules in order while following along on your computer. Each module builds on the last. Use the written guides as reference — they have all the commands and prompts you'll need. By Module 8, your site will be live.</p>
+    </div>
+
+    <!-- Audio Modules -->
+    <p class="course-section-title">Audio Modules</p>
+    <ul class="module-list">
+      <li class="module-item">
+        <span class="module-num">1</span>
+        <div class="module-info">
+          <div class="module-title">What You're About to Build</div>
+          <div class="module-duration">~4 min</div>
+        </div>
+        <div class="module-actions">
+          <a href="course/module-01.html" class="btn-module btn-listen">Listen</a>
+          <a href="course/module-01.html" class="btn-module btn-read">Read</a>
+        </div>
+      </li>
+      <li class="module-item">
+        <span class="module-num">2</span>
+        <div class="module-info">
+          <div class="module-title">Setting Up Your Tools</div>
+          <div class="module-duration">~9 min</div>
+        </div>
+        <div class="module-actions">
+          <a href="course/module-02.html" class="btn-module btn-listen">Listen</a>
+          <a href="course/module-02.html" class="btn-module btn-read">Read</a>
+        </div>
+      </li>
+      <li class="module-item">
+        <span class="module-num">3</span>
+        <div class="module-info">
+          <div class="module-title">Your First Prompt — Building the Homepage</div>
+          <div class="module-duration">~9 min</div>
+        </div>
+        <div class="module-actions">
+          <a href="course/module-03.html" class="btn-module btn-listen">Listen</a>
+          <a href="course/module-03.html" class="btn-module btn-read">Read</a>
+        </div>
+      </li>
+      <li class="module-item">
+        <span class="module-num">4</span>
+        <div class="module-info">
+          <div class="module-title">Customizing the Design</div>
+          <div class="module-duration">~10 min</div>
+        </div>
+        <div class="module-actions">
+          <a href="course/module-04.html" class="btn-module btn-listen">Listen</a>
+          <a href="course/module-04.html" class="btn-module btn-read">Read</a>
+        </div>
+      </li>
+      <li class="module-item">
+        <span class="module-num">5</span>
+        <div class="module-info">
+          <div class="module-title">Adding Pages & Navigation</div>
+          <div class="module-duration">~9 min</div>
+        </div>
+        <div class="module-actions">
+          <a href="course/module-05.html" class="btn-module btn-listen">Listen</a>
+          <a href="course/module-05.html" class="btn-module btn-read">Read</a>
+        </div>
+      </li>
+      <li class="module-item">
+        <span class="module-num">6</span>
+        <div class="module-info">
+          <div class="module-title">Images, Favicons & Polish</div>
+          <div class="module-duration">~8 min</div>
+        </div>
+        <div class="module-actions">
+          <a href="course/module-06.html" class="btn-module btn-listen">Listen</a>
+          <a href="course/module-06.html" class="btn-module btn-read">Read</a>
+        </div>
+      </li>
+      <li class="module-item">
+        <span class="module-num">7</span>
+        <div class="module-info">
+          <div class="module-title">Git & GitHub — Pushing Your Site</div>
+          <div class="module-duration">~9 min</div>
+        </div>
+        <div class="module-actions">
+          <a href="course/module-07.html" class="btn-module btn-listen">Listen</a>
+          <a href="course/module-07.html" class="btn-module btn-read">Read</a>
+        </div>
+      </li>
+      <li class="module-item">
+        <span class="module-num">8</span>
+        <div class="module-info">
+          <div class="module-title">Going Live with GitHub Pages</div>
+          <div class="module-duration">~4 min</div>
+        </div>
+        <div class="module-actions">
+          <a href="course/module-08.html" class="btn-module btn-listen">Listen</a>
+          <a href="course/module-08.html" class="btn-module btn-read">Read</a>
+        </div>
+      </li>
+      <li class="module-item">
+        <span class="module-num">9</span>
+        <div class="module-info">
+          <div class="module-title">Custom Domain & SEO</div>
+          <div class="module-duration">~9 min</div>
+        </div>
+        <div class="module-actions">
+          <a href="course/module-09.html" class="btn-module btn-listen">Listen</a>
+          <a href="course/module-09.html" class="btn-module btn-read">Read</a>
+        </div>
+      </li>
+      <li class="module-item">
+        <span class="module-num">10</span>
+        <div class="module-info">
+          <div class="module-title">Making Changes & Keeping It Updated</div>
+          <div class="module-duration">~7 min</div>
+        </div>
+        <div class="module-actions">
+          <a href="course/module-10.html" class="btn-module btn-listen">Listen</a>
+          <a href="course/module-10.html" class="btn-module btn-read">Read</a>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Bonuses -->
+    <p class="course-section-title">Bonus Resources</p>
+    <div class="bonus-section">
+      <div class="bonus-card">
+        <span class="bonus-icon">📖</span>
+        <div class="bonus-info">
+          <div class="bonus-title">Claude Code Complete Reference</div>
+          <div class="bonus-desc">50+ prompts, every command, troubleshooting fixes & full project checklist</div>
+        </div>
+        <a href="course/claude-code-complete-reference.pdf" class="btn-module btn-listen" download>Download</a>
+      </div>
+    </div>
+
+    <div class="course-footer">
+      <p>Questions? <a href="mailto:gab@gab.ae">gab@gab.ae</a></p>
+    </div>
+
+  </div>
+
+</body>
+</html>

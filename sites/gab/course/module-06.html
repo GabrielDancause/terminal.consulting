@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../js/course-gate.js"></script>
+  <title>Module 6: Images, Favicons &amp; Polish — Course</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="module-styles.css">
+</head>
+<body>
+  <div class="module-page">
+    <nav class="module-nav">
+      <a href="../course.html" class="module-nav-back">&larr; Back to Course</a>
+      <div class="module-nav-controls">
+        <a href="module-05.html" class="module-nav-prev">&larr; Prev</a>
+        <span class="module-nav-label">Module 6 of 10</span>
+        <a href="module-07.html" class="module-nav-next">Next &rarr;</a>
+      </div>
+    </nav>
+    <header class="module-header">
+      <span class="module-badge">Module 6</span>
+      <h1>Images, Favicons &amp; Polish</h1>
+      <p class="module-meta">~8 min listen &middot; Written guide below</p>
+    </header>
+    <div class="module-audio">
+      <audio controls preload="metadata" style="width:100%">
+        <source src="audio/module-06.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <article class="module-content">
+      <p>Your site works. It looks decent. Now we're going to make it look <em>professional</em>. This is where we add real images, get a favicon, and do the final polish.</p>
+      <h2>Optimizing Images</h2>
+      <p>Don't upload giant images straight from your phone. A 4MB photo makes your site slow. Here's the rule:</p>
+      <ul>
+        <li><strong>Photos:</strong> Use <code>.jpg</code> format. Keep each under 500KB.</li>
+        <li><strong>Logos and icons:</strong> Use <code>.png</code> or <code>.svg</code>.</li>
+        <li><strong>Dimensions:</strong> Hero images &mdash; 1600px wide. Thumbnails &mdash; 400px.</li>
+      </ul>
+      <p>Compress for free at <a href="https://tinypng.com">TinyPNG</a> or <a href="https://squoosh.app">Squoosh</a>. Compress first, then add to your project.</p>
+      <h2>Where to Get Images</h2>
+      <p>If you have your own photos, use them. Real photos beat stock photos every time.</p>
+      <p>If you need stock photos: <a href="https://unsplash.com">Unsplash</a> and <a href="https://pexels.com">Pexels</a> &mdash; free, high quality, no attribution required.</p>
+      <h2>Adding Images with Claude</h2>
+      <p>Once your images are in the <code>images/</code> folder, tell Claude where to use them:</p>
+      <pre><code>Add my logo at images/logo.png to the navigation bar, sized about 40px tall.</code></pre>
+      <pre><code>Use images/hero.jpg as a full-width hero background with a dark overlay so white text is readable.</code></pre>
+      <p>If an image looks stretched or cropped weirdly:</p>
+      <pre><code>The bread photos look stretched. Make them maintain their aspect ratio and crop to fill the card area evenly.</code></pre>
+      <h2>Creating a Favicon</h2>
+      <p>A favicon is the tiny icon in the browser tab. Without one, your site looks unfinished.</p>
+      <pre><code>Create a favicon for the site using the first letter of the business name in a circle with the primary brand color.</code></pre>
+      <p>Or use <a href="https://favicon.io">favicon.io</a> to generate one, download the files, and tell Claude to add them.</p>
+      <h2>Open Graph Images for Social Sharing</h2>
+      <p>When someone shares your link on social media, the preview card matters:</p>
+      <pre><code>Add Open Graph meta tags to all pages including og:title, og:description, og:image, and og:url. Also add Twitter card meta tags.</code></pre>
+      <h2>Final Polish Prompts</h2>
+      <pre><code>Add smooth scroll behavior to all anchor links.</code></pre>
+      <pre><code>Add subtle fade-in animations as sections come into view when scrolling.</code></pre>
+      <pre><code>Make sure all images have descriptive alt text for accessibility.</code></pre>
+      <pre><code>Add a loading state for the page so there's no flash of unstyled content.</code></pre>
+      <h2>Checking Your Site on Mobile</h2>
+      <p>Open your site in Chrome. Right-click &rarr; Inspect &rarr; click the phone/tablet icon. Check different device sizes. If something looks off:</p>
+      <pre><code>On mobile, the menu items overlap the logo. Fix the mobile navigation so everything fits.</code></pre>
+      <h2>The "Good Enough" Checkpoint</h2>
+      <p>Stop when you hit these marks:</p>
+      <ul>
+        <li>The site loads fast and looks clean</li>
+        <li>It works on mobile</li>
+        <li>All the information is correct</li>
+        <li>You have a favicon</li>
+        <li>Images are optimized</li>
+      </ul>
+      <p>Ship it. A live website that's 90% perfect is infinitely better than a perfect website that's still on your laptop.</p>
+    </article>
+    <nav class="module-bottom-nav">
+      <a href="module-05.html" class="btn-bottom btn-bottom-outline">&larr; Previous: Adding Pages &amp; Navigation</a>
+      <a href="module-07.html" class="btn-bottom btn-bottom-primary">Next: Git &amp; GitHub &rarr;</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Workflow for Hotels — Gab Knowledge Base</title>
+  <meta name="description" content="Technical reference for using Claude Code as the primary development tool for building and maintaining hotel property websites, automation scripts, and deployment pipelines.">
+  <meta property="og:title" content="Claude Code Workflow for Hotels — Gab Knowledge Base">
+  <meta property="og:description" content="Claude Code as the primary development tool for hotel property websites and automation.">
+  <meta property="og:type" content="article">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs-styles.css">
+</head>
+<body>
+
+<div class="doc-container">
+
+  <nav class="doc-breadcrumb">
+    <a href="../index.html">gab.ae</a>
+    <span class="sep">/</span>
+    <a href="./">docs</a>
+    <span class="sep">/</span>
+    claude-code-workflow-hotels
+  </nav>
+
+  <header class="doc-header">
+    <h1 class="doc-title">Claude Code Workflow for Hotels</h1>
+    <div class="doc-meta">
+      <span class="tag">Tool Setup</span>
+      <span>Category A — Hotels</span>
+    </div>
+  </header>
+
+  <div class="doc-abstract">
+    Claude Code operates as the AI pair-programmer that builds and maintains every component of the hotel technology stack — from static site generation to Apps Script automation and CI/CD pipeline configuration. The workflow treats Claude Code as a terminal-native development environment where natural language prompts replace manual coding for HTML scaffolding, webhook handler logic, and deployment scripts. This is the tool that builds the tools.
+  </div>
+
+  <div class="doc-content">
+
+    <div class="gab-stack-infobox">
+      <div class="infobox-header">The Gab Stack</div>
+      <table>
+        <tr><td>Primary Tool</td><td>Claude Code (CLI)</td></tr>
+        <tr><td>Infrastructure</td><td>Local Terminal / GitHub</td></tr>
+        <tr><td>Cost to Run</td><td>Anthropic API usage (Max plan or API credits)</td></tr>
+        <tr><td>Complexity</td><td><span class="complexity-low">Low</span></td></tr>
+        <tr><td>Reference</td><td>All Gab properties</td></tr>
+      </table>
+    </div>
+
+    <section class="doc-section">
+      <h2>1.0 Deployment Architecture</h2>
+      <p>Claude Code sits upstream of every other tool in the stack. It is the builder, not the runtime. The development loop for a hotel property:</p>
+      <ol>
+        <li>Operator describes the desired feature or fix in natural language.</li>
+        <li>Claude Code reads existing project files, understands the architecture, and writes or modifies code.</li>
+        <li>Changes are committed to the <a href="github-pages-deployment-hotels.html">GitHub repository</a>.</li>
+        <li>GitHub Actions (or GitHub Pages auto-deploy) pushes the site live.</li>
+        <li>Backend logic (Apps Script) is updated via clasp push.</li>
+      </ol>
+
+      <h3>Development Flow</h3>
+<pre><code>Operator (natural language prompt)
+    │
+    ▼
+Claude Code (reads codebase, writes changes)
+    │
+    ├──▶ HTML/CSS/JS files → git push → GitHub Pages (live site)
+    ├──▶ Apps Script files → clasp push → Google Apps Script (backend)
+    ├──▶ GitHub Actions YAML → CI/CD pipeline updates
+    └──▶ CLAUDE.md → project memory for next session</code></pre>
+
+      <h3>What Claude Code Builds for Hotels</h3>
+      <table>
+        <thead>
+          <tr><th>Component</th><th>Example Prompt</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Room landing pages</td><td>"Create a page for Chambre Rivière with gallery, amenities, and Stripe Payment Link"</td></tr>
+          <tr><td>Booking automation</td><td>"Write the doPost webhook handler for <a href="stripe-integration-hotels.html">Stripe</a> checkout events"</td></tr>
+          <tr><td>Guest messaging</td><td>"Add a <a href="whatsapp-automation-hotels.html">WhatsApp</a> check-in reminder template function"</td></tr>
+          <tr><td>SEO optimization</td><td>"Generate meta tags, OG cards, and structured data for all room pages"</td></tr>
+          <tr><td>Analytics dashboards</td><td>"Build a revenue summary function in <a href="google-apps-script-property-management.html">Apps Script</a>"</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="doc-section">
+      <h2>2.0 Prerequisites</h2>
+
+      <h3>Installation</h3>
+<pre><code><span class="code-label">bash</span># Install Claude Code globally
+npm install -g @anthropic-ai/claude-code
+
+# Verify installation
+claude --version
+
+# Launch in your project directory
+cd ~/projects/auberge-site
+claude</code></pre>
+
+      <h3>Authentication</h3>
+      <p>Claude Code requires either:</p>
+      <ul>
+        <li><strong>Anthropic Max plan</strong> — direct authentication via browser login.</li>
+        <li><strong>API key</strong> — set <code>ANTHROPIC_API_KEY</code> environment variable.</li>
+      </ul>
+<pre><code><span class="code-label">bash</span># API key method
+export ANTHROPIC_API_KEY="sk-ant-xxxxx"
+
+# Or add to shell profile for persistence
+echo 'export ANTHROPIC_API_KEY="sk-ant-xxxxx"' >> ~/.zshrc</code></pre>
+
+      <h3>Project Configuration</h3>
+      <p>Create a <code>CLAUDE.md</code> at the project root. This file persists context across sessions:</p>
+<pre><code><span class="code-label">markdown</span># CLAUDE.md — Auberge de nos Aieux
+
+## Project
+Static hotel website deployed on GitHub Pages.
+Payment processing via Stripe Payment Links.
+Backend automation via Google Apps Script.
+
+## Stack
+- HTML/CSS/JS (no framework)
+- Stripe Payment Links + Webhooks
+- Google Apps Script (clasp for local dev)
+- WhatsApp Business API (Cloud API)
+- GitHub Pages (auto-deploy from main branch)
+
+## Conventions
+- CSS uses custom properties defined in styles.css
+- All pages use Inter font family
+- Dark theme: --bg: #0A0A0B, --accent: #6C5CE7
+- Filenames: lowercase-kebab-case.html
+- No build step. No bundler. Raw HTML.
+
+## Important Paths
+- /index.html — Main landing page
+- /rooms/ — Individual room pages
+- /scripts/ — Apps Script source (synced via clasp)
+- /styles.css — Global design system</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>3.0 Step-by-Step Configuration</h2>
+
+      <h3>3.1 Generating a Room Page</h3>
+<pre><code><span class="code-label">bash</span># In Claude Code session:
+> Create a new room page for "Chambre Forêt" at /rooms/chambre-foret.html.
+> It should follow the same structure as chambre-riviere.html.
+> Queen bed, forest view, sleeps 2. Rate: $180/night.
+> Include a Stripe Payment Link button pointing to
+> https://buy.stripe.com/xxxx
+> Add OG meta tags and structured data for SEO.</code></pre>
+      <p>Claude Code reads the existing room page, replicates the pattern, and writes the new file with correct metadata, pricing, and CTA links.</p>
+
+      <h3>3.2 Writing a Webhook Handler</h3>
+<pre><code><span class="code-label">bash</span># In Claude Code session:
+> Read the current Apps Script files in /scripts/.
+> Add a handler for the Stripe charge.refunded event.
+> It should update the booking status to "refunded" in the
+> Bookings sheet and send a WhatsApp message to the guest
+> confirming the refund amount.</code></pre>
+
+      <h3>3.3 Bulk Operations</h3>
+<pre><code><span class="code-label">bash</span># Update pricing across all room pages
+> Update the nightly rate for all rooms in /rooms/ by 15%.
+> Update the corresponding Stripe product metadata.
+> Regenerate the pricing table on index.html.
+
+# Generate seasonal content
+> Create a "Winter Packages" section on index.html with
+> 3 package cards. Each links to a different Stripe
+> Payment Link. Use the existing card component style.</code></pre>
+
+      <h3>3.4 Git Workflow Integration</h3>
+      <p>Claude Code handles the full git cycle:</p>
+<pre><code><span class="code-label">bash</span># After making changes:
+> /commit
+
+# Claude Code will:
+# 1. Run git status to see changes
+# 2. Stage relevant files
+# 3. Write a descriptive commit message
+# 4. Create the commit
+
+# To push:
+> Push to origin main
+
+# Claude Code respects branch protection and will
+# create PRs if direct push is not allowed.</code></pre>
+
+      <h3>3.5 Memory Across Sessions</h3>
+      <p>Claude Code persists project knowledge via:</p>
+      <ul>
+        <li><code>CLAUDE.md</code> — project-level context (conventions, paths, stack).</li>
+        <li><code>~/.claude/memory/</code> — cross-project learnings and patterns.</li>
+        <li>Auto-memory — Claude Code automatically records debugging insights and patterns.</li>
+      </ul>
+      <div class="callout callout-note">
+        Treat <code>CLAUDE.md</code> like infrastructure. Keep it updated. A well-maintained CLAUDE.md means Claude Code starts every session with full context — no ramp-up time.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>4.0 Integration Points</h2>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <h4><a href="github-pages-deployment-hotels.html">GitHub Pages</a></h4>
+          <p>Claude Code writes HTML files and pushes to GitHub. GitHub Pages auto-deploys. The entire site build-test-deploy cycle happens in the terminal.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="google-apps-script-property-management.html">Google Apps Script</a></h4>
+          <p>Claude Code writes .gs files locally and deploys via clasp. Webhook handlers, trigger functions, and sheet operations are all authored through prompts.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="stripe-integration-hotels.html">Stripe Integration</a></h4>
+          <p>Claude Code generates Payment Link embeds, writes webhook consumer code, and updates product metadata via the Stripe CLI.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="whatsapp-automation-hotels.html">WhatsApp Automation</a></h4>
+          <p>Claude Code scaffolds WhatsApp template message functions and iterates on message copy and trigger timing logic.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="doc-footer">
+    <a href="./">← Back to Knowledge Base</a>
+    <span style="color: var(--text-tertiary);">gab.ae/docs</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Return on Equity (ROE) — Investment Wiki</title>
+  <meta name="description" content="Technical reference for Return on Equity (ROE). Formula, DuPont analysis, interpretation, worked examples, and edge cases for profitability analysis.">
+  <meta property="og:title" content="Return on Equity (ROE) — Investment Wiki">
+  <meta property="og:description" content="Return on Equity explained: formula, DuPont analysis, interpretation, and edge cases for analyzing profitability.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+<body>
+
+<div class="doc-container">
+
+  <nav class="doc-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="./">Investment</a>
+    <span class="sep">/</span>
+    Return on Equity
+  </nav>
+
+  <header class="doc-header">
+    <h1 class="doc-title">Return on Equity (ROE)</h1>
+    <div class="doc-meta">
+      <span class="tag">Profitability Metric</span>
+      <span>Investment Wiki — Fundamentals</span>
+    </div>
+  </header>
+
+  <div class="doc-abstract">
+    Return on Equity (ROE) measures a corporation's profitability by revealing how much profit a company generates with the money shareholders have invested. It is the ultimate measure of management efficiency in allocating capital. A high ROE generally indicates that a company is using its investors' funds effectively to generate growth, though it can be artificially inflated by debt.
+  </div>
+
+  <div class="doc-content">
+
+    <div class="gab-stack-infobox">
+      <div class="infobox-header">Quick Reference</div>
+      <table>
+        <tr><td>Type</td><td>Profitability Ratio</td></tr>
+        <tr><td>Formula</td><td>Net Income ÷ Shareholders' Equity</td></tr>
+        <tr><td>Target</td><td>&gt; 15%</td></tr>
+        <tr><td>High Quality</td><td><span class="complexity-low">&gt; 20%</span></td></tr>
+        <tr><td>Low Quality</td><td><span class="complexity-high">&lt; 10%</span></td></tr>
+        <tr><td>Key component</td><td>DuPont Analysis</td></tr>
+      </table>
+    </div>
+
+    <section class="doc-section">
+      <h2>1.0 The Formula</h2>
+
+      <h3>Basic Form</h3>
+<pre><code><span class="code-label">formula</span>ROE = Net Income / Shareholders' Equity</code></pre>
+
+      <p><strong>Net Income</strong> is taken from the income statement (trailing 12 months is standard). <strong>Shareholders' Equity</strong> is taken from the balance sheet (Assets - Liabilities). For more precision, use the average equity over the period.</p>
+
+      <h3>Worked Example</h3>
+      <table>
+        <thead>
+          <tr><th>Company</th><th>Net Income</th><th>Avg Equity</th><th>ROE</th><th>Assessment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Company A</td><td>$20M</td><td>$100M</td><td><strong>20%</strong></td><td>Excellent capital efficiency.</td></tr>
+          <tr><td>Company B</td><td>$5M</td><td>$100M</td><td><strong>5%</strong></td><td>Poor return on capital.</td></tr>
+          <tr><td>Company C</td><td>$50M</td><td>$500M</td><td><strong>10%</strong></td><td>Average, possibly utility-like returns.</td></tr>
+        </tbody>
+      </table>
+
+      <p>Company A is generating $0.20 of profit for every dollar of equity invested. Company B is only generating $0.05. Investors would generally prefer Company A, assuming risk levels are comparable.</p>
+
+      <div class="callout callout-note">
+        ROE is most powerful when comparing companies within the same industry. A tech company's ROE will structurally differ from a utility company's ROE due to capital intensity.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>2.0 Interpretation</h2>
+
+      <h3>Benchmarks</h3>
+      <table>
+        <thead>
+          <tr><th>ROE Range</th><th>Signal</th><th>Interpretation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="complexity-low">&gt; 20%</span></td><td>Exceptional</td><td>Strong competitive advantage (moat) or high leverage. Requires DuPont analysis to confirm quality.</td></tr>
+          <tr><td>15% – 20%</td><td>Strong</td><td>Healthy business with good capital allocation. Typical of market leaders.</td></tr>
+          <tr><td>10% – 15%</td><td>Average</td><td>Matches the long-term market average. Acceptable but not exciting.</td></tr>
+          <tr><td><span class="complexity-high">&lt; 10%</span></td><td>Weak</td><td>Inefficient use of capital. Management is destroying value relative to cost of equity.</td></tr>
+          <tr><td>Negative</td><td>Loss-making</td><td>The company is losing money. ROE is not meaningful in this context.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Sustainable Growth Rate</h3>
+      <p>ROE is a key input for calculating how fast a company can grow without raising external capital:</p>
+<pre><code><span class="code-label">formula</span>Sustainable Growth Rate = ROE × (1 - Dividend Payout Ratio)</code></pre>
+      <p>If a company has an ROE of 20% and retains all earnings (0% payout), it can grow equity by 20% annually. If it pays out 50% as dividends, its sustainable growth rate drops to 10%.</p>
+    </section>
+
+    <section class="doc-section">
+      <h2>3.0 DuPont Analysis</h2>
+      <p>A high ROE can be driven by three things: high margins, efficient asset use, or high leverage. The DuPont Identity breaks this down to reveal the <em>quality</em> of the ROE.</p>
+
+<pre><code><span class="code-label">formula</span>ROE = Profit Margin × Asset Turnover × Financial Leverage
+
+    = (Net Income/Sales) × (Sales/Assets) × (Assets/Equity)</code></pre>
+
+      <ul>
+        <li><strong>Profit Margin:</strong> Operational efficiency. How much profit is kept from each dollar of sales.</li>
+        <li><strong>Asset Turnover:</strong> Asset use efficiency. How many sales are generated from each dollar of assets.</li>
+        <li><strong>Financial Leverage:</strong> Financial risk. How much debt is used to finance assets.</li>
+      </ul>
+
+      <div class="callout callout-warn">
+        Beware of "hollow" ROE. If ROE is rising <em>only</em> because Financial Leverage is rising, the company is becoming riskier, not more efficient. High-quality ROE is driven by margins and turnover.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>4.0 Edge Cases and Pitfalls</h2>
+
+      <h3>Share Buybacks</h3>
+      <p>When a company buys back its own stock, it reduces Shareholders' Equity (the denominator). This mechanically increases ROE, even if Net Income (the numerator) stays flat. While buybacks can be good capital allocation, an ROE boosted solely by shrinking the denominator is less impressive than one driven by profit growth.</p>
+
+      <h3>High Debt Loads</h3>
+      <p>Similar to buybacks, high debt reduces equity relative to assets. A company with 95% debt and 5% equity will have a massive leverage multiplier. This can result in sky-high ROE (e.g., 50%+), but the bankruptcy risk is extreme.</p>
+
+      <h3>Negative Equity</h3>
+      <p>If a company has accumulated losses exceeding its paid-in capital, Shareholders' Equity becomes negative. If Net Income is positive, the ROE calculation results in a negative number, which is confusing. If Net Income is also negative, ROE becomes positive (negative divided by negative), which is nonsensical. Always check the absolute values.</p>
+
+      <h3>Sector Differences</h3>
+      <table>
+        <thead>
+          <tr><th>Sector</th><th>Typical ROE</th><th>Driver</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Software</td><td>20% – 40%</td><td>High Margins, Low Assets</td></tr>
+          <tr><td>Utilities</td><td>8% – 12%</td><td>Regulated Returns, High Assets</td></tr>
+          <tr><td>Retail</td><td>15% – 25%</td><td>High Turnover, Low Margins</td></tr>
+          <tr><td>Banks</td><td>10% – 15%</td><td>High Leverage</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="doc-section">
+      <h2>5.0 Related Pages</h2>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <h4><a href="price-to-earnings-ratio.html">P/E Ratio</a></h4>
+          <p>Links price to earnings. High ROE stocks often command higher P/E multiples due to their quality.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="peg-ratio.html">PEG Ratio</a></h4>
+          <p>Adjusts valuation for growth. High ROE companies often sustain the high growth rates that justify low PEG ratios.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="portfolio-allocation-framework.html">Portfolio Allocation</a></h4>
+          <p>How quality metrics like ROE influence position sizing and risk management in a portfolio.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="doc-footer">
+    <a href="./">← Back to Investment Wiki</a>
+    <span style="color: var(--text-tertiary);">Investment Wiki</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

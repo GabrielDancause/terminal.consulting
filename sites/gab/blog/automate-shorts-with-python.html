@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automate Your Reach — How to Turn YouTube Videos into TikToks & Reels with Python — Gab</title>
+  <meta name="description" content="Part V of the faceless channel guide. Learn how to automatically crop, format, and generate captions for TikToks and Reels using Python and Claude.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Automate Your Reach — How to Turn YouTube Videos into TikToks & Reels with Python">
+  <meta property="og:description" content="Part V: Don't let your content die on YouTube. Use Python to automatically turn your horizontal videos into vertical shorts for TikTok and Reels.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gab.ae/blog/automate-shorts-with-python.html">
+  <meta property="og:image" content="https://gab.ae/images/og-blog-automate-shorts.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automate Your Reach — How to Turn YouTube Videos into TikToks & Reels with Python">
+  <meta name="twitter:description" content="Part V: Don't let your content die on YouTube. Use Python to automatically turn your horizontal videos into vertical shorts for TikTok and Reels.">
+  <meta name="twitter:image" content="https://gab.ae/images/og-blog-automate-shorts.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="blog-styles.css">
+</head>
+<body>
+
+  <div class="blog-post">
+
+    <!-- Navigation -->
+    <nav class="blog-post-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Blog</a></li>
+        <li aria-current="page">Automate Your Reach &mdash; How to Turn YouTube Videos into TikToks & Reels with Python</li>
+      </ol>
+      <a href="../" class="blog-nav-logo">Gab</a>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="blog-post-header">
+      <span class="blog-post-tag">Automation</span>
+      <h1>Automate Your Reach &mdash; How to Turn YouTube Videos into TikToks & Reels with Python</h1>
+      <p class="blog-post-meta">Gab <span>&middot;</span> March 2026 <span>&middot;</span> 8 min read</p>
+    </header>
+
+    <!-- Post Content -->
+    <article class="blog-content">
+
+      <p>This is Part V of the faceless channel series. We've built the <a href="how-to-create-a-faceless-channel.html">creation pipeline</a>, automated <a href="automate-your-faceless-channel.html">YouTube uploads</a>, and even let Claude drive <a href="automate-suno-with-claude.html">Suno</a> and <a href="automate-google-flow-with-claude.html">Google Flow</a>.</p>
+
+      <p>Your content is live on YouTube. But in 2026, YouTube is only half the battle. If you aren't on TikTok and Instagram Reels, you're leaving 50% of your audience on the table.</p>
+
+      <p>The problem? Re-editing horizontal videos into vertical shorts is tedious. It's the kind of busywork that kills momentum.</p>
+
+      <p>Let's automate it.</p>
+
+      <h2>The Strategy: Create Once, Publish Everywhere</h2>
+
+      <p>You already have high-quality 4K landscape videos from Google Flow. You have the audio stems from Suno. Instead of making new content for TikTok, we're going to programmatically repurpose what you already have.</p>
+
+      <p><strong>The Goal:</strong> Take a 3-minute horizontal video and automatically generate 3-5 vertical clips (Shorts/Reels/TikToks) with zero manual editing.</p>
+
+      <h2>Step 1: The Tool Stack</h2>
+
+      <p>We'll use Python again, but this time with a library designed for video editing.</p>
+
+      <pre><code>pip install moviepy anthropic</code></pre>
+
+      <ul>
+        <li><strong>MoviePy</strong> &mdash; A Python module for video editing. It can cut, concatenate, title, and process video files.</li>
+        <li><strong>Anthropic API</strong> &mdash; To generate the captions, hashtags, and descriptions for social media.</li>
+      </ul>
+
+      <h2>Step 2: The "Smart Crop" Script</h2>
+
+      <p>Horizontal video is 16:9. Vertical video is 9:16. You can't just squish it. You need to crop the center, or pan-and-scan.</p>
+
+      <p>For abstract visuals (Google Flow), a center crop usually works perfectly. Here is a script that takes your landscape video, crops the center vertical slice, and cuts out a 60-second clip.</p>
+
+      <pre><code>from moviepy.editor import VideoFileClip
+import os
+
+def create_short(input_file, output_file, start_time=0, duration=60):
+    # Load the video
+    clip = VideoFileClip(input_file)
+
+    # Cut the clip to the desired length
+    short_clip = clip.subclip(start_time, start_time + duration)
+
+    # Calculate dimensions for 9:16 crop
+    w, h = short_clip.size
+    target_ratio = 9 / 16
+    new_w = h * target_ratio
+
+    # Center crop
+    cropped_clip = short_clip.crop(
+        x1=(w/2 - new_w/2),
+        y1=0,
+        width=new_w,
+        height=h
+    )
+
+    # Resize to 1080x1920 (standard vertical HD)
+    final_clip = cropped_clip.resize(height=1920)
+
+    # Write the file
+    final_clip.write_videofile(
+        output_file,
+        codec='libx264',
+        audio_codec='aac',
+        fps=30
+    )
+
+create_short("input/midnight-rain.mp4", "output/short-1.mp4", start_time=30)</code></pre>
+
+      <p>Run this, and your cinematic landscape video becomes a perfect vertical Reel in seconds.</p>
+
+      <h2>Step 3: Adding Overlays Programmatically</h2>
+
+      <p>A raw video isn't enough for TikTok. You need text overlays. "Link in bio", song title, artist name. MoviePy can handle this too.</p>
+
+      <pre><code>from moviepy.editor import TextClip, CompositeVideoClip
+
+def add_overlays(video_clip, title, artist):
+    # Create text clip for the title
+    txt_title = TextClip(
+        title,
+        fontsize=70,
+        color='white',
+        font='Arial-Bold',
+        stroke_color='black',
+        stroke_width=2
+    ).set_position(('center', 200)).set_duration(video_clip.duration)
+
+    # Create text clip for "Link in Bio"
+    txt_cta = TextClip(
+        "Link in Bio to Listen",
+        fontsize=50,
+        color='yellow',
+        font='Arial-Bold'
+    ).set_position(('center', 1600)).set_duration(video_clip.duration)
+
+    # Composite them onto the video
+    return CompositeVideoClip([video_clip, txt_title, txt_cta])</code></pre>
+
+      <p>Now every short you generate automatically has your branding burnt in. No more fiddling with TikTok's text editor.</p>
+
+      <h2>Step 4: Automating Descriptions with Claude</h2>
+
+      <p>The video is ready. Now you need the caption and hashtags. Claude is perfect for this. We'll use the API to generate 3 variations of viral-style captions.</p>
+
+      <pre><code>import anthropic
+import json
+
+client = anthropic.Anthropic()
+
+def generate_social_metadata(track_title, genre):
+    prompt = f"""
+    Write 3 TikTok/Reels captions for a {genre} music track titled '{track_title}'.
+    Include 5-7 trending hashtags for this niche.
+    Format as JSON.
+    """
+
+    message = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=300,
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    return json.loads(message.content[0].text)</code></pre>
+
+      <p>You pass the track info, Claude gives you the exact text to paste into TikTok or Instagram.</p>
+
+      <h2>Step 5: The Batch Workflow</h2>
+
+      <p>Just like we did for YouTube uploads, we batch this. On Sunday night, run a script that:</p>
+
+      <ol>
+        <li>Reads your folder of new YouTube videos</li>
+        <li>Extracts 3 clips from each video (e.g., at 0:30, 1:30, and 2:30)</li>
+        <li>Crops them to vertical</li>
+        <li>Adds your overlays</li>
+        <li>Generates a text file with captions and hashtags for each</li>
+      </ol>
+
+      <p>When you wake up on Monday, you have 15 pieces of short-form content sitting in a folder, ready to post. You can manually upload them from your phone (often safer for reach than API uploads) or use a scheduler like Buffer or Metricool.</p>
+
+      <h2>Why This Works</h2>
+
+      <p>The "Faceless" model relies on volume. You are competing with creators who post daily. If you try to edit every Short manually, you will burn out.</p>
+
+      <p>By automating the repurposing step, you turn one asset (the song + landscape video) into dozens of touchpoints. Someone finds you on TikTok, clicks the link in bio, listens on Spotify. That's the funnel.</p>
+
+      <h2>The Final Pipeline</h2>
+
+      <p>This concludes the 5-part automation series. Let's look at what we've built:</p>
+
+      <ul>
+        <li><strong>Idea:</strong> You (Human)</li>
+        <li><strong>Music:</strong> Suno + Claude (Automated)</li>
+        <li><strong>Visuals:</strong> Google Flow + Claude (Automated)</li>
+        <li><strong>Uploads:</strong> Python Script (Automated)</li>
+        <li><strong>Marketing:</strong> Python + MoviePy (Automated)</li>
+      </ul>
+
+      <p>You have effectively cloned yourself. While the scripts are cropping video and uploading files, you're free to do the only thing that actually matters: <strong>having the next great idea</strong>.</p>
+
+    </article>
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <h3>Want the scripts?</h3>
+      <p>I've packaged all the Python scripts from this series (YouTube uploader, MoviePy cropper, Claude prompts) into a single repo.</p>
+      <a href="../#pricing" class="btn">Get the Code &mdash; Included with Tutorial</a>
+    </div>
+
+    <!-- Footer Nav -->
+    <nav class="blog-post-footer">
+      <a href="./" class="btn-back">&larr; All Posts</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

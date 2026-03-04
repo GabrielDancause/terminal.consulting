@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="consent.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Sexy Reads — Ali Imperiale</title>
+  <meta name="description" content="Books I love about sex, relationships, intimacy, and everything in between. Honest reviews and recommendations from Ali Imperiale.">
+  <meta property="og:title" content="My Sexy Reads — Ali Imperiale">
+  <meta property="og:description" content="Books I love about sex, relationships, intimacy, and everything in between.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aliimperiale.com/reads.html">
+  <meta property="og:image" content="https://aliimperiale.com/avatar-pro.jpg">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="My Sexy Reads — Ali Imperiale">
+  <meta name="twitter:description" content="Books I love about sex, relationships, intimacy, and everything in between.">
+  <meta name="twitter:image" content="https://aliimperiale.com/avatar-pro.jpg">
+  <link rel="canonical" href="https://aliimperiale.com/reads.html">
+  <link rel="alternate" type="application/rss+xml" title="Ali Imperiale Blog" href="https://aliimperiale.com/feed.xml">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="shared.css">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+/* Nav */
+    .site-nav {
+      background: #2E3E24;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-nav .nav-logo {
+      height: 32px;
+      opacity: 0.9;
+    }
+    .site-nav .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .site-nav .nav-links a {
+      color: #C6C8BB;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .site-nav .nav-links a:hover,
+    .site-nav .nav-links a.active {
+      color: #FAF8EB;
+    }
+
+    /* Header */
+    .page-header {
+      text-align: center;
+      padding: 48px 20px 36px;
+    }
+    .page-header h1 {
+      font-family: 'The Bloomington', cursive;
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: #2E3E24;
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 1rem;
+      color: #555549;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Books Grid */
+    .books-grid {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .book-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(46, 62, 36, 0.06);
+      border: 1px solid rgba(46, 62, 36, 0.06);
+      display: flex;
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    .book-cover {
+      width: 100px;
+      height: 148px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    .book-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .book-info .book-title {
+      font-family: 'New Standard', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #2E3E24;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+
+    .book-info .book-author {
+      font-size: 0.82rem;
+      color: #AD9846;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .book-info .book-review {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #555549;
+    }
+
+    .book-info .book-tag {
+      display: inline-block;
+      background: #422626;
+      color: #FAF8EB;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-top: 12px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 480px) {
+      .site-nav {
+        padding: 12px 16px;
+      }
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      .book-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .book-cover {
+        width: 110px;
+        height: 162px;
+      }
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:10000;padding:8px 16px;background:#2E3E24;color:#FAF8EB;font-family:Montserrat,sans-serif;font-size:0.9rem;text-decoration:none;border-radius:0 0 8px 0" onfocus="this.style.cssText='position:fixed;left:0;top:0;width:auto;height:auto;overflow:visible;z-index:10000;padding:8px 16px;background:#2E3E24;color:#FAF8EB;font-family:Montserrat,sans-serif;font-size:0.9rem;text-decoration:none;border-radius:0 0 8px 0'" onblur="this.style.cssText='position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden'">Skip to content</a>
+
+  <nav class="site-nav">
+    <a href="/"><img class="nav-logo" src="logo-beige.webp" alt="Ali Imperiale" height="32"></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="https://www.youtube.com/@aliimperiale" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="/open-and-honest.html">Course</a></li>
+      <li><a href="https://www.patreon.com/c/aliimperiale" target="_blank" rel="noopener">Patreon</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-header" id="main-content">
+    <h1>My Sexy Reads</h1>
+    <p>Books I love about sex, relationships, intimacy, and everything in between. Honest reviews only.</p>
+  </div>
+
+  <div class="books-grid">
+
+    <div class="book-card">
+      <img class="book-cover" src="she-comes-first-cover.webp" alt="She Comes First book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">She Comes First</div>
+        <div class="book-author">by Ian Kerner, PhD</div>
+        <p class="book-review">This is a book I think every man should read &mdash; but honestly, as a woman, I learned so much about myself too. It's easily digestible, incredibly descriptive, and refreshingly clear when it comes to pleasure. If you or your partner are struggling with oral sex or just want to be more attentive, I can't recommend this enough. It completely changed how I think about intimacy.</p>
+        <span class="book-tag">Must Read</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <img class="book-cover" src="https://www.stefanigoerlich.com/uploads/1/4/8/2/148276234/bk06578-with-sprinkles-on-top-cover-final-orig_orig.jpeg" alt="With Sprinkles on Top book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">With Sprinkles on Top</div>
+        <div class="book-author">by Stefani Goerlich</div>
+        <p class="book-review">Everything vanilla people and their kinky partners need to know to communicate, explore, and connect. A sex therapist's playful, affirming guide to navigating desire differences &mdash; winner of the AASECT Sexuality Professionals Book Award.</p>
+        <span class="book-tag">Communication</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <img class="book-cover" src="https://books.google.com/books/content?vid=isbn:0367439921&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api" alt="The Leather Couch book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">The Leather Couch</div>
+        <div class="book-author">by Stefani Goerlich</div>
+        <p class="book-review">Clinical practice with kinky clients. A comprehensive, award-winning guide for therapists and anyone wanting to understand how mental health care can be kink-affirming rather than just kink-aware.</p>
+        <span class="book-tag">Clinical</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/0578926423-M.jpg" alt="Ethical Porn for Dicks book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">Ethical Porn for Dicks</div>
+        <div class="book-author">by David J. Ley, PhD</div>
+        <p class="book-review">A man's guide to responsible viewing pleasure. Accessible, funny, and evidence-based &mdash; this book offers a nonjudgmental way to understand and use pornography without the shame and anxiety.</p>
+        <span class="book-tag">Porn Literacy</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/0399579664-M.jpg" alt="The Ethical Slut book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">The Ethical Slut (Third Edition)</div>
+        <div class="book-author">by Janet W. Hardy &amp; Dossie Easton</div>
+        <p class="book-review">The definitive practical guide to polyamory, open relationships, and other freedoms in sex and love. Often called &ldquo;the poly bible,&rdquo; with over 200,000 copies sold since 1997.</p>
+        <span class="book-tag">Non-Monogamy</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/0778387100-M.jpg" alt="Smart Sex book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">Smart Sex</div>
+        <div class="book-author">by Emily Morse, PhD</div>
+        <p class="book-review">How to boost your sex IQ and own your pleasure. From the host of the #1 sexuality podcast <em>Sex with Emily</em>, a groundbreaking framework that will change the way you think about sex &mdash; regardless of gender or orientation.</p>
+        <span class="book-tag">Pleasure</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <img class="book-cover" src="https://books.google.com/books/content?vid=isbn:9798888900864&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api" alt="Not Your Rescue Project book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">Not Your Rescue Project</div>
+        <div class="book-author">by Chanelle Gallant &amp; Elene Lam</div>
+        <p class="book-review">Migrant sex workers fighting for justice. A landmark primer on migration, sex work, and policing that exposes the harms of criminalization in the name of &ldquo;anti-trafficking&rdquo; and centers the voices of those most affected.</p>
+        <span class="book-tag">Sex Work &amp; Justice</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <img class="book-cover" src="https://books.google.com/books/content?vid=isbn:1479813419&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api" alt="Sex Tourism in Thailand book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">Sex Tourism in Thailand</div>
+        <div class="book-author">by Ronald Weitzer</div>
+        <p class="book-review">Inside Asia's premier erotic playground. An expansive yet nuanced ethnographic study of diverse sex markets and their moral economies &mdash; awarded an Honorable Mention by the American Society of Criminology.</p>
+        <span class="book-tag">Research</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <img class="book-cover" src="https://books.google.com/books/content?vid=isbn:0593714997&amp;printsec=frontcover&amp;img=1&amp;zoom=1&amp;source=gbs_api" alt="Shame on You book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">Shame on You</div>
+        <div class="book-author">by Melissa Petro</div>
+        <p class="book-review">How to be a woman in the age of mortification. A candid, unflinching look at shame, stigma, and what it means to live as a woman when the world is determined to judge you.</p>
+        <span class="book-tag">Shame &amp; Stigma</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/0735277370-M.jpg" alt="The Vagina Bible book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">The Vagina Bible</div>
+        <div class="book-author">by Dr. Jen Gunter</div>
+        <p class="book-review">The vulva and the vagina &mdash; separating the myth from the medicine. A <em>New York Times</em> bestseller and the definitive guide to vaginal and vulvar health from the world's most outspoken gynecologist.</p>
+        <span class="book-tag">Health</span>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <img class="book-cover" src="https://covers.openlibrary.org/b/isbn/0375414096-M.jpg" alt="The East, the West, and Sex book cover" width="100" height="148" loading="lazy">
+      <div class="book-info">
+        <div class="book-title">The East, the West, and Sex</div>
+        <div class="book-author">by Richard Bernstein</div>
+        <p class="book-review">A history of erotic encounters. A rich narrative of the powerful erotic pull the East has always had for the West &mdash; exploring the intimate connection between sex, power, and colonialism from Marco Polo to modern-day Thailand.</p>
+        <span class="book-tag">History</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Newsletter -->
+  <div style="padding:48px 20px 56px;text-align:center">
+    <div style="max-width:480px;margin:0 auto;background:#fff;border-radius:18px;padding:36px 30px;box-shadow:0 1px 4px rgba(46,62,36,.06);border:1px solid rgba(46,62,36,.06)">
+      <h2 style="font-family:'The Bloomington',cursive;font-size:2rem;font-weight:400;color:#2E3E24;margin-bottom:10px">Stay curious</h2>
+      <p style="font-size:.9rem;color:#555549;line-height:1.7;margin-bottom:20px">Join the newsletter for book recs, guides, and honest real talk. Plus get a free copy of the Ethical Nightlife Guide.</p>
+      <form style="display:flex;gap:10px;max-width:380px;margin:0 auto" id="reads-subscribe">
+        <input type="email" name="email" placeholder="Your email" required aria-label="Email address" style="flex:1;padding:12px 16px;border:1px solid #C6C8BB;border-radius:10px;font-family:Montserrat,sans-serif;font-size:.88rem;background:#FAF8EB;color:#2E3E24;outline:none">
+        <button type="submit" style="padding:12px 24px;background:#2E3E24;color:#FAF8EB;border:none;border-radius:10px;font-family:Montserrat,sans-serif;font-weight:600;font-size:.88rem;cursor:pointer;white-space:nowrap">Join Free</button>
+      </form>
+      <p class="reads-subscribe-status" style="display:none;margin-top:14px;font-size:.85rem"></p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo-beige.webp" alt="Ali Imperiale" height="28">
+        <p>Casual chats about sex, relationships & other fun stuff</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/reads.html">Reads</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.youtube.com/@aliimperiale" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="/open-and-honest.html">Course</a></li>
+      <li><a href="https://www.patreon.com/c/aliimperiale" target="_blank" rel="noopener">Patreon</a></li>
+            <li><a href="https://www.tiktok.com/@aliimperiale" target="_blank" rel="noopener">TikTok</a></li>
+            <li><a href="https://www.instagram.com/aliimperiale/" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=61581368111171" target="_blank" rel="noopener">Facebook</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:ali@aliimperiale.com">ali@aliimperiale.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Ali Imperiale</p>
+      </div>
+    </div>
+  </footer>
+
+<script src="mobile-nav.js" defer></script>
+<script src="back-to-top.js" defer></script>
+<script src="newsletter-bar.js" defer></script>
+<script>
+(function() {
+  var KIT_URL = 'https://app.kit.com/forms/9115688/subscriptions';
+  var form = document.getElementById('reads-subscribe');
+  if (!form) return;
+  var status = form.parentElement.querySelector('.reads-subscribe-status');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = form.querySelector('input[name="email"]').value.trim();
+    if (!email) return;
+    var btn = form.querySelector('button');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    var fd = new FormData();
+    fd.append('email_address', email);
+    fetch(KIT_URL, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
+    .then(function(r) { return r.json(); })
+    .then(function() {
+      status.style.display = 'block';
+      status.style.color = '#2E3E24';
+      status.textContent = 'You\u2019re in! Check your email to confirm.';
+      form.style.display = 'none';
+    }).catch(function() {
+      status.style.display = 'block';
+      status.style.color = '#AD9846';
+      status.textContent = 'Something went wrong. Please try again.';
+      btn.textContent = 'Subscribe';
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
+</body>
+</html>

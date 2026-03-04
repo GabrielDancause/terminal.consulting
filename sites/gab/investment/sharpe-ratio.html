@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharpe Ratio — Investment Wiki</title>
+  <meta name="description"
+    content="Technical reference for the Sharpe Ratio. Formula, interpretation, and practical application.">
+  <meta property="og:title" content="Sharpe Ratio — Investment Wiki">
+  <meta property="og:description"
+    content="Sharpe Ratio explained: formula, interpretation, worked examples, and why it matters.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+
+<body>
+  <div class="doc-container">
+    <nav class="doc-breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Investment</a>
+      <span class="sep">/</span>
+      Sharpe Ratio
+    </nav>
+
+    <header class="doc-header">
+      <h1 class="doc-title">Sharpe Ratio</h1>
+      <div class="doc-meta">
+        <span class="tag">Risk Metric</span>
+        <span>Investment Wiki — Fundamentals</span>
+      </div>
+    </header>
+
+    <div class="doc-abstract">
+      The Sharpe Ratio is universally used to understand the return of an investment compared to its risk. It measures
+      the excess return (or "risk premium") per unit of deviation in an investment asset. Simply put: for every unit of
+      volatility you stomach, how much extra profit do you earn?
+    </div>
+
+    <div class="doc-content">
+      <div class="gab-stack-infobox">
+        <div class="infobox-header">Quick Reference</div>
+        <table>
+          <tr>
+            <td>Type</td>
+            <td>Risk-Adjusted Return Metric</td>
+          </tr>
+          <tr>
+            <td>Formula</td>
+            <td>(Return of Portfolio - Risk Free Rate) ÷ Standard Deviation</td>
+          </tr>
+          <tr>
+            <td>Good Target</td>
+            <td><span class="complexity-low">> 1.0</span></td>
+          </tr>
+          <tr>
+            <td>Excellent</td>
+            <td><span class="complexity-low">> 2.0+</span></td>
+          </tr>
+        </table>
+      </div>
+
+      <section class="doc-section">
+        <h2>1.0 The Formula</h2>
+        <h3>Basic Form</h3>
+        <pre><code><span class="code-label">formula</span>Sharpe = (Rp - Rf) / σp
+
+Where:
+Rp = Return of portfolio
+Rf = Risk-free rate
+σp = Standard deviation of the portfolio's excess return</code></pre>
+
+        <p>If two hedge funds both return 20% in a year, you cannot assume they are equally skilled. If Fund A only
+          bought the S&P 500 on massive leverage, they took extreme risk to get that 20% (low Sharpe Ratio). If Fund B
+          achieved 20% by perfectly hedging steady blue-chip stocks, they took very little risk (high Sharpe Ratio).</p>
+
+        <div class="callout callout-warn">
+          The Sharpe Ratio penalizes upside volatility exactly the same as downside volatility. An asset that violently
+          rockets <em>up</em> in price will have a lower Sharpe ratio just because it is erratic, frustrating crypto and
+          momentum investors.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>3.0 Related Pages</h2>
+        <div class="integration-grid">
+          <div class="integration-card">
+            <h4><a href="beta.html">Beta</a></h4>
+            <p>Both Sharpe and Beta measure volatility, but Beta measures it relative to the market, whereas Sharpe
+              measures standard deviation in isolation.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="doc-footer">
+      <a href="./">← Back to Investment Wiki</a>
+      <span style="color: var(--text-tertiary);">Investment Wiki</span>
+    </footer>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:1200px;height:630px;overflow:hidden;}
+.card{width:1200px;height:630px;background:linear-gradient(135deg,#0a0a1a 0%,#1a1a2e 40%,#2d1b69 100%);display:flex;flex-direction:column;justify-content:center;padding:80px 90px;font-family:'Inter',sans-serif;color:white;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(108,92,231,0.15) 0%,transparent 70%);border-radius:50%;}
+.tag{display:inline-block;background:rgba(108,92,231,0.2);border:1px solid rgba(108,92,231,0.4);color:#a29bfe;font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 20px;border-radius:100px;margin-bottom:32px;width:fit-content;}
+h1{font-size:56px;font-weight:900;line-height:1.15;margin-bottom:24px;max-width:950px;}
+.sub{font-size:22px;color:rgba(255,255,255,0.5);max-width:700px;}
+.footer{position:absolute;bottom:60px;left:90px;right:90px;display:flex;justify-content:space-between;align-items:center;}
+.footer-author{font-size:20px;color:rgba(255,255,255,0.5);}
+.footer-author strong{color:white;}
+.footer-domain{font-size:20px;color:#6C5CE7;font-weight:600;}
+</style></head>
+<body>
+<div class="card">
+  <div class="tag">Blog</div>
+  <h1>Web Development Tips &amp; Tutorials</h1>
+  <p class="sub">Practical guides for building websites with AI tools, no coding experience required.</p>
+  <div class="footer">
+    <span class="footer-author">By <strong>Gab</strong></span>
+    <span class="footer-domain">gab.ae/blog</span>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Automate Stripe Payment Links for Your Micro-SaaS — Gab</title>
+  <meta name="description" content="Sell digital products or services without building a complex checkout. Use Stripe Payment Links and webhooks to automate access provisioning.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="How to Automate Stripe Payment Links for Your Micro-SaaS">
+  <meta property="og:description" content="No code checkout? Use Stripe Payment Links and automate everything else with webhooks.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gab.ae/blog/automate-stripe-payment-links.html">
+  <meta property="og:image" content="https://gab.ae/images/og-blog-stripe.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Automate Stripe Payment Links for Your Micro-SaaS">
+  <meta name="twitter:description" content="No code checkout? Use Stripe Payment Links and automate everything else with webhooks.">
+  <meta name="twitter:image" content="https://gab.ae/images/og-blog-stripe.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="blog-styles.css">
+</head>
+<body>
+
+  <div class="blog-post">
+
+    <!-- Navigation -->
+    <nav class="blog-post-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Blog</a></li>
+        <li aria-current="page">How to Automate Stripe Payment Links for Your Micro-SaaS</li>
+      </ol>
+      <a href="../" class="blog-nav-logo">Gab</a>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="blog-post-header">
+      <span class="blog-post-tag">Business</span>
+      <h1>How to Automate Stripe Payment Links for Your Micro-SaaS</h1>
+      <p class="blog-post-meta">Gab <span>&middot;</span> March 2026 <span>&middot;</span> 5 min read</p>
+    </header>
+
+    <!-- Post Content -->
+    <article class="blog-content">
+
+      <p>Building a custom checkout flow is hard. You have to worry about PCI compliance, tax calculation, responsive design, and error handling.</p>
+
+      <p>Stripe Payment Links solve this. You create a link in your Stripe dashboard, send it to a customer (or put it on your landing page), and Stripe handles the rest. But what happens <em>after</em> they pay?</p>
+
+      <p>Ideally, you want them to get access to your product immediately &mdash; whether it's a software license, a course login, or a download link.</p>
+
+      <h2>The "Glue" Code: Webhooks</h2>
+
+      <p>When someone buys via a Payment Link, Stripe fires a "webhook" event (specifically <code>checkout.session.completed</code>). You need a small script to catch this event and do something useful.</p>
+
+      <p>You can host this script for free on Vercel, Netlify Functions, or even Google Cloud Functions. And yes, Claude can write it for you.</p>
+
+      <h2>Step 1: Create the Payment Link</h2>
+
+      <ol>
+        <li>Log in to Stripe.</li>
+        <li>Go to <strong>Products</strong> > Add Product.</li>
+        <li>Click <strong>Create payment link</strong> next to your new product.</li>
+        <li>Copy the URL. That's your checkout page.</li>
+      </ol>
+
+      <h2>Step 2: Ask Claude for the Webhook Handler</h2>
+
+      <p>Here's a prompt to generate a Node.js script for Vercel:</p>
+
+      <pre><code>I'm using Stripe Payment Links. I need a Vercel Serverless Function (Node.js) to handle the webhook.
+The file should be `api/webhook.js`.
+
+When a `checkout.session.completed` event occurs:
+1. Verify the Stripe signature (very important!).
+2. Get the customer's email from the session object.
+3. Generate a random license key (string of 16 chars).
+4. Send an email to the customer with their license key using Resend (or SendGrid).
+5. Return a 200 OK status.
+
+I have my STRIPE_WEBHOOK_SECRET and RESEND_API_KEY in environment variables.</code></pre>
+
+      <p>Claude will give you the code. You'll need to create a simple <code>package.json</code> with <code>stripe</code> and <code>resend</code> dependencies, which Claude will also provide.</p>
+
+      <h2>Step 3: Deploy and Connect</h2>
+
+      <ol>
+        <li>Push your code to a GitHub repository.</li>
+        <li>Connect it to Vercel (free tier).</li>
+        <li>Add your environment variables in Vercel settings.</li>
+        <li>Go back to Stripe > Developers > Webhooks.</li>
+        <li>Add an endpoint: <code>https://your-vercel-project.vercel.app/api/webhook</code>.</li>
+        <li>Select the <code>checkout.session.completed</code> event.</li>
+      </ol>
+
+      <h2>Result: Automated Sales</h2>
+
+      <p>Now, whenever someone buys from your link:</p>
+      <ul>
+        <li>Stripe charges the card.</li>
+        <li>Stripe tells your Vercel function "Hey, someone paid!"</li>
+        <li>Your function generates a key and emails the customer.</li>
+      </ul>
+
+      <p>You wake up to money in your bank account and zero support tickets asking "Where is my download?"</p>
+
+    </article>
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <h3>Start selling today.</h3>
+      <p>Don't let technical hurdles stop you. Launch your product with Stripe Payment Links.</p>
+    </div>
+
+    <!-- Footer Nav -->
+    <nav class="blog-post-footer">
+      <a href="./" class="btn-back">&larr; All Posts</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

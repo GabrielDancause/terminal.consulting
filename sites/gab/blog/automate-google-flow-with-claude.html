@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automate Google Flow Visuals with Claude — Complete the Pipeline — Gab</title>
+  <meta name="description" content="Part IV of the faceless channel guide. Use Claude's browser extension to automate video generation in Google Flow — prompt, generate, download, repeat.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Automate Google Flow Visuals with Claude — Complete the Pipeline">
+  <meta property="og:description" content="Part IV: The last manual step dies. Use Claude to drive Google Flow, generate music video visuals, and close the full automation loop.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gab.ae/blog/automate-google-flow-with-claude.html">
+  <meta property="og:image" content="https://gab.ae/images/og-blog-automate-flow.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automate Google Flow Visuals with Claude — Complete the Pipeline">
+  <meta name="twitter:description" content="Part IV: The last manual step dies. Use Claude to drive Google Flow, generate music video visuals, and close the full automation loop.">
+  <meta name="twitter:image" content="https://gab.ae/images/og-blog-automate-flow.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="blog-styles.css">
+</head>
+<body>
+
+  <div class="blog-post">
+
+    <!-- Navigation -->
+    <nav class="blog-post-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Blog</a></li>
+        <li aria-current="page">Automate Google Flow Visuals with Claude &mdash; Complete the Pipeline</li>
+      </ol>
+      <a href="../" class="blog-nav-logo">Gab</a>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="blog-post-header">
+      <span class="blog-post-tag">Automation</span>
+      <h1>Automate Google Flow Visuals with Claude &mdash; Complete the Pipeline</h1>
+      <p class="blog-post-meta">Gab <span>&middot;</span> February 2026 <span>&middot;</span> 7 min read</p>
+    </header>
+
+    <!-- Post Content -->
+    <article class="blog-content">
+
+      <p>This is Part IV of the faceless channel series. We've covered <a href="how-to-create-a-faceless-channel.html">creating an album and channel</a> (Part I), <a href="automate-your-faceless-channel.html">automating YouTube uploads</a> (Part II), and <a href="automate-suno-with-claude.html">automating Suno music creation</a> (Part III).</p>
+
+      <p>There's one manual step left: generating the visuals. Let's kill it.</p>
+
+      <h2>The Last Bottleneck</h2>
+
+      <p>After Parts II and III, your pipeline looks like this:</p>
+
+      <ul>
+        <li>Music creation &mdash; automated (Claude drives Suno)</li>
+        <li>Visual creation &mdash; <strong>still manual</strong></li>
+        <li>Video assembly &mdash; still manual (but fast)</li>
+        <li>YouTube upload &mdash; automated (Python script)</li>
+        <li>Distribution &mdash; automated (DistroKid)</li>
+      </ul>
+
+      <p>Google Flow is a browser-based tool. No API. No command-line interface. You type a prompt, click generate, wait, and download. Sound familiar? That's exactly what we did with Suno in Part III &mdash; and Claude handled it perfectly.</p>
+
+      <p>Same approach. Different tool.</p>
+
+      <h2>Step 1: Build a Visual Brief from Your Track List</h2>
+
+      <p>The key to good music visuals is matching the mood of each track. Instead of improvising prompts one at a time, create a visual brief for your entire album at once.</p>
+
+      <p><strong>Give Claude your album info and let it write the visual prompts:</strong></p>
+
+      <pre><code>Here's my album "3 AM in Montreal" — 10 lo-fi ambient tracks.
+For each track, write a Google Flow video prompt that matches
+the mood. Style: cinematic, slow-motion, nighttime Montreal
+vibes. No people's faces. Moody lighting.
+
+1. Golden Hour Fades — warm, sunset, ending daylight
+2. St-Laurent After Dark — neon signs, wet streets
+3. Rain on the Window — interior, cozy, rain outside
+4. Empty Metro — underground station, empty platform
+5. 2 AM Coffee — cafe interior, dim lighting, steam
+6. Neon Puddles — street-level, reflections, colors
+7. The Quiet Part — minimal, dark, single light source
+8. Snowfall on Sherbrooke — snow falling, streetlights
+9. Almost Morning — sky getting lighter, blue hour
+10. First Light — sunrise, warm golden light returns</code></pre>
+
+      <p>Claude generates 10 detailed Google Flow prompts &mdash; each tailored to the track's mood and consistent with your album's visual identity. No more staring at a blank prompt field trying to think of what to type.</p>
+
+      <h2>Step 2: Let Claude Drive Google Flow</h2>
+
+      <p>With the browser extension active and Google Flow open, Claude can interact with the interface directly. Here's what to tell it:</p>
+
+      <pre><code>Open the Google Flow tab. For each prompt in my visual brief:
+1. Clear the prompt field
+2. Paste in the prompt for this track
+3. Set the duration to the longest available option
+4. Click Generate
+5. Wait for the video to finish rendering
+6. Download the result
+7. Name the file to match the track name
+8. Move to the next prompt</code></pre>
+
+      <p>Claude reads the Google Flow interface, finds the input fields and buttons, fills in each prompt, triggers generation, and waits for the result. When the video is ready, it downloads it and moves on.</p>
+
+      <p><strong>What Claude can see and do:</strong></p>
+      <ul>
+        <li>Read the current state of the page &mdash; is it generating, done, or idle?</li>
+        <li>Click buttons &mdash; generate, download, new creation</li>
+        <li>Fill text fields &mdash; paste in your prompts</li>
+        <li>Wait intelligently &mdash; it checks the page state instead of using fixed timers</li>
+        <li>Take screenshots &mdash; so you can review what it's doing if you want</li>
+      </ul>
+
+      <h2>Step 3: Review and Regenerate</h2>
+
+      <p>Not every generated video will be perfect. Some will be stunning. Some will be weird. That's normal.</p>
+
+      <p><strong>The smart workflow:</strong></p>
+      <ol>
+        <li>Let Claude generate all 10 visuals in one batch</li>
+        <li>Review them yourself &mdash; scrub through each one quickly</li>
+        <li>Flag the ones that need a redo</li>
+        <li>Tell Claude which ones to regenerate and with what adjustments</li>
+      </ol>
+
+      <pre><code>Tracks 4 and 7 didn't look right. Regenerate them:
+- Track 4 (Empty Metro): Add more dramatic lighting,
+  make it feel lonelier. Less clean, more gritty.
+- Track 7 (The Quiet Part): Too bright. Make it nearly
+  black with just a single beam of light.</code></pre>
+
+      <p>Claude goes back to Google Flow, enters the revised prompts, generates new versions, and downloads them. You review again. Two rounds is usually enough to get everything right.</p>
+
+      <h2>Step 4: Generate Multiple Clips Per Track</h2>
+
+      <p>A single Google Flow clip might be 5-10 seconds. Your tracks are 2-4 minutes. You need multiple clips per video.</p>
+
+      <p><strong>Two approaches:</strong></p>
+
+      <p><strong>Approach 1: Variations on a theme.</strong> For each track, give Claude 3-4 slightly different prompts that share the same mood but show different scenes. For "Rain on the Window":</p>
+
+      <pre><code>Clip 1: Close-up of raindrops sliding down a window pane,
+        warm interior light behind, out of focus city beyond
+
+Clip 2: Slow pan across a cozy room interior, single lamp,
+        rain visible through window, steam rising from a cup
+
+Clip 3: Wide shot of a rain-soaked street seen from inside,
+        curtains slightly open, moody blue-orange lighting
+
+Clip 4: Extreme close-up of condensation on glass,
+        fingertip drawing a small shape, rain in background</code></pre>
+
+      <p><strong>Approach 2: Loop and extend.</strong> Generate one strong clip and loop it in your video editor. Works especially well for abstract or nature visuals &mdash; flowing water, clouds, particles. Some Google Flow outputs loop almost seamlessly.</p>
+
+      <p>For a 10-track album, you might generate 30-40 clips total. Claude handles the repetitive prompt-enter-generate-download cycle. You handle the creative direction.</p>
+
+      <h2>Step 5: Cover Art Generation</h2>
+
+      <p>While Claude is driving Google Flow, you can also have it generate your album cover art. If you're using an AI image tool that runs in the browser (Midjourney via Discord, Google Imagen, DALL-E via ChatGPT), the same browser extension approach works.</p>
+
+      <pre><code>Generate album cover art for "3 AM in Montreal":
+- Style: minimal, dark, moody
+- Show a Montreal street at night, slight snow,
+  warm light from a single window
+- No text on the image (I'll add the title later)
+- Square format, high resolution
+- Generate 4 variations so I can pick the best one</code></pre>
+
+      <p>Claude drives the image generator, downloads all four variations, and you pick your favorite. Add your album title and artist name in Canva or Figma and you're done.</p>
+
+      <h2>The Fully Automated Pipeline</h2>
+
+      <p>With all four parts of this series combined, here's your complete workflow:</p>
+
+      <ol>
+        <li><strong>Plan</strong> &mdash; Write your album concept and track list (you, 30 min)</li>
+        <li><strong>Generate music</strong> &mdash; Claude drives Suno, creates all tracks (<a href="automate-suno-with-claude.html">Part III</a>)</li>
+        <li><strong>Generate visuals</strong> &mdash; Claude drives Google Flow, creates all video clips (this post)</li>
+        <li><strong>Review</strong> &mdash; You listen to tracks and watch visuals, flag any redos (you, 1 hour)</li>
+        <li><strong>Assemble</strong> &mdash; Combine audio + video in your editor (you, 1-2 hours)</li>
+        <li><strong>Upload</strong> &mdash; Python script handles YouTube uploads (<a href="automate-your-faceless-channel.html">Part II</a>)</li>
+        <li><strong>Distribute</strong> &mdash; DistroKid pushes to all streaming platforms (<a href="how-to-create-a-faceless-channel.html">Part I</a>)</li>
+      </ol>
+
+      <p>Your total hands-on time for a full album with music videos: roughly 3-4 hours spread across a weekend. That's planning, reviewing, and assembling &mdash; the creative decisions. Everything else is automated.</p>
+
+      <h2>What's Left to Do Yourself</h2>
+
+      <p>Automation doesn't mean autopilot. Here's what should always stay manual:</p>
+
+      <ul>
+        <li><strong>Creative direction</strong> &mdash; What genre, what mood, what story are you telling? This is the whole point.</li>
+        <li><strong>Quality control</strong> &mdash; Listen to every track. Watch every visual. Your taste is the filter.</li>
+        <li><strong>Video assembly</strong> &mdash; Matching cuts to music still benefits from a human touch. The emotional timing of a visual transition is hard to automate well.</li>
+        <li><strong>Album sequencing</strong> &mdash; The order of tracks matters. Listen to the album front-to-back and adjust until the flow feels right.</li>
+      </ul>
+
+      <p>Everything else &mdash; the clicking, the typing, the uploading, the distributing &mdash; is just logistics. Let the machines handle logistics.</p>
+
+      <h2>From One Album to a Catalog</h2>
+
+      <p>The real power of this pipeline isn't one album. It's the ability to repeat it. When you can go from concept to fully distributed album in a weekend, you can build a catalog fast.</p>
+
+      <ul>
+        <li><strong>Album every 6-8 weeks</strong> &mdash; completely realistic with this workflow</li>
+        <li><strong>Singles in between</strong> &mdash; keep the algorithm happy with consistent releases</li>
+        <li><strong>Multiple artist names</strong> &mdash; different genres, different brands, same pipeline</li>
+      </ul>
+
+      <p>Each album is a permanent asset on every platform. Streams compound. Back catalog gets discovered through new releases. The flywheel spins.</p>
+
+      <p>Start with <a href="how-to-create-a-faceless-channel.html">Part I</a> if you haven't set up yet. Then automate with <a href="automate-your-faceless-channel.html">Part II</a> (uploads) and <a href="automate-suno-with-claude.html">Part III</a> (music creation).</p>
+
+      <p><strong>Next up:</strong> In <a href="automate-shorts-with-python.html">Part V</a>, we go beyond YouTube &mdash; automating the creation of vertical shorts for TikTok and Reels with Python.</p>
+
+    </article>
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <h3>Want the full step-by-step walkthrough?</h3>
+      <p>My tutorial covers everything from setup to going live. 10 audio modules you can follow along with.</p>
+      <a href="../#pricing" class="btn">Get the Tutorial &mdash; $39</a>
+    </div>
+
+    <!-- Footer Nav -->
+    <nav class="blog-post-footer">
+      <a href="./" class="btn-back">&larr; All Posts</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

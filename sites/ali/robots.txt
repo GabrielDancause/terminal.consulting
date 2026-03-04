@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /open-and-honest-course.html
+Disallow: /worksheets/
+
+Sitemap: https://aliimperiale.com/sitemap.xml

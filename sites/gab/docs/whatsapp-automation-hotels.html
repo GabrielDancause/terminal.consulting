@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Automation for Hotels — Gab Knowledge Base</title>
+  <meta name="description" content="Technical reference for deploying WhatsApp Business API automation for hotel guest communication, booking confirmations, and check-in flows.">
+  <meta property="og:title" content="WhatsApp Automation for Hotels — Gab Knowledge Base">
+  <meta property="og:description" content="WhatsApp Business API automation for hotel guest communication and booking flows.">
+  <meta property="og:type" content="article">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs-styles.css">
+</head>
+<body>
+
+<div class="doc-container">
+
+  <nav class="doc-breadcrumb">
+    <a href="../index.html">gab.ae</a>
+    <span class="sep">/</span>
+    <a href="./">docs</a>
+    <span class="sep">/</span>
+    whatsapp-automation-hotels
+  </nav>
+
+  <header class="doc-header">
+    <h1 class="doc-title">WhatsApp Automation for Hotels</h1>
+    <div class="doc-meta">
+      <span class="tag">Tool Setup</span>
+      <span>Category A — Hotels</span>
+    </div>
+  </header>
+
+  <div class="doc-abstract">
+    WhatsApp Business API replaces email as the primary guest communication channel for hotel properties in markets where WhatsApp penetration exceeds 80% (Quebec, Europe, Latin America, Middle East). This implementation uses pre-approved message templates triggered by Stripe webhook events through Google Apps Script, delivering booking confirmations, check-in instructions, and upsell offers without manual intervention. The system handles the full guest lifecycle from payment confirmation to post-checkout review request.
+  </div>
+
+  <div class="doc-content">
+
+    <div class="gab-stack-infobox">
+      <div class="infobox-header">The Gab Stack</div>
+      <table>
+        <tr><td>Primary Tool</td><td>WhatsApp Business API (Cloud API)</td></tr>
+        <tr><td>Infrastructure</td><td>Meta Developer Console / Google Apps Script</td></tr>
+        <tr><td>Cost to Run</td><td>~$0.005–$0.08 per message (varies by region)</td></tr>
+        <tr><td>Complexity</td><td><span class="complexity-high">High</span></td></tr>
+        <tr><td>Reference</td><td>Auberge de nos Aieux</td></tr>
+      </table>
+    </div>
+
+    <section class="doc-section">
+      <h2>1.0 Deployment Architecture</h2>
+      <p>WhatsApp sits at the end of every transaction flow. It does not initiate — it reacts. The trigger chain:</p>
+      <ol>
+        <li>Guest completes payment via <a href="stripe-integration-hotels.html">Stripe Payment Link</a>.</li>
+        <li>Stripe fires <code>checkout.session.completed</code> webhook to <a href="google-apps-script-property-management.html">Google Apps Script</a>.</li>
+        <li>Apps Script extracts guest phone number, name, room metadata, and payment amount from the webhook payload.</li>
+        <li>Apps Script calls the WhatsApp Cloud API with a pre-approved template message and dynamic variables.</li>
+        <li>Guest receives a WhatsApp message within 3-5 seconds of payment.</li>
+      </ol>
+
+      <h3>Message Flow</h3>
+<pre><code>Stripe webhook
+    │
+    ▼
+Google Apps Script
+    │
+    ├──▶ Template: booking_confirmation
+    │      Variables: {guest_name, room, dates, amount}
+    │      Timing: Immediate (on payment)
+    │
+    ├──▶ Template: checkin_instructions
+    │      Variables: {guest_name, door_code, wifi_pass}
+    │      Timing: 24h before check-in (time-triggered)
+    │
+    ├──▶ Template: checkout_reminder
+    │      Variables: {guest_name, checkout_time}
+    │      Timing: Morning of checkout (time-triggered)
+    │
+    └──▶ Template: review_request
+           Variables: {guest_name, review_url}
+           Timing: 48h after checkout (time-triggered)</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>2.0 Prerequisites</h2>
+
+      <h3>Meta Business Account Setup</h3>
+      <ul>
+        <li>Meta Business Suite account with verified business.</li>
+        <li>WhatsApp Business Platform access (apply at <code>business.facebook.com</code>).</li>
+        <li>A dedicated phone number not registered to any existing WhatsApp account.</li>
+        <li>Business verification completed (government ID + utility bill, takes 2-5 business days).</li>
+      </ul>
+
+      <h3>API Configuration</h3>
+<pre><code><span class="code-label">bash</span># You don't install anything locally for the Cloud API.
+# All calls are HTTP-based through Apps Script.
+
+# Required tokens (from Meta Developer Console):
+# 1. Permanent System User Token (never expires)
+# 2. Phone Number ID (assigned after number verification)
+# 3. WhatsApp Business Account ID (WABA ID)</code></pre>
+
+      <h3>Template Approval</h3>
+      <p>All outbound messages must use pre-approved templates. Submit templates in the Meta Business Manager under WhatsApp Manager → Message Templates. Approval takes 1-24 hours.</p>
+
+      <div class="callout callout-warn">
+        WhatsApp enforces a 24-hour messaging window. You can only send template messages outside this window. Free-form replies are only allowed within 24 hours of the guest's last message to you.
+      </div>
+
+      <h3>Required Template Messages</h3>
+      <table>
+        <thead>
+          <tr><th>Template Name</th><th>Category</th><th>Variables</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>booking_confirmation</code></td><td>Transactional</td><td>guest_name, room_type, checkin_date, amount</td></tr>
+          <tr><td><code>checkin_instructions</code></td><td>Utility</td><td>guest_name, door_code, wifi_password, parking_info</td></tr>
+          <tr><td><code>checkout_reminder</code></td><td>Utility</td><td>guest_name, checkout_time</td></tr>
+          <tr><td><code>review_request</code></td><td>Marketing</td><td>guest_name, property_name, review_url</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="doc-section">
+      <h2>3.0 Step-by-Step Configuration</h2>
+
+      <h3>3.1 Send a Template Message via Apps Script</h3>
+<pre><code><span class="code-label">javascript</span>function sendWhatsAppTemplate(phone, templateName, variables) {
+  const WHATSAPP_TOKEN = PropertiesService.getScriptProperties()
+    .getProperty('WHATSAPP_TOKEN');
+  const PHONE_NUMBER_ID = PropertiesService.getScriptProperties()
+    .getProperty('WHATSAPP_PHONE_ID');
+
+  const payload = {
+    messaging_product: "whatsapp",
+    to: phone,
+    type: "template",
+    template: {
+      name: templateName,
+      language: { code: "en" },
+      components: [
+        {
+          type: "body",
+          parameters: variables.map(v => ({
+            type: "text",
+            text: String(v)
+          }))
+        }
+      ]
+    }
+  };
+
+  const options = {
+    method: "post",
+    contentType: "application/json",
+    headers: {
+      "Authorization": "Bearer " + WHATSAPP_TOKEN
+    },
+    payload: JSON.stringify(payload),
+    muteHttpExceptions: true
+  };
+
+  const response = UrlFetchApp.fetch(
+    `https://graph.facebook.com/v21.0/${PHONE_NUMBER_ID}/messages`,
+    options
+  );
+
+  const result = JSON.parse(response.getContentText());
+  Logger.log("WhatsApp API response: " + JSON.stringify(result));
+  return result;
+}</code></pre>
+
+      <h3>3.2 Trigger on Stripe Webhook</h3>
+      <p>Inside the same Apps Script project handling <a href="stripe-integration-hotels.html">Stripe webhooks</a>:</p>
+<pre><code><span class="code-label">javascript</span>function doPost(e) {
+  const data = JSON.parse(e.postData.contents);
+
+  if (data.type === "checkout.session.completed") {
+    const session = data.data.object;
+    const guest = session.customer_details;
+    const meta = session.metadata;
+
+    // Log to sheet
+    logBooking(session);
+
+    // Send WhatsApp confirmation
+    if (guest.phone) {
+      sendWhatsAppTemplate(
+        guest.phone.replace(/\D/g, ''),
+        "booking_confirmation",
+        [
+          guest.name,
+          meta.room_type,
+          meta.checkin_date || "See confirmation email",
+          "$" + (session.amount_total / 100).toFixed(2) + " CAD"
+        ]
+      );
+    }
+  }
+
+  return ContentService.createTextOutput("OK");
+}</code></pre>
+
+      <h3>3.3 Schedule Follow-Up Messages</h3>
+      <p>Use Apps Script time-driven triggers to send check-in instructions and review requests at the correct time:</p>
+<pre><code><span class="code-label">javascript</span>function scheduleCheckinMessage(guestPhone, guestName, checkinDate, doorCode) {
+  const triggerDate = new Date(checkinDate);
+  triggerDate.setDate(triggerDate.getDate() - 1); // 24h before
+  triggerDate.setHours(14, 0, 0, 0); // 2 PM
+
+  ScriptApp.newTrigger("sendCheckinInstructions")
+    .timeBased()
+    .at(triggerDate)
+    .create();
+
+  // Store params in PropertiesService for the trigger to read
+  const key = "checkin_" + guestPhone;
+  PropertiesService.getScriptProperties().setProperty(key, JSON.stringify({
+    phone: guestPhone,
+    name: guestName,
+    door_code: doorCode,
+    wifi_password: "AubergeWifi2025"
+  }));
+}</code></pre>
+
+      <h3>3.4 Store API Tokens Securely</h3>
+<pre><code><span class="code-label">javascript</span>// Run once in Apps Script editor to store secrets
+function setSecrets() {
+  const props = PropertiesService.getScriptProperties();
+  props.setProperty('WHATSAPP_TOKEN', 'EAAxxxxxxx...');
+  props.setProperty('WHATSAPP_PHONE_ID', '1234567890');
+  props.setProperty('STRIPE_WEBHOOK_SECRET', 'whsec_xxxxx');
+}</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>4.0 Integration Points</h2>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <h4><a href="stripe-integration-hotels.html">Stripe Integration</a></h4>
+          <p>WhatsApp messages are triggered by Stripe payment events. The guest phone number and booking metadata originate from the Stripe checkout session.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="google-apps-script-property-management.html">Google Apps Script</a></h4>
+          <p>The orchestration layer. Apps Script receives webhooks, calls the WhatsApp API, manages scheduled triggers, and logs all message delivery statuses.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="claude-code-workflow-hotels.html">Claude Code</a></h4>
+          <p>Generates template message copy, scaffolds the Apps Script functions, and iterates on message timing logic based on guest feedback patterns.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="github-pages-deployment-hotels.html">GitHub Pages</a></h4>
+          <p>The static site includes a WhatsApp click-to-chat link for pre-booking inquiries, routing guests to the property's verified WhatsApp number.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="doc-footer">
+    <a href="./">← Back to Knowledge Base</a>
+    <span style="color: var(--text-tertiary);">gab.ae/docs</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P/E Ratio — Investment Wiki</title>
+  <meta name="description" content="Technical reference for the Price-to-Earnings ratio. Trailing vs forward P/E, sector benchmarks, earnings quality, and when the metric fails.">
+  <meta property="og:title" content="P/E Ratio — Investment Wiki">
+  <meta property="og:description" content="Price-to-Earnings ratio explained: trailing vs forward, sector benchmarks, and practical interpretation.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+<body>
+
+<div class="doc-container">
+
+  <nav class="doc-breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="sep">/</span>
+    <a href="./">Investment</a>
+    <span class="sep">/</span>
+    P/E Ratio
+  </nav>
+
+  <header class="doc-header">
+    <h1 class="doc-title">Price-to-Earnings Ratio</h1>
+    <div class="doc-meta">
+      <span class="tag">Valuation Metric</span>
+      <span>Investment Wiki — Fundamentals</span>
+    </div>
+  </header>
+
+  <div class="doc-abstract">
+    The Price-to-Earnings ratio is the most widely quoted valuation metric in equity markets — it tells you how many dollars investors are willing to pay for one dollar of a company's annual earnings. A P/E of 20 means the market values the stock at 20 times its current earnings, implying investors expect those earnings to grow or persist long enough to justify the price. The ratio is the starting point for any valuation conversation, and the numerator of the <a href="peg-ratio.html">PEG ratio</a> that adjusts it for growth.
+  </div>
+
+  <div class="doc-content">
+
+    <div class="gab-stack-infobox">
+      <div class="infobox-header">Quick Reference</div>
+      <table>
+        <tr><td>Type</td><td>Valuation Ratio</td></tr>
+        <tr><td>Formula</td><td>Share Price ÷ EPS</td></tr>
+        <tr><td>S&P 500 Avg</td><td>~20–22 (historical mean)</td></tr>
+        <tr><td>Low P/E</td><td><span class="complexity-low">&lt; 15</span></td></tr>
+        <tr><td>High P/E</td><td><span class="complexity-high">&gt; 30</span></td></tr>
+        <tr><td>Variants</td><td>Trailing, Forward, Shiller CAPE</td></tr>
+      </table>
+    </div>
+
+    <section class="doc-section">
+      <h2>1.0 The Formula</h2>
+
+      <h3>Basic Form</h3>
+<pre><code><span class="code-label">formula</span>P/E = Market Price per Share ÷ Earnings per Share (EPS)
+
+Inverse (Earnings Yield):
+E/P = EPS ÷ Price = 1 / P/E</code></pre>
+
+      <p>The P/E ratio can be read two ways. A P/E of 25 means you pay $25 for every $1 of earnings. The inverse — the earnings yield — is 4%, which can be compared directly to bond yields or savings rates.</p>
+
+      <h3>Worked Example</h3>
+      <table>
+        <thead>
+          <tr><th>Stock</th><th>Price</th><th>EPS</th><th>P/E</th><th>Earnings Yield</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Company A</td><td>$200</td><td>$8.00</td><td>25.0</td><td>4.0%</td></tr>
+          <tr><td>Company B</td><td>$50</td><td>$5.00</td><td>10.0</td><td>10.0%</td></tr>
+          <tr><td>Company C</td><td>$300</td><td>$6.00</td><td>50.0</td><td>2.0%</td></tr>
+        </tbody>
+      </table>
+
+      <p>Company B generates the most earnings per dollar of share price. Company C requires 50 years of current earnings to "pay back" the price — the market is betting heavily on future growth.</p>
+
+      <div class="callout callout-note">
+        A low P/E does not automatically mean "cheap." It can also mean the market expects earnings to decline. A high P/E does not automatically mean "expensive." It can mean the market expects earnings to explode. P/E is a snapshot — it does not tell you the direction.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>2.0 Trailing vs. Forward P/E</h2>
+
+      <p>The most common source of confusion. Two analysts can quote different P/E ratios for the same stock on the same day because they're using different earnings numbers.</p>
+
+      <table>
+        <thead>
+          <tr><th>Variant</th><th>Earnings Source</th><th>Pros</th><th>Cons</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Trailing P/E (TTM)</strong></td><td>Sum of the last 4 reported quarterly EPS</td><td>Based on actual reported numbers. No guessing.</td><td>Backward-looking. Doesn't reflect earnings acceleration or deceleration.</td></tr>
+          <tr><td><strong>Forward P/E</strong></td><td>Analyst consensus estimate for next 12 months</td><td>Forward-looking. Prices in expected changes.</td><td>Analyst estimates are frequently wrong. Consensus can herd.</td></tr>
+          <tr><td><strong>Shiller CAPE</strong></td><td>Average of inflation-adjusted EPS over 10 years</td><td>Smooths cyclical swings. Best for market-level valuation.</td><td>Useless for individual stocks. Slow to react to structural shifts.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>When They Diverge</h3>
+<pre><code><span class="code-label">example</span>NVIDIA (hypothetical snapshot):
+
+  Trailing EPS (TTM):  $2.50
+  Forward EPS (est):   $4.80
+  Share Price:         $120
+
+  Trailing P/E: 120 / 2.50 = 48.0  ← Looks expensive
+  Forward P/E:  120 / 4.80 = 25.0  ← Looks reasonable
+
+Same stock. Same price. Two different stories.
+The gap tells you: analysts expect earnings to nearly double.</code></pre>
+
+      <div class="callout callout-warn">
+        Always check which P/E variant you're looking at. Financial sites default to different versions. Yahoo Finance shows trailing by default. Most screeners use forward. If you're comparing two stocks, make sure you're using the same variant for both.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>3.0 Sector Benchmarks</h2>
+
+      <p>P/E ratios vary dramatically by sector because industries have structurally different growth rates, capital intensity, and risk profiles. Comparing a tech stock's P/E to a utility's P/E is meaningless.</p>
+
+      <table>
+        <thead>
+          <tr><th>Sector</th><th>Typical P/E Range</th><th>Why</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Technology</td><td>25–45</td><td>High growth expectations, asset-light models, scalable margins.</td></tr>
+          <tr><td>Healthcare</td><td>18–35</td><td>Patent-protected revenue, pipeline optionality, aging demographics.</td></tr>
+          <tr><td>Consumer Discretionary</td><td>18–30</td><td>Cyclical growth, brand value, e-commerce expansion.</td></tr>
+          <tr><td>Financials</td><td>10–16</td><td>Rate-sensitive, leverage-dependent, regulatory overhang.</td></tr>
+          <tr><td>Energy</td><td>8–15</td><td>Commodity-driven, cyclical, capital-intensive.</td></tr>
+          <tr><td>Utilities</td><td>15–20</td><td>Regulated returns, predictable but slow growth. Bond-proxy behavior.</td></tr>
+          <tr><td>Consumer Staples</td><td>20–28</td><td>Defensive, steady earnings, premium for stability in downturns.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Historical S&P 500 P/E</h3>
+<pre><code><span class="code-label">reference</span>Long-term average (1950–2025):  ~17–18x trailing
+Post-2010 average:               ~21–23x trailing
+Dot-com peak (2000):             ~30x trailing
+GFC trough (2009):               ~10x trailing (earnings collapsed)
+Current range (2024–2026):       ~20–25x forward
+
+The "market is expensive" or "cheap" is always relative
+to the interest rate environment. Higher rates compress
+P/E multiples. Lower rates expand them.</code></pre>
+
+      <div class="callout callout-note">
+        When the 10-year Treasury yields 5%, an earnings yield of 4% (P/E of 25) is unattractive — bonds pay more with less risk. When the 10-year yields 2%, that same P/E of 25 looks reasonable. Always compare the earnings yield to the risk-free rate.
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>4.0 Earnings Quality</h2>
+
+      <p>The E in P/E is not always what it seems. Earnings can be inflated, distorted, or manufactured. The ratio is only useful when the earnings number is real.</p>
+
+      <h3>Red Flags</h3>
+      <ul>
+        <li><strong>Non-recurring items.</strong> A company sells a building and books a one-time gain. EPS spikes, P/E drops, but the business didn't actually become more profitable. Always check for "adjusted" vs. GAAP earnings.</li>
+        <li><strong>Share buybacks.</strong> EPS rises because the denominator (share count) shrinks, not because total profit grew. Revenue flat + EPS up = buyback-driven growth. Check total net income, not just EPS.</li>
+        <li><strong>Aggressive accounting.</strong> Revenue recognition timing, capitalized expenses, pension assumptions — all can inflate reported earnings. If EPS growth consistently outpaces revenue growth, investigate.</li>
+        <li><strong>Cyclical peaks.</strong> A mining company at peak commodity prices shows massive EPS and a low P/E. The market "knows" earnings will revert. A low P/E at a cycle peak is a trap, not a bargain.</li>
+      </ul>
+
+      <h3>GAAP vs. Non-GAAP</h3>
+<pre><code><span class="code-label">example</span>Company X reports:
+
+  GAAP EPS:      $2.10  (includes $0.80 restructuring charge)
+  Non-GAAP EPS:  $2.90  (excludes restructuring)
+  Price:         $72.50
+
+  P/E (GAAP):      34.5
+  P/E (Non-GAAP):  25.0
+
+Which is "real"? Depends on whether the restructuring is
+truly one-time. If the company takes a "one-time" charge
+every year, GAAP is the honest number.</code></pre>
+
+      <h3>Negative Earnings</h3>
+      <p>If EPS is negative, P/E is undefined (or negative, which is meaningless). For loss-making companies, use alternative metrics:</p>
+      <ul>
+        <li><strong>Price-to-Sales (P/S)</strong> — revenue-based, works for pre-profit companies.</li>
+        <li><strong>EV/Revenue</strong> — enterprise value to revenue, accounts for debt.</li>
+        <li><strong>Price-to-Book (P/B)</strong> — asset-based, useful for financials and asset-heavy industries.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>5.0 P/E in Practice</h2>
+
+      <h3>Screening Filter</h3>
+<pre><code><span class="code-label">pseudocode</span>Screen for value:
+  1. Filter: Trailing P/E between 8 and 20
+  2. Filter: Earnings growth > 0% (not declining)
+  3. Filter: Market cap > $10B
+  4. Sort: P/E ascending
+
+Screen for growth at reasonable price (GARP):
+  1. Filter: Forward P/E < 25
+  2. Filter: EPS growth > 15%
+  3. Calculate: PEG = Forward P/E / Growth Rate
+  4. Filter: PEG < 1.5
+  5. Sort: PEG ascending</code></pre>
+
+      <h3>The Earnings Yield Framework</h3>
+      <p>Instead of thinking in P/E multiples, flip it to earnings yield and compare against alternatives:</p>
+      <table>
+        <thead>
+          <tr><th>Investment</th><th>P/E Equivalent</th><th>Yield</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>High-yield savings (5%)</td><td>20x</td><td>5.0%</td></tr>
+          <tr><td>10-Year Treasury (4.5%)</td><td>22x</td><td>4.5%</td></tr>
+          <tr><td>S&P 500 (P/E 22)</td><td>22x</td><td>4.5%</td></tr>
+          <tr><td><a href="google.html">GOOGL</a> (P/E 24)</td><td>24x</td><td>4.2%</td></tr>
+          <tr><td>NVDA (P/E 48)</td><td>48x</td><td>2.1%</td></tr>
+        </tbody>
+      </table>
+      <p>If a risk-free bond yields 5% and a stock earns 4.2%, the stock needs to grow earnings to justify the risk. That growth expectation is exactly what the <a href="peg-ratio.html">PEG ratio</a> quantifies.</p>
+
+      <h3>What P/E Cannot Tell You</h3>
+      <ul>
+        <li>Whether earnings will grow, shrink, or stay flat.</li>
+        <li>How the company is financed (debt vs. equity) — use EV/EBITDA for that.</li>
+        <li>Whether the business generates actual cash — use <a href="free-cash-flow-yield.html">FCF yield</a> for that.</li>
+        <li>Whether the growth premium is justified — use <a href="peg-ratio.html">PEG ratio</a> for that.</li>
+      </ul>
+    </section>
+
+    <section class="doc-section">
+      <h2>6.0 Related Pages</h2>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <h4><a href="peg-ratio.html">PEG Ratio</a></h4>
+          <p>Takes the P/E ratio and divides by earnings growth rate. The natural next step — P/E tells you the price, PEG tells you if the price is justified.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="free-cash-flow-yield.html">Free Cash Flow Yield</a></h4>
+          <p>Earnings can be manipulated. Cash flow cannot. FCF yield confirms the earnings driving the P/E ratio are backed by real cash generation.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="portfolio-allocation-framework.html">Portfolio Allocation</a></h4>
+          <p>P/E and PEG scores inform position sizing. Lower valuations on quality names warrant larger allocations.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="doc-footer">
+    <a href="./">← Back to Investment Wiki</a>
+    <span style="color: var(--text-tertiary);">Investment Wiki</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

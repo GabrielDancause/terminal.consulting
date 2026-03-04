@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:1200px;height:630px;overflow:hidden;}
+.card{width:1200px;height:630px;background:linear-gradient(135deg,#0a0a1a 0%,#1a1a2e 40%,#2d1b69 100%);display:flex;flex-direction:column;justify-content:center;padding:80px 90px;font-family:'Inter',sans-serif;color:white;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:-200px;right:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(108,92,231,0.15) 0%,transparent 70%);border-radius:50%;}
+.badge{display:inline-block;background:rgba(108,92,231,0.2);border:1px solid rgba(108,92,231,0.4);color:#a29bfe;font-size:16px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 20px;border-radius:100px;margin-bottom:32px;width:fit-content;}
+h1{font-size:64px;font-weight:900;line-height:1.1;margin-bottom:24px;max-width:900px;}
+h1 span{color:#6C5CE7;}
+.sub{font-size:24px;color:rgba(255,255,255,0.6);max-width:700px;line-height:1.5;}
+.author{position:absolute;bottom:70px;left:90px;font-size:20px;color:rgba(255,255,255,0.5);}
+.author strong{color:white;}
+.domain{color:#6C5CE7;font-weight:600;}
+.price{position:absolute;bottom:62px;right:90px;background:#6C5CE7;color:white;font-size:28px;font-weight:800;padding:14px 32px;border-radius:12px;}
+</style></head>
+<body>
+<div class="card">
+  <div class="badge">Audio Tutorial</div>
+  <h1>Build &amp; Host a Website <span>for Free</span></h1>
+  <p class="sub">A step-by-step audio tutorial. Build a real website with AI and host it for free — no coding needed.</p>
+  <p class="author">By <strong>Gab</strong> &middot; <span class="domain">gab.ae</span></p>
+  <div class="price">$39</div>
+</div>
+</body></html>

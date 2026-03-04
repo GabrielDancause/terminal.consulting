@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automate Suno Music Creation with Claude's Browser Extension — Gab</title>
+  <meta name="description" content="Part III of the faceless channel guide. Use Claude's browser extension to automate music generation on Suno — prompting, generating, reviewing, and downloading tracks without lifting a finger.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Automate Suno Music Creation with Claude's Browser Extension">
+  <meta property="og:description" content="Part III: Let Claude drive Suno for you. Automate prompt writing, track generation, and downloads using the Claude browser extension.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gab.ae/blog/automate-suno-with-claude.html">
+  <meta property="og:image" content="https://gab.ae/images/og-blog-automate-suno.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automate Suno Music Creation with Claude's Browser Extension">
+  <meta name="twitter:description" content="Part III: Let Claude drive Suno for you. Automate prompt writing, track generation, and downloads using the Claude browser extension.">
+  <meta name="twitter:image" content="https://gab.ae/images/og-blog-automate-suno.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="blog-styles.css">
+</head>
+<body>
+
+  <div class="blog-post">
+
+    <!-- Navigation -->
+    <nav class="blog-post-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Blog</a></li>
+        <li aria-current="page">Automate Suno Music Creation with Claude's Browser Extension</li>
+      </ol>
+      <a href="../" class="blog-nav-logo">Gab</a>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="blog-post-header">
+      <span class="blog-post-tag">Automation</span>
+      <h1>Automate Suno Music Creation with Claude's Browser Extension</h1>
+      <p class="blog-post-meta">Gab <span>&middot;</span> February 2026 <span>&middot;</span> 8 min read</p>
+    </header>
+
+    <!-- Post Content -->
+    <article class="blog-content">
+
+      <p>This is Part III of the faceless channel series. In <a href="how-to-create-a-faceless-channel.html">Part I</a>, we set up the full pipeline &mdash; Suno, Google Flow, DistroKid. In <a href="automate-your-faceless-channel.html">Part II</a>, we automated YouTube uploads with Python.</p>
+
+      <p>Now we're going after the biggest time sink: music creation itself.</p>
+
+      <p>Suno doesn't have a public API. You can't script it the traditional way. But you can let Claude do it for you &mdash; using the Claude browser extension to interact with Suno's web interface directly.</p>
+
+      <h2>What Is the Claude Browser Extension?</h2>
+
+      <p>Claude's browser extension (Claude in Chrome) lets Claude see and interact with web pages. It can read what's on screen, click buttons, fill in forms, scroll, and navigate &mdash; just like a person would, except faster and without getting bored.</p>
+
+      <p>That means Claude can open Suno, write a prompt, hit generate, wait for the result, and download the track. All while you do something else.</p>
+
+      <p><strong>What you need:</strong></p>
+      <ul>
+        <li>Claude Code (the CLI tool) or Claude Desktop with the browser extension enabled</li>
+        <li>The Claude in Chrome extension installed</li>
+        <li>A Suno account (free tier works, Pro gives you more generations)</li>
+      </ul>
+
+      <h2>Why This Works Better Than You'd Expect</h2>
+
+      <p>The manual Suno workflow looks like this:</p>
+
+      <ol>
+        <li>Think of a concept for a track</li>
+        <li>Write a prompt describing the genre, instruments, mood, tempo</li>
+        <li>Paste it into Suno's create form</li>
+        <li>Click generate</li>
+        <li>Wait 30-60 seconds</li>
+        <li>Listen to the result</li>
+        <li>If it's good, download it. If not, tweak and regenerate</li>
+        <li>Repeat for the next track</li>
+      </ol>
+
+      <p>Steps 2 through 7 are repetitive. Claude can handle all of them. You just tell it what kind of music you want, and it drives Suno's interface to make it happen.</p>
+
+      <h2>Step 1: Plan Your Batch</h2>
+
+      <p>Before you hand things off to Claude, decide what you want. The more specific you are upfront, the better the results.</p>
+
+      <p><strong>Create a simple brief:</strong></p>
+
+      <pre><code>I need 6 lo-fi tracks for my channel "Midnight Waves":
+
+1. Rainy night study session — soft piano, vinyl crackle, 80 bpm
+2. Sunday morning coffee — acoustic guitar, warm pads, 85 bpm
+3. Late drive home — muted synths, slow drums, 75 bpm
+4. Autumn reading — Rhodes piano, light brush drums, 82 bpm
+5. Ocean at midnight — ambient pads, distant waves, 70 bpm
+6. Empty cafe — jazz piano, upright bass, gentle rain, 78 bpm</code></pre>
+
+      <p>This is your production list. Hand it to Claude and let it work through each one.</p>
+
+      <h2>Step 2: Let Claude Drive Suno</h2>
+
+      <p>With the browser extension active and Suno open in a tab, you tell Claude what to do. Here's the kind of instruction that works:</p>
+
+      <pre><code>Go to the Suno tab. For each track in my list:
+1. Click "Create" to start a new song
+2. Switch to Custom mode
+3. In the style field, enter the genre and instruments I specified
+4. In the lyrics field, write "[Instrumental]" since these are lo-fi beats
+5. Set the title to the track name I gave you
+6. Click Generate and wait for it to finish
+7. Listen to both variations and tell me which one sounds better
+8. Move on to the next track</code></pre>
+
+      <p>Claude reads the Suno interface, finds the right buttons and fields, fills everything in, and triggers generation. It can see the page updating in real-time and knows when a track is done generating.</p>
+
+      <h2>Step 3: Claude as Your A&amp;R</h2>
+
+      <p>Here's where it gets interesting. Suno generates two variations for each prompt. Normally you'd listen to both and pick the better one. Claude can help with that decision.</p>
+
+      <p>Claude can't hear the audio directly, but it can read Suno's waveform visualizations, see the track duration, and read any metadata Suno displays. More importantly, you can ask Claude to play each track and describe what it sees on the player UI &mdash; timestamps, energy levels, whether the waveform looks dynamic or flat.</p>
+
+      <p><strong>A smarter approach:</strong></p>
+      <ul>
+        <li>Have Claude generate all tracks first</li>
+        <li>Then go through them yourself in a quick listening session</li>
+        <li>Tell Claude which ones to download and which to regenerate</li>
+      </ul>
+
+      <p>This splits the work well. Claude handles the tedious clicking and typing. You handle the creative judgment call that actually matters.</p>
+
+      <h2>Step 4: Prompt Engineering for Music</h2>
+
+      <p>Claude is also excellent at writing Suno prompts. Instead of crafting each prompt yourself, give Claude your channel's style guide and let it generate the prompts.</p>
+
+      <pre><code>My channel "Midnight Waves" makes lo-fi ambient music.
+The vibe is always: nighttime, calm, slightly melancholic,
+cozy. Instruments I like: piano, Rhodes, soft synths,
+vinyl crackle, rain sounds, brush drums.
+
+Generate 10 Suno prompts for new tracks. Each should have:
+- A track title
+- A style/genre description for Suno
+- A mood keyword
+- A suggested BPM</code></pre>
+
+      <p>Claude will generate 10 detailed prompts that match your channel's identity. Then it can take those same prompts and plug them directly into Suno &mdash; no copy-pasting required.</p>
+
+      <h2>Step 5: Download and Organize</h2>
+
+      <p>Once you've approved the tracks, Claude can download them from Suno. It clicks the download button on each track, and the files land in your downloads folder.</p>
+
+      <p><strong>Post-download organization:</strong></p>
+
+      <p>Ask Claude to help you rename and organize the files:</p>
+
+      <pre><code>Rename the downloaded files to match this pattern:
+midnight-waves-[track-name].mp3
+
+Then move them to my ~/music/releases/march-batch/ folder.</code></pre>
+
+      <p>Claude Code can handle the file operations on your local machine while the browser extension handled the Suno interaction. The two work together.</p>
+
+      <h2>Step 6: Chain It All Together</h2>
+
+      <p>Here's the full automated pipeline across all three parts of this series:</p>
+
+      <ol>
+        <li><strong>Prompt generation</strong> &mdash; Claude writes Suno prompts based on your style guide</li>
+        <li><strong>Music creation</strong> &mdash; Claude drives Suno via the browser extension, generates tracks, downloads the keepers</li>
+        <li><strong>Visual creation</strong> &mdash; You generate matching visuals in Google Flow (or Claude helps prompt those too)</li>
+        <li><strong>Video assembly</strong> &mdash; You combine audio + video in your editor</li>
+        <li><strong>Upload &amp; distribution</strong> &mdash; The Python script from <a href="automate-your-faceless-channel.html">Part II</a> handles YouTube uploads and DistroKid distribution</li>
+      </ol>
+
+      <p>Steps 1, 2, and 5 are now automated. Steps 3 and 4 are the only manual parts, and they're the creative ones &mdash; the parts worth doing yourself.</p>
+
+      <h2>Tips for Getting the Most Out of This</h2>
+
+      <ul>
+        <li><strong>Batch everything.</strong> Don't generate one track at a time. Give Claude a list of 5-10 and let it work through them while you do other things.</li>
+        <li><strong>Save your style guide.</strong> Write a short document describing your channel's sound. Reference it every time you ask Claude to generate prompts. Consistency is what builds an audience.</li>
+        <li><strong>Keep a prompt library.</strong> When a Suno prompt produces a great track, save it. Over time you'll build a library of prompts that reliably produce good results for your niche.</li>
+        <li><strong>Use Suno's extend feature.</strong> If a track is great but too short, ask Claude to click "Extend" in Suno to continue the song from where it left off.</li>
+        <li><strong>Quality control is still on you.</strong> Claude automates the mechanics. You decide what's good enough to release. Don't skip the listening step &mdash; your ears are the final filter.</li>
+      </ul>
+
+      <h2>What This Means for the Faceless Channel Model</h2>
+
+      <p>With all three parts combined, the weekly workflow for running a faceless music channel looks like this:</p>
+
+      <ul>
+        <li><strong>Sunday afternoon:</strong> Give Claude your track ideas. It generates prompts and drives Suno to create them. ~30 minutes of your time (mostly waiting and listening).</li>
+        <li><strong>Sunday evening:</strong> Generate visuals in Google Flow, combine with audio. ~1 hour of creative work.</li>
+        <li><strong>Monday morning:</strong> Run the upload script. Everything goes to YouTube and streaming platforms. ~2 minutes.</li>
+      </ul>
+
+      <p>That's a week of content in under 2 hours. Most of it is the fun part &mdash; picking visuals, listening to tracks, making creative decisions. The boring stuff is handled.</p>
+
+      <p>Read <a href="how-to-create-a-faceless-channel.html">Part I</a> to set up the channel, and <a href="automate-your-faceless-channel.html">Part II</a> to automate YouTube uploads.</p>
+
+      <p><strong>Next up:</strong> In <a href="automate-google-flow-with-claude.html">Part IV</a>, we automate the last manual step &mdash; generating visuals with Google Flow &mdash; and close the full pipeline.</p>
+
+    </article>
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <h3>Want the full step-by-step walkthrough?</h3>
+      <p>My tutorial covers everything from setup to going live. 10 audio modules you can follow along with.</p>
+      <a href="../#pricing" class="btn">Get the Tutorial &mdash; $39</a>
+    </div>
+
+    <!-- Footer Nav -->
+    <nav class="blog-post-footer">
+      <a href="./" class="btn-back">&larr; All Posts</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

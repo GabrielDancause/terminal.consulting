@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automate Your Deployments: A Beginner's Guide to GitHub Actions — Gab</title>
+  <meta name="description" content="Deploying a website shouldn't mean dragging files to FTP. Use GitHub Actions to automate your build and deployment process.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Automate Your Deployments: A Beginner's Guide to GitHub Actions">
+  <meta property="og:description" content="Let the robots do the work. Automatically build and deploy your site whenever you push to GitHub.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gab.ae/blog/automate-github-actions.html">
+  <meta property="og:image" content="https://gab.ae/images/og-blog-github-actions.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automate Your Deployments: A Beginner's Guide to GitHub Actions">
+  <meta name="twitter:description" content="Let the robots do the work. Automatically build and deploy your site whenever you push to GitHub.">
+  <meta name="twitter:image" content="https://gab.ae/images/og-blog-github-actions.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="blog-styles.css">
+</head>
+<body>
+
+  <div class="blog-post">
+
+    <!-- Navigation -->
+    <nav class="blog-post-nav" aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Blog</a></li>
+        <li aria-current="page">Automate Your Deployments: A Beginner's Guide to GitHub Actions</li>
+      </ol>
+      <a href="../" class="blog-nav-logo">Gab</a>
+    </nav>
+
+    <!-- Post Header -->
+    <header class="blog-post-header">
+      <span class="blog-post-tag">DevOps</span>
+      <h1>Automate Your Deployments: A Beginner's Guide to GitHub Actions</h1>
+      <p class="blog-post-meta">Gab <span>&middot;</span> March 2026 <span>&middot;</span> 7 min read</p>
+    </header>
+
+    <!-- Post Content -->
+    <article class="blog-content">
+
+      <p>If you've ever manually uploaded files to a server via FTP, you know it's error-prone. One wrong click and your site is down.</p>
+
+      <p>Modern development uses <strong>Continuous Deployment (CD)</strong>. This means every time you save your code and push it to GitHub, a server automatically builds your site, runs tests, and deploys it live.</p>
+
+      <p>GitHub has this feature built-in. It's called <strong>GitHub Actions</strong>.</p>
+
+      <h2>The Concept</h2>
+
+      <p>A "Workflow" is a YAML file in your repository (specifically in <code>.github/workflows/</code>). It tells GitHub what to do when an event happens (like a <code>push</code> to the <code>main</code> branch).</p>
+
+      <p>You define "Jobs" inside the workflow. A job is a series of "Steps".</p>
+
+      <h2>Asking Claude to Write Your Workflow</h2>
+
+      <p>Writing YAML by hand is tedious. Just ask Claude.</p>
+
+      <p><strong>The Prompt:</strong></p>
+
+      <pre><code>I have a static HTML website in a repository.
+I want to deploy it to GitHub Pages automatically whenever I push to the main branch.
+
+Write a GitHub Actions workflow file (`deploy.yml`) that:
+1. Checks out the code.
+2. Sets up Node.js (if needed for build steps, e.g., tailwind or sass).
+3. Deploys the `./dist` folder to the `gh-pages` branch.
+</code></pre>
+
+      <p>Claude will generate something like this:</p>
+
+      <pre><code>name: Deploy to Pages
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+</code></pre>
+
+      <h2>Wait, Where Do I Put This?</h2>
+
+      <ol>
+        <li>In your project root, create a folder named <code>.github</code>.</li>
+        <li>Inside that, create a folder named <code>workflows</code>.</li>
+        <li>Inside that, create a file named <code>deploy.yml</code>.</li>
+        <li>Paste the content.</li>
+        <li>Commit and push.</li>
+      </ol>
+
+      <p>Go to your repository on GitHub, click the <strong>Actions</strong> tab, and watch your workflow run. If it's green, your site is live.</p>
+
+      <h2>Beyond Deployment</h2>
+
+      <p>You can use Actions for more than just deploying:</p>
+      <ul>
+        <li><strong>Testing:</strong> Run your unit tests before deploying. If tests fail, stop the deployment.</li>
+        <li><strong>Linting:</strong> Check your code for style errors.</li>
+        <li><strong>Notifications:</strong> Send a Slack message when a deployment succeeds or fails.</li>
+        <li><strong>Scheduled Tasks:</strong> Run a script every night at midnight (cron jobs).</li>
+      </ul>
+
+      <p>It's like having a robot assistant for your code.</p>
+
+    </article>
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <h3>Ready to ship faster?</h3>
+      <p>Stop doing manual work. Let GitHub Actions handle your deployments while you sleep.</p>
+    </div>
+
+    <!-- Footer Nav -->
+    <nav class="blog-post-footer">
+      <a href="./" class="btn-back">&larr; All Posts</a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+exclude:
+  - scripts
+  - ideas.txt
+  - "OG Image Generator.html"
+  - "OG Image Generator_files"
+  - og-generator.html

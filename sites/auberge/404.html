@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <title>Page introuvable &mdash; Auberge de nos A&iuml;eux</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--cream);
+      padding: 48px 24px;
+    }
+    .error-content { max-width: 520px; }
+    .error-code {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 8rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .error-content h1 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+    .error-content p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .error-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .error-links a {
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .error-links .btn-primary {
+      background: var(--gold);
+      color: var(--green-dark);
+    }
+    .error-links .btn-primary:hover {
+      background: #b89248;
+    }
+    .error-links .btn-secondary {
+      background: var(--green-dark);
+      color: var(--cream);
+    }
+    .error-links .btn-secondary:hover {
+      background: var(--green-mid);
+    }
+  </style>
+</head>
+<body>
+  <div class="error-page">
+    <div class="error-content">
+      <div class="error-code">404</div>
+      <h1>Page introuvable</h1>
+      <p>D&eacute;sol&eacute;, la page que vous cherchez n'existe pas ou a &eacute;t&eacute; d&eacute;plac&eacute;e. Mais la vue est toujours l&agrave;&nbsp;!</p>
+      <div class="error-links">
+        <a href="index.html" class="btn-primary">Retour &agrave; l'accueil</a>
+        <a href="chambres.html" class="btn-secondary">Voir nos chambres</a>
+      </div>
+    </div>
+  </div>
+<script>
+// Smart redirect for old URLs without .html extension
+(function() {
+  var path = decodeURIComponent(window.location.pathname).replace(/\/$/, '');
+  var map = {
+    '/chambres': '/chambres.html',
+    '/services': '/services.html',
+    '/a-propos': '/a-propos.html',
+    '/contact': '/contact.html',
+    '/faq': '/faq.html',
+    '/en/rooms': '/en/rooms.html',
+    '/en/services': '/en/services.html',
+    '/en/about': '/en/about.html',
+    '/en/contact': '/en/contact.html',
+    '/en/faq': '/en/faq.html',
+    '/camping': '/chambres.html#vanlife',
+    '/en/camping': '/en/rooms.html#vanlife',
+    // Old DudaOne URLs (SEO redirects)
+    '/nos-chambres': '/chambres.html',
+    '/reserver': 'https://hotels.cloudbeds.com/fr/reservation/FjrK2q',
+    '/contactez-nous-auberge-charlevoix': '/contact.html',
+    '/la-vision-de-l-auberge': '/a-propos.html',
+    '/\u00e0-propos': '/a-propos.html'
+  };
+  if (map[path]) {
+    window.location.replace(map[path]);
+  }
+})();
+</script>
+</body>
+</html>

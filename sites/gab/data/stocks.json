@@ -1,0 +1,356 @@
+{
+  "timestamp": 1771914501628,
+  "date": "Feb 24, 2026",
+  "stocks": [
+    {
+      "ticker": "NVDA",
+      "company": "NVIDIA Corporation",
+      "sector": "Technology",
+      "marketCap": 4621.5,
+      "peg": 3.17,
+      "fcfYield": 2.41,
+      "divYield": 0.02,
+      "score": 43
+    },
+    {
+      "ticker": "META",
+      "company": "Meta Platforms Inc.",
+      "sector": "Communication Services",
+      "marketCap": 1580.0,
+      "peg": 1.15,
+      "fcfYield": 4.12,
+      "divYield": 0.35,
+      "score": 61
+    },
+    {
+      "ticker": "AMD",
+      "company": "Advanced Micro Devices",
+      "sector": "Technology",
+      "marketCap": 280.0,
+      "peg": 1.18,
+      "fcfYield": 3.85,
+      "divYield": 0.0,
+      "score": 46
+    },
+    {
+      "ticker": "TSM",
+      "company": "Taiwan Semiconductor",
+      "sector": "Technology",
+      "marketCap": 920.0,
+      "peg": 1.32,
+      "fcfYield": 3.1,
+      "divYield": 1.2,
+      "score": 54
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "Alphabet Inc.",
+      "sector": "Communication Services",
+      "marketCap": 2140.0,
+      "peg": 1.08,
+      "fcfYield": 5.2,
+      "divYield": 0.45,
+      "score": 65
+    },
+    {
+      "ticker": "NFLX",
+      "company": "Netflix Inc.",
+      "sector": "Communication Services",
+      "marketCap": 340.0,
+      "peg": 1.42,
+      "fcfYield": 4.5,
+      "divYield": 0.0,
+      "score": 52
+    },
+    {
+      "ticker": "AAPL",
+      "company": "Apple Inc.",
+      "sector": "Technology",
+      "marketCap": 3888.8,
+      "peg": 5.63,
+      "fcfYield": 3.13,
+      "divYield": 0.38,
+      "score": 41
+    },
+    {
+      "ticker": "MSFT",
+      "company": "Microsoft Corporation",
+      "sector": "Technology",
+      "marketCap": 3180.0,
+      "peg": 2.12,
+      "fcfYield": 3.45,
+      "divYield": 0.72,
+      "score": 50
+    },
+    {
+      "ticker": "AMZN",
+      "company": "Amazon.com Inc.",
+      "sector": "Consumer Discretionary",
+      "marketCap": 2080.0,
+      "peg": 1.92,
+      "fcfYield": 2.8,
+      "divYield": 0.0,
+      "score": 44
+    },
+    {
+      "ticker": "AVGO",
+      "company": "Broadcom Inc.",
+      "sector": "Technology",
+      "marketCap": 830.0,
+      "peg": 1.78,
+      "fcfYield": 3.9,
+      "divYield": 1.15,
+      "score": 57
+    },
+    {
+      "ticker": "JPM",
+      "company": "JPMorgan Chase & Co.",
+      "sector": "Financials",
+      "marketCap": 680.0,
+      "peg": 1.22,
+      "fcfYield": 8.5,
+      "divYield": 2.1,
+      "score": 74
+    },
+    {
+      "ticker": "ABBV",
+      "company": "AbbVie Inc.",
+      "sector": "Healthcare",
+      "marketCap": 340.0,
+      "peg": 1.68,
+      "fcfYield": 6.2,
+      "divYield": 3.4,
+      "score": 72
+    },
+    {
+      "ticker": "UNH",
+      "company": "UnitedHealth Group Inc.",
+      "sector": "Healthcare",
+      "marketCap": 520.0,
+      "peg": 1.55,
+      "fcfYield": 4.8,
+      "divYield": 1.5,
+      "score": 62
+    },
+    {
+      "ticker": "BAC",
+      "company": "Bank of America Corp.",
+      "sector": "Financials",
+      "marketCap": 340.0,
+      "peg": 1.38,
+      "fcfYield": 9.1,
+      "divYield": 2.4,
+      "score": 75
+    },
+    {
+      "ticker": "CRM",
+      "company": "Salesforce Inc.",
+      "sector": "Technology",
+      "marketCap": 310.0,
+      "peg": 1.95,
+      "fcfYield": 5.1,
+      "divYield": 0.5,
+      "score": 53
+    },
+    {
+      "ticker": "V",
+      "company": "Visa Inc.",
+      "sector": "Financials",
+      "marketCap": 620.0,
+      "peg": 2.35,
+      "fcfYield": 4.2,
+      "divYield": 0.75,
+      "score": 52
+    },
+    {
+      "ticker": "MA",
+      "company": "Mastercard Inc.",
+      "sector": "Financials",
+      "marketCap": 480.0,
+      "peg": 2.41,
+      "fcfYield": 3.8,
+      "divYield": 0.55,
+      "score": 48
+    },
+    {
+      "ticker": "ADBE",
+      "company": "Adobe Inc.",
+      "sector": "Technology",
+      "marketCap": 240.0,
+      "peg": 1.88,
+      "fcfYield": 5.5,
+      "divYield": 0.0,
+      "score": 50
+    },
+    {
+      "ticker": "BRK.B",
+      "company": "Berkshire Hathaway Inc.",
+      "sector": "Financials",
+      "marketCap": 1050.0,
+      "peg": 1.45,
+      "fcfYield": 7.2,
+      "divYield": 0.0,
+      "score": 57
+    },
+    {
+      "ticker": "ORCL",
+      "company": "Oracle Corporation",
+      "sector": "Technology",
+      "marketCap": 390.0,
+      "peg": 2.22,
+      "fcfYield": 4.6,
+      "divYield": 1.0,
+      "score": 54
+    },
+    {
+      "ticker": "HD",
+      "company": "The Home Depot Inc.",
+      "sector": "Consumer Discretionary",
+      "marketCap": 390.0,
+      "peg": 2.05,
+      "fcfYield": 5.3,
+      "divYield": 2.3,
+      "score": 59
+    },
+    {
+      "ticker": "JNJ",
+      "company": "Johnson & Johnson",
+      "sector": "Healthcare",
+      "marketCap": 370.0,
+      "peg": 2.15,
+      "fcfYield": 6.8,
+      "divYield": 3.1,
+      "score": 66
+    },
+    {
+      "ticker": "WMT",
+      "company": "Walmart Inc.",
+      "sector": "Consumer Staples",
+      "marketCap": 590.0,
+      "peg": 2.88,
+      "fcfYield": 3.2,
+      "divYield": 1.1,
+      "score": 44
+    },
+    {
+      "ticker": "CSCO",
+      "company": "Cisco Systems Inc.",
+      "sector": "Technology",
+      "marketCap": 240.0,
+      "peg": 2.3,
+      "fcfYield": 6.5,
+      "divYield": 2.8,
+      "score": 62
+    },
+    {
+      "ticker": "LLY",
+      "company": "Eli Lilly and Company",
+      "sector": "Healthcare",
+      "marketCap": 780.0,
+      "peg": 3.85,
+      "fcfYield": 1.8,
+      "divYield": 0.65,
+      "score": 35
+    },
+    {
+      "ticker": "PG",
+      "company": "Procter & Gamble Co.",
+      "sector": "Consumer Staples",
+      "marketCap": 380.0,
+      "peg": 2.78,
+      "fcfYield": 5.4,
+      "divYield": 2.4,
+      "score": 56
+    },
+    {
+      "ticker": "KO",
+      "company": "The Coca-Cola Company",
+      "sector": "Consumer Staples",
+      "marketCap": 270.0,
+      "peg": 2.65,
+      "fcfYield": 4.9,
+      "divYield": 2.9,
+      "score": 57
+    },
+    {
+      "ticker": "PEP",
+      "company": "PepsiCo Inc.",
+      "sector": "Consumer Staples",
+      "marketCap": 230.0,
+      "peg": 2.72,
+      "fcfYield": 5.1,
+      "divYield": 3.2,
+      "score": 58
+    },
+    {
+      "ticker": "XOM",
+      "company": "Exxon Mobil Corporation",
+      "sector": "Energy",
+      "marketCap": 470.0,
+      "peg": 1.82,
+      "fcfYield": 7.8,
+      "divYield": 3.5,
+      "score": 72
+    },
+    {
+      "ticker": "DIS",
+      "company": "The Walt Disney Company",
+      "sector": "Communication Services",
+      "marketCap": 210.0,
+      "peg": 2.45,
+      "fcfYield": 3.4,
+      "divYield": 0.9,
+      "score": 42
+    },
+    {
+      "ticker": "CVX",
+      "company": "Chevron Corporation",
+      "sector": "Energy",
+      "marketCap": 290.0,
+      "peg": 2.1,
+      "fcfYield": 8.2,
+      "divYield": 4.1,
+      "score": 73
+    },
+    {
+      "ticker": "COST",
+      "company": "Costco Wholesale Corp.",
+      "sector": "Consumer Staples",
+      "marketCap": 410.0,
+      "peg": 3.12,
+      "fcfYield": 2.5,
+      "divYield": 0.5,
+      "score": 36
+    },
+    {
+      "ticker": "PFE",
+      "company": "Pfizer Inc.",
+      "sector": "Healthcare",
+      "marketCap": 160.0,
+      "peg": 3.2,
+      "fcfYield": 9.5,
+      "divYield": 5.8,
+      "score": 65
+    },
+    {
+      "ticker": "T",
+      "company": "AT&T Inc.",
+      "sector": "Communication Services",
+      "marketCap": 160.0,
+      "peg": 3.8,
+      "fcfYield": 10.2,
+      "divYield": 4.8,
+      "score": 62
+    },
+    {
+      "ticker": "INTC",
+      "company": "Intel Corporation",
+      "sector": "Technology",
+      "marketCap": 120.0,
+      "peg": 4.5,
+      "fcfYield": null,
+      "divYield": 0.0,
+      "score": 11
+    }
+  ]
+}

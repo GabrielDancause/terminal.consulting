@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAPM (Capital Asset Pricing Model) — Investment Wiki</title>
+  <meta name="description"
+    content="Technical reference for the CAPM. Formula, interpretation, and practical application.">
+  <meta property="og:title" content="CAPM — Investment Wiki">
+  <meta property="og:description"
+    content="CAPM explained: formula, interpretation, worked examples, and why it matters.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+
+<body>
+  <div class="doc-container">
+    <nav class="doc-breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Investment</a>
+      <span class="sep">/</span>
+      CAPM
+    </nav>
+
+    <header class="doc-header">
+      <h1 class="doc-title">CAPM (Capital Asset Pricing Model)</h1>
+      <div class="doc-meta">
+        <span class="tag">Valuation Model</span>
+        <span>Investment Wiki — Fundamentals</span>
+      </div>
+    </header>
+
+    <div class="doc-abstract">
+      The Capital Asset Pricing Model (CAPM) mathematically describes the relationship between systematic risk and
+      expected return for assets, particularly equities. It dictates exactly how much return a rational investor should
+      demand for absorbing the risk of a specific stock over a risk-free bond.
+    </div>
+
+    <div class="doc-content">
+      <div class="gab-stack-infobox">
+        <div class="infobox-header">Quick Reference</div>
+        <table>
+          <tr>
+            <td>Type</td>
+            <td>Valuation Model</td>
+          </tr>
+          <tr>
+            <td>Formula</td>
+            <td>Risk-Free Rate + Beta(Market Return - Risk-Free Rate)</td>
+          </tr>
+          <tr>
+            <td>Main Output</td>
+            <td>Expected Return (Cost of Equity)</td>
+          </tr>
+        </table>
+      </div>
+
+      <section class="doc-section">
+        <h2>1.0 The Formula</h2>
+        <h3>Basic Form</h3>
+        <pre><code><span class="code-label">formula</span>Er = Rf + β(Rm - Rf)
+
+Where:
+Er = Expected Return of the investment
+Rf = Risk-Free Rate (usually the 10-Year US Treasury yield)
+β = Beta of the investment (Volatility)
+Rm = Expected return of the total market
+(Rm - Rf) = Equity Market Premium</code></pre>
+
+        <p>CAPM states that if you park cash in a risk-free Treasury, you earn `Rf`. If you buy an index fund (Beta =
+          1), you earn the Equity Risk Premium `(Rm - Rf)`. Therefore, if you buy a stock heavily volatile (Beta = 2),
+          you should mathematically demand twice the equity risk premium.</p>
+
+        <div class="callout callout-note">
+          If a stock's historical actual return is higher than the CAPM expected return, it has generated "Alpha".
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>3.0 Related Pages</h2>
+        <div class="integration-grid">
+          <div class="integration-card">
+            <h4><a href="beta.html">Beta</a></h4>
+            <p>The core risk multiplier inside the CAPM equation.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="wacc.html">WACC</a></h4>
+            <p>CAPM provides the "Cost of Equity" value that plugs directly into the WACC formula for DCF models.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="doc-footer">
+      <a href="./">← Back to Investment Wiki</a>
+      <span style="color: var(--text-tertiary);">Investment Wiki</span>
+    </footer>
+  </div>
+</body>
+
+</html>

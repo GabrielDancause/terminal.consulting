@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Price-to-Free Cash Flow — Investment Wiki</title>
+  <meta name="description"
+    content="Technical reference for Price-to-Free Cash Flow. Formula, interpretation, and practical application.">
+  <meta property="og:title" content="Price-to-Free Cash Flow — Investment Wiki">
+  <meta property="og:description"
+    content="Price-to-Free Cash Flow explained: formula, interpretation, worked examples, and why it matters.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+
+<body>
+  <div class="doc-container">
+    <nav class="doc-breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Investment</a>
+      <span class="sep">/</span>
+      Price-to-FCF
+    </nav>
+
+    <header class="doc-header">
+      <h1 class="doc-title">Price-to-Free Cash Flow (P/FCF)</h1>
+      <div class="doc-meta">
+        <span class="tag">Valuation Metric</span>
+        <span>Investment Wiki — Fundamentals</span>
+      </div>
+    </header>
+
+    <div class="doc-abstract">
+      The Price-to-Free Cash Flow (P/FCF) metric tests a company's market valuation against the actual cash it piles up
+      in the bank. It is frequently preferred over the standard P/E Ratio because earnings (Net Income) can be
+      artificially smoothed, while Free Cash Flow is highly transparent and difficult to fake.
+    </div>
+
+    <div class="doc-content">
+      <div class="gab-stack-infobox">
+        <div class="infobox-header">Quick Reference</div>
+        <table>
+          <tr>
+            <td>Type</td>
+            <td>Valuation Multiple</td>
+          </tr>
+          <tr>
+            <td>Formula</td>
+            <td>Market Capitalization ÷ Free Cash Flow</td>
+          </tr>
+          <tr>
+            <td>Value Territory</td>
+            <td><span class="complexity-low">
+                < 15x</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Growth Territory</td>
+            <td>> 25x</td>
+          </tr>
+        </table>
+      </div>
+
+      <section class="doc-section">
+        <h2>1.0 The Formula</h2>
+        <h3>Basic Form</h3>
+        <pre><code><span class="code-label">formula</span>P/FCF = Market Capitalization / Total Free Cash Flow
+Or: Current Share Price / Free Cash Flow Per Share</code></pre>
+        <p>A P/FCF of 10.0x means you are paying $10 for every $1 of actual cash profit the company generated this year.
+          A low number generally indicates a bargain, while a high number implies the market has priced in massive
+          future growth.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2>2.0 Interpretation & Edge Cases</h2>
+        <div class="callout callout-note">
+          Because capital expenditures (CapEx) are incredibly lumpy (a manufacturer might spend $2B building a factory
+          in 2024, and nothing in 2025), Free Cash Flow fluctuates wildly year-over-year. P/FCF can look horrible for
+          one year, but recover completely the next. It's often safer to use a 3-year trailing average of FCF.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>3.0 Related Pages</h2>
+        <div class="integration-grid">
+          <div class="integration-card">
+            <h4><a href="free-cash-flow.html">Free Cash Flow (FCF)</a></h4>
+            <p>The denominator of this multiple; must be strictly verified before running the multiple.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="free-cash-flow-yield.html">Free Cash Flow Yield</a></h4>
+            <p>The exact inverse of P/FCF (FCF / Market Cap), displayed as a percentage rather than a multiple.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="price-to-earnings-ratio.html">P/E Ratio</a></h4>
+            <p>Comparing P/FCF with P/E is an excellent way to spot accounting manipulation. If P/E is 10 (cheap) but
+              P/FCF is 150 (ridiculously expensive), the company's "earnings" are entirely non-cash illusions.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="doc-footer">
+      <a href="./">← Back to Investment Wiki</a>
+      <span style="color: var(--text-tertiary);">Investment Wiki</span>
+    </footer>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weighted Average Cost of Capital (WACC) — Investment Wiki</title>
+  <meta name="description"
+    content="Technical reference for Weighted Average Cost of Capital (WACC). Formula, interpretation, and practical application.">
+  <meta property="og:title" content="Weighted Average Cost of Capital (WACC) — Investment Wiki">
+  <meta property="og:description"
+    content="WACC explained: formula, interpretation, worked examples, and why it matters.">
+  <meta property="og:type" content="article">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236C5CE7'/><text x='50' y='68' font-family='Arial' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../docs/docs-styles.css">
+</head>
+
+<body>
+  <div class="doc-container">
+    <nav class="doc-breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Investment</a>
+      <span class="sep">/</span>
+      WACC
+    </nav>
+
+    <header class="doc-header">
+      <h1 class="doc-title">Weighted Average Cost of Capital (WACC)</h1>
+      <div class="doc-meta">
+        <span class="tag">Valuation Metric</span>
+        <span>Investment Wiki — Fundamentals</span>
+      </div>
+    </header>
+
+    <div class="doc-abstract">
+      WACC is the aggregate rate that a company is expected to pay to all its security holders (debt-holders and equity
+      investors) to finance its assets. It is the minimum acceptable return that a company must earn on its existing
+      asset base to satisfy its creditors, owners, and capital providers.
+    </div>
+
+    <div class="doc-content">
+      <div class="gab-stack-infobox">
+        <div class="infobox-header">Quick Reference</div>
+        <table>
+          <tr>
+            <td>Type</td>
+            <td>Valuation Input / Hurdle Rate</td>
+          </tr>
+          <tr>
+            <td>Key Components</td>
+            <td>Cost of Equity + Cost of Debt</td>
+          </tr>
+          <tr>
+            <td>Target Constraint</td>
+            <td>ROIC > WACC (Value Creation)</td>
+          </tr>
+          <tr>
+            <td>Primary Use</td>
+            <td>The discount rate in a DCF model</td>
+          </tr>
+        </table>
+      </div>
+
+      <section class="doc-section">
+        <h2>1.0 The Formula</h2>
+        <h3>Basic Form</h3>
+        <pre><code><span class="code-label">formula</span>WACC = (E/V × Re) + [(D/V × Rd) × (1 - T)]
+
+Where:
+E = Market value of equity
+D = Market value of debt
+V = Total Market Value (E + D)
+Re = Cost of equity
+Rd = Cost of debt
+T = Corporate tax rate</code></pre>
+        <p>This looks complicated, but it simply blends the interest rate a company pays on its loans with the expected
+          return demanded by stock market investors, weighted by how much of the company is funded by each. The debt
+          side is multiplied by <code>(1 - T)</code> because interest payments are historically tax-deductible.</p>
+      </section>
+
+      <section class="doc-section">
+        <h2>2.0 Interpretation & Edge Cases</h2>
+        <p>WACC serves as the "Hurdle Rate." If a CEO is considering building a new $50M factory, and the company's WACC
+          is 8%, the factory MUST generate a return above 8%. If they build a factory that only generates a 5% return,
+          they are actively destroying shareholder value because the capital costs more than it yields.</p>
+
+        <div class="callout callout-note">
+          When investors build a Discounted Cash Flow (DCF) model, WACC is universally used as the discount rate to pull
+          future cash flows backward into present value.
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2>3.0 Related Pages</h2>
+        <div class="integration-grid">
+          <div class="integration-card">
+            <h4><a href="discounted-cash-flow.html">Discounted Cash Flow (DCF)</a></h4>
+            <p>WACC is the exact percentage used to discount cash flows.</p>
+          </div>
+          <div class="integration-card">
+            <h4><a href="return-on-invested-capital.html">Return on Invested Capital (ROIC)</a></h4>
+            <p>The ROIC vs. WACC spread determines if a company actually creates value.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="doc-footer">
+      <a href="./">← Back to Investment Wiki</a>
+      <span style="color: var(--text-tertiary);">Investment Wiki</span>
+    </footer>
+  </div>
+</body>
+
+</html>

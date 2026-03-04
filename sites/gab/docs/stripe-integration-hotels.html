@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stripe Integration for Hotels — Gab Knowledge Base</title>
+  <meta name="description" content="Technical reference for deploying Stripe payment infrastructure across hotel properties. Covers Payment Links, webhooks, and automated receipt flows.">
+  <meta property="og:title" content="Stripe Integration for Hotels — Gab Knowledge Base">
+  <meta property="og:description" content="Technical reference for deploying Stripe payment infrastructure across hotel properties.">
+  <meta property="og:type" content="article">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs-styles.css">
+</head>
+<body>
+
+<div class="doc-container">
+
+  <nav class="doc-breadcrumb">
+    <a href="../index.html">gab.ae</a>
+    <span class="sep">/</span>
+    <a href="./">docs</a>
+    <span class="sep">/</span>
+    stripe-integration-hotels
+  </nav>
+
+  <header class="doc-header">
+    <h1 class="doc-title">Stripe Integration for Hotels</h1>
+    <div class="doc-meta">
+      <span class="tag">Tool Setup</span>
+      <span>Category A — Hotels</span>
+    </div>
+  </header>
+
+  <div class="doc-abstract">
+    Stripe serves as the payment backbone for hotel properties running on the Gab stack, handling direct bookings, upsell payments, and recurring charges without requiring a PMS middleware layer. This implementation uses Stripe Payment Links for zero-code checkout surfaces and webhooks to pipe transaction events into Google Apps Script for automated guest communication. The architecture eliminates monthly SaaS fees by replacing traditional booking engines with a Stripe + static site combination deployed on GitHub Pages.
+  </div>
+
+  <div class="doc-content">
+
+    <div class="gab-stack-infobox">
+      <div class="infobox-header">The Gab Stack</div>
+      <table>
+        <tr><td>Primary Tool</td><td>Stripe Dashboard + API</td></tr>
+        <tr><td>Infrastructure</td><td>Stripe Webhooks / Google Apps Script</td></tr>
+        <tr><td>Cost to Run</td><td>2.9% + $0.30 per transaction</td></tr>
+        <tr><td>Complexity</td><td><span class="complexity-medium">Medium</span></td></tr>
+        <tr><td>Reference</td><td>Auberge de nos Aieux</td></tr>
+      </table>
+    </div>
+
+    <section class="doc-section">
+      <h2>1.0 Deployment Architecture</h2>
+      <p>In the Auberge de nos Aieux reference deployment, Stripe operates as the sole payment processor with no intermediary booking platform. The guest-facing flow is:</p>
+      <ol>
+        <li>Guest lands on the property's <a href="github-pages-deployment-hotels.html">GitHub Pages site</a> and selects a room or package.</li>
+        <li>CTA buttons link directly to Stripe Payment Links, each configured with room metadata (room type, date range, guest count).</li>
+        <li>On successful payment, a Stripe webhook fires a POST request to a <a href="google-apps-script-property-management.html">Google Apps Script</a> web app endpoint.</li>
+        <li>The script logs the booking to a Google Sheet, triggers a <a href="whatsapp-automation-hotels.html">WhatsApp confirmation</a>, and generates a PDF receipt.</li>
+      </ol>
+      <p>This removes the need for Cloudbeds, Little Hotelier, or any third-party booking engine. Stripe is the system of record.</p>
+
+      <h3>Architecture Diagram</h3>
+<pre><code>Guest Browser
+    │
+    ▼
+GitHub Pages (Static Site)
+    │
+    ▼ (Payment Link click)
+Stripe Checkout
+    │
+    ▼ (payment.succeeded webhook)
+Google Apps Script Web App
+    │
+    ├──▶ Google Sheets (booking log)
+    ├──▶ WhatsApp API (guest confirmation)
+    └──▶ Gmail (PDF receipt)</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>2.0 Prerequisites</h2>
+      <h3>Accounts</h3>
+      <ul>
+        <li>Stripe account with completed business verification (takes 1-2 days).</li>
+        <li>Stripe CLI installed locally for webhook testing.</li>
+        <li>Google Workspace account for Apps Script deployment.</li>
+      </ul>
+
+      <h3>Local Environment</h3>
+<pre><code><span class="code-label">bash</span># Install Stripe CLI (macOS)
+brew install stripe/stripe-cli/stripe
+
+# Authenticate
+stripe login
+
+# Verify
+stripe config --list</code></pre>
+
+      <h3>API Keys</h3>
+      <p>Retrieve from <code>dashboard.stripe.com/apikeys</code>. You need:</p>
+      <table>
+        <thead>
+          <tr><th>Key</th><th>Usage</th><th>Scope</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>pk_live_*</code></td><td>Client-side (if using Stripe.js)</td><td>Public</td></tr>
+          <tr><td><code>sk_live_*</code></td><td>Server-side / Apps Script</td><td>Secret — never expose</td></tr>
+          <tr><td><code>whsec_*</code></td><td>Webhook signature verification</td><td>Secret — per endpoint</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-warn">
+        For the Payment Links approach, you do not need <code>pk_live_*</code> on the frontend. The checkout is entirely Stripe-hosted. API keys are only needed in the webhook consumer (Google Apps Script).
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>3.0 Step-by-Step Configuration</h2>
+
+      <h3>3.1 Create a Product and Payment Link</h3>
+<pre><code><span class="code-label">bash</span># Create a product
+stripe products create \
+  --name="Chambre Rivière — 2 nights" \
+  --description="River-view room, queen bed, breakfast included"
+
+# Create a price (one-time, CAD)
+stripe prices create \
+  --product=prod_XXXXX \
+  --unit-amount=32000 \
+  --currency=cad
+
+# Create a Payment Link
+stripe payment_links create \
+  --line-items[0][price]=price_XXXXX \
+  --line-items[0][quantity]=1 \
+  --after-completion[type]=redirect \
+  --after-completion[redirect][url]="https://aubergedenosai eux.com/thank-you.html"</code></pre>
+
+      <h3>3.2 Add Custom Metadata</h3>
+      <p>Metadata flows through to webhooks and is critical for downstream automation. Attach it to the product or at checkout:</p>
+<pre><code><span class="code-label">bash</span>stripe products update prod_XXXXX \
+  --metadata[room_type]="riviere" \
+  --metadata[capacity]="2" \
+  --metadata[breakfast]="included" \
+  --metadata[property]="auberge"</code></pre>
+
+      <h3>3.3 Configure Webhook Endpoint</h3>
+<pre><code><span class="code-label">bash</span># Register your Google Apps Script web app as webhook endpoint
+stripe webhook_endpoints create \
+  --url="https://script.google.com/macros/s/DEPLOY_ID/exec" \
+  --enabled-events=checkout.session.completed \
+  --enabled-events=payment_intent.succeeded</code></pre>
+
+      <h3>3.4 Local Webhook Testing</h3>
+<pre><code><span class="code-label">bash</span># Forward webhooks to local server for testing
+stripe listen --forward-to localhost:3000/webhook
+
+# In another terminal, trigger a test event
+stripe trigger checkout.session.completed</code></pre>
+
+      <h3>3.5 Webhook Payload Structure</h3>
+      <p>The <code>checkout.session.completed</code> event delivers the data your Apps Script needs:</p>
+<pre><code><span class="code-label">json</span>{
+  "type": "checkout.session.completed",
+  "data": {
+    "object": {
+      "id": "cs_live_XXXXX",
+      "amount_total": 32000,
+      "currency": "cad",
+      "customer_details": {
+        "email": "guest@example.com",
+        "name": "Marie Tremblay",
+        "phone": "+14185551234"
+      },
+      "metadata": {
+        "room_type": "riviere",
+        "capacity": "2",
+        "property": "auberge"
+      }
+    }
+  }
+}</code></pre>
+    </section>
+
+    <section class="doc-section">
+      <h2>4.0 Integration Points</h2>
+      <p>Stripe does not operate in isolation. Every transaction event propagates through the stack:</p>
+
+      <div class="integration-grid">
+        <div class="integration-card">
+          <h4><a href="google-apps-script-property-management.html">Google Apps Script</a></h4>
+          <p>Receives webhook POSTs. Parses checkout sessions, logs to Sheets, triggers downstream actions. The primary automation layer.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="whatsapp-automation-hotels.html">WhatsApp Automation</a></h4>
+          <p>Apps Script calls the WhatsApp Business API to send booking confirmations with room details, check-in instructions, and payment receipts.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="github-pages-deployment-hotels.html">GitHub Pages</a></h4>
+          <p>The static site hosts the booking interface. Payment Links are embedded as href attributes on CTA buttons. No server-side code on the site itself.</p>
+        </div>
+        <div class="integration-card">
+          <h4><a href="claude-code-workflow-hotels.html">Claude Code</a></h4>
+          <p>Used to generate and maintain Payment Link landing pages, update pricing across the static site, and scaffold webhook handler code.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="doc-footer">
+    <a href="./">← Back to Knowledge Base</a>
+    <span style="color: var(--text-tertiary);">gab.ae/docs</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
