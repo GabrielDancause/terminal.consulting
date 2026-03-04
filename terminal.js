@@ -190,7 +190,7 @@
             case 'request':
                 flowMode = { step: 'name', data: {} };
                 printLines(['Your name:']);
-                addPrompt('>');
+                addPrompt();
                 break;
 
             case '':
@@ -209,7 +209,7 @@
     function handleFlowStep(value) {
         if (!value && flowMode.step !== 'confirm') {
             printLines(['Please enter a value.'], 'error');
-            addPrompt('>');
+            addPrompt();
             return;
         }
 
@@ -218,19 +218,19 @@
                 flowMode.data.name = value;
                 flowMode.step = 'email';
                 printLines(['Your email:']);
-                addPrompt('>');
+                addPrompt();
                 break;
 
             case 'email':
                 if (!value.includes('@')) {
                     printLines(['Please enter a valid email.'], 'error');
-                    addPrompt('>');
+                    addPrompt();
                     return;
                 }
                 flowMode.data.email = value;
                 flowMode.step = 'message';
                 printLines(['What do you need?']);
-                addPrompt('>');
+                addPrompt();
                 break;
 
             case 'message':
