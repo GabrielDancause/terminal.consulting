@@ -78,9 +78,7 @@
 
     function startInteractive() {
         interactive = true;
-        // Start in request flow — "Your name:" is already shown by the intro
-        flowMode = { step: 'name', data: {} };
-        addPrompt('>');
+        addPrompt();
         hiddenInput.focus();
 
         // Keep focus on hidden input

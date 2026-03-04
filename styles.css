@@ -143,11 +143,18 @@ body {
     height: 1px;
 }
 
-/* Interactive input line */
+/* Interactive input line — matches .line styling */
 .input-line {
     white-space: pre-wrap;
     word-break: break-word;
     min-height: 1.4em;
+}
+
+/* All lines and input lines share same base */
+.line,
+.input-line {
+    padding-left: 0;
+    margin-left: 0;
 }
 
 .input-text {
