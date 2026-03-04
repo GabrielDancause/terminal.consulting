@@ -8,8 +8,6 @@
     // ── Config ──
     var CHAR_SPEED = 35;
     var OUTPUT_SPEED = 12;
-    var FORMSPREE_ID = 'YOUR_FORM_ID'; // Replace with your Formspree form ID from formspree.io
-
     // ── DOM ──
     var terminal = document.getElementById('terminal');
     var hiddenInput = document.getElementById('hidden-input');
@@ -18,7 +16,6 @@
     var interactive = false;
     var currentInputSpan = null;
     var currentCursor = null;
-    var flowMode = null;   // null = normal, or { step, data }
 
     // ══════════════════════════════════════
     //  PHASE 1: Intro Animation
@@ -103,16 +100,16 @@
         });
     }
 
-    function addPrompt(prefix) {
+    function addPrompt() {
         var line = document.createElement('div');
         line.className = 'input-line';
 
         var prompt = document.createElement('span');
-        prompt.className = prefix ? 'flow-prompt' : 'prompt';
-        prompt.textContent = prefix || '$';
+        prompt.className = 'prompt';
+        prompt.textContent = '$';
 
         var input = document.createElement('span');
-        input.className = prefix ? 'flow-input' : 'input-text';
+        input.className = 'input-text';
 
         var cursor = document.createElement('span');
         cursor.className = 'cursor active';
@@ -136,11 +133,7 @@
         currentInputSpan = null;
         currentCursor = null;
 
-        if (flowMode) {
-            handleFlowStep(value);
-        } else {
-            executeCommand(value);
-        }
+        executeCommand(value);
     }
 
     // ── Commands ──
@@ -152,7 +145,6 @@
             case 'help':
                 printLines([
                     'Available commands:',
-                    '  request    — Submit a work request',
                     '  services   — What we do',
                     '  portfolio  — Our work',
                     '  contact    — Reach us',
@@ -187,12 +179,6 @@
                 addPrompt();
                 break;
 
-            case 'request':
-                flowMode = { step: 'name', data: {} };
-                printLines(['Your name:']);
-                addPrompt();
-                break;
-
             case '':
                 addPrompt();
                 break;
@@ -202,73 +188,6 @@
                 addPrompt();
                 break;
         }
-    }
-
-    // ── Request Flow ──
-
-    function handleFlowStep(value) {
-        if (!value && flowMode.step !== 'confirm') {
-            printLines(['Please enter a value.'], 'error');
-            addPrompt();
-            return;
-        }
-
-        switch (flowMode.step) {
-            case 'name':
-                flowMode.data.name = value;
-                flowMode.step = 'email';
-                printLines(['Your email:']);
-                addPrompt();
-                break;
-
-            case 'email':
-                if (!value.includes('@')) {
-                    printLines(['Please enter a valid email.'], 'error');
-                    addPrompt();
-                    return;
-                }
-                flowMode.data.email = value;
-                flowMode.step = 'message';
-                printLines(['What do you need?']);
-                addPrompt();
-                break;
-
-            case 'message':
-                flowMode.data.message = value;
-                submitRequest();
-                break;
-        }
-    }
-
-    function submitRequest() {
-        printLines(['Sending...'], 'dim');
-
-        var data = flowMode.data;
-        flowMode = null;
-
-        fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify({
-                name: data.name,
-                email: data.email,
-                message: data.message,
-                _subject: 'New request from ' + data.name
-            })
-        })
-        .then(function (res) { return res.json(); })
-        .then(function (result) {
-            if (result.ok || result.success) {
-                printLines(['✓ Request submitted. We\'ll be in touch.'], 'success');
-            } else {
-                printLines(['✗ Something went wrong. Email us at hello@terminal.consulting'], 'error');
-            }
-            addPrompt();
-        })
-        .catch(function () {
-            printLines(['✗ Network error. Email us at hello@terminal.consulting'], 'error');
-            addPrompt();
-        });
     }
 
     // ── Helpers ──
