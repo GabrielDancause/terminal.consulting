@@ -64,6 +64,16 @@
                 setTimeout(typeChar, speed);
             } else {
                 typed.classList.remove('typing-cursor');
+                var href = typed.getAttribute('data-href');
+                if (href) {
+                    var a = document.createElement('a');
+                    a.className = 'link';
+                    a.href = href;
+                    a.textContent = typed.textContent;
+                    if (href.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
+                    typed.textContent = '';
+                    typed.appendChild(a);
+                }
                 callback();
             }
         })();
