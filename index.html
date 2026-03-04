@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Consulting</title>
+    <meta name="description" content="You'll never see us. You'll see the work. Web development, maintenance, and automation consulting.">
+    <meta property="og:title" content="Terminal Consulting">
+    <meta property="og:description" content="You'll never see us. You'll see the work.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▋</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <main class="terminal">
+        <div class="line" data-delay="0">
+            <span class="prompt">$</span> <span class="command typed" data-text="terminal.consulting --version"></span>
+        </div>
+        <div class="line output" data-delay="1800">
+            <span class="typed" data-text="v1.0.0"></span>
+        </div>
+
+        <div class="line blank" data-delay="2400"></div>
+
+        <div class="line" data-delay="2600">
+            <span class="prompt">$</span> <span class="command typed" data-text="whoami"></span>
+        </div>
+        <div class="line output tagline" data-delay="3400">
+            <span class="typed" data-text="> You'll never see us. You'll see the work."></span>
+        </div>
+
+        <div class="line blank" data-delay="5200"></div>
+
+        <div class="line" data-delay="5400">
+            <span class="prompt">$</span> <span class="command typed" data-text="cat services.txt"></span>
+        </div>
+        <div class="line output" data-delay="6400">
+            <span class="typed" data-text="  [1] Website builds"></span>
+        </div>
+        <div class="line output" data-delay="6600">
+            <span class="typed" data-text="  [2] Maintenance"></span>
+        </div>
+        <div class="line output" data-delay="6800">
+            <span class="typed" data-text="  [3] Automation"></span>
+        </div>
+
+        <div class="line blank" data-delay="7400"></div>
+
+        <div class="line" data-delay="7600">
+            <span class="prompt">$</span> <span class="command typed" data-text="ls portfolio/"></span>
+        </div>
+        <div class="line output" data-delay="8400">
+            <a href="https://aubergedenosaieux.com" target="_blank" rel="noopener" class="typed link" data-text="  aubergedenosaieux.com"></a>
+        </div>
+        <div class="line output" data-delay="8600">
+            <a href="https://aliimperiale.com" target="_blank" rel="noopener" class="typed link" data-text="  aliimperiale.com"></a>
+        </div>
+        <div class="line output" data-delay="8800">
+            <a href="https://gab.ae" target="_blank" rel="noopener" class="typed link" data-text="  gab.ae"></a>
+        </div>
+
+        <div class="line blank" data-delay="9400"></div>
+
+        <div class="line" data-delay="9600">
+            <span class="prompt">$</span> <span class="command typed" data-text="cat contact.txt"></span>
+        </div>
+        <div class="line output" data-delay="10400">
+            <a href="mailto:hello@terminal.consulting" class="typed link" data-text="  hello@terminal.consulting"></a>
+        </div>
+
+        <div class="line blank" data-delay="11000"></div>
+
+        <div class="line" data-delay="11200">
+            <span class="prompt">$</span> <span class="cursor">▋</span>
+        </div>
+    </main>
+    <script src="terminal.js"></script>
+</body>
+</html>
