@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Consolidate Multiple Static Sites into One Monorepo — Terminal Consulting</title>
+    <meta name="description" content="Step-by-step guide to moving multiple static websites into a single GitHub monorepo and deploying each with Cloudflare Pages.">
+    <meta property="og:title" content="How to Consolidate Multiple Static Sites into One Monorepo">
+    <meta property="og:description" content="Step-by-step guide to moving multiple static websites into a single GitHub monorepo and deploying each with Cloudflare Pages.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▋</text></svg>">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --green: #00ff41;
+            --green-dim: #00cc33;
+            --green-dark: #00801f;
+            --white: #e0e0e0;
+            --gray: #555;
+            --font: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--green-dim);
+            font-family: var(--font);
+            font-size: 16px;
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+        }
+
+        article {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px 120px;
+        }
+
+        .breadcrumb {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb a {
+            color: var(--gray);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--green);
+        }
+
+        h1 {
+            color: var(--green);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .meta {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--green);
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+
+        h2::before {
+            content: '## ';
+            color: var(--gray);
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        pre {
+            background: #111;
+            border: 1px solid #222;
+            padding: 16px;
+            overflow-x: auto;
+            margin-bottom: 16px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        code {
+            color: var(--white);
+        }
+
+        pre code {
+            color: var(--white);
+        }
+
+        .prompt-char {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .comment {
+            color: var(--gray);
+        }
+
+        ol, ul {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        a {
+            color: var(--green-dim);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--green);
+            text-decoration: underline;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 60px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .back:hover {
+            color: var(--green);
+        }
+
+        ::selection {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            article { padding: 40px 16px 80px; }
+            h1 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    <article>
+        <div class="breadcrumb"><a href="/">terminal.consulting</a> / <a href="/guides/">guides</a> /</div>
+
+        <h1>How to Consolidate Multiple Static Sites into One Monorepo</h1>
+        <div class="meta">2026-03-04</div>
+
+        <p>If you manage multiple static websites — each in its own GitHub repo, each deployed separately — you can consolidate them into a single monorepo and deploy each site independently with Cloudflare Pages.</p>
+
+        <p>This guide covers the repo restructuring. You end up with one repo, one place to manage all your sites, and the option to make it private.</p>
+
+        <h2>The Problem</h2>
+
+        <p>You have several static sites, each in its own public GitHub repo, each deployed via GitHub Pages:</p>
+
+<pre><code><span class="comment"># Separate repos, separate deploys</span>
+your-agency/          → yourdomain.com
+your-agency/client-a  → client-a.com
+your-agency/client-b  → client-b.com
+your-agency/client-c  → client-c.com</code></pre>
+
+        <p>This means public source code for every client, scattered repos, and no centralized management.</p>
+
+        <h2>The Target Structure</h2>
+
+<pre><code>your-repo/
+├── sites/
+│   ├── main/        ← yourdomain.com
+│   │   ├── index.html
+│   │   └── styles.css
+│   ├── client-a/    ← client-a.com
+│   │   ├── index.html
+│   │   └── ...
+│   ├── client-b/    ← client-b.com
+│   │   └── ...
+│   └── client-c/    ← client-c.com
+│       └── ...
+└── ...</code></pre>
+
+        <p>One repo. Each site in its own directory. Each deployed to its own domain via Cloudflare Pages.</p>
+
+        <h2>Step 1: Move Your Main Site</h2>
+
+        <p>Move your existing site files into a subdirectory:</p>
+
+<pre><code><span class="prompt-char">$</span> mkdir -p sites/main
+<span class="prompt-char">$</span> mv index.html styles.css scripts.js sites/main/
+<span class="prompt-char">$</span> rm CNAME  <span class="comment"># Cloudflare handles the domain now</span></code></pre>
+
+        <h2>Step 2: Import Client Repos</h2>
+
+        <p>For each client site, clone the repo and copy the files in (without git history):</p>
+
+<pre><code><span class="prompt-char">$</span> git clone --depth 1 https://github.com/you/client-a.git /tmp/client-a
+<span class="prompt-char">$</span> rsync -a --exclude='.git' --exclude='CNAME' /tmp/client-a/ sites/client-a/</code></pre>
+
+        <p>Repeat for each site. The <code>--depth 1</code> flag keeps the clone fast since you only need the latest files.</p>
+
+        <h2>Step 3: Commit</h2>
+
+<pre><code><span class="prompt-char">$</span> git add sites/
+<span class="prompt-char">$</span> git rm index.html styles.css scripts.js CNAME
+<span class="prompt-char">$</span> git commit -m "Restructure into monorepo with all sites"</code></pre>
+
+        <h2>Step 4: Deploy with Cloudflare Pages</h2>
+
+        <p>In the Cloudflare dashboard, create a Pages project for each site:</p>
+
+        <ol>
+            <li>Connect your GitHub repo</li>
+            <li>Set the <strong>build output directory</strong> to the site's folder (e.g. <code>sites/client-a</code>)</li>
+            <li>Add your <strong>custom domain</strong></li>
+            <li>Repeat for each site</li>
+        </ol>
+
+        <p>Each Cloudflare Pages project watches the same repo but serves a different directory to a different domain.</p>
+
+        <h2>Step 5: Clean Up</h2>
+
+        <p>Once all sites are live on Cloudflare:</p>
+
+<pre><code><span class="comment"># Make the monorepo private</span>
+<span class="prompt-char">$</span> gh repo edit you/your-repo --visibility private
+
+<span class="comment"># Archive the old repos (keeps them as backup)</span>
+<span class="prompt-char">$</span> gh repo archive you/client-a
+<span class="prompt-char">$</span> gh repo archive you/client-b
+<span class="prompt-char">$</span> gh repo archive you/client-c</code></pre>
+
+        <h2>Things to Watch</h2>
+
+        <ul>
+            <li><strong>DNS propagation</strong> — domain changes can take minutes to 48 hours</li>
+            <li><strong>Git history</strong> — client repos' history won't carry over with this method. Use <code>git subtree</code> if you need it</li>
+            <li><strong>Cloudflare free tier</strong> — 500 builds/month, 20,000 files per project, unlimited bandwidth</li>
+            <li><strong>Repo size</strong> — watch for large assets. A monorepo with images across multiple sites can grow fast</li>
+        </ul>
+
+        <a class="back" href="/guides/">← back to guides</a>
+    </article>
+</body>
+</html>
