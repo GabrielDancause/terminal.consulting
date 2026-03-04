@@ -16,7 +16,8 @@
 </head>
 <body>
     <div class="scanlines"></div>
-    <main class="terminal">
+    <input type="text" id="hidden-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input">
+    <main class="terminal" id="terminal">
         <div class="line" data-delay="0">
             <span class="prompt">$</span> <span class="command typed" data-text="terminal.consulting --version"></span>
         </div>
@@ -73,10 +74,6 @@
         </div>
 
         <div class="line blank" data-delay="11000"></div>
-
-        <div class="line" data-delay="11200">
-            <span class="prompt">$</span> <span class="cursor">▋</span>
-        </div>
     </main>
     <script src="terminal.js"></script>
 </body>
