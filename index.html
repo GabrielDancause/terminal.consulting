@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal Consulting</title>
+    <meta name="description" content="No calls. No meetings. Just shipped code. Web development, maintenance, and automation consulting.">
+    <meta property="og:title" content="Terminal Consulting">
+    <meta property="og:description" content="No calls. No meetings. Just shipped code.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▋</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <input type="text" id="hidden-input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input">
+    <main class="terminal" id="terminal">
+<div class="line" data-delay="0"><span class="prompt">$</span> <span class="command typed" data-text="terminal.consulting --version"></span></div>
+<div class="line output" data-delay="1800"><span class="typed" data-text="v1.0.0"></span></div>
+<div class="line blank" data-delay="2400"></div>
+<div class="line" data-delay="2600"><span class="prompt">$</span> <span class="command typed" data-text="whoami"></span></div>
+<div class="line output tagline" data-delay="3400"><span class="typed" data-text="> No calls. No meetings. Just shipped code."></span></div>
+<div class="line blank" data-delay="5200"></div>
+<div class="line" data-delay="5400"><span class="prompt">$</span> <span class="command typed" data-text="help"></span></div>
+<div class="line output" data-delay="5800"><span class="typed" data-text="Available commands:"></span></div>
+<div class="line output" data-delay="5900"><span class="typed" data-text="  services   — What we do"></span></div>
+<div class="line output" data-delay="6000"><span class="typed" data-text="  portfolio  — Our work"></span></div>
+<div class="line output" data-delay="6100"><span class="typed" data-text="  contact    — Reach us"></span></div>
+<div class="line output" data-delay="6200"><span class="typed" data-text="  clear      — Clear terminal"></span></div>
+<div class="line blank" data-delay="6600"></div>
+<div class="line" data-delay="6800"><span class="prompt">$</span> <span class="command typed" data-text="services"></span></div>
+<div class="line output" data-delay="7400"><span class="typed" data-text="  [1] Website builds"></span></div>
+<div class="line output" data-delay="7500"><span class="typed" data-text="  [2] Maintenance"></span></div>
+<div class="line output" data-delay="7600"><span class="typed" data-text="  [3] Automation"></span></div>
+<div class="line blank" data-delay="8000"></div>
+<div class="line" data-delay="8200"><span class="prompt">$</span> <span class="command typed" data-text="portfolio"></span></div>
+<div class="line output" data-delay="8800"><span class="typed" data-text="  aubergedenosaieux.com" data-href="https://aubergedenosaieux.com"></span></div>
+<div class="line output" data-delay="8900"><span class="typed" data-text="  aliimperiale.com" data-href="https://aliimperiale.com"></span></div>
+<div class="line output" data-delay="9000"><span class="typed" data-text="  gab.ae" data-href="https://gab.ae"></span></div>
+<div class="line blank" data-delay="9400"></div>
+<div class="line" data-delay="9600"><span class="prompt">$</span> <span class="command typed" data-text="contact"></span></div>
+<div class="line output" data-delay="10200"><span class="typed" data-text="  hello@terminal.consulting" data-href="mailto:hello@terminal.consulting"></span></div>
+<div class="line blank" data-delay="10600"></div>
+    </main>
+    <script src="terminal.js"></script>
+</body>
+</html>
