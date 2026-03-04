@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to Consolidate Multiple Static Sites into One Monorepo — Terminal Consulting</title>
-    <meta name="description" content="Step-by-step guide to moving multiple static websites into a single GitHub monorepo and deploying each with Cloudflare Pages.">
-    <meta property="og:title" content="How to Consolidate Multiple Static Sites into One Monorepo">
-    <meta property="og:description" content="Step-by-step guide to moving multiple static websites into a single GitHub monorepo and deploying each with Cloudflare Pages.">
+    <title>How to Deploy Multiple Sites from One Repo with Cloudflare Pages — Terminal Consulting</title>
+    <meta name="description" content="Deploy multiple static websites from a single GitHub monorepo to different custom domains using Cloudflare Pages.">
+    <meta property="og:title" content="How to Deploy Multiple Sites from One Repo with Cloudflare Pages">
+    <meta property="og:description" content="Deploy multiple static websites from a single GitHub monorepo to different custom domains using Cloudflare Pages.">
     <meta property="og:type" content="article">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -190,103 +190,108 @@
     <article>
         <div class="breadcrumb"><a href="/">terminal.consulting</a> / <a href="/guides/">guides</a> /</div>
 
-        <h1>How to Consolidate Multiple Static Sites into One Monorepo</h1>
+        <h1>How to Deploy Multiple Sites from One Repo with Cloudflare Pages</h1>
         <div class="meta">2026-03-04</div>
 
-        <p>If you manage multiple static websites — each in its own GitHub repo, each deployed separately — you can consolidate them into a single monorepo and deploy each site independently with Cloudflare Pages.</p>
+        <p>You have a monorepo with multiple static sites in subdirectories. You want each site deployed to its own custom domain. Cloudflare Pages can do this — you create one Pages project per site, each pointing to a different directory in the same repo.</p>
 
-        <p>This guide covers the repo restructuring. You end up with one repo, one place to manage all your sites, and the option to make it private.</p>
+        <h2>Prerequisites</h2>
 
-        <h2>The Problem</h2>
+        <ul>
+            <li>A GitHub repo with your sites in subdirectories (see <a href="/guides/consolidate-static-sites-monorepo.html">How to Consolidate Multiple Static Sites into One Monorepo</a>)</li>
+            <li>A Cloudflare account (free tier works)</li>
+            <li>Your domains added to Cloudflare DNS</li>
+        </ul>
 
-        <p>You have several static sites, each in its own public GitHub repo, each deployed via GitHub Pages:</p>
+        <h2>The Setup</h2>
 
-<pre><code><span class="comment"># Separate repos, separate deploys</span>
-your-agency/          → yourdomain.com
-your-agency/client-a  → client-a.com
-your-agency/client-b  → client-b.com
-your-agency/client-c  → client-c.com</code></pre>
-
-        <p>This means public source code for every client, scattered repos, and no centralized management.</p>
-
-        <h2>The Target Structure</h2>
+        <p>Say your repo looks like this:</p>
 
 <pre><code>your-repo/
 ├── sites/
 │   ├── main/        ← yourdomain.com
-│   │   ├── index.html
-│   │   └── styles.css
 │   ├── client-a/    ← client-a.com
-│   │   ├── index.html
-│   │   └── ...
 │   ├── client-b/    ← client-b.com
-│   │   └── ...
-│   └── client-c/    ← client-c.com
-│       └── ...
-└── ...</code></pre>
+│   └── client-c/    ← client-c.com</code></pre>
 
-        <p>One repo. Each site in its own directory. Each deployed to its own domain via Cloudflare Pages.</p>
+        <p>You'll create 4 separate Cloudflare Pages projects, all connected to the same GitHub repo. Each one serves a different subdirectory.</p>
 
-        <h2>Step 1: Move Your Main Site</h2>
-
-        <p>Move your existing site files into a subdirectory:</p>
-
-<pre><code><span class="prompt-char">$</span> mkdir -p sites/main
-<span class="prompt-char">$</span> mv index.html styles.css scripts.js sites/main/
-<span class="prompt-char">$</span> rm CNAME  <span class="comment"># Cloudflare handles the domain now</span></code></pre>
-
-        <h2>Step 2: Import Client Repos</h2>
-
-        <p>For each client site, clone the repo and copy the files in (without git history):</p>
-
-<pre><code><span class="prompt-char">$</span> git clone --depth 1 https://github.com/you/client-a.git /tmp/client-a
-<span class="prompt-char">$</span> rsync -a --exclude='.git' --exclude='CNAME' /tmp/client-a/ sites/client-a/</code></pre>
-
-        <p>Repeat for each site. The <code>--depth 1</code> flag keeps the clone fast since you only need the latest files.</p>
-
-        <h2>Step 3: Commit</h2>
-
-<pre><code><span class="prompt-char">$</span> git add sites/
-<span class="prompt-char">$</span> git rm index.html styles.css scripts.js CNAME
-<span class="prompt-char">$</span> git commit -m "Restructure into monorepo with all sites"</code></pre>
-
-        <h2>Step 4: Deploy with Cloudflare Pages</h2>
-
-        <p>In the Cloudflare dashboard, create a Pages project for each site:</p>
+        <h2>Step 1: Create the First Pages Project</h2>
 
         <ol>
-            <li>Connect your GitHub repo</li>
-            <li>Set the <strong>build output directory</strong> to the site's folder (e.g. <code>sites/client-a</code>)</li>
-            <li>Add your <strong>custom domain</strong></li>
-            <li>Repeat for each site</li>
+            <li>Go to <strong>Cloudflare Dashboard → Workers & Pages → Create</strong></li>
+            <li>Select <strong>Pages</strong> and connect your GitHub repo</li>
+            <li>Set <strong>Project name</strong> (e.g. <code>your-main-site</code>)</li>
+            <li>Under <strong>Build settings</strong>:
+                <ul>
+                    <li><strong>Build command</strong>: leave empty (static site, no build step)</li>
+                    <li><strong>Build output directory</strong>: <code>sites/main</code></li>
+                </ul>
+            </li>
+            <li>Deploy</li>
         </ol>
 
-        <p>Each Cloudflare Pages project watches the same repo but serves a different directory to a different domain.</p>
+        <h2>Step 2: Add Your Custom Domain</h2>
 
-        <h2>Step 5: Clean Up</h2>
+        <ol>
+            <li>In the Pages project, go to <strong>Custom domains</strong></li>
+            <li>Add your domain (e.g. <code>yourdomain.com</code>)</li>
+            <li>If the domain is already on Cloudflare DNS, the CNAME record is added automatically</li>
+            <li>If not, you'll need to add a CNAME record pointing to <code>your-main-site.pages.dev</code></li>
+        </ol>
 
-        <p>Once all sites are live on Cloudflare:</p>
+        <h2>Step 3: Repeat for Each Site</h2>
 
-<pre><code><span class="comment"># Make the monorepo private</span>
-<span class="prompt-char">$</span> gh repo edit you/your-repo --visibility private
+        <p>Create a new Pages project for each site. The key: each project connects to the <strong>same repo</strong> but uses a <strong>different build output directory</strong>.</p>
 
-<span class="comment"># Archive the old repos (keeps them as backup)</span>
-<span class="prompt-char">$</span> gh repo archive you/client-a
-<span class="prompt-char">$</span> gh repo archive you/client-b
-<span class="prompt-char">$</span> gh repo archive you/client-c</code></pre>
+<pre><code><span class="comment"># Project 1</span>
+name: your-main-site
+build output: sites/main
+domain: yourdomain.com
 
-        <h2>Things to Watch</h2>
+<span class="comment"># Project 2</span>
+name: client-a
+build output: sites/client-a
+domain: client-a.com
+
+<span class="comment"># Project 3</span>
+name: client-b
+build output: sites/client-b
+domain: client-b.com
+
+<span class="comment"># Project 4</span>
+name: client-c
+build output: sites/client-c
+domain: client-c.com</code></pre>
+
+        <h2>How Deploys Work</h2>
+
+        <p>Every push to your repo triggers a build for <strong>all</strong> Pages projects connected to it. Since there's no build step (static files), each deploy takes seconds.</p>
+
+        <p>This means a change to <code>sites/client-a/</code> also triggers a deploy for <code>sites/client-b/</code>. This is harmless — unchanged files deploy instantly — but it counts toward your 500 builds/month on the free tier.</p>
+
+        <h2>Limits to Know</h2>
 
         <ul>
-            <li><strong>DNS propagation</strong> — domain changes can take minutes to 48 hours</li>
-            <li><strong>Git history</strong> — client repos' history won't carry over with this method. Use <code>git subtree</code> if you need it</li>
-            <li><strong>Cloudflare free tier</strong> — 500 builds/month, 20,000 files per project, unlimited bandwidth</li>
-            <li><strong>Repo size</strong> — watch for large assets. A monorepo with images across multiple sites can grow fast</li>
+            <li><strong>500 builds/month</strong> on free tier. With 4 sites, every push uses 4 builds. That's ~125 pushes/month</li>
+            <li><strong>20,000 files</strong> per project. Each project only counts files in its output directory</li>
+            <li><strong>25 MB max file size</strong> for individual files</li>
+            <li><strong>Unlimited bandwidth</strong> on all plans</li>
+        </ul>
+
+        <h2>After Migration</h2>
+
+        <p>Once everything is live on Cloudflare Pages:</p>
+
+        <ul>
+            <li>Disable GitHub Pages on all repos</li>
+            <li>Make your monorepo private — Cloudflare Pages keeps working with private repos</li>
+            <li>Archive the old individual repos as backup</li>
         </ul>
 
         <div class="related">
             <div class="related-title">Related guides:</div>
-            <a href="/guides/deploy-multiple-sites-cloudflare-pages.html">How to Deploy Multiple Sites from One Repo with Cloudflare Pages</a>
+            <a href="/guides/consolidate-static-sites-monorepo.html">How to Consolidate Multiple Static Sites into One Monorepo</a>
         </div>
 
         <a class="back" href="/guides/">← back to guides</a>

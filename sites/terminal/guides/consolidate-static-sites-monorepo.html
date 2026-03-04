@@ -145,9 +145,26 @@
             text-decoration: underline;
         }
 
+        .related {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid #222;
+        }
+
+        .related-title {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .related a {
+            display: block;
+            margin-bottom: 8px;
+        }
+
         .back {
             display: inline-block;
-            margin-top: 60px;
+            margin-top: 24px;
             color: var(--gray);
             font-size: 14px;
         }
@@ -266,6 +283,11 @@ your-agency/client-c  → client-c.com</code></pre>
             <li><strong>Cloudflare free tier</strong> — 500 builds/month, 20,000 files per project, unlimited bandwidth</li>
             <li><strong>Repo size</strong> — watch for large assets. A monorepo with images across multiple sites can grow fast</li>
         </ul>
+
+        <div class="related">
+            <div class="related-title">Related guides:</div>
+            <a href="/guides/deploy-multiple-sites-cloudflare-pages.html">How to Deploy Multiple Sites from One Repo with Cloudflare Pages</a>
+        </div>
 
         <a class="back" href="/guides/">← back to guides</a>
     </article>
