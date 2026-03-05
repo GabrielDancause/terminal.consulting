@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique — La Ferme Éboulmontaise</title>
+    <meta name="description" content="Agneaux, porcs, volailles, lapins et plats cuisinés de la Ferme Éboulmontaise. Les prix varient en fonction du poids de l'animal.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">La Ferme Éboulmontaise</a>
+            <button class="nav-toggle" onclick="document.querySelector('.nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+            <ul class="nav">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="notre-histoire.html">Notre histoire</a></li>
+                <li><a href="boutique.html" class="active">Boutique</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero" style="padding:60px 24px">
+        <h1>Boutique</h1>
+        <p>Les prix varient en fonction du poids de l'animal.</p>
+    </section>
+
+    <section class="section">
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterProducts('all')">Tout</button>
+            <button class="filter-btn" onclick="filterProducts('agneau')">Agneau</button>
+            <button class="filter-btn" onclick="filterProducts('porc')">Porc</button>
+            <button class="filter-btn" onclick="filterProducts('volaille')">Volaille</button>
+            <button class="filter-btn" onclick="filterProducts('lapin')">Lapin</button>
+            <button class="filter-btn" onclick="filterProducts('cuisine')">Cuisine de la Ferme</button>
+        </div>
+
+        <div class="products" id="products">
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Flipettes pour chiens – 40g</h3>
+                <div class="product-price">5,00$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Coeur d'agneau</h3>
+                <div class="product-price">6,00$</div>
+            </div>
+            <div class="product" data-cat="cuisine">
+                <div class="product-category">Cuisine de la Ferme</div>
+                <h3>Tête fromagée de porc</h3>
+                <div class="product-price">7,00$</div>
+            </div>
+            <div class="product" data-cat="porc">
+                <div class="product-category">Porc</div>
+                <h3>Porc haché</h3>
+                <div class="product-price">7,00$</div>
+            </div>
+            <div class="product" data-cat="cuisine">
+                <div class="product-category">Cuisine de la Ferme</div>
+                <h3>Gelée de rose</h3>
+                <div class="product-price">8,00$ – 11,00$</div>
+            </div>
+            <div class="product" data-cat="cuisine">
+                <div class="product-category">Cuisine de la Ferme</div>
+                <h3>Cornichons sucrés de la mère à Marc</h3>
+                <div class="product-price">8,00$</div>
+            </div>
+            <div class="product" data-cat="porc">
+                <div class="product-category">Porc</div>
+                <h3>Bacon fermier</h3>
+                <div class="product-price">8,99$ – 11,95$</div>
+            </div>
+            <div class="product" data-cat="cuisine">
+                <div class="product-category">Cuisine de la Ferme</div>
+                <h3>Betteraves marinées</h3>
+                <div class="product-price">10,00$</div>
+            </div>
+            <div class="product" data-cat="cuisine">
+                <div class="product-category">Cuisine de la Ferme</div>
+                <h3>Creton de porc</h3>
+                <div class="product-price">10,00$</div>
+            </div>
+            <div class="product" data-cat="cuisine">
+                <div class="product-category">Cuisine de la Ferme</div>
+                <h3>Polenta crémeuse</h3>
+                <div class="product-price">10,00$</div>
+            </div>
+            <div class="product" data-cat="cuisine">
+                <div class="product-category">Cuisine de la Ferme</div>
+                <h3>Gratin de céleri-rave & pomme de terre</h3>
+                <div class="product-price">10,00$</div>
+            </div>
+            <div class="product" data-cat="porc">
+                <div class="product-category">Porc</div>
+                <h3>Cubes de porc à mijoter</h3>
+                <div class="product-price">10,26$</div>
+            </div>
+            <div class="product" data-cat="cuisine">
+                <div class="product-category">Cuisine de la Ferme</div>
+                <h3>Sauce miel et lavande</h3>
+                <div class="product-price">12,00$</div>
+            </div>
+            <div class="product" data-cat="cuisine">
+                <div class="product-category">Cuisine de la Ferme</div>
+                <h3>Soupe aux gourganes</h3>
+                <div class="product-price">12,00$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Jerky d'agneau</h3>
+                <div class="product-price">12,00$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Feńalar</h3>
+                <div class="product-price">13,48$</div>
+            </div>
+            <div class="product" data-cat="porc">
+                <div class="product-category">Porc</div>
+                <h3>Osso bucco</h3>
+                <div class="product-price">14,00$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Ris d'agneau</h3>
+                <div class="product-price">14,11$</div>
+            </div>
+            <div class="product" data-cat="porc">
+                <div class="product-category">Porc</div>
+                <h3>Côte de porc</h3>
+                <div class="product-price">14,65$</div>
+            </div>
+            <div class="product" data-cat="porc">
+                <div class="product-category">Porc</div>
+                <h3>Steak de longe</h3>
+                <div class="product-price">14,71$</div>
+            </div>
+            <div class="product" data-cat="porc">
+                <div class="product-category">Porc</div>
+                <h3>Spareribs</h3>
+                <div class="product-price">15,00$</div>
+            </div>
+            <div class="product" data-cat="cuisine">
+                <div class="product-category">Cuisine de la Ferme</div>
+                <h3>Nduja – saucisson chorizo à tartiner</h3>
+                <div class="product-price">15,00$</div>
+            </div>
+            <div class="product" data-cat="porc">
+                <div class="product-category">Porc</div>
+                <h3>Côtelette de porc</h3>
+                <div class="product-price">15,23$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Soupe à l'oignon</h3>
+                <div class="product-price">16,00$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Champvallon d'agneau</h3>
+                <div class="product-price">16,00$</div>
+            </div>
+            <div class="product" data-cat="volaille">
+                <div class="product-category">Volaille</div>
+                <h3>Viande à fondue poulet</h3>
+                <div class="product-price">16,00$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Surlonge d'agneau</h3>
+                <div class="product-price">16,22$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Cubes d'agneau à mijoter</h3>
+                <div class="product-price">16,26$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Agneau haché</h3>
+                <div class="product-price">16,50$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Merguez d'agneau (paquet de 6)</h3>
+                <div class="product-price">16,53$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Jarret d'agneau</h3>
+                <div class="product-price">16,85$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Brochettes d'agneau marinées aux herbes du jardin</h3>
+                <div class="product-price">17,05$</div>
+            </div>
+            <div class="product" data-cat="agneau">
+                <div class="product-category">Agneau</div>
+                <h3>Saucisses à Solange</h3>
+                <div class="product-price">17,65$</div>
+            </div>
+        </div>
+
+        <p style="margin-top:32px;color:var(--text-light);font-size:14px">Pour commander, appelez-nous au <a href="tel:+14186336767">(418) 633-6767</a> ou écrivez à <a href="mailto:commande@fermeeboulmontaise.ca">commande@fermeeboulmontaise.ca</a></p>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span>&copy; 2026 La Ferme Éboulmontaise</span>
+            <div class="footer-links">
+                <a href="tel:+14186336767">(418) 633-6767</a>
+                <a href="mailto:commande@fermeeboulmontaise.ca">commande@fermeeboulmontaise.ca</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function filterProducts(cat) {
+        document.querySelectorAll('.filter-btn').forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        document.querySelectorAll('.product').forEach(function(p) {
+            p.style.display = (cat === 'all' || p.dataset.cat === cat) ? '' : 'none';
+        });
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ferme Éboulmontaise — Viandes et agneaux de Charlevoix</title>
+    <meta name="description" content="Découvrez la saveur des viandes et des plats cuisinés sur place : agneaux de Charlevoix, porcs et autres produits savoureux de la Ferme !">
+    <meta property="og:title" content="La Ferme Éboulmontaise — Viandes et agneaux de Charlevoix">
+    <meta property="og:description" content="Découvrez la saveur des viandes et des plats cuisinés sur place : agneaux de Charlevoix, porcs et autres produits savoureux de la Ferme !">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">La Ferme Éboulmontaise</a>
+            <button class="nav-toggle" onclick="document.querySelector('.nav').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+            <ul class="nav">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="notre-histoire.html">Notre histoire</a></li>
+                <li><a href="boutique.html">Boutique</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Viandes et agneaux de Charlevoix</h1>
+        <p>Élevés sur les terres des Éboulements, nourris de foin aux saveurs de Charlevoix. Une ferme familiale depuis 1990.</p>
+        <a href="boutique.html" class="hero-cta">Voir la boutique</a>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Nos produits</h2>
+        <p class="section-subtitle">Des viandes de qualité supérieure, élevées dans une approche à échelle humaine.</p>
+        <div class="categories">
+            <a href="boutique.html#agneau" class="category" style="text-decoration:none;color:inherit">
+                <div class="category-icon">🐑</div>
+                <h3>Agneau</h3>
+                <p>Élevés sur les terres des Éboulements, nourris de foin aux saveurs de Charlevoix.</p>
+            </a>
+            <a href="boutique.html#porc" class="category" style="text-decoration:none;color:inherit">
+                <div class="category-icon">🐷</div>
+                <h3>Porc</h3>
+                <p>Croisé Berkshire, Duroc ou Nagano. Engraissé doucement pour une viande très délicate.</p>
+            </a>
+            <a href="boutique.html#volaille" class="category" style="text-decoration:none;color:inherit">
+                <div class="category-icon">🐔</div>
+                <h3>Volaille</h3>
+                <p>Volailles élevées en plein air sur notre ferme de Charlevoix.</p>
+            </a>
+            <a href="boutique.html#lapin" class="category" style="text-decoration:none;color:inherit">
+                <div class="category-icon">🐇</div>
+                <h3>Lapin</h3>
+                <p>Lapin fermier élevé avec soin aux Éboulements.</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+        <div class="about-block">
+            <div class="about-text">
+                <h2>Une histoire de relève</h2>
+                <p>Fondateurs de l'IGP Agneau de Charlevoix, les parents de Gabrielle Cadieux-Gagnon ont élevé des agneaux de 1990 à 2018.</p>
+                <p>Aujourd'hui, la Ferme se dissocie de l'IGP Agneau de Charlevoix, préférant désormais privilégier la production en circuit court. Gabrielle et son conjoint, porteurs des mêmes valeurs, poursuivent la mission de la ferme, soit d'offrir des viandes de qualité supérieure dans une approche à échelle humaine.</p>
+                <a href="notre-histoire.html" style="font-weight:600">Lire notre histoire &rarr;</a>
+            </div>
+            <div class="about-img">🌾</div>
+        </div>
+    </section>
+
+    <section class="cuisine-banner">
+        <h2>La cuisine de la ferme</h2>
+        <p>Nous proposons une variété de plats cuisinés avec soin. Notre cuisine vous permet de déguster nos viandes, apprêtées dans de délicieuses recettes, tout en vous simplifiant la vie.</p>
+        <a href="boutique.html#cuisine" class="cuisine-cta">Voir les plats cuisinés</a>
+    </section>
+
+    <section class="section" style="text-align:center">
+        <h2 class="section-title">Passez nous voir !</h2>
+        <p style="color:var(--text-light);margin-bottom:8px">La boutique est ouverte à l'année, tous les jours, de 9h à 17h.</p>
+        <p style="color:var(--text-light);margin-bottom:24px">2593 Route du Fleuve, Les Éboulements, QC</p>
+        <a href="contact.html" class="cuisine-cta">Nous joindre</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span>&copy; 2026 La Ferme Éboulmontaise</span>
+            <div class="footer-links">
+                <a href="tel:+14186336767">(418) 633-6767</a>
+                <a href="mailto:commande@fermeeboulmontaise.ca">commande@fermeeboulmontaise.ca</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
