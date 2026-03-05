@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Point a Custom Domain to Cloudflare Pages — Terminal Consulting</title>
+    <meta name="description" content="Set up DNS records to connect your custom domain to a Cloudflare Pages site. Covers domains on Cloudflare DNS and external registrars.">
+    <meta property="og:title" content="How to Point a Custom Domain to Cloudflare Pages">
+    <meta property="og:description" content="Set up DNS records to connect your custom domain to a Cloudflare Pages site. Covers domains on Cloudflare DNS and external registrars.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▋</text></svg>">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --green: #00ff41;
+            --green-dim: #00cc33;
+            --green-dark: #00801f;
+            --white: #e0e0e0;
+            --gray: #555;
+            --font: 'JetBrains Mono', 'Courier New', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--green-dim);
+            font-family: var(--font);
+            font-size: 16px;
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+        }
+
+        article {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px 120px;
+        }
+
+        .breadcrumb {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb a {
+            color: var(--gray);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--green);
+        }
+
+        h1 {
+            color: var(--green);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .meta {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--green);
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+
+        h2::before {
+            content: '## ';
+            color: var(--gray);
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        pre {
+            background: #111;
+            border: 1px solid #222;
+            padding: 16px;
+            overflow-x: auto;
+            margin-bottom: 16px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        code {
+            color: var(--white);
+        }
+
+        pre code {
+            color: var(--white);
+        }
+
+        .prompt-char {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .comment {
+            color: var(--gray);
+        }
+
+        ol, ul {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        a {
+            color: var(--green-dim);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--green);
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        th {
+            color: var(--green);
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid #191919;
+            color: var(--white);
+        }
+
+        .related {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid #222;
+        }
+
+        .related-title {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .related a {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 24px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .back:hover {
+            color: var(--green);
+        }
+
+        ::selection {
+            background: var(--green);
+            color: var(--bg);
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            article { padding: 40px 16px 80px; }
+            h1 { font-size: 20px; }
+            table { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    <article>
+        <div class="breadcrumb"><a href="/">terminal.consulting</a> / <a href="/guides/">guides</a> /</div>
+
+        <h1>How to Point a Custom Domain to Cloudflare Pages</h1>
+        <div class="meta">2026-03-04</div>
+
+        <p>You deployed a site to Cloudflare Pages. It's live at <code>your-project.pages.dev</code>. Now you want it on your actual domain. The steps depend on where your DNS is managed.</p>
+
+        <h2>Option A: Domain Already on Cloudflare DNS</h2>
+
+        <p>This is the easy path. If Cloudflare is already your nameserver:</p>
+
+        <ol>
+            <li>Go to your Pages project → <strong>Custom domains</strong> → <strong>Set up a custom domain</strong></li>
+            <li>Enter your domain (e.g. <code>yourdomain.com</code>)</li>
+            <li>Cloudflare adds the DNS record automatically</li>
+            <li>SSL certificate is provisioned within minutes</li>
+        </ol>
+
+        <p>That's it. Cloudflare handles the CNAME record and the certificate.</p>
+
+        <h2>Option B: Domain on an External Registrar</h2>
+
+        <p>If your DNS is managed elsewhere (Namecheap, GoDaddy, Google Domains, etc.), you have two choices:</p>
+
+        <p><strong>Choice 1: Move your nameservers to Cloudflare (recommended)</strong></p>
+
+        <ol>
+            <li>Add your domain to Cloudflare (free plan)</li>
+            <li>Cloudflare scans your existing DNS records</li>
+            <li>Update your registrar's nameservers to the ones Cloudflare gives you</li>
+            <li>Wait for propagation (minutes to 48 hours)</li>
+            <li>Then follow Option A above</li>
+        </ol>
+
+        <p><strong>Choice 2: Add a CNAME record at your current registrar</strong></p>
+
+        <ol>
+            <li>At your registrar's DNS settings, add a CNAME record:</li>
+        </ol>
+
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Target</th>
+            </tr>
+            <tr>
+                <td>CNAME</td>
+                <td><code>@</code> or <code>yourdomain.com</code></td>
+                <td><code>your-project.pages.dev</code></td>
+            </tr>
+        </table>
+
+        <p>Note: some registrars don't allow CNAME on the root domain (<code>@</code>). In that case, use the <code>www</code> subdomain and set up a redirect from the root, or move your nameservers to Cloudflare.</p>
+
+        <h2>Setting Up www + Root Domain</h2>
+
+        <p>Most sites should work on both <code>yourdomain.com</code> and <code>www.yourdomain.com</code>. On Cloudflare:</p>
+
+        <ol>
+            <li>Add the root domain (<code>yourdomain.com</code>) as a custom domain in Pages</li>
+            <li>Add <code>www.yourdomain.com</code> as a second custom domain</li>
+            <li>Cloudflare handles both and redirects <code>www</code> to root (or vice versa) automatically</li>
+        </ol>
+
+        <h2>Verifying It Works</h2>
+
+        <p>After adding the custom domain, check the status:</p>
+
+<pre><code><span class="comment"># Check DNS resolution</span>
+<span class="prompt-char">$</span> dig yourdomain.com +short
+<span class="comment"># Should return a Cloudflare IP or your pages.dev CNAME</span>
+
+<span class="comment"># Check HTTPS</span>
+<span class="prompt-char">$</span> curl -I https://yourdomain.com
+<span class="comment"># Look for HTTP/2 200 and cf-ray header</span></code></pre>
+
+        <p>If the domain shows "Active" in the Pages dashboard but the site doesn't load yet, give it a few minutes for the SSL certificate to provision.</p>
+
+        <h2>Common Issues</h2>
+
+        <ul>
+            <li><strong>ERR_TOO_MANY_REDIRECTS</strong> — your SSL mode is set to "Flexible" instead of "Full". Go to SSL/TLS settings and set it to <strong>Full (strict)</strong></li>
+            <li><strong>DNS_PROBE_FINISHED_NXDOMAIN</strong> — DNS hasn't propagated yet, or the record is wrong. Double-check the CNAME target</li>
+            <li><strong>Certificate not ready</strong> — can take up to 15 minutes. Cloudflare provisions a free certificate automatically</li>
+            <li><strong>Old site still showing</strong> — clear your browser cache or test in incognito. DNS caching can also delay the switch</li>
+        </ul>
+
+        <div class="related">
+            <div class="related-title">Related guides:</div>
+            <a href="/guides/deploy-multiple-sites-cloudflare-pages.html">How to Deploy Multiple Sites from One Repo with Cloudflare Pages</a>
+            <a href="/guides/consolidate-static-sites-monorepo.html">How to Consolidate Multiple Static Sites into One Monorepo</a>
+        </div>
+
+        <a class="back" href="/guides/">← back to guides</a>
+    </article>
+</body>
+</html>
